@@ -297,7 +297,12 @@ These designs remain distinct from the pre-registered gates.
 
 ---
 
-## 12. Licenses
+## 12. FedLock-faithful protocol replication (separate experiment)
+
+**run_id:** `fedjev-fedlock-replica-2026-09-20`  
+**Scope:** Separate experiment on the 95 chair-opening corpus. Faithful protocol relative to FedLock V3 documentation; **not** a 4k-speech / ~60k-comparison scale replication. Does not replace Gate 7 (external consistency under the main BT/Score protocol).
+
+## 13. Licenses
 
 | Asset | Status |
 |-------|--------|
@@ -313,11 +318,6 @@ Research instrumentation only. Not investment advice.
 ## Citation
 
 See [`CITATION`](CITATION).
-
-## 12. FedLock-faithful protocol replication (separate experiment)
-
-**run_id:** `fedjev-fedlock-replica-2026-09-20`  
-**Scope:** Separate experiment on the 95 chair-opening corpus. Faithful protocol relative to FedLock V3 documentation; **not** a 4k-speech / ~60k-comparison scale replication. Does not replace Gate 7 (external consistency under the main BT/Score protocol).
 
 ## Methods
 
