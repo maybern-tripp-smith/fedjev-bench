@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fedjev-bench"
+version = "0.1.0"
+description = "Pre-registered TypeSafe/Jev hawkishness ranking on FOMC chair press-conference openings"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Tripp Smith" }]
+dependencies = [
+    "typesafe-sdk>=0.6",
+    "pandas>=2.0",
+    "pyarrow>=14.0",
+    "openpyxl>=3.1",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+haiku = ["anthropic>=0.40"]
+fedlock = ["trueskill>=0.4.5"]
+
+[project.urls]
+Homepage = "https://maybern-tripp-smith.github.io/fedjev-bench/"
+Repository = "https://github.com/maybern-tripp-smith/fedjev-bench"
+
+# Application project (not a published library). scripts/ stay as scripts.
+[tool.setuptools]
+packages = []
+py-modules = []
