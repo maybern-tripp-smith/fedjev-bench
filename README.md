@@ -29,7 +29,8 @@ Cached answers ship under `runs/jev/`:
 git clone https://github.com/maybern-tripp-smith/fedjev-bench
 cd fedjev-bench
 python -m venv .venv && source .venv/bin/activate
-pip install typesafe-sdk pandas pyarrow openpyxl scipy matplotlib
+pip install -e .
+# or: uv sync
 python scripts/analyze_gates.py
 python scripts/plot_figures.py
 ```
@@ -37,6 +38,8 @@ python scripts/plot_figures.py
 Do not mutate `data/pairs/gold_pairs.jsonl` for this `run_id`.
 
 ## Live re-score (optional)
+
+Core install is enough for `score.py` and the name ablation. Optional extras: `pip install -e ".[haiku]"` for `scripts/run_haiku_comparison.py`; `pip install -e ".[fedlock]"` for `scripts/run_fedlock_replica.py`. Combine with `pip install -e ".[haiku,fedlock]"` or `uv sync --extra haiku --extra fedlock`.
 
 ```bash
 export TYPESAFE_API_KEY=...   # never commit
@@ -57,4 +60,4 @@ Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-b
 
 A second experiment (`run_id` `fedjev-fedlock-replica-2026-09-20`) re-runs a FedLock-style tournament on the 95 chair openings: anonymized pairwise Choice, macro conditions attached to each text, Microsoft TrueSkill aggregation (stop when every document’s uncertainty σ < 2). Live arms are Jev (`jev-latest`) and Claude Haiku (`claude-haiku-4-5-20251001`); the third arm is published FedLock `m` / `ma` (Llama is not re-invoked). This is protocol fidelity on a 95-document corpus, not a 4,000-speech / ~60,000-comparison scale copy, and it does not replace Gate 7.
 
-See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). Needs the `fedlock` extra (`trueskill`); the Haiku arm also needs `haiku`.
