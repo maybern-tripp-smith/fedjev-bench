@@ -16,7 +16,11 @@ Figure. Mean BT score and `score_jev` (± STE) by same-day action class (cuts, h
 
 ## `gate7_fedlock_scatter.png`
 
-Figure. FedLock press-conference raw score `m` versus Jev `score_jev` for matched scheduled meetings (title-embedded meeting date preferred; otherwise FedLock `d` with deltas 0, +1, −1, +2). n = 90. Spearman ρ = 0.944 (STE 0.016; 95% bootstrap CI [0.900, 0.966]). Interpretation: two independently constructed text-scoring systems agree on meeting-day hawkishness. The figure reports external consistency; it is not a methodological replication of FedLock (different corpus, judge model, and aggregator; see the fidelity note).
+Figure. Published FedLock press-conference raw TrueSkill mean `m` (horizontal) versus this repository’s direct Score pass `score_jev` (vertical) for matched scheduled meetings. Matching prefers the meeting date embedded in the FedLock title; otherwise the FedLock `d` field with calendar offsets 0, +1, −1, +2 days. n = 90. Spearman’s rank correlation ρ = 0.944 (standard error 0.016; 95% bootstrap confidence interval [0.900, 0.966]). Marker shape is the same-day funds-target action (`d_same`), a behavioral label that is not the FedLock score. Interpretation: two independently constructed *text* scoring systems agree on meeting-day hawkishness. The figure is Gate 7 external consistency. It is not a TrueSkill or macro-conditioned replication of FedLock (different corpus, judge, and aggregator; see `results/fedlock_fidelity.md`). The separate FedLock-faithful TrueSkill replica is `results/fedlock_replica/FINDINGS.md`.
+
+## FedLock replica figures (`fedlock_replica_*.png`)
+
+When `scripts/run_fedlock_replica.py` writes plots, they compare TrueSkill means (μ) from the Jev arm and the Haiku arm with published FedLock `m` on the 95-opening tournament (`run_id` `fedjev-fedlock-replica-2026-09-20`). Those panels are the protocol-fidelity experiment (stop rule: every document’s TrueSkill uncertainty σ < 2), not Gate 7. Rank-agreement numbers for those arms are in `results/fedlock_replica/FINDINGS.md` (Jev ↔ published `m`: Spearman +0.965, s.e. = 0.011, n = 92). The PNG files are produced only when that plotting path is run; they are not required to recompute the tables from `agreement.json`.
 
 ## `haiku_vs_jev_cost_latency.png`
 

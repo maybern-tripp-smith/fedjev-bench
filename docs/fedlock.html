@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pre-registered evaluation of TypeSafe/Jev on FOMC chair openings (fedjev-2026-09-20).">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>fedjev-bench — FedLock Gate 7</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+
+:root {
+  --bg: #f7f5f0;
+  --paper: #ffffff;
+  --text: #1a1a1a;
+  --muted: #4a5568;
+  --accent: #1a365d;
+  --border: #d4cfc4;
+  --pass: #276749;
+  --serif: "Source Serif 4", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem 1.25rem;
+}
+header .kicker {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+header h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+header p { margin: 0; color: var(--muted); font-size: 0.95rem; font-family: var(--sans); }
+nav {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  padding: 0.65rem 1.5rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
+nav a { color: var(--accent); text-decoration: none; }
+nav a.active { font-weight: 600; border-bottom: 2px solid var(--accent); }
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 70vh;
+}
+h1.page { font-size: 1.45rem; margin: 0 0 1rem; font-weight: 600; }
+h2 {
+  font-size: 1.15rem;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+h3 { font-size: 1.02rem; margin: 1.35rem 0 0.5rem; font-weight: 600; }
+p { margin: 0.75rem 0; }
+.abstract {
+  background: #f0ebe3;
+  border: 1px solid var(--border);
+  padding: 1rem 1.15rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.98rem;
+}
+.abstract .label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+.abstract p { margin: 0.55rem 0; }
+.abstract p:last-child { margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; font-family: var(--sans); }
+th, td { border: 1px solid var(--border); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
+th { background: #f0ebe3; font-weight: 600; }
+code, pre { font-family: var(--mono); font-size: 0.84rem; }
+code { background: #f0ebe3; padding: 0.1em 0.3em; }
+pre { background: #f0ebe3; padding: 1rem; overflow: auto; border: 1px solid var(--border); }
+pre code { background: none; padding: 0; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.35rem 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+.pass { color: var(--pass); font-weight: 600; font-family: var(--sans); }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+footer {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: var(--sans);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
+a { color: var(--accent); }
+.meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+</style>
+</head>
+<body>
+<header>
+<p class="kicker">Technical report · run fedjev-2026-09-20</p>
+<h1>fedjev-bench</h1>
+<p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
+</header>
+<nav>
+<a href="index.html">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html" class="active">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+</nav>
+<main>
+<h1 class="page">FedLock (Gate 7)</h1>
+<p>Gate 7 is an <strong>external consistency check</strong>: do two independently constructed <em>text</em> scores agree on meeting-day hawkishness? It is <strong>not</strong> a FedLock replication, and it is <strong>not</strong> the TrueSkill replica documented in <a href="fedlock-replica.html"><code>results/fedlock_replica/FINDINGS.md</code></a>.</p>
+<p>This note is self-contained. A reader who has not read the main analysis should still be able to rebuild the Gate 7 match and the rank correlations from the frozen artifacts. Numbers are taken from <code>results/gates.json</code> (<code>7_fedlock_consistency</code>). None were invented for this write-up.</p>
+<h2>1. Terms, taught once</h2>
+<p><strong>Federal Open Market Committee (FOMC).</strong> The Federal Reserve committee that sets the federal funds target. The documents on <em>this</em> side of Gate 7 are Chair press-conference <em>openings</em> (jsort-style), not necessarily the full press-conference transcript.</p>
+<p><strong>Behavioral label versus textual hawkishness.</strong> The main bench’s behavioral label is <code>d_same</code>, the same-day change in the federal funds target (hike, hold, or cut). On a hold, <code>d_same</code> is identically zero, so it cannot encode hawkish-hold versus dovish-hold wording. Gate 7 does not correlate against <code>d_same</code>. It correlates two <em>text</em> scores with each other.</p>
+<p><strong>FedLock.</strong> An independent published scoring project (<a href="https://jnathan9.github.io/fedlock/">methodology</a>; snapshot <code>data/raw/fedlock/data.json</code>). FedLock V3 asks Llama 3.3 70B which of two anonymized speeches is more hawkish <em>given</em> contemporaneous macro conditions, then aggregates ~60,000 comparisons on ~4,000 speeches with TrueSkill (defined below). Published <code>press_conference</code> fields used here:</p>
+<table><thead><tr><th>Field</th><th>Meaning</th></tr></thead><tbody><tr><td><code>m</code></td><td>Raw TrueSkill mean (μ) — absolute text hawkishness</td></tr><tr><td><code>ma</code></td><td>Era-adjusted mean — <code>m</code> minus a quarterly average</td></tr><tr><td><code>s</code></td><td>TrueSkill uncertainty (σ). Lower means the published rating has settled. Mean <code>s</code> on the matched main-analysis set is <strong>1.7762</strong></td></tr><tr><td><code>d</code></td><td>Date on the FedLock record</td></tr><tr><td><code>st</code></td><td>Speech type; Gate 7 uses <code>press_conference</code></td></tr></tbody></table>
+<p>The primary Gate 7 contrast is raw <code>m</code>. Era-adjusted <code>ma</code> is a sensitivity, not the headline.</p>
+<p><strong>TrueSkill versus Bradley–Terry.</strong> Gate 7’s <em>left-hand</em> scores come from this repository’s main protocol: dual-order Choice under <code>more hawkish about inflation</code>, aggregated by <strong>Bradley–Terry</strong> (a pairwise strength model on a fixed gold-pair graph), plus a secondary direct Score pass (<code>score_jev</code>). <strong>TrueSkill</strong> is Microsoft’s Bayesian skill-rating system (prior mean 50, prior uncertainty about 8.33, target uncertainty σ &lt; 2). Published FedLock uses TrueSkill. Gate 7 does <strong>not</strong> re-run TrueSkill. It only <em>reads</em> FedLock’s published means and asks how they rank against Bradley–Terry / Score.</p>
+<p><strong>Macro conditioning and anonymization (what Gate 7 does and does not share).</strong></p>
+<ul><li><em>Shared with FedLock, in a limited sense:</em> the object of measurement is pairwise textual hawkishness; this repository strips names and dates on its own Jev Choice calls (<code>scripts/strip_meta.py</code>); FedLock scores are used as an external reference.</li><li><em>Not used on the Gate 7 left-hand side:</em> macro-conditioned judge prompts (core personal consumption expenditures inflation, unemployment, real gross domestic product growth, and the CBOE Volatility Index at speech time); TrueSkill aggregation; Swiss or uncertainty-targeted pairing; Llama 3.3 70B; FedLock’s full speech corpus.</li></ul>
+<p><strong>Gate 7 versus the FedLock-faithful replica.</strong></p>
+<table><thead><tr><th></th><th>Gate 7 (this note)</th><th>Replica (<a href="fedlock-replica.html">FINDINGS</a>, ANALYSIS §12)</th></tr></thead><tbody><tr><td>Claim</td><td>Rank agreement between two <em>already computed</em> text systems</td><td>Protocol-fidelity experiment: re-run a FedLock-style TrueSkill tournament on the 95 openings (Jev arm and Haiku arm) and compare those ratings to published <code>m</code> / <code>ma</code></td></tr><tr><td>Left-hand series</td><td>Bradley–Terry and <code>score_jev</code> from the main bench</td><td>New TrueSkill μ series from Jev and from Haiku</td></tr><tr><td>Does it re-run TrueSkill?</td><td>No</td><td>Yes, on 95 openings only — not at FedLock’s ~4,000-speech scale</td></tr></tbody></table>
+<p><strong>Jev versus Haiku in the <em>main</em> bench (not this table’s third column).</strong> The Gate 7 numbers below are Jev (Bradley–Terry and Score) versus published FedLock. A same-protocol Haiku Choice arm exists for the main gates (cost / inversion); it is not the Gate 7 left-hand series. The replica’s Haiku arm is a different run (<code>claude-haiku-4-5-20251001</code> under the TrueSkill protocol).</p>
+<p><strong>Spearman’s rank correlation (ρ).</strong> Do the two series produce a similar <em>ordering</em> of meetings? Reported with a bootstrap <strong>standard error (s.e.)</strong> — the standard deviation of 1,000 meeting resamples — and a percentile 95 percent confidence interval. This note writes “standard error” or “s.e.” It does not use the label STE.</p>
+<h2>2. Procedure a reader can re-run (from cached outputs)</h2>
+<ol><li>Load meeting-level scores from <code>results/statement_scores.csv</code> (Bradley–Terry <code>score</code>, <code>score_jev</code>) and the meeting calendar / exclusions from <code>data/labels/meetings.parquet</code>.</li><li>Load FedLock <code>press_conference</code> rows from <code>data/raw/fedlock/data.json</code>.</li><li>Match on <strong>title-embedded meeting date</strong> when a <code>20YY-MM-DD</code> string appears in the FedLock title; otherwise use the FedLock <code>d</code> field with calendar offsets 0, +1, −1, +2 days.</li><li>Restrict to the main-analysis sample (scheduled meetings; drop the pre-registered crisis dates 2020-03-03 and 2020-03-15; flag 2023-03-22 without dropping).</li><li>Compute Spearman’s rank correlation of Bradley–Terry versus <code>m</code> and versus <code>ma</code> (n = 46 meetings with a Bradley–Terry score) and of <code>score_jev</code> versus <code>m</code> and versus <code>ma</code> (n = 90). Bootstrap 1,000 meeting resamples for the standard error and the percentile interval.</li><li>Do <strong>not</strong> treat the result as a TrueSkill replication. If the question is protocol fidelity, stop and open the replica note instead.</li></ol>
+<h2>3. Matching (observed)</h2>
+<ul><li>Policy: prefer title-embedded meeting date; else FedLock <code>d</code> with offsets 0, +1, −1, +2</li><li>Matched meetings (all calendar): <strong>92</strong></li><li>Main-analysis matched rows: <strong>90</strong></li><li>Same-calendar-day on the FedLock <code>d</code> field: <strong>1</strong></li><li>Offset (<code>fedlock_d</code> − meeting) on the main-analysis match: <code>{&#x27;0&#x27;: 1, &#x27;1&#x27;: 89}</code></li><li>Match route on the main-analysis match: <code>{&#x27;title_date&#x27;: 90}</code></li><li>Mean FedLock <code>s</code> on the matched main set: <strong>1.7762</strong> (TrueSkill uncertainty; lower means more settled)</li></ul>
+<p>When the match falls back to the <code>d</code> field, the offset is almost always +1 day. That is a dating convention, not a second sample.</p>
+<h2>4. Results</h2>
+<table><thead><tr><th>Contrast</th><th>Spearman ρ</th><th>Standard error</th><th>n</th><th>95% confidence interval</th></tr></thead><tbody><tr><td>Bradley–Terry vs <code>m</code> (raw)</td><td>+0.679</td><td>0.112</td><td>46</td><td>[+0.436, +0.861]</td></tr><tr><td>Bradley–Terry vs <code>ma</code> (era-adjusted)</td><td>+0.594</td><td>0.104</td><td>46</td><td>[+0.361, +0.770]</td></tr><tr><td><code>score_jev</code> vs <code>m</code></td><td>+0.944</td><td>0.016</td><td>90</td><td>[+0.900, +0.966]</td></tr><tr><td><code>score_jev</code> vs <code>ma</code></td><td>+0.774</td><td>0.044</td><td>90</td><td>[+0.673, +0.839]</td></tr></tbody></table>
+<p>Agreement with raw <code>m</code> is stronger than with era-adjusted <code>ma</code>, especially for the Score pass. The Score-versus-<code>m</code> contrast is near a rank ceiling (ρ = +0.944, s.e. = 0.016, n = 90). Bradley–Terry versus <code>m</code> is lower (ρ = +0.679, s.e. = 0.112, n = 46) on a smaller, sparser graph.</p>
+<h2>5. What this does and does not imply</h2>
+<p>Gate 7 ρ asks: <em>do two independent text-scoring systems agree on meeting-day hawkishness?</em></p>
+<p>It does <strong>not</strong> claim: <em>we replicated FedLock’s tournament, judge, corpus, or aggregator.</em></p>
+<p><strong>Corpus mismatch.</strong> Our documents are chair openings. FedLock <code>press_conference</code> may be fuller presser text. Agreement is still informative; it is not a same-document comparison.</p>
+<p><strong>Separate experiment.</strong> A FedLock-V3-faithful protocol (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss / uncertainty pairing) was run on the 95 openings, comparing Jev, Haiku, and published <code>m</code> / <code>ma</code>. That run has its own <code>run_id</code> (<code>fedjev-fedlock-replica-2026-09-20</code>). See <a href="fedlock-replica.html"><code>results/fedlock_replica/FINDINGS.md</code></a> and ANALYSIS §12. It is not a 4,000-speech / ~60,000-comparison scale replication, and it does not replace Gate 7.</p>
+</main>
+<footer>
+Research instrumentation only. Not investment advice. No Federal Reserve endorsement implied. Companion repository:
+<a href="https://github.com/maybern-tripp-smith/fedjev-bench">maybern-tripp-smith/fedjev-bench</a>.
+
+</footer>
+</body>
+</html>

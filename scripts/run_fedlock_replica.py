@@ -1186,154 +1186,234 @@ def write_findings(
             if d.get("rho") is None:
                 return f"{lab}: n/a"
             return (
-                f"{lab}={d['rho']:+.3f} (STE={d['ste']:.3f}; "
-                f"95% CI [{d['ci_low']:+.3f}, {d['ci_high']:+.3f}]; n={d['n']})"
+                f"{lab} = {d['rho']:+.3f} (s.e. = {d['ste']:.3f}; "
+                f"95% CI [{d['ci_low']:+.3f}, {d['ci_high']:+.3f}]; n = {d['n']})"
             )
         return f"- **{c['contrast']}.** {one('Spearman', sp)}; {one('Kendall', kd)}."
 
+    n_stmt = agreement.get("n_statements", 95)
+    n_match = len(fedlock)
     lines = []
     lines.append("# FedLock-faithful protocol replication — Findings")
     lines.append("")
     lines.append(f"**run_id:** `{RUN_ID}`  ")
     lines.append(
-        "**Scope:** Separate experiment on the 95 chair-opening corpus. "
-        "Faithful protocol relative to FedLock V3 documentation; "
-        "**not** a 4k-speech / ~60k-comparison scale replication. "
-        "Does not replace Gate 7 (external consistency under the main BT/Score protocol)."
-    )
-    lines.append("")
-    lines.append("## Methods")
-    lines.append("")
-    lines.append(
-        "The judge task follows FedLock V3: pairwise selection of the more hawkish "
-        "monetary-policy stance **conditional on macroeconomic conditions** attached "
-        "to each text (Core PCE from PCEPILFE year-over-year when computable else level; "
-        "UNRATE; real GDP growth from GDPC1 quarter-over-quarter SAAR when available else "
-        "year-over-year; VIXCLS). Texts are anonymized via `scripts/strip_meta.py` "
-        "(speaker titles, dates, and chair surnames removed); Chair identity is not "
-        "placed in judge state."
+        "**Companion claim (do not conflate):** Gate 7 in the main bench is a different "
+        "experiment. Gate 7 asks whether this repository’s Bradley–Terry and Score series "
+        "*agree in rank* with published FedLock scores. This note asks whether a *separate* "
+        "tournament, run on the same chair openings under FedLock V3’s documented protocol, "
+        "recovers a similar ordering. It is not a 4,000-speech / ~60,000-comparison scale "
+        "copy of the published FedLock run."
     )
     lines.append("")
     lines.append(
-        "Aggregation uses Microsoft TrueSkill with priors μ₀=50, σ₀=8.33, stopping when "
-        "all σ<2.0 or approximately 30 comparisons per document (global cap 2,850). "
-        "Pairing is Swiss-style with uncertainty targeting (prefer high-σ players and "
-        "similar μ). Soft probabilities from the judge update ratings by outcome "
-        "interpolation (confidence-weighted). Presentation order of Text A/B is "
-        "randomized each match."
+        "This document is written so a reader fluent in finance and monetary policy, "
+        "but not in natural-language processing, can re-implement the comparison from "
+        "the prose and the frozen artifacts. Numbers below are taken from `agreement.json` "
+        "and `cost_performance.json`. None were invented for this write-up."
+    )
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## 1. What each name means in this note")
+    lines.append("")
+    lines.append(
+        "**Federal Open Market Committee (FOMC).** The Federal Reserve committee that "
+        "sets the federal funds target. The documents scored here are the Chair’s opening "
+        f"remarks at post-meeting press conferences ({n_stmt} openings in "
+        "`data/clean/statements.jsonl`)."
     )
     lines.append("")
     lines.append(
-        f"Arms: (i) TypeSafe SystemOne Choice (`{JEV_MODEL}`); "
-        f"(ii) Claude `{HAIKU_MODEL}` with structured JSON winner and soft probabilities; "
-        "(iii) published FedLock `press_conference` fields `m`, `ma`, `s`, `n` from "
+        "**Behavioral label versus textual hawkishness.** The Committee’s voted action "
+        "is a *behavioral* label. In the main bench that label is `d_same`, the same-day "
+        "change in the federal funds target: hike, hold, or cut. A hold day has "
+        "`d_same = 0` by construction, so the behavioral label cannot say whether the "
+        "*wording* of a hold was hawkish or dovish. *Textual hawkishness* is a separate "
+        "construct: how hawkish the opening sounds about inflation and the policy path. "
+        "This replica ranks openings on textual hawkishness *relative to the macro "
+        "conditions attached to each text*. It does not use `d_same` as the scoring target."
+    )
+    lines.append("")
+    lines.append(
+        "**FedLock.** An independent, published scoring project "
+        "([methodology](https://jnathan9.github.io/fedlock/); snapshot in "
+        "`data/raw/fedlock/data.json`). FedLock V3 runs a large pairwise tournament: a "
+        "large language model (Llama 3.3 70B) is shown two anonymized speeches and asked "
+        "which takes the more hawkish monetary-policy stance *given* contemporaneous macro "
+        "conditions. Those pairwise wins are aggregated with TrueSkill (defined below) "
+        "over roughly 60,000 comparisons and 4,000 speeches. This repository does **not** "
+        "re-invoke Llama. It only reads the published `press_conference` fields: `m` "
+        "(raw TrueSkill mean), `ma` (era-adjusted mean), `s` (uncertainty), `n` "
+        "(comparisons in FedLock’s own run), `st` (speech type), and `d` (date)."
+    )
+    lines.append("")
+    lines.append(
+        "**TrueSkill versus Bradley–Terry.** Bradley–Terry (main bench, Gates 1–7) fits "
+        "one strength per document from a fixed gold-pair graph. TrueSkill (published "
+        "FedLock and this replica) is Microsoft’s Bayesian skill-rating system. Each "
+        "document starts at prior mean μ₀ = 50 and prior uncertainty σ₀ = 8.33. The "
+        "replica stops when every document has σ < 2.0, or when it hits the comparison "
+        "caps. **σ < 2** is a convergence rule, not a hawkishness threshold."
+    )
+    lines.append("")
+    lines.append(
+        "**Anonymized pairwise tournament.** Each comparison shows two stripped texts. "
+        "`scripts/strip_meta.py` removes speaker titles, calendar dates, and chair "
+        "surnames. Chair identity is not placed in the judge’s input. Presentation order "
+        "of Text A / Text B is randomized each match."
+    )
+    lines.append("")
+    lines.append(
+        "**Macro-conditioned judgment.** Each text is paired with four Federal Reserve "
+        "Economic Data (FRED) series as of that speech date: core personal consumption "
+        "expenditures inflation (PCEPILFE, year-over-year when computable, otherwise the "
+        "level); the civilian unemployment rate (UNRATE); real gross domestic product "
+        "growth (GDPC1, quarter-over-quarter at a seasonally adjusted annual rate when "
+        "available, otherwise year-over-year); and the CBOE Volatility Index close "
+        "(VIXCLS). The instruction is relative hawkishness *given those conditions*."
+    )
+    lines.append("")
+    lines.append(
+        f"**Arms.** (i) Jev — TypeSafe SystemOne Choice (`{JEV_MODEL}`). "
+        f"(ii) Haiku — Claude `{HAIKU_MODEL}`, structured JSON winner and a soft "
+        "probability. (iii) Published FedLock — frozen `m` / `ma` / `s` / `n` from "
         "`data/raw/fedlock/data.json` (Llama not re-invoked)."
     )
     lines.append("")
     lines.append(
-        f"FedLock date matching (deltas 0, +1, −1, +2 on `d`): "
-        f"**{len(fedlock)}** of {agreement.get('n_statements', 95)} openings matched."
+        f"FedLock date matching (offsets 0, +1, −1, +2 on `d`): "
+        f"**{n_match}** of {n_stmt} openings matched."
     )
     if protocol_notes:
         lines.append("")
-        lines.append("### Protocol deviations / notes")
+        lines.append("### Protocol deviations / notes (observed)")
         lines.append("")
         for n in protocol_notes:
             lines.append(f"- {n}")
     lines.append("")
-    lines.append("## Results")
+    lines.append("## 2. Rank agreement")
     lines.append("")
-    lines.append("### Rank agreement")
+    lines.append(
+        "**Spearman’s rank correlation** compares two orderings of meetings. "
+        "**Kendall’s rank correlation** is the pairwise version of the same question. "
+        "The **standard error (s.e.)** is the standard deviation of 1,000 bootstrap "
+        "meeting resamples; the 95 percent interval is the percentile interval from "
+        "the same resamples. This note writes “standard error” or “s.e.” It does not "
+        "use the label STE."
+    )
     lines.append("")
     for c in agreement.get("contrasts", []):
         lines.append(fmt_corr(c))
     lines.append("")
-    lines.append("### Cost and performance")
+    lines.append("## 3. Cost and performance (listed prices; not an accuracy claim)")
     lines.append("")
     lines.append(
-        "| Arm | n_comps | input tok | output tok | USD | $/MTok eff. | $/comp | "
-        "lat mean / p50 / p95 (ms) | comps/s |"
+        "Prices used for the accounting: "
+        f"Jev ${JEV_PRICE_IN} per million input tokens, output free; "
+        f"Haiku ${HAIKU_PRICE_IN} per million input tokens and "
+        f"${HAIKU_PRICE_OUT} per million output tokens."
     )
-    lines.append("|-----|--------:|----------:|-----------:|----:|------------:|-------:|---------------------------:|--------:|")
+    lines.append("")
+    lines.append(
+        "| Arm | Comparisons | Input tokens | Output tokens | USD | "
+        "Effective $/million tokens | $/comparison | "
+        "Latency mean / median / 95th percentile (ms) | Comparisons/s |"
+    )
+    lines.append(
+        "|-----|------------:|-------------:|--------------:|----:"
+        "|---------------------------:|-------------:"
+        "|---------------------------------------------:|--------------:|"
+    )
+    arm_labels = {"jev": "Jev", "haiku": "Haiku"}
     for arm in ("jev", "haiku"):
         c = cost.get(arm) or {}
         if not c:
             continue
         lat = c.get("latency_ms") or {}
         lines.append(
-            f"| {arm} | {c.get('n_comps')} | {c.get('input_tokens')} | {c.get('output_tokens')} | "
+            f"| {arm_labels[arm]} | {c.get('n_comps')} | {c.get('input_tokens')} | "
+            f"{c.get('output_tokens')} | "
             f"{c.get('usd'):.4f} | "
             f"{(c.get('usd_per_mtok_effective') or 0):.4f} | "
             f"{(c.get('usd_per_comparison') or 0):.6f} | "
-            f"{(lat.get('mean') or 0):.0f} / {(lat.get('p50') or 0):.0f} / {(lat.get('p95') or 0):.0f} | "
+            f"{(lat.get('mean') or 0):.0f} / {(lat.get('p50') or 0):.0f} / "
+            f"{(lat.get('p95') or 0):.0f} | "
             f"{(c.get('comps_per_second') or 0):.3f} |"
         )
     lines.append("")
     if jev_sum:
         lines.append(
             f"Jev stop: `{jev_sum.get('stop_reason')}`; "
-            f"max σ={jev_sum.get('max_sigma'):.3f}; "
-            f"fraction σ<2={jev_sum.get('frac_sigma_lt_2'):.3f}."
+            f"max σ = {jev_sum.get('max_sigma'):.3f}; "
+            f"fraction with σ < 2 = {jev_sum.get('frac_sigma_lt_2'):.3f}."
         )
     if haiku_sum:
         lines.append(
             f"Haiku stop: `{haiku_sum.get('stop_reason')}`; "
-            f"max σ={haiku_sum.get('max_sigma'):.3f}; "
-            f"fraction σ<2={haiku_sum.get('frac_sigma_lt_2'):.3f}."
+            f"max σ = {haiku_sum.get('max_sigma'):.3f}; "
+            f"fraction with σ < 2 = {haiku_sum.get('frac_sigma_lt_2'):.3f}."
         )
     lines.append("")
-    lines.append("## Interpretation")
+    lines.append("## 4. Interpretation")
     lines.append("")
     lines.append(
-        "Spearman/Kendall concordance between Jev and Haiku under a shared FedLock-style "
-        "protocol measures cross-judge stability of the relative-hawkishness construct on "
-        "this openings sample. Concordance with published FedLock `m` / `ma` asks whether "
-        "the same protocol family, applied to chair openings rather than FedLock’s broader "
-        "speech corpus and Llama 3.3 70B judge, recovers a similar ordering of meeting-day "
-        "stance. Era-adjusted `ma` removes quarterly means; disagreement between `m` and "
-        "`ma` contrasts therefore partly reflects era composition of the 2011–2026 openings "
-        "window."
+        "Spearman / Kendall concordance between Jev and Haiku, under a shared "
+        "FedLock-style protocol, measures whether two different live judges produce a "
+        "stable relative-hawkishness ordering on this openings sample. Concordance with "
+        "published FedLock `m` / `ma` asks whether that same protocol family, applied to "
+        "chair openings rather than FedLock’s broader speech corpus and Llama 3.3 70B "
+        "judge, recovers a similar ordering of meeting-day stance. Era-adjusted `ma` "
+        "removes quarterly means; disagreement between the `m` and `ma` contrasts "
+        "therefore partly reflects era composition of the 2011–2026 openings window."
     )
     lines.append("")
     lines.append(
-        "Cost and latency columns are accounting facts for the listed prices "
-        f"(Jev ${JEV_PRICE_IN}/MTok input, output free; Haiku "
-        f"${HAIKU_PRICE_IN}/MTok input, ${HAIKU_PRICE_OUT}/MTok output). They are not "
-        "accuracy claims."
+        "Cost and latency columns are accounting facts at the listed prices above. "
+        "They are not accuracy claims and are not a gate. This replica does not replace "
+        "Gate 7. See [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md) "
+        "and ANALYSIS §6."
     )
     lines.append("")
-    lines.append("## Limitations")
+    lines.append("## 5. Limitations")
     lines.append("")
     lines.append(
-        "- **Scale.** FedLock reports ~60k comparisons on ~4k speeches; this run uses the "
-        "95 openings corpus with a ~2,850-comparison cap. Convergence to σ<2 for every "
-        "document is not guaranteed at this scale."
+        "- **Scale.** FedLock reports ~60,000 comparisons on ~4,000 speeches; this run "
+        "uses the openings corpus with a 2,850-comparison cap. Convergence to σ < 2 for "
+        "every document is not guaranteed at this scale."
     )
     lines.append(
         "- **Document mismatch.** Openings are a subset of press-conference communication; "
         "FedLock `press_conference` scores may reflect fuller presser text."
     )
     lines.append(
-        "- **Judge stack.** FedLock’s published scores use Llama 3.3 70B; this replica uses "
-        "Jev and Haiku. Agreement with `m`/`ma` mixes protocol fidelity and model differences."
+        "- **Judge stack.** FedLock’s published scores use Llama 3.3 70B; this replica "
+        "uses Jev and Haiku. Agreement with `m` / `ma` mixes protocol fidelity and model "
+        "differences."
     )
     lines.append(
-        "- **Soft TrueSkill.** Confidence-weighted updates via outcome interpolation are a "
-        "documented approximation to FedLock’s “updates by judge confidence,” not a bit-exact "
-        "reimplementation of an unpublished update kernel."
+        "- **Soft TrueSkill.** Confidence-weighted updates via outcome interpolation are "
+        "an approximation to FedLock’s documented “updates by judge confidence,” not a "
+        "bit-exact unpublished kernel."
     )
     lines.append(
-        "- **Macro vintage.** FRED series are taken as-of speech date from the local dump "
-        "(plus downloaded VIXCLS/GDPC1); real-time vintage differs from revised series."
+        "- **Macro vintage.** FRED series are taken as-of the speech date from the local "
+        "dump (plus downloaded VIXCLS / GDPC1). Real-time vintages differ from revised "
+        "series."
     )
     lines.append("")
-    lines.append("## Artifacts")
+    lines.append("## 6. Artifacts")
     lines.append("")
     lines.append("- `results/fedlock_replica/trueskill_{jev,haiku}.csv`")
     lines.append("- `results/fedlock_replica/comparisons_{jev,haiku}.jsonl`")
     lines.append("- `results/fedlock_replica/cost_performance.json`")
     lines.append("- `results/fedlock_replica/agreement.json`")
-    lines.append("- `results/figures/fedlock_replica_*.png` (copied to `docs/figures/`)")
+    lines.append("- `results/fedlock_replica/fedlock_matches.json`")
+    lines.append("- `results/fedlock_replica/macro_asof.json`")
+    lines.append(
+        "- `results/figures/fedlock_replica_*.png` when the replica plotting path is run "
+        "(copied to `docs/figures/`)"
+    )
     lines.append("")
 
     path.write_text("\n".join(lines) + "\n")

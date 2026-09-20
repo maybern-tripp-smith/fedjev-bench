@@ -298,8 +298,8 @@ def fig_gate7(meetings: pd.DataFrame, scores: pd.DataFrame, gates: dict):
     ax.set_xlabel("FedLock press_conference m (raw)")
     ax.set_ylabel("score_jev (Jev Score pass)")
     ax.set_title(
-        f"Gate 7 — score_jev vs FedLock m\n"
-        f"Spearman ρ={stats['rho']:.3f} (STE {stats['ste']:.3f}, n={stats['n']}; "
+        f"Gate 7 — score_jev vs published FedLock m (not a TrueSkill replica)\n"
+        f"Spearman ρ={stats['rho']:.3f} (s.e. {stats['ste']:.3f}, n={stats['n']}; "
         f"95% CI [{stats['ci_low']:.3f}, {stats['ci_high']:.3f}])",
         loc="left",
         fontsize=9,
@@ -633,13 +633,16 @@ def main():
             f"same-day rate changes are an incomplete label for textual hawkishness under holds."
         ),
         "gate7_fedlock_scatter": (
-            f"**Axes:** FedLock press_conference raw `m` vs Jev `score_jev` on matched scheduled meetings. "
-            f"**n:** {g7['score_jev_vs_m']['n']} matched (title-date preferred; else `d` deltas 0/+1/−1/+2). "
+            f"**Axes:** published FedLock press-conference raw TrueSkill mean `m` vs this repository’s "
+            f"`score_jev` on matched scheduled meetings. "
+            f"**n:** {g7['score_jev_vs_m']['n']} matched (title-date preferred; else `d` offsets 0/+1/−1/+2). "
             f"**Headline:** Spearman ρ={g7['score_jev_vs_m']['rho']:.3f} "
-            f"(STE {g7['score_jev_vs_m']['ste']:.3f}; 95% CI "
+            f"(s.e. {g7['score_jev_vs_m']['ste']:.3f}; 95% CI "
             f"[{g7['score_jev_vs_m']['ci_low']:.3f}, {g7['score_jev_vs_m']['ci_high']:.3f}]). "
-            f"**Read:** two independent text-scoring systems agree on meeting-day hawkishness. This is external consistency, not a FedLock replication "
-            f"(different corpus, judge, and aggregator; see fidelity note)."
+            f"**Read:** two independent *text* scoring systems agree on meeting-day hawkishness. "
+            f"Gate 7 external consistency, not a TrueSkill or macro-conditioned FedLock replication "
+            f"(different corpus, judge, and aggregator; see `results/fedlock_fidelity.md`). "
+            f"The separate TrueSkill replica is `results/fedlock_replica/FINDINGS.md`."
         ),
         "haiku_vs_jev_cost_latency": (
             f"**Axes:** listed Choice API cost (USD) and per-call latency p50 (ms) for Jev vs Claude Haiku 4.5 on the same 524 Choice calls. "

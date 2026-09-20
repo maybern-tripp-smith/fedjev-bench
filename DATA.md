@@ -26,8 +26,7 @@ Board of Governors / St. Louis Fed series via
 
 ## FedLock
 
-- https://jnathan9.github.io/fedlock/  
-- Snapshot `data/raw/fedlock/data.json` used only for Gate 7 consistency. Respect upstream terms.
+FedLock is an independent published scoring project ([methodology](https://jnathan9.github.io/fedlock/)). FedLock V3 runs a large pairwise tournament (Llama 3.3 70B; TrueSkill aggregation) and posts per-speech fields including raw mean `m`, era-adjusted `ma`, and uncertainty `s`. This repository stores a snapshot at `data/raw/fedlock/data.json` and reads the `press_conference` rows as an external *text* reference: Gate 7 is rank agreement with those published scores; the separate TrueSkill replica compares new Jev / Haiku ratings to the same fields. Llama is not re-invoked. Respect upstream terms. The snapshot is a reference ranking, not a license to republish the upstream site.
 
 ## TypeSafe / Jev
 
