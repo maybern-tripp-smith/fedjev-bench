@@ -352,6 +352,41 @@ python scripts/plot_figures.py</code></pre>
 <h3>Cross-experiment notes</h3>
 <ul><li><strong>Cost / latency:</strong> see <code>results/experiments/SUMMARY.json</code> (<code>total</code>, <code>by_experiment</code>).</li><li><strong>Caching:</strong> <code>runs/jev/exp_cache/</code>; append-only answer log <code>runs/jev/experiments_answers.jsonl</code>.</li><li><strong>Non-interference:</strong> <code>data/pairs/gold_pairs.jsonl</code> was not modified; no Haiku judge was used in these experiments.</li></ul>
 <p>Machine-readable summary: <code>results/experiments/SUMMARY.json</code>.</p>
+<h3>Publication figures</h3>
+<p>Gate and experiment plots (PNG/PDF under <code>results/figures/</code> and <code>docs/figures/</code>; captions in <code>results/figures/CAPTIONS.md</code>):</p>
+<figure>
+<img src="docs/figures/gate1_2_inversion_bars.png" alt="Inversion rates">
+</figure>
+<figure>
+<img src="docs/figures/gate3_score_vs_dsame.png" alt="Gate 3 scores versus d_same">
+</figure>
+<figure>
+<img src="docs/figures/gate4_holds_cuts_hikes.png" alt="Holds vs cuts vs hikes">
+</figure>
+<figure>
+<img src="docs/figures/gate7_fedlock_scatter.png" alt="Gate 7 FedLock scatter">
+</figure>
+<figure>
+<img src="docs/figures/haiku_vs_jev_cost_latency.png" alt="Haiku vs Jev cost and latency">
+</figure>
+<figure>
+<img src="docs/figures/exp3_composite_vs_dsame.png" alt="Exp3 composite vs d_same">
+</figure>
+<figure>
+<img src="docs/figures/exp3_ablation.png" alt="Exp3 ablation">
+</figure>
+<figure>
+<img src="docs/figures/exp4_noul_by_era.png" alt="Exp4 Nouls by era">
+</figure>
+<figure>
+<img src="docs/figures/exp5_reliability.png" alt="Exp5 reliability">
+</figure>
+<figure>
+<img src="docs/figures/exp6_span_pgold.png" alt="Exp6 span p_gold">
+</figure>
+<figure>
+<img src="docs/figures/exp7_macro_agreement.png" alt="Exp7 macro agreement">
+</figure>
 <h2>12. FedLock-faithful protocol replication (separate experiment)</h2>
 <p><strong>run_id:</strong> <code>fedjev-fedlock-replica-2026-09-20</code>   <strong>Scope:</strong> Separate experiment on the 95 chair-opening corpus. Faithful protocol relative to FedLock V3 documentation; <strong>not</strong> a 4k-speech / ~60k-comparison scale replication. Does not replace Gate 7 (external consistency under the main BT/Score protocol).</p>
 <h3>Methods</h3>

@@ -456,6 +456,33 @@ Gold is not macro-conditional. Macro features are sparse (three series) and cont
 
 Machine-readable summary: `results/experiments/SUMMARY.json`.
 
+
+### Publication figures
+
+Gate and experiment plots (PNG/PDF under `results/figures/` and `docs/figures/`; captions in `results/figures/CAPTIONS.md`):
+
+![Inversion rates](docs/figures/gate1_2_inversion_bars.png)
+
+![Gate 3 scores versus d_same](docs/figures/gate3_score_vs_dsame.png)
+
+![Holds vs cuts vs hikes](docs/figures/gate4_holds_cuts_hikes.png)
+
+![Gate 7 FedLock scatter](docs/figures/gate7_fedlock_scatter.png)
+
+![Haiku vs Jev cost and latency](docs/figures/haiku_vs_jev_cost_latency.png)
+
+![Exp3 composite vs d_same](docs/figures/exp3_composite_vs_dsame.png)
+
+![Exp3 ablation](docs/figures/exp3_ablation.png)
+
+![Exp4 Nouls by era](docs/figures/exp4_noul_by_era.png)
+
+![Exp5 reliability](docs/figures/exp5_reliability.png)
+
+![Exp6 span p_gold](docs/figures/exp6_span_pgold.png)
+
+![Exp7 macro agreement](docs/figures/exp7_macro_agreement.png)
+
 ## 12. FedLock-faithful protocol replication (separate experiment)
 
 **run_id:** `fedjev-fedlock-replica-2026-09-20`  
