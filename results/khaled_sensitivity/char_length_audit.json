@@ -1,0 +1,725 @@
+{
+  "corpus": "chair openings (data/clean/statements.jsonl text field)",
+  "jsort_default_max_chars": 8000,
+  "design_note": "jsort/jgrep default --max-chars 8000 truncates what Jev sees. This audit measures bindingness on our opening corpus only; we do not raise char limits on full pressers for the frozen run_id.",
+  "n_docs": 95,
+  "mean_chars": 7917.031578947369,
+  "p50_chars": 7547.0,
+  "p95_chars": 11705.899999999998,
+  "max_chars": 13794,
+  "min_chars": 2382,
+  "n_exceeding_8000": 39,
+  "share_exceeding_8000": 0.4105263157894737,
+  "dates_exceeding_8000": [
+    "2011-04-27",
+    "2011-11-02",
+    "2012-01-25",
+    "2012-09-13",
+    "2012-12-12",
+    "2013-03-20",
+    "2013-06-19",
+    "2013-09-18",
+    "2013-12-18",
+    "2014-03-19",
+    "2014-06-18",
+    "2014-09-17",
+    "2014-12-17",
+    "2015-03-18",
+    "2015-06-17",
+    "2015-09-17",
+    "2015-12-16",
+    "2016-03-16",
+    "2016-06-15",
+    "2016-09-21",
+    "2017-06-14",
+    "2017-09-20",
+    "2018-06-13",
+    "2018-12-19",
+    "2019-01-30",
+    "2020-03-15",
+    "2020-06-10",
+    "2020-07-29",
+    "2020-09-16",
+    "2020-11-05",
+    "2020-12-16",
+    "2021-03-17",
+    "2021-06-16",
+    "2022-06-15",
+    "2022-12-14",
+    "2023-03-22",
+    "2023-06-14",
+    "2023-12-13",
+    "2025-12-10"
+  ],
+  "per_doc": [
+    {
+      "doc_id": "stmt-2011-04-27",
+      "date": "2011-04-27",
+      "n_chars": 10713,
+      "n_chars_raw": 10716,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2011-06-22",
+      "date": "2011-06-22",
+      "n_chars": 7424,
+      "n_chars_raw": 7424,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2011-11-02",
+      "date": "2011-11-02",
+      "n_chars": 8557,
+      "n_chars_raw": 8557,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2012-01-25",
+      "date": "2012-01-25",
+      "n_chars": 13030,
+      "n_chars_raw": 13030,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2012-04-25",
+      "date": "2012-04-25",
+      "n_chars": 4191,
+      "n_chars_raw": 4191,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2012-06-20",
+      "date": "2012-06-20",
+      "n_chars": 5010,
+      "n_chars_raw": 5010,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2012-09-13",
+      "date": "2012-09-13",
+      "n_chars": 8988,
+      "n_chars_raw": 8988,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2012-12-12",
+      "date": "2012-12-12",
+      "n_chars": 12149,
+      "n_chars_raw": 12149,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2013-03-20",
+      "date": "2013-03-20",
+      "n_chars": 8253,
+      "n_chars_raw": 8253,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2013-06-19",
+      "date": "2013-06-19",
+      "n_chars": 11262,
+      "n_chars_raw": 11262,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2013-09-18",
+      "date": "2013-09-18",
+      "n_chars": 12944,
+      "n_chars_raw": 12944,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2013-12-18",
+      "date": "2013-12-18",
+      "n_chars": 10513,
+      "n_chars_raw": 10513,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2014-03-19",
+      "date": "2014-03-19",
+      "n_chars": 10527,
+      "n_chars_raw": 10535,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2014-06-18",
+      "date": "2014-06-18",
+      "n_chars": 9164,
+      "n_chars_raw": 9164,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2014-09-17",
+      "date": "2014-09-17",
+      "n_chars": 13794,
+      "n_chars_raw": 13794,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2014-12-17",
+      "date": "2014-12-17",
+      "n_chars": 9934,
+      "n_chars_raw": 9934,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2015-03-18",
+      "date": "2015-03-18",
+      "n_chars": 9521,
+      "n_chars_raw": 9521,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2015-06-17",
+      "date": "2015-06-17",
+      "n_chars": 9576,
+      "n_chars_raw": 9576,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2015-09-17",
+      "date": "2015-09-17",
+      "n_chars": 11516,
+      "n_chars_raw": 11516,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2015-12-16",
+      "date": "2015-12-16",
+      "n_chars": 13456,
+      "n_chars_raw": 13456,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2016-03-16",
+      "date": "2016-03-16",
+      "n_chars": 11288,
+      "n_chars_raw": 11288,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2016-06-15",
+      "date": "2016-06-15",
+      "n_chars": 9735,
+      "n_chars_raw": 9735,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2016-09-21",
+      "date": "2016-09-21",
+      "n_chars": 8705,
+      "n_chars_raw": 8705,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2016-12-14",
+      "date": "2016-12-14",
+      "n_chars": 6658,
+      "n_chars_raw": 6658,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2017-03-15",
+      "date": "2017-03-15",
+      "n_chars": 6881,
+      "n_chars_raw": 6881,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2017-06-14",
+      "date": "2017-06-14",
+      "n_chars": 11129,
+      "n_chars_raw": 11129,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2017-09-20",
+      "date": "2017-09-20",
+      "n_chars": 9277,
+      "n_chars_raw": 9289,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2017-12-13",
+      "date": "2017-12-13",
+      "n_chars": 7973,
+      "n_chars_raw": 7973,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2018-03-21",
+      "date": "2018-03-21",
+      "n_chars": 5832,
+      "n_chars_raw": 5838,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2018-06-13",
+      "date": "2018-06-13",
+      "n_chars": 9493,
+      "n_chars_raw": 9493,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2018-09-26",
+      "date": "2018-09-26",
+      "n_chars": 6374,
+      "n_chars_raw": 6374,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2018-12-19",
+      "date": "2018-12-19",
+      "n_chars": 8681,
+      "n_chars_raw": 8681,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2019-01-30",
+      "date": "2019-01-30",
+      "n_chars": 9078,
+      "n_chars_raw": 9078,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2019-03-20",
+      "date": "2019-03-20",
+      "n_chars": 7424,
+      "n_chars_raw": 7427,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-05-01",
+      "date": "2019-05-01",
+      "n_chars": 6158,
+      "n_chars_raw": 6158,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-06-19",
+      "date": "2019-06-19",
+      "n_chars": 7153,
+      "n_chars_raw": 7156,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-07-31",
+      "date": "2019-07-31",
+      "n_chars": 5206,
+      "n_chars_raw": 5206,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-09-18",
+      "date": "2019-09-18",
+      "n_chars": 7718,
+      "n_chars_raw": 7721,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-10-30",
+      "date": "2019-10-30",
+      "n_chars": 6279,
+      "n_chars_raw": 6279,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2019-12-11",
+      "date": "2019-12-11",
+      "n_chars": 6829,
+      "n_chars_raw": 6829,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2020-01-29",
+      "date": "2020-01-29",
+      "n_chars": 6151,
+      "n_chars_raw": 6151,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2020-03-03",
+      "date": "2020-03-03",
+      "n_chars": 2382,
+      "n_chars_raw": 2382,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2020-03-15",
+      "date": "2020-03-15",
+      "n_chars": 8162,
+      "n_chars_raw": 8174,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2020-04-29",
+      "date": "2020-04-29",
+      "n_chars": 7181,
+      "n_chars_raw": 7181,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2020-06-10",
+      "date": "2020-06-10",
+      "n_chars": 10897,
+      "n_chars_raw": 10897,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2020-07-29",
+      "date": "2020-07-29",
+      "n_chars": 9399,
+      "n_chars_raw": 9399,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2020-09-16",
+      "date": "2020-09-16",
+      "n_chars": 10221,
+      "n_chars_raw": 10221,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2020-11-05",
+      "date": "2020-11-05",
+      "n_chars": 9247,
+      "n_chars_raw": 9247,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2020-12-16",
+      "date": "2020-12-16",
+      "n_chars": 10481,
+      "n_chars_raw": 10481,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2021-01-27",
+      "date": "2021-01-27",
+      "n_chars": 7840,
+      "n_chars_raw": 7840,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2021-03-17",
+      "date": "2021-03-17",
+      "n_chars": 8494,
+      "n_chars_raw": 8494,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2021-04-28",
+      "date": "2021-04-28",
+      "n_chars": 6121,
+      "n_chars_raw": 6121,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2021-06-16",
+      "date": "2021-06-16",
+      "n_chars": 8869,
+      "n_chars_raw": 8869,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2021-07-28",
+      "date": "2021-07-28",
+      "n_chars": 7490,
+      "n_chars_raw": 7490,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2021-09-22",
+      "date": "2021-09-22",
+      "n_chars": 7957,
+      "n_chars_raw": 7957,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2021-11-03",
+      "date": "2021-11-03",
+      "n_chars": 7341,
+      "n_chars_raw": 7341,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2021-12-15",
+      "date": "2021-12-15",
+      "n_chars": 7407,
+      "n_chars_raw": 7407,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-01-26",
+      "date": "2022-01-26",
+      "n_chars": 7464,
+      "n_chars_raw": 7464,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-03-16",
+      "date": "2022-03-16",
+      "n_chars": 6975,
+      "n_chars_raw": 6975,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-05-04",
+      "date": "2022-05-04",
+      "n_chars": 7354,
+      "n_chars_raw": 7354,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-06-15",
+      "date": "2022-06-15",
+      "n_chars": 8605,
+      "n_chars_raw": 8605,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2022-07-27",
+      "date": "2022-07-27",
+      "n_chars": 6405,
+      "n_chars_raw": 6405,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-09-21",
+      "date": "2022-09-21",
+      "n_chars": 7547,
+      "n_chars_raw": 7547,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-11-02",
+      "date": "2022-11-02",
+      "n_chars": 6610,
+      "n_chars_raw": 6610,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2022-12-14",
+      "date": "2022-12-14",
+      "n_chars": 8254,
+      "n_chars_raw": 8254,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2023-02-01",
+      "date": "2023-02-01",
+      "n_chars": 6353,
+      "n_chars_raw": 6353,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2023-03-22",
+      "date": "2023-03-22",
+      "n_chars": 8015,
+      "n_chars_raw": 8015,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2023-05-03",
+      "date": "2023-05-03",
+      "n_chars": 6786,
+      "n_chars_raw": 6786,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2023-06-14",
+      "date": "2023-06-14",
+      "n_chars": 8005,
+      "n_chars_raw": 8005,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2023-07-26",
+      "date": "2023-07-26",
+      "n_chars": 5541,
+      "n_chars_raw": 5541,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2023-09-20",
+      "date": "2023-09-20",
+      "n_chars": 7688,
+      "n_chars_raw": 7688,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2023-11-01",
+      "date": "2023-11-01",
+      "n_chars": 6787,
+      "n_chars_raw": 6787,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2023-12-13",
+      "date": "2023-12-13",
+      "n_chars": 8170,
+      "n_chars_raw": 8170,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2024-01-31",
+      "date": "2024-01-31",
+      "n_chars": 6242,
+      "n_chars_raw": 6242,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-03-20",
+      "date": "2024-03-20",
+      "n_chars": 7804,
+      "n_chars_raw": 7804,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-05-01",
+      "date": "2024-05-01",
+      "n_chars": 7204,
+      "n_chars_raw": 7204,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-06-12",
+      "date": "2024-06-12",
+      "n_chars": 7589,
+      "n_chars_raw": 7589,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-07-31",
+      "date": "2024-07-31",
+      "n_chars": 5866,
+      "n_chars_raw": 5866,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-09-18",
+      "date": "2024-09-18",
+      "n_chars": 7250,
+      "n_chars_raw": 7250,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-11-07",
+      "date": "2024-11-07",
+      "n_chars": 5314,
+      "n_chars_raw": 5314,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2024-12-18",
+      "date": "2024-12-18",
+      "n_chars": 6406,
+      "n_chars_raw": 6406,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-01-29",
+      "date": "2025-01-29",
+      "n_chars": 5568,
+      "n_chars_raw": 5568,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-03-19",
+      "date": "2025-03-19",
+      "n_chars": 7464,
+      "n_chars_raw": 7464,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-05-07",
+      "date": "2025-05-07",
+      "n_chars": 6433,
+      "n_chars_raw": 6433,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-06-18",
+      "date": "2025-06-18",
+      "n_chars": 7808,
+      "n_chars_raw": 7808,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-07-30",
+      "date": "2025-07-30",
+      "n_chars": 5301,
+      "n_chars_raw": 5301,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-09-17",
+      "date": "2025-09-17",
+      "n_chars": 6155,
+      "n_chars_raw": 6155,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-10-29",
+      "date": "2025-10-29",
+      "n_chars": 7322,
+      "n_chars_raw": 7322,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2025-12-10",
+      "date": "2025-12-10",
+      "n_chars": 8736,
+      "n_chars_raw": 8736,
+      "exceeds_8000": true
+    },
+    {
+      "doc_id": "stmt-2026-01-28",
+      "date": "2026-01-28",
+      "n_chars": 4256,
+      "n_chars_raw": 4256,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2026-03-18",
+      "date": "2026-03-18",
+      "n_chars": 5006,
+      "n_chars_raw": 5006,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2026-04-29",
+      "date": "2026-04-29",
+      "n_chars": 6492,
+      "n_chars_raw": 6492,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2026-06-17",
+      "date": "2026-06-17",
+      "n_chars": 5987,
+      "n_chars_raw": 5987,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2026-07-29",
+      "date": "2026-07-29",
+      "n_chars": 5733,
+      "n_chars_raw": 5733,
+      "exceeds_8000": false
+    },
+    {
+      "doc_id": "stmt-2026-09-16",
+      "date": "2026-09-16",
+      "n_chars": 5590,
+      "n_chars_raw": 5590,
+      "exceeds_8000": false
+    }
+  ],
+  "seed_note": "audit is deterministic; no sampling",
+  "p90_chars": 10823.400000000001,
+  "main_run_truncated": false,
+  "main_run_note": "Frozen run_id=fedjev-2026-09-20 Score/Choice sent full stripped openings without a jsort-style 8000-char client cap. Truncation would apply only if re-ranking with jsort/jgrep defaults."
+}

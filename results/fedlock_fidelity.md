@@ -70,6 +70,7 @@ When the match falls back to the `d` field, the offset is almost always +1 day. 
 
 ---
 
+
 ## 4. Results
 
 | Contrast | Spearman ρ | Standard error | n | 95% confidence interval |
@@ -90,5 +91,7 @@ Gate 7 ρ asks: *do two independent text-scoring systems agree on meeting-day ha
 It does **not** claim: *we replicated FedLock’s tournament, judge, corpus, or aggregator.*
 
 **Corpus mismatch.** Our documents are chair openings. FedLock `press_conference` may be fuller presser text. Agreement is still informative; it is not a same-document comparison.
+
+**Length design choice (jsort `--max-chars` 8000).** jsort / jgrep default `--max-chars 8000` truncates what Jev sees in jsort tournaments. On *our* opening corpus (`data/clean/statements.jsonl`, n=95): mean ≈ 7,917 characters; p50 ≈ 7,547; p95 ≈ 11,706; max = 13,794; **39 / 95 (41.1%)** exceed 8,000 characters. The frozen main `run_id=fedjev-2026-09-20` Score/Choice pass did **not** apply that 8k client cap. Audit: `results/khaled_sensitivity/char_length_audit.json`. Passage-filter Score pilot: ANALYSIS §13 · `results/khaled_sensitivity/filter_pilot.json`.
 
 **Separate experiment.** A FedLock-V3-faithful protocol (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss / uncertainty pairing) was run on the 95 openings, comparing Jev, Haiku, and published `m` / `ma`. That run has its own `run_id` (`fedjev-fedlock-replica-2026-09-20`). See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. It is not a 4,000-speech / ~60,000-comparison scale replication, and it does not replace Gate 7.

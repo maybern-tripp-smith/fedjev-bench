@@ -896,7 +896,19 @@ def write_cost_and_judgments(pairs: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Score gold pairs via TypeSafe SystemOne")
+    parser = argparse.ArgumentParser(
+        description="Score gold pairs via TypeSafe SystemOne",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Related jsort/jgrep design choices (not flags of this script):\n"
+            "  --max-chars defaults to 8000 in jsort/jgrep (design choice; see\n"
+            "  results/khaled_sensitivity/ and ANALYSIS §13). This Score/Choice\n"
+            "  path does not apply that truncate.\n"
+            "  --budget: when running jsort tournaments yourself, set an explicit\n"
+            "  dollar budget (or --budget 0) so ranking completes (Khaled tip).\n"
+            "  Prefer jgrep --para filter before sorting long openings.\n"
+        ),
+    )
     parser.add_argument("--live", action="store_true", help="Actually POST to API")
     parser.add_argument("--smoke", action="store_true", help="2–3 live Choice calls only")
     parser.add_argument("--full", action="store_true", help="Full 524 Choice + 95 Score")
