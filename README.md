@@ -29,7 +29,8 @@ Cached answers ship under `runs/jev/`:
 git clone https://github.com/maybern-tripp-smith/fedjev-bench
 cd fedjev-bench
 python -m venv .venv && source .venv/bin/activate
-pip install typesafe-sdk pandas pyarrow openpyxl scipy matplotlib
+pip install -e .
+# or: uv sync
 python scripts/analyze_gates.py
 python scripts/plot_figures.py
 ```
@@ -37,6 +38,8 @@ python scripts/plot_figures.py
 Do not mutate `data/pairs/gold_pairs.jsonl` for this `run_id`.
 
 ## Live re-score (optional)
+
+Core install is enough for `score.py` and the name ablation. Optional extras: `pip install -e ".[haiku]"` for `scripts/run_haiku_comparison.py`; `pip install -e ".[fedlock]"` for `scripts/run_fedlock_replica.py`. Combine with `pip install -e ".[haiku,fedlock]"` or `uv sync --extra haiku --extra fedlock`.
 
 ```bash
 export TYPESAFE_API_KEY=...   # never commit
@@ -55,4 +58,4 @@ Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-b
 
 ## FedLock-faithful protocol replica (separate)
 
-See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. Does not replace Gate 7.
+See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. Does not replace Gate 7. Needs the `fedlock` extra (`trueskill`); the Haiku arm also needs `haiku`.
