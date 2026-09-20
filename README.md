@@ -17,6 +17,10 @@ Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). 
 
 ---
 
+## Specification
+
+The retrospective as-built comprehensive specification for `run_id=fedjev-2026-09-20` is recorded in [`spec.md`](spec.md).
+
 ## Offline analysis
 
 Cached answers ship under `runs/jev/`:
