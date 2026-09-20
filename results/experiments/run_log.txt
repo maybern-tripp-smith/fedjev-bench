@@ -1,0 +1,72 @@
+statements=95 corpus_ids=2330
+=== Exp3+4 packed Scores+Nouls ===
+[progress] calls=20 cache=0 fail=0 tok=56972 usd≈0.00239
+[progress] calls=40 cache=0 fail=0 tok=105176 usd≈0.00442
+[progress] calls=60 cache=0 fail=0 tok=154538 usd≈0.00649
+[progress] calls=80 cache=0 fail=0 tok=201210 usd≈0.00845
+exp3 correlations: {
+  "vs_d_same": {
+    "rho": 0.5619150525542832,
+    "n": 93,
+    "ste": 0.06316514355318031,
+    "se": 0.06316514355318031,
+    "ci_low": 0.42626976057289584,
+    "ci_high": 0.6755998549361913,
+    "n_boot": 1000
+  },
+  "vs_score_jev": {
+    "rho": 0.962435045840348,
+    "n": 93,
+    "ste": 0.010021201177604513,
+    "se": 0.010021201177604513,
+    "ci_low": 0.9360966006363903,
+    "ci_high": 0.973502812486649,
+    "n_boot": 1000
+  },
+  "vs_fedlock_m": {
+    "rho": 0.9574468960886472,
+    "n": 90,
+    "ste": 0.012185373808680417,
+    "se": 0.012185373808680417,
+    "ci_low": 0.9251841438382978,
+    "ci_high": 0.9726757393955058,
+    "n_boot": 1000
+  },
+  "vs_d_same_action_days": {
+    "rho": 0.8934649237057227,
+    "n": 30,
+    "ste": 0.03729004622455994,
+    "se": 0.03729004622455994,
+  
+exp4 SVB: {'date': '2023-03-22', 'doc_id': 'stmt-2023-03-22', 'nouls': {'signals_cut_soon': 0.12, 'signals_higher_for_longer': 0.61, 'acknowledges_banking_stress': 0.99, 'blames_supply_shocks': 0.08}, 'note': '2023-03-22 SVB / banking-stress meeting'}
+=== Exp5 paraphrase calibration ===
+[progress] calls=100 cache=0 fail=0 tok=249406 usd≈0.01048
+[progress] calls=120 cache=0 fail=0 tok=312197 usd≈0.01311
+[progress] calls=140 cache=0 fail=0 tok=389624 usd≈0.01636
+[progress] calls=160 cache=0 fail=0 tok=449433 usd≈0.01888
+[progress] calls=180 cache=0 fail=0 tok=514765 usd≈0.02162
+[progress] calls=200 cache=0 fail=0 tok=583449 usd≈0.02450
+[progress] calls=220 cache=0 fail=0 tok=646476 usd≈0.02715
+[progress] calls=240 cache=0 fail=0 tok=714596 usd≈0.03001
+exp5 baseline inv: {'rate': 0.0, 'n': 40, 'n_success': 0, 'ste': 0.0, 'ci_low': 0.0, 'ci_high': 0.0}
+=== Exp6 span Choice ===
+[progress] calls=260 cache=0 fail=0 tok=758775 usd≈0.03187
+[progress] calls=280 cache=0 fail=0 tok=770065 usd≈0.03234
+[progress] calls=300 cache=0 fail=0 tok=781625 usd≈0.03283
+exp6 inversion: {'rate': 0.48, 'n': 50, 'n_success': 24, 'ste': 0.07065408693062278, 'ci_low': 0.34151798961597934, 'ci_high': 0.6184820103840206}
+=== Exp7 macro-relative ===
+[progress] calls=320 cache=0 fail=0 tok=836152 usd≈0.03512
+[progress] calls=340 cache=0 fail=0 tok=907016 usd≈0.03809
+[progress] calls=360 cache=0 fail=0 tok=978414 usd≈0.04109
+[progress] calls=380 cache=0 fail=0 tok=1044971 usd≈0.04389
+exp7 macro inv: {'rate': 0.0, 'n': 40, 'n_success': 0, 'ste': 0.0, 'ci_low': 0.0, 'ci_high': 0.0}
+Wrote /workspace/fedjev-bench/results/experiments/FINDINGS.md
+DONE {
+  "n_calls": 385,
+  "n_cache_hits": 0,
+  "n_failures": 0,
+  "input_tokens": 1060179,
+  "output_tokens": 25159,
+  "latency_ms_sum": 97317,
+  "cost_usd": 0.04452752
+}

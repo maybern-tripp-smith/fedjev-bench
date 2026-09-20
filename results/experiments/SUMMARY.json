@@ -1,0 +1,59 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "model": "jev-latest",
+  "price_per_mtok_input_usd": 0.042,
+  "total": {
+    "n_calls": 385,
+    "n_cache_hits": 0,
+    "n_failures": 0,
+    "input_tokens": 1060179,
+    "output_tokens": 25159,
+    "latency_ms_sum": 97317,
+    "cost_usd": 0.04452752
+  },
+  "by_experiment": {
+    "exp3_4": {
+      "n": 95,
+      "cache_hits": 0,
+      "failures": 0,
+      "input_tokens": 233808,
+      "output_tokens": 14915,
+      "latency_ms": 23665,
+      "usd": 0.009819936000000001
+    },
+    "exp5": {
+      "n": 160,
+      "cache_hits": 0,
+      "failures": 0,
+      "input_tokens": 522220,
+      "output_tokens": 4960,
+      "latency_ms": 42437,
+      "usd": 0.021933240000000003
+    },
+    "exp6": {
+      "n": 50,
+      "cache_hits": 0,
+      "failures": 0,
+      "input_tokens": 28293,
+      "output_tokens": 2804,
+      "latency_ms": 9331,
+      "usd": 0.001188306
+    },
+    "exp7": {
+      "n": 80,
+      "cache_hits": 0,
+      "failures": 0,
+      "input_tokens": 275858,
+      "output_tokens": 2480,
+      "latency_ms": 21884,
+      "usd": 0.011586036
+    }
+  },
+  "key_findings": {
+    "exp3": "Composite equal-weight Scores rho(d_same)=0.5619150525542832; vs score_jev=0.962435045840348; vs FedLock m=0.9574468960886472",
+    "exp4": "SVB banking Noul=0.99; n multi-high>=2: 9",
+    "exp5": "baseline inv=0.0; para_tighter_stance inv=0.0, |Dp|=0.0, ECE=0.0; para_less_accommodative inv=0.0, |Dp|=0.002250000000000002, ECE=0.0022499999999998632",
+    "exp6": "span Choice inv=0.48, mean p(gold)=0.4836000000000001, cost~$0.00118831",
+    "exp7": "macro inv=0.0, abs inv=0.0, agree=1.0"
+  }
+}

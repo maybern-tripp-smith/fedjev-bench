@@ -1,0 +1,1191 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "model": "jev-latest",
+  "n_calls_requested": 160,
+  "n_calls_ok": 160,
+  "paraphrase_strings_exact": {
+    "baseline": "Which of Text A or Text B is more hawkish about inflation",
+    "para_tighter_stance": "Which of Text A or Text B argues for a tighter stance against inflation",
+    "para_less_accommodative": "Which of Text A or Text B is less accommodative on inflation"
+  },
+  "baseline": {
+    "instructions": "Which of Text A or Text B is more hawkish about inflation",
+    "criterion": "more hawkish about inflation",
+    "n_pairs": 40,
+    "inversion": {
+      "rate": 0.0,
+      "n": 40,
+      "n_success": 0,
+      "ste": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "order_flip_rate": {
+      "rate": 0.0,
+      "n": 40,
+      "n_success": 0,
+      "ste": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.0
+    },
+    "mean_p_gold": 1.0,
+    "calibration": {
+      "ece": 0.0,
+      "n_bins": 10,
+      "bins": [
+        {
+          "lo": 0.0,
+          "hi": 0.1,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.1,
+          "hi": 0.2,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.2,
+          "hi": 0.30000000000000004,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.30000000000000004,
+          "hi": 0.4,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.4,
+          "hi": 0.5,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.5,
+          "hi": 0.6000000000000001,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.6000000000000001,
+          "hi": 0.7000000000000001,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.7000000000000001,
+          "hi": 0.8,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.8,
+          "hi": 0.9,
+          "n": 0,
+          "mean_p": null,
+          "emp_freq": null
+        },
+        {
+          "lo": 0.9,
+          "hi": 1.0,
+          "n": 40,
+          "mean_p": 1.0,
+          "emp_freq": 1.0
+        }
+      ]
+    }
+  },
+  "paraphrases": {
+    "para_tighter_stance": {
+      "instructions": "Which of Text A or Text B argues for a tighter stance against inflation",
+      "n_pairs": 40,
+      "inversion": {
+        "rate": 0.0,
+        "n": 40,
+        "n_success": 0,
+        "ste": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0
+      },
+      "order_flip_rate": {
+        "rate": 0.0,
+        "n": 40,
+        "n_success": 0,
+        "ste": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0
+      },
+      "mean_abs_delta_p_gold_vs_baseline": 0.0,
+      "mean_p_gold": 1.0,
+      "calibration": {
+        "ece": 0.0,
+        "n_bins": 10,
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.1,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.1,
+            "hi": 0.2,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.4,
+            "hi": 0.5,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.8,
+            "hi": 0.9,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.9,
+            "hi": 1.0,
+            "n": 40,
+            "mean_p": 1.0,
+            "emp_freq": 1.0
+          }
+        ]
+      },
+      "pairs": [
+        {
+          "pair_id": "A001",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A002",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A003",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A004",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A005",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A006",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A007",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A008",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A009",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A010",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A011",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A012",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A013",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A014",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A015",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A016",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A017",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A018",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A019",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A020",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A021",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A022",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A023",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A024",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A025",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A026",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A027",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A028",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A029",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A030",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A031",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A032",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A033",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A034",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A035",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A036",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A037",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A038",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A039",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A040",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        }
+      ]
+    },
+    "para_less_accommodative": {
+      "instructions": "Which of Text A or Text B is less accommodative on inflation",
+      "n_pairs": 40,
+      "inversion": {
+        "rate": 0.0,
+        "n": 40,
+        "n_success": 0,
+        "ste": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0
+      },
+      "order_flip_rate": {
+        "rate": 0.0,
+        "n": 40,
+        "n_success": 0,
+        "ste": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0
+      },
+      "mean_abs_delta_p_gold_vs_baseline": 0.002250000000000002,
+      "mean_p_gold": 0.9977500000000001,
+      "calibration": {
+        "ece": 0.0022499999999998632,
+        "n_bins": 10,
+        "bins": [
+          {
+            "lo": 0.0,
+            "hi": 0.1,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.1,
+            "hi": 0.2,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.2,
+            "hi": 0.30000000000000004,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.4,
+            "hi": 0.5,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.8,
+            "hi": 0.9,
+            "n": 0,
+            "mean_p": null,
+            "emp_freq": null
+          },
+          {
+            "lo": 0.9,
+            "hi": 1.0,
+            "n": 40,
+            "mean_p": 0.9977500000000001,
+            "emp_freq": 1.0
+          }
+        ]
+      },
+      "pairs": [
+        {
+          "pair_id": "A001",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A002",
+          "gold": "a",
+          "p_gold": 0.99,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.010000000000000009,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A003",
+          "gold": "a",
+          "p_gold": 0.99,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.010000000000000009,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A004",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A005",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A006",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A007",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A008",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A009",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A010",
+          "gold": "a",
+          "p_gold": 0.99,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.010000000000000009,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A011",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A012",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A013",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A014",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A015",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A016",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A017",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A018",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A019",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A020",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A021",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A022",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A023",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A024",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A025",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A026",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A027",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A028",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A029",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A030",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A031",
+          "gold": "a",
+          "p_gold": 0.99,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.010000000000000009,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A032",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A033",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A034",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A035",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A036",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A037",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A038",
+          "gold": "a",
+          "p_gold": 0.995,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0050000000000000044,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A039",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        },
+        {
+          "pair_id": "A040",
+          "gold": "a",
+          "p_gold": 1.0,
+          "winner_avg": "a",
+          "inverted": false,
+          "order_flip": false,
+          "baseline_p_gold": 1.0,
+          "abs_delta_p_gold": 0.0,
+          "baseline_inverted": false
+        }
+      ]
+    }
+  }
+}
