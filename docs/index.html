@@ -3,63 +3,182 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pre-registered evaluation of TypeSafe/Jev on FOMC chair openings (fedjev-2026-09-20).">
+<meta http-equiv="Cache-Control" content="no-cache">
 <title>fedjev-bench — Overview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-:root { --bg:#0f1419; --panel:#1a2332; --text:#e7ecf3; --muted:#9aa7b8; --accent:#5b9fd4; --pass:#3ecf8e; --border:#2a3548; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; --sans:"Segoe UI",system-ui,-apple-system,sans-serif; }
-* { box-sizing:border-box; }
-body { margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.55; }
-header { border-bottom:1px solid var(--border); padding:1.25rem 1.5rem; background:var(--panel); }
-header h1 { margin:0 0 .35rem; font-size:1.35rem; }
-header p { margin:0; color:var(--muted); font-size:.92rem; }
-nav { display:flex; gap:1rem; padding:.75rem 1.5rem; border-bottom:1px solid var(--border); font-size:.9rem; }
-nav a { color:var(--accent); text-decoration:none; }
-nav a.active { font-weight:600; text-decoration:underline; }
-main { max-width:920px; margin:0 auto; padding:1.5rem; }
-h2 { margin-top:2rem; border-bottom:1px solid var(--border); padding-bottom:.35rem; font-size:1.15rem; }
-h3 { margin-top:1.4rem; font-size:1.02rem; }
-table { width:100%; border-collapse:collapse; font-size:.88rem; margin:1rem 0; }
-th, td { border:1px solid var(--border); padding:.4rem .55rem; text-align:left; vertical-align:top; }
-th { background:var(--panel); }
-code, pre { font-family:var(--mono); font-size:.84rem; }
-pre { background:var(--panel); padding:1rem; overflow:auto; border:1px solid var(--border); }
-blockquote { border-left:3px solid var(--accent); margin:1rem 0; padding:.2rem 1rem; color:var(--muted); }
-.pass { color:var(--pass); font-weight:600; }
-footer { max-width:920px; margin:2rem auto; padding:1rem 1.5rem; color:var(--muted); font-size:.85rem; border-top:1px solid var(--border); }
-a { color:var(--accent); }
+:root {
+  --bg: #f7f5f0;
+  --paper: #ffffff;
+  --text: #1a1a1a;
+  --muted: #4a5568;
+  --accent: #1a365d;
+  --border: #d4cfc4;
+  --pass: #276749;
+  --serif: "Source Serif 4", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem 1.25rem;
+}
+header .kicker {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+header h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+header p { margin: 0; color: var(--muted); font-size: 0.95rem; font-family: var(--sans); }
+nav {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  padding: 0.65rem 1.5rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
+nav a { color: var(--accent); text-decoration: none; }
+nav a.active { font-weight: 600; border-bottom: 2px solid var(--accent); }
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 70vh;
+}
+h1.page { font-size: 1.45rem; margin: 0 0 1rem; font-weight: 600; }
+h2 {
+  font-size: 1.15rem;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+h3 { font-size: 1.02rem; margin: 1.35rem 0 0.5rem; font-weight: 600; }
+p { margin: 0.75rem 0; }
+.abstract {
+  background: #f0ebe3;
+  border: 1px solid var(--border);
+  padding: 1rem 1.15rem;
+  margin: 1.25rem 0 1.5rem;
+  font-size: 0.98rem;
+}
+.abstract .label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; font-family: var(--sans); }
+th, td { border: 1px solid var(--border); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
+th { background: #f0ebe3; font-weight: 600; }
+code, pre { font-family: var(--mono); font-size: 0.84rem; }
+code { background: #f0ebe3; padding: 0.1em 0.3em; }
+pre { background: #f0ebe3; padding: 1rem; overflow: auto; border: 1px solid var(--border); }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.35rem 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-style: italic;
+}
+.pass { color: var(--pass); font-weight: 600; font-family: var(--sans); }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+footer {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: var(--sans);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
+a { color: var(--accent); }
+.meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
 </style>
 </head>
 <body>
 <header>
+<p class="kicker">Technical report · run fedjev-2026-09-20</p>
 <h1>fedjev-bench</h1>
-<p>Pre-registered evaluation of TypeSafe/Jev textual hawkishness rankings on FOMC chair openings (run fedjev-2026-09-20).</p>
+<p>A pre-registered evaluation of TypeSafe/Jev textual hawkishness rankings on FOMC chair openings</p>
 </header>
-<nav><a href="index.html" class="active">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a></nav>
+<nav>
+<a href="index.html" class="active">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a>
+<a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+</nav>
 <main>
-<h1>Overview</h1>
-<p><strong>run_id:</strong> <code>fedjev-2026-09-20</code> · <strong>model:</strong> <code>jev-1.13.0</code> · <strong>criterion:</strong> <code>more hawkish about inflation</code></p>
-<p>This site accompanies the paper-style write-up in <a href="analysis.html">Analysis</a> and the short <a href="report.html">Report</a>.</p>
-<h2>Measurement question</h2>
-<p>Same-day federal-funds target changes (<code>d_same</code>) are a behavioral label for policy actions. They are an incomplete label for the hawkishness of FOMC *text*, especially when the Committee holds the target. This bench pre-registers gates that ask whether TypeSafe/Jev recovers easy hawk/dove orderings, tracks <code>d_same</code> on scheduled action days, and still separates holds from cuts on a textual score.</p>
-<h2>Headline results (with STE)</h2>
-<table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>
+
+<h1 class="page">Overview</h1>
+<p class="meta"><code>jev-1.13.0</code> · criterion <code>more hawkish about inflation</code> · both presentation orders</p>
+
+<div class="abstract">
+<p class="label">Abstract</p>
+<p>Same-day changes in the federal funds target are a convenient but incomplete label for the hawkishness of FOMC communication. This report evaluates TypeSafe/Jev under a fixed pairwise Choice criterion on chair press-conference openings, with Bradley–Terry aggregation and pre-registered gates. Primary quantities include standard errors (STE) and bootstrap confidence intervals. Correlation with FedLock press-conference scores is reported as an external consistency check, not as a methodological replication.</p>
+</div>
+
+<h2>Contributions</h2>
+<ol>
+<li>Frozen three-stratum gold pairs with inversion and calibration diagnostics.</li>
+<li>Dual-order Choice protocol, BT ranks with fit uncertainty, and cost/latency artifacts.</li>
+<li>Pre-registered tests separating scheduled action days from holds.</li>
+<li>Explicit FedLock fidelity statement (agreement vs replication).</li>
+<li>Head-to-head Choice comparison with Claude Haiku 4.5 under matched pairs.</li>
+</ol>
+
+<h2>Headline results</h2>
+<table>
+<thead><tr><th>Gate</th><th>Estimate</th></tr></thead>
+<tbody>
 <tr><td>1 Easy-pair inversion</td><td><span class="pass">PASS</span> — 0.000 (n=40, STE=0.000)</td></tr>
-<tr><td>3 Action-day Spearman (BT)</td><td><span class="pass">PASS</span> — +0.851 (n=24, STE=0.074)</td></tr>
-<tr><td>4 Holds − cuts (BT gap)</td><td><span class="pass">PASS</span> — +0.519 (STE=0.368); score_jev gap CI excludes 0</td></tr>
-<tr><td>6 Name/order stability</td><td><span class="pass">PASS</span> — Δ=0.000</td></tr>
-<tr><td>7 FedLock (score_jev vs m)</td><td>report — +0.944 (n=90, STE=0.016); fidelity note in Analysis §6</td></tr>
-</tbody></table>
-<h2>Key documents</h2>
+<tr><td>3 Action-day Spearman (BT vs <code>d_same</code>)</td><td><span class="pass">PASS</span> — +0.851 (n=24, STE=0.074)</td></tr>
+<tr><td>4 Holds − cuts (BT mean gap)</td><td><span class="pass">PASS</span> — +0.519 (STE=0.368)</td></tr>
+<tr><td>6 Name/order stability</td><td><span class="pass">PASS</span> — Δ inversion = 0.000</td></tr>
+<tr><td>7 FedLock consistency (<code>score_jev</code> vs raw <code>m</code>)</td><td>report — +0.944 (n=90, STE=0.016)</td></tr>
+</tbody>
+</table>
+
+<h2>Documents</h2>
 <ul>
-<li><a href="analysis.html">Analysis</a> — Abstract, methods, FedLock fidelity, Discussion</li>
-<li><a href="report.html">Report</a> — Gate tables</li>
+<li><a href="analysis.html">Analysis</a> — full write-up (methods, FedLock fidelity, discussion)</li>
+<li><a href="report.html">Report</a> — gate tables and cost/latency</li>
 <li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_fidelity.md</code></li>
-<li>Repository: <a href="https://github.com/maybern-tripp-smith/fedjev-bench">maybern-tripp-smith/fedjev-bench</a></li>
 </ul>
-<h2>Follow-on experiments (reserved)</h2>
-<p>Composite Scores, multi-label Nouls, calibration, span Choice, and macro-relative scoring are stubbed for a subsequent update; existing gates and results are retained.</p>
+
 </main>
 <footer>
-Research instrumentation only. Not investment advice. No Federal Reserve endorsement implied.
+Not investment advice. No Federal Reserve endorsement implied. Companion repository:
+<a href="https://github.com/maybern-tripp-smith/fedjev-bench">maybern-tripp-smith/fedjev-bench</a>.
+
 </footer>
 </body>
 </html>
