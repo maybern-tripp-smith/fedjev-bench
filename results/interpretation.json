@@ -1,0 +1,158 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "how_to_read": {
+    "spearman_rho": "Rank agreement of meeting-level hawkishness vs the compared series (d_same, FedLock m/ma, d_90).",
+    "why_action_days_rho_can_exceed_all_scheduled": "Holds have d_same==0 (no rate variation); action days have real rate moves that ranks can track.",
+    "why_hold_day_rho_vs_d_same_undefined": "d_same is constant 0 on holds \u2014 Spearman not computed; use dissent net and d_2y instead.",
+    "gate4_gap": "Mean text score holds minus cuts: holds look less dovish than cuts on text even when rate labels do not separate hawkish vs dovish holds.",
+    "inversion_zero_stratum_A": "Averaged two-order winner matched gold on all easy pairs \u2014 Jev sees obvious hawk vs dove text. Does NOT prove hard-pair calibration or policy forecasting.",
+    "bt_se": "Uncertainty from pairwise Bradley-Terry fit (local likelihood curvature), not meeting-sampling variability. Sparse graph \u2192 cautious hold-day CIs.",
+    "haiku_vs_jev": "Winner agreement (inversion) is primary; USD and latency_ms are separate axes. Latency is per-call API time; wall is concurrent.",
+    "ste": "Standard error: Spearman = bootstrap SD of 1000 meeting resamples; rates = binomial sqrt(p(1-p)/n); means/Brier = sd/sqrt(n)."
+  },
+  "headline_metrics": {
+    "gate1_inversion_extreme": {
+      "estimate": 0.0,
+      "ste": 0.0,
+      "n": 40,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "gate2_inversion_shah": {
+      "estimate": 0.19,
+      "ste": 0.027739863013360393,
+      "n": 200,
+      "mean_brier": 0.13841825,
+      "ste_brier": 0.015645213379397286
+    },
+    "gate3_bt_all_scheduled": {
+      "label": "BT vs d_same all scheduled",
+      "estimate": 0.6230589748774047,
+      "ste": 0.09635434121012468,
+      "se": 0.09635434121012468,
+      "n": 46,
+      "ci95": [
+        0.3977300127222524,
+        0.7870325764959779
+      ],
+      "n_boot": 1000
+    },
+    "gate3_bt_action_days": {
+      "label": "BT vs d_same action days",
+      "estimate": 0.8510180796718418,
+      "ste": 0.07400353768188002,
+      "se": 0.07400353768188002,
+      "n": 24,
+      "ci95": [
+        0.651783643097329,
+        0.936883957435586
+      ],
+      "n_boot": 1000
+    },
+    "gate3_jsort_reference": {
+      "estimate": 0.46,
+      "ste": null,
+      "n": null,
+      "note": "jsort published reference; STE not re-estimated here"
+    },
+    "gate4_bt_gap_holds_minus_cuts": {
+      "estimate": 0.5186456283887374,
+      "ste": 0.3677497850064308,
+      "n_holds": 22,
+      "n_cuts": 8,
+      "mean_holds": -0.7198943961842684,
+      "ste_holds": 0.33450255877061813,
+      "mean_cuts": -1.2385400245730058,
+      "ste_cuts": 0.15280033556306497,
+      "ci95": [
+        -0.202143950223867,
+        1.2394352070013417
+      ]
+    },
+    "gate5_bt_vs_d90": {
+      "label": "BT vs d_90",
+      "estimate": 0.3569177472056242,
+      "ste": 0.15423471018545262,
+      "se": 0.15423471018545262,
+      "n": 44,
+      "ci95": [
+        0.042213685091493446,
+        0.6266851347702044
+      ],
+      "n_boot": 1000
+    },
+    "gate7_bt_vs_m": {
+      "label": "BT vs FedLock m",
+      "estimate": 0.6794969083440189,
+      "ste": 0.11167808345276513,
+      "se": 0.11167808345276513,
+      "n": 46,
+      "ci95": [
+        0.43617314102760063,
+        0.8614263605152117
+      ],
+      "n_boot": 1000
+    },
+    "gate7_bt_vs_ma": {
+      "label": "BT vs FedLock ma",
+      "estimate": 0.5941196261064123,
+      "ste": 0.10411055818313164,
+      "se": 0.10411055818313164,
+      "n": 46,
+      "ci95": [
+        0.36057414261274706,
+        0.7699011990703606
+      ],
+      "n_boot": 1000
+    },
+    "gate7_score_jev_vs_m": {
+      "label": "score_jev vs FedLock m",
+      "estimate": 0.9444460469198903,
+      "ste": 0.016319549720495926,
+      "se": 0.016319549720495926,
+      "n": 90,
+      "ci95": [
+        0.8996421128304166,
+        0.9659829072807179
+      ],
+      "n_boot": 1000
+    },
+    "gate7_score_jev_vs_ma": {
+      "label": "score_jev vs FedLock ma",
+      "estimate": 0.7735785391784405,
+      "ste": 0.04355842667609252,
+      "se": 0.04355842667609252,
+      "n": 90,
+      "ci95": [
+        0.6731558392001854,
+        0.8393883622711565
+      ],
+      "n_boot": 1000
+    },
+    "gate7_mean_fedlock_s": 1.7762222222222224
+  },
+  "limitations": [
+    "Sparse BT graph (n_statements with BT scores << full calendar).",
+    "Dissent scrape incomplete \u2014 hold-day dissent correlations noisy.",
+    "Chair openings != full FedLock pressers.",
+    "Single criterion string / single Jev model version."
+  ],
+  "experiments_3_to_7_stub": {
+    "status": "pending_other_worker",
+    "3_composite_scores": null,
+    "4_multi_label_nouls": null,
+    "5_calibration": null,
+    "6_span_choice": null,
+    "7_macro_relative": null,
+    "note": "Section reserved; do not delete gates/results. Findings to be appended by follow-on worker."
+  },
+  "implications": {
+    "1_obvious_hawk_dove": "Gate 1 \u2014 Jev separates obvious hawk vs dove openings (Stratum A inversion).",
+    "2_tracks_policy_on_action_days": "Gate 3 \u2014 BT ranking tracks policy actions on scheduled action days (compare to jsort +0.46 with STE).",
+    "4_fedlock": "Independent LLM text system agrees especially with Score pass \u2014 supports text signal, not FedLock replication.",
+    "5_cost_speed": "Jev Choice economics vs Haiku on this protocol: winner agreement primary; $ and ms separate axes.",
+    "3_holds_vs_cuts_label_incompleteness": "Gate 4 \u2014 mean textual scores place holds above cuts, consistent with same-day funds-rate changes being an incomplete label for textual hawkishness under holds."
+  }
+}

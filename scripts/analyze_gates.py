@@ -47,6 +47,7 @@ def spearman(x, y):
 
 
 def bootstrap_spearman(x, y, n_boot=1000, seed=20260920):
+    """Spearman rho with bootstrap STE (sd of resamples) and percentile 95% CI."""
     x = np.asarray(x, dtype=float)
     y = np.asarray(y, dtype=float)
     mask = np.isfinite(x) & np.isfinite(y)
@@ -54,7 +55,15 @@ def bootstrap_spearman(x, y, n_boot=1000, seed=20260920):
     n = len(x)
     point, _ = spearman(x, y)
     if n < 3 or not np.isfinite(point):
-        return {"rho": None if not np.isfinite(point) else float(point), "n": n, "ci_low": None, "ci_high": None}
+        return {
+            "rho": None if not np.isfinite(point) else float(point),
+            "n": n,
+            "ste": None,
+            "se": None,
+            "ci_low": None,
+            "ci_high": None,
+            "n_boot": 0,
+        }
     rng = np.random.default_rng(seed)
     boots = []
     for _ in range(n_boot):
@@ -63,12 +72,53 @@ def bootstrap_spearman(x, y, n_boot=1000, seed=20260920):
         if np.isfinite(r):
             boots.append(r)
     boots = np.asarray(boots)
+    ste = float(boots.std(ddof=1)) if len(boots) > 1 else None
     return {
         "rho": float(point),
         "n": n,
+        "ste": ste,
+        "se": ste,  # alias
         "ci_low": float(np.percentile(boots, 2.5)) if len(boots) else None,
         "ci_high": float(np.percentile(boots, 97.5)) if len(boots) else None,
         "n_boot": len(boots),
+    }
+
+
+def binomial_rate(n_success: int, n: int):
+    """Point estimate + binomial STE = sqrt(p(1-p)/n) and normal approx 95% CI."""
+    if n <= 0:
+        return {"rate": None, "n": 0, "n_success": 0, "ste": None, "se": None, "ci_low": None, "ci_high": None}
+    p = n_success / n
+    ste = float(np.sqrt(p * (1.0 - p) / n))
+    return {
+        "rate": float(p),
+        "n": int(n),
+        "n_success": int(n_success),
+        "ste": ste,
+        "se": ste,
+        "ci_low": float(max(0.0, p - 1.96 * ste)),
+        "ci_high": float(min(1.0, p + 1.96 * ste)),
+    }
+
+
+def mean_ste(vals):
+    """Mean ± STE (sd/sqrt(n)) with normal 95% CI."""
+    arr = np.asarray(list(vals), dtype=float)
+    arr = arr[np.isfinite(arr)]
+    n = len(arr)
+    if n == 0:
+        return {"mean": None, "n": 0, "ste": None, "se": None, "ci_low": None, "ci_high": None, "sd": None}
+    mu = float(arr.mean())
+    sd = float(arr.std(ddof=1)) if n > 1 else 0.0
+    ste = float(sd / np.sqrt(n)) if n > 0 else None
+    return {
+        "mean": mu,
+        "n": int(n),
+        "sd": sd,
+        "ste": ste,
+        "se": ste,
+        "ci_low": float(mu - 1.96 * ste) if ste is not None else None,
+        "ci_high": float(mu + 1.96 * ste) if ste is not None else None,
     }
 
 
@@ -136,19 +186,31 @@ def means_holds_cuts(df, score_col="score"):
     holds = d[d["d_same"] == 0][score_col]
     cuts = d[d["d_same"] < 0][score_col]
     hikes = d[d["d_same"] > 0][score_col]
+    h_stats = mean_ste(holds)
+    c_stats = mean_ste(cuts)
+    k_stats = mean_ste(hikes)
     gap = None
+    gap_ste = None
     passed = None
-    if len(holds) and len(cuts):
-        gap = float(holds.mean() - cuts.mean())
-        passed = bool(holds.mean() > cuts.mean())
+    if h_stats["n"] and c_stats["n"]:
+        gap = float(h_stats["mean"] - c_stats["mean"])
+        # STE of difference of independent means
+        gap_ste = float(np.sqrt(h_stats["ste"] ** 2 + c_stats["ste"] ** 2))
+        passed = bool(h_stats["mean"] > c_stats["mean"])
     return {
-        "mean_holds": float(holds.mean()) if len(holds) else None,
-        "n_holds": int(len(holds)),
-        "mean_cuts": float(cuts.mean()) if len(cuts) else None,
-        "n_cuts": int(len(cuts)),
-        "mean_hikes": float(hikes.mean()) if len(hikes) else None,
-        "n_hikes": int(len(hikes)),
+        "mean_holds": h_stats["mean"],
+        "ste_holds": h_stats["ste"],
+        "n_holds": h_stats["n"],
+        "mean_cuts": c_stats["mean"],
+        "ste_cuts": c_stats["ste"],
+        "n_cuts": c_stats["n"],
+        "mean_hikes": k_stats["mean"],
+        "ste_hikes": k_stats["ste"],
+        "n_hikes": k_stats["n"],
         "gap_holds_minus_cuts": gap,
+        "ste_gap_holds_minus_cuts": gap_ste,
+        "ci_gap_low": (gap - 1.96 * gap_ste) if (gap is not None and gap_ste is not None) else None,
+        "ci_gap_high": (gap + 1.96 * gap_ste) if (gap is not None and gap_ste is not None) else None,
         "pass": passed,
     }
 
@@ -232,15 +294,29 @@ def main() -> None:
         brier_vals = [j["brier"] for j in subset if j["brier"] is not None]
         p_golds = [j["p_gold"] for j in subset if j["p_gold"] is not None]
         flips = [j for j in subset if j["order_flip"]]
+        inv_stats = binomial_rate(n_inv, n)
+        brier_stats = mean_ste(brier_vals)
         inv_tables[src] = {
             "n": n,
             "n_inverted": n_inv,
-            "inversion_rate": (n_inv / n) if n else None,
-            "mean_brier": float(np.mean(brier_vals)) if brier_vals else None,
+            "inversion_rate": inv_stats["rate"],
+            "ste_inversion": inv_stats["ste"],
+            "se_inversion": inv_stats["se"],
+            "ci_inversion_low": inv_stats["ci_low"],
+            "ci_inversion_high": inv_stats["ci_high"],
+            "mean_brier": brier_stats["mean"],
+            "ste_brier": brier_stats["ste"],
+            "se_brier": brier_stats["se"],
+            "ci_brier_low": brier_stats["ci_low"],
+            "ci_brier_high": brier_stats["ci_high"],
             "mean_p_gold": float(np.mean(p_golds)) if p_golds else None,
             "n_order_flip": len(flips),
             "order_flip_rate": (len(flips) / n) if n else None,
             "inverted_pair_ids": [j["pair_id"] for j in subset if j["inverted"]],
+            "note_inversion": (
+                "Fraction of gold pairs where averaged two-order winner != gold. "
+                "STE = sqrt(p(1-p)/n) binomial."
+            ),
         }
 
     # --- BT on statement pairs (A + C) ---
@@ -371,27 +447,61 @@ def main() -> None:
             "pass": None,
         }
 
-    # Gate 7 FedLock
+    # Gate 7 FedLock — external consistency check, NOT a FedLock replication
     fl = json.loads((ROOT / "data/raw/fedlock/data.json").read_text())
-    pcs = {s["d"]: s for s in fl["speeches"] if s["st"] == "press_conference"}
+    pcs_list = [s for s in fl["speeches"] if s["st"] == "press_conference"]
+    pcs = {s["d"]: s for s in pcs_list}
 
     def parse_d(d):
         return datetime.strptime(d, "%Y-%m-%d")
 
+    import re as _re
+    title_date_index = {}
+    for s in pcs_list:
+        tt = s.get("tt") or ""
+        mtitle = _re.search(r"(20\d{2}-\d{2}-\d{2})", tt)
+        if mtitle:
+            title_date_index.setdefault(mtitle.group(1), []).append(s)
+
     fedlock_by_meeting = {}
     for d in m["date"].unique():
-        for delta in (0, 1, -1, 2):
-            cand = (parse_d(str(d)) + timedelta(days=delta)).strftime("%Y-%m-%d")
-            if cand in pcs:
-                fedlock_by_meeting[str(d)] = {
-                    "fedlock_date": cand,
-                    "delta_days": delta,
-                    "m": float(pcs[cand]["m"]),
-                    "author": pcs[cand]["a"],
-                }
-                break
+        d = str(d)
+        chosen = None
+        match_via = None
+        if d in title_date_index:
+            chosen = title_date_index[d][0]
+            match_via = "title_date"
+        else:
+            for delta in (0, 1, -1, 2):
+                cand = (parse_d(d) + timedelta(days=delta)).strftime("%Y-%m-%d")
+                if cand in pcs:
+                    chosen = pcs[cand]
+                    match_via = f"d_field_delta_{delta}"
+                    break
+        if chosen is None:
+            continue
+        fedlock_by_meeting[d] = {
+            "fedlock_date": chosen["d"],
+            "delta_days": int((parse_d(chosen["d"]) - parse_d(d)).days),
+            "match_via": match_via,
+            "m": float(chosen["m"]),
+            "ma": float(chosen["ma"]),
+            "s": float(chosen["s"]),
+            "n": int(chosen.get("n") or 0),
+            "author": chosen["a"],
+        }
+
     fl_df = pd.DataFrame([
-        {"date": d, "fedlock_m": info["m"], "fedlock_date": info["fedlock_date"], "fedlock_delta": info["delta_days"]}
+        {
+            "date": d,
+            "fedlock_m": info["m"],
+            "fedlock_ma": info["ma"],
+            "fedlock_s": info["s"],
+            "fedlock_n": info["n"],
+            "fedlock_date": info["fedlock_date"],
+            "fedlock_delta": info["delta_days"],
+            "fedlock_match_via": info["match_via"],
+        }
         for d, info in fedlock_by_meeting.items()
     ])
     m2 = m.merge(fl_df, on="date", how="left")
@@ -400,14 +510,62 @@ def main() -> None:
         & (m2["exclude_main"] == False)
         & ~m2["date"].isin(CRISIS)
     ]
-    g7_bt = bootstrap_spearman(
-        main_fl.loc[main_fl["score"].notna() & main_fl["fedlock_m"].notna(), "score"],
-        main_fl.loc[main_fl["score"].notna() & main_fl["fedlock_m"].notna(), "fedlock_m"],
-    )
-    g7_jev = bootstrap_spearman(
-        main_fl.loc[main_fl["score_jev"].notna() & main_fl["fedlock_m"].notna(), "score_jev"],
-        main_fl.loc[main_fl["score_jev"].notna() & main_fl["fedlock_m"].notna(), "fedlock_m"],
-    )
+    matched_main = main_fl[main_fl["fedlock_m"].notna()].copy()
+    delta_counts = {
+        str(int(k)): int(v)
+        for k, v in matched_main["fedlock_delta"].value_counts().sort_index().items()
+    } if len(matched_main) else {}
+    via_counts = {
+        str(k): int(v)
+        for k, v in matched_main["fedlock_match_via"].value_counts().items()
+    } if len(matched_main) else {}
+    mean_s = float(matched_main["fedlock_s"].mean()) if len(matched_main) else None
+    same_day_n = int((matched_main["fedlock_delta"] == 0).sum()) if len(matched_main) else 0
+
+    def _g7(score_col, fl_col):
+        sub = main_fl.loc[main_fl[score_col].notna() & main_fl[fl_col].notna()]
+        return bootstrap_spearman(sub[score_col], sub[fl_col])
+
+    g7_bt_m = _g7("score", "fedlock_m")
+    g7_bt_ma = _g7("score", "fedlock_ma")
+    g7_jev_m = _g7("score_jev", "fedlock_m")
+    g7_jev_ma = _g7("score_jev", "fedlock_ma")
+    g7_bt = g7_bt_m  # primary alias (raw m)
+    g7_jev = g7_jev_m
+
+    g7_fidelity = {
+        "faithful": [
+            "pairwise text hawkishness judgment",
+            "name anonymization / meta strip on our Jev Choice calls",
+            "use FedLock press_conference scores as external consistency check",
+        ],
+        "not_reproduced": [
+            "macro-conditioned judge prompts (Core PCE, U, GDP, VIX at speech time)",
+            "TrueSkill aggregator (mu start 50, sigma=8.33 -> sigma<2)",
+            "era adjustment (ma) as Gate 7 primary — ma reported as sensitivity",
+            "full ~4k speech corpus / ~60k comparisons",
+            "Llama 3.3 70B judge",
+            "Swiss / uncertainty-targeted matching",
+        ],
+        "implication": (
+            "Gate 7 rho asks whether two independent text-scoring systems agree on "
+            "meeting-day hawkishness — not whether we replicated FedLock."
+        ),
+        "corpus_mismatch": (
+            "Our docs are chair openings (jsort-style); FedLock press_conference may be "
+            "fuller presser text. Agreement is informative but not same-document."
+        ),
+        "matching": {
+            "policy": "prefer title-embedded meeting date; else d-field delta 0, +1, -1, +2",
+            "n_matched_meetings": len(fedlock_by_meeting),
+            "n_matched_main_analysis": int(len(matched_main)),
+            "n_same_calendar_day_d_field": same_day_n,
+            "delta_days_distribution": delta_counts,
+            "match_via_distribution": via_counts,
+            "mean_fedlock_s_on_matched": mean_s,
+        },
+    }
+
 
     # Timing
     seen_logical: dict[str, dict] = {}
@@ -563,11 +721,18 @@ def main() -> None:
             },
             "6_order_name_stability": gate6,
             "7_fedlock_consistency": {
-                "metric": "Spearman Jev vs FedLock press_conference m (meeting±1d match)",
+                "metric": "Spearman Jev vs FedLock press_conference (m raw primary; ma era-adjusted sensitivity)",
                 "pass_line": "report only",
                 "n_fedlock_matched_meetings": len(fedlock_by_meeting),
-                "bt": g7_bt,
-                "score_jev": g7_jev,
+                "mean_fedlock_s_matched": mean_s,
+                "matching": g7_fidelity["matching"],
+                "fidelity": g7_fidelity,
+                "bt_vs_m": g7_bt_m,
+                "bt_vs_ma": g7_bt_ma,
+                "score_jev_vs_m": g7_jev_m,
+                "score_jev_vs_ma": g7_jev_ma,
+                "bt": g7_bt_m,
+                "score_jev": g7_jev_m,
                 "pass": None,
                 "status": "report_only",
             },
@@ -592,14 +757,154 @@ def main() -> None:
     gates = sanitize(gates)
     (ROOT / "results/gates.json").write_text(json.dumps(gates, indent=2) + "\n")
 
+    def _rho_row(block, label):
+        if not block:
+            return None
+        return {
+            "label": label,
+            "estimate": block.get("rho"),
+            "ste": block.get("ste"),
+            "se": block.get("se"),
+            "n": block.get("n"),
+            "ci95": [block.get("ci_low"), block.get("ci_high")],
+            "n_boot": block.get("n_boot"),
+        }
+
+    interpretation = {
+        "run_id": RUN_ID,
+        "how_to_read": {
+            "spearman_rho": "Rank agreement of meeting-level hawkishness vs the compared series (d_same, FedLock m/ma, d_90).",
+            "why_action_days_rho_can_exceed_all_scheduled": "Holds have d_same==0 (no rate variation); action days have real rate moves that ranks can track.",
+            "why_hold_day_rho_vs_d_same_undefined": "d_same is constant 0 on holds — Spearman not computed; use dissent net and d_2y instead.",
+            "gate4_gap": "Mean text score holds minus cuts: holds look less dovish than cuts on text even when rate labels do not separate hawkish vs dovish holds.",
+            "inversion_zero_stratum_A": "Averaged two-order winner matched gold on all easy pairs — Jev sees obvious hawk vs dove text. Does NOT prove hard-pair calibration or policy forecasting.",
+            "bt_se": "Uncertainty from pairwise Bradley-Terry fit (local likelihood curvature), not meeting-sampling variability. Sparse graph → cautious hold-day CIs.",
+            "haiku_vs_jev": "Winner agreement (inversion) is primary; USD and latency_ms are separate axes. Latency is per-call API time; wall is concurrent.",
+            "ste": "Standard error: Spearman = bootstrap SD of 1000 meeting resamples; rates = binomial sqrt(p(1-p)/n); means/Brier = sd/sqrt(n).",
+        },
+        "headline_metrics": {
+            "gate1_inversion_extreme": {
+                "estimate": inv_tables["extreme"]["inversion_rate"],
+                "ste": inv_tables["extreme"]["ste_inversion"],
+                "n": inv_tables["extreme"]["n"],
+                "ci95": [inv_tables["extreme"]["ci_inversion_low"], inv_tables["extreme"]["ci_inversion_high"]],
+            },
+            "gate2_inversion_shah": {
+                "estimate": inv_tables["shah"]["inversion_rate"],
+                "ste": inv_tables["shah"]["ste_inversion"],
+                "n": inv_tables["shah"]["n"],
+                "mean_brier": inv_tables["shah"]["mean_brier"],
+                "ste_brier": inv_tables["shah"]["ste_brier"],
+            },
+            "gate3_bt_all_scheduled": _rho_row(gate3_bt["all_scheduled"], "BT vs d_same all scheduled"),
+            "gate3_bt_action_days": _rho_row(gate3_bt["action_days"], "BT vs d_same action days"),
+            "gate3_jsort_reference": {"estimate": 0.46, "ste": None, "n": None, "note": "jsort published reference; STE not re-estimated here"},
+            "gate4_bt_gap_holds_minus_cuts": {
+                "estimate": gate4_bt.get("gap_holds_minus_cuts"),
+                "ste": gate4_bt.get("ste_gap_holds_minus_cuts"),
+                "n_holds": gate4_bt.get("n_holds"),
+                "n_cuts": gate4_bt.get("n_cuts"),
+                "mean_holds": gate4_bt.get("mean_holds"),
+                "ste_holds": gate4_bt.get("ste_holds"),
+                "mean_cuts": gate4_bt.get("mean_cuts"),
+                "ste_cuts": gate4_bt.get("ste_cuts"),
+                "ci95": [gate4_bt.get("ci_gap_low"), gate4_bt.get("ci_gap_high")],
+            },
+            "gate5_bt_vs_d90": _rho_row(g5_bt, "BT vs d_90"),
+            "gate7_bt_vs_m": _rho_row(g7_bt_m, "BT vs FedLock m"),
+            "gate7_bt_vs_ma": _rho_row(g7_bt_ma, "BT vs FedLock ma"),
+            "gate7_score_jev_vs_m": _rho_row(g7_jev_m, "score_jev vs FedLock m"),
+            "gate7_score_jev_vs_ma": _rho_row(g7_jev_ma, "score_jev vs FedLock ma"),
+            "gate7_mean_fedlock_s": mean_s,
+        },
+        "implications": {
+            "1_obvious_hawk_dove": "Gate 1 — Jev separates obvious hawk vs dove openings (Stratum A inversion).",
+            "2_tracks_policy_on_action_days": "Gate 3 — BT ranking tracks policy actions on scheduled action days (compare to jsort +0.46 with STE).",
+            "3_holds_vs_cuts_label_incompleteness": "Gate 4 — mean textual scores place holds above cuts, consistent with same-day funds-rate changes being an incomplete label for textual hawkishness under holds.",
+            "4_fedlock": "Independent LLM text system agrees especially with Score pass — supports text signal, not FedLock replication.",
+            "5_cost_speed": "Jev Choice economics vs Haiku on this protocol: winner agreement primary; $ and ms separate axes.",
+        },
+        "limitations": [
+            "Sparse BT graph (n_statements with BT scores << full calendar).",
+            "Dissent scrape incomplete — hold-day dissent correlations noisy.",
+            "Chair openings != full FedLock pressers.",
+            "Single criterion string / single Jev model version.",
+        ],
+        "experiments_3_to_7_stub": {
+            "status": "pending_other_worker",
+            "3_composite_scores": None,
+            "4_multi_label_nouls": None,
+            "5_calibration": None,
+            "6_span_choice": None,
+            "7_macro_relative": None,
+            "note": "Section reserved; do not delete gates/results. Findings to be appended by follow-on worker.",
+        },
+    }
+    (ROOT / "results/interpretation.json").write_text(json.dumps(sanitize(interpretation), indent=2) + "\n")
+
+    def _fmt_cell(block):
+        if not block or block.get("rho") is None:
+            return "n/a"
+        ste = block.get("ste")
+        ste_s = f"{ste:.3f}" if ste is not None else "n/a"
+        lo, hi = block.get("ci_low"), block.get("ci_high")
+        ci = f"[{lo:+.3f}, {hi:+.3f}]" if lo is not None else "n/a"
+        return f"{block['rho']:+.3f} | {ste_s} | {block['n']} | {ci}"
+
+    mean_s_s = f"{mean_s:.4f}" if mean_s is not None else "n/a"
+    fidelity_md = f"""# Relationship to FedLock (fidelity)
+
+Gate 7 is an **external consistency check**, not a FedLock replication.
+
+## What we faithfully share
+- Pairwise text hawkishness judgments
+- Name anonymization / meta-stripping on *our* Jev Choice calls
+- Use of FedLock `press_conference` scores as an independent text-scoring reference
+
+## What we do **not** reproduce
+- Macro-conditioned judge prompts (Core PCE, unemployment, GDP growth, VIX at speech time)
+- TrueSkill aggregator (μ start 50, σ≈8.33 → converge σ<2); ~60k comparisons / ~4k speeches
+- Era adjustment (`ma`) as the Gate 7 **primary** metric (we report `ma` as sensitivity alongside raw `m`)
+- Full speech corpus, Llama 3.3 70B judge, Swiss / uncertainty-targeted matching
+
+## Implication
+Gate 7 ρ asks: *do two independent text-scoring systems agree on meeting-day hawkishness?*
+It does **not** claim: *we replicated FedLock*.
+
+## Matching
+- Policy: prefer title-embedded meeting date; else FedLock `d` with deltas 0, +1, −1, +2
+- Matched meetings (all calendar): **{len(fedlock_by_meeting)}**
+- Main-analysis matched rows: **{len(matched_main)}**
+- Same-calendar-day on FedLock `d` field: **{same_day_n}**
+- Delta(`fedlock_d` − meeting) distribution: `{delta_counts}`
+- Match-via distribution: `{via_counts}`
+- Mean FedLock `s` on matched main set: **{mean_s_s}** (TrueSkill uncertainty; lower ⇒ more converged)
+
+## Results (with STE)
+| Contrast | ρ | STE | n | 95% CI |
+|----------|---|----:|--:|--------|
+| BT vs `m` (raw) | {_fmt_cell(g7_bt_m)} |
+| BT vs `ma` (era-adj) | {_fmt_cell(g7_bt_ma)} |
+| score_jev vs `m` | {_fmt_cell(g7_jev_m)} |
+| score_jev vs `ma` | {_fmt_cell(g7_jev_ma)} |
+
+## Corpus mismatch
+Our documents are chair **openings** (jsort-style). FedLock `press_conference` may be fuller presser text. Agreement is still informative but not same-document.
+"""
+    (ROOT / "results/fedlock_fidelity.md").write_text(fidelity_md)
+
+
     # --- REPORT.md ---
     def fmt_rho(block):
         if not block or block.get("rho") is None:
             return "n/a"
+        ste = ""
+        if block.get("ste") is not None:
+            ste = f" STE={block['ste']:.3f}"
         ci = ""
         if block.get("ci_low") is not None:
             ci = f" [{block['ci_low']:+.3f}, {block['ci_high']:+.3f}]"
-        return f"{block['rho']:+.3f} (n={block['n']}){ci}"
+        return f"{block['rho']:+.3f} (n={block['n']}){ste}{ci}"
 
     def fmt_mean(x):
         return "n/a" if x is None else f"{x:.4f}"
@@ -634,9 +939,9 @@ def main() -> None:
 **pricing:** $0.042 / Mtok input; output free  
 **cost log:** `results/cost.json` · timing: `results/timing.json`
 
-## Thesis
+## Abstract
 
-Rate changes label *policy*. Jev labels *text*. Gate 1 says whether Jev can see an obvious hawk vs dove document. Gate 3 says whether that text ranking tracks the decision on scheduled days. Gate 4 is the important disagreement: if Jev ranks 2023 holds and 2026 hawkish-hold-with-dissents above 2020 cuts while d_same=0, the model is reading tone and the rate series is the wrong sole GT. That is the result, not a bug to paper over.
+Pre-registered evaluation of TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion `more hawkish about inflation`, relative to same-day target-rate changes (`d_same`) and FedLock text scores. Gates test construct validity on easy pairs, rank agreement on scheduled action days, and whether holds score above cuts on the text axis—where `d_same` is uninformative by construction. Gate 4 is evidence that same-day funds-rate changes are an incomplete label for textual hawkishness under holds. Gate 7 is external consistency with FedLock, not a replication. Headline associations include STE (and CIs where applicable).
 
 ## Analysis exclusions (pre-registered)
 

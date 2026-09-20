@@ -4,15 +4,15 @@
 **phase:** Jev half complete — results filled  
 **model:** jev-1.13.0  
 **pricing:** $0.042 / Mtok input; output free  
-**cost log:** `results/cost.json` · timing: `results/timing.json`
+**artifacts:** `results/gates.json` · `results/interpretation.json` · `results/fedlock_fidelity.md` · `results/cost.json` · `results/timing.json`
 
-## Thesis
+## Abstract
 
-Rate changes label *policy*. Jev labels *text*. Gate 1 says whether Jev can see an obvious hawk vs dove document. Gate 3 says whether that text ranking tracks the decision on scheduled days. Gate 4 is the important disagreement: if Jev ranks 2023 holds and 2026 hawkish-hold-with-dissents above 2020 cuts while d_same=0, the model is reading tone and the rate series is the wrong sole GT. That is the result, not a bug to paper over.
+This report summarizes pre-registered gates evaluating TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion `more hawkish about inflation`. The measurement question is whether a textual hawkishness score exhibits construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where same-day funds-rate changes are necessarily uninformative. Gate 7 reports external consistency with FedLock without claiming replication. All headline associations include STE (and CIs where applicable).
 
 ## Analysis exclusions (pre-registered)
 
-- **Exclude from main analysis:** 2020-03-03, 2020-03-15 (unscheduled / intermeeting cuts), and any other intermeeting moves (`exclude_main` / `is_scheduled=false`).
+- **Exclude from main analysis:** 2020-03-03, 2020-03-15 (unscheduled / intermeeting cuts), and any other `exclude_main` / `is_scheduled=false` rows.
 - **Flag, do not drop:** 2023-03-22 (SVB) — column `flag_svb`.
 
 ## Gates (registered before any Jev output)
@@ -21,161 +21,84 @@ Rate changes label *policy*. Jev labels *text*. Gate 1 says whether Jev can see 
 |---|------|---------------|-----------|
 | 1 | Easy-pair inversion | Stratum A; average both presentation orders | inversion ≤ 0.05 |
 | 2 | Sentence discrimination | Stratum B; inversion + Brier on p(gold) | **report only** |
-| 3 | Statement score vs action | Spearman(Jev statement score, `d_same`) on scheduled meetings, crisis excluded; signal line +0.30 (jsort published +0.46). Split `action_days` vs `hold_days`; on holds correlate with `(n_hawk_dissent − n_dove_dissent)` and `d_2y` instead | Spearman ≥ +0.30 on action/all scheduled (signal) |
-| 4 | Holds vs cuts | Mean score on holds (`d_same=0`) vs mean score on cuts (`d_same<0`) | mean(holds) > mean(cuts) |
+| 3 | Statement score vs action | Spearman(BT score, `d_same`) scheduled excl crisis; signal +0.30 (jsort pub. +0.46); action vs hold splits | Spearman ≥ +0.30 |
+| 4 | Holds vs cuts | mean score holds (`d_same=0`) vs cuts (`d_same<0`) | mean(holds) > mean(cuts) |
 | 5 | Forward path | Spearman vs `d_90` | **secondary** |
-| 6 | Order/name stability | Stratum A with names in + order flip; inversion delta | Δ inversion ≤ 0.05 |
-| 7 | FedLock consistency | Spearman vs FedLock hawkishness scores (`data/raw/fedlock/`) | **report only** |
+| 6 | Order/name stability | Stratum A names-in; Δ inversion | Δ ≤ 0.05 |
+| 7 | FedLock consistency | Spearman vs FedLock `m` / `ma` | **report only** |
 
 ## Scoring protocol
 
-- Criterion string (exact): `more hawkish about inflation`
-- Choice: Text A / Text B (meta stripped via `scripts/strip_meta.py`); options A/B; both orders
-- Secondary Score levels: much more dovish / somewhat dovish / neutral / somewhat hawkish / much more hawkish
-- Entry: `score.py` → `runs/jev/`
-- **Every answer logged** `usage.input_tokens`, `usage.output_tokens`, `latency_ms`; roll up to `results/cost.json` at $0.042/Mtok input
+- Criterion (exact): `more hawkish about inflation`
+- Choice: Text A / Text B; meta stripped; both orders; inversion on averaged winner
+- Secondary Score: five-level → `score_jev`
+- Entry: `score.py` → `runs/jev/`; every answer logs tokens + `latency_ms`
 
 ## Results
 
-### Verdict
-
-Gate 1 PASSES (Stratum A inversion=0.000). Gate 3 CLEARS the +0.30 signal (BT Spearman vs d_same all-scheduled=+0.623 (n=46) [+0.398, +0.787], action_days=+0.851 (n=24) [+0.652, +0.937]; score_jev secondary all=+0.589 (n=93) [+0.460, +0.701]). Gate 4 holds > cuts on BT: mean(holds)=-0.7199 (n=22) vs mean(cuts)=-1.2385 (n=8), gap=0.5186. Gate 6 PASSES (names-in Δ inversion=0.000).
-
 ### Gate pass/fail
 
-| # | Gate | Result | Detail |
-|---|------|--------|--------|
-| 1 | Easy-pair inversion | **PASS** | rate=0.0000 (n=40, inverted=0) |
-| 2 | Sentence discrimination | report | inv=0.1900, Brier=0.1384, p(gold)=0.7451 (n=200) |
-| 3 | Action ranking | **PASS** | BT all=+0.623 (n=46) [+0.398, +0.787]; action=+0.851 (n=24) [+0.652, +0.937] |
-| 4 | Holds vs cuts | **PASS** | BT: holds=-0.7199 (n=22) > cuts=-1.2385 (n=8)? gap=0.5186 |
-| 5 | Forward path | secondary | BT vs d_90=+0.357 (n=44) [+0.042, +0.627]; score_jev=+0.511 (n=91) [+0.336, +0.652] |
-| 6 | Order/name stability | **PASS** | names-in inv=0.0000; baseline=0.0000; Δ=0.0000 (n=40); order-flip=0.0000; add-on $0.010955 |
-| 7 | FedLock consistency | report | BT=+0.685 (n=46) [+0.443, +0.863]; score_jev=+0.946 (n=90) [+0.900, +0.967]; matched meetings=92 |
+| # | Gate | Result | Detail (with STE where defined) |
+|---|------|--------|----------------------------------|
+| 1 | Easy-pair inversion | **PASS** | 0.0000 (n=40, STE=0.0000) |
+| 2 | Sentence discrimination | report | inv=0.1900 STE=0.0277; Brier=0.1384 STE=0.0156 (n=200) |
+| 3 | Action ranking | **PASS** | BT all=+0.623 (n=46, STE=0.096) [+0.398, +0.787]; action=+0.851 (n=24, STE=0.074) [+0.652, +0.937] |
+| 4 | Holds vs cuts | **PASS** | BT: holds=-0.7199 (STE=0.3345, n=22) > cuts=-1.2385 (STE=0.1528, n=8); gap=0.5186 (STE=0.3677) |
+| 5 | Forward path | secondary | BT=+0.357 (n=44, STE=0.154) [+0.042, +0.627]; score_jev=+0.511 (n=91, STE=0.081) [+0.336, +0.652] |
+| 6 | Order/name stability | **PASS** | Δ=0.0000; add-on $0.010955 |
+| 7 | FedLock consistency | report | BT vs m=+0.679 (n=46, STE=0.112) [+0.436, +0.861]; vs ma=+0.594 (n=46, STE=0.104) [+0.361, +0.770]; score_jev vs m=+0.944 (n=90, STE=0.016) [+0.900, +0.966]; vs ma=+0.774 (n=90, STE=0.044) [+0.673, +0.839]; mean s=1.776; matched=92 |
 
-### Inversion tables (both orders averaged → original A/B)
+### Inversion tables
 
-| Stratum | source | n | inverted | inversion rate | mean p(gold) | mean Brier | order-flip rate |
-|---------|--------|--:|--------:|---------------:|-------------:|-------------:|----------------:|
-| A easy | extreme | 40 | 0 | 0.0000 | 1.0000 | 0.0000 | 0.0000 |
-| B Shah | shah | 200 | 38 | 0.1900 | 0.7451 | 0.1384 | 0.1050 |
-| C adjacent | adjacent | 22 | 1 | 0.0455 | 0.8555 | 0.0459 | 0.0909 |
+| Stratum | n | inverted | inversion (STE) | mean p(gold) | mean Brier (STE) | order-flip |
+|---------|--:|--------:|----------------:|-------------:|-----------------:|-----------:|
+| A extreme | 40 | 0 | 0.0000 (0.0000) | 1.0000 | 0.0000 (0.0000) | 0.0000 |
+| B Shah | 200 | 38 | 0.1900 (0.0277) | 0.7451 | 0.1384 (0.0156) | 0.1050 |
+| C adjacent | 22 | 1 | 0.0455 (0.0444) | 0.8555 | 0.0459 (0.0178) | 0.0909 |
 
-**Inverted Stratum A pairs:** none
+Inverted C: **C018**. Inverted A: none.
 
-**Inverted Stratum C pairs:** C018
+### Gate 3 detail (BT primary; bootstrap 1000)
 
-### Gate 3 detail (BT primary; bootstrap 1000 meetings)
+| Slice | Spearman ρ [STE; 95% CI] |
+|-------|--------------------------|
+| All scheduled (excl crisis) | +0.623 (n=46, STE=0.096) [+0.398, +0.787] |
+| action_days | +0.851 (n=24, STE=0.074) [+0.652, +0.937] |
+| hold_days vs dissent net | -0.192 (n=22, STE=0.202) [-0.513, +0.274] |
+| hold_days vs d_2y | -0.135 (n=22, STE=0.244) [-0.594, +0.349] |
 
-| Slice | Spearman ρ [95% CI] |
-|-------|---------------------|
-| All scheduled (excl crisis) | +0.623 (n=46) [+0.398, +0.787] |
-| All scheduled excl SVB 2023-03-22 | +0.623 (n=46) [+0.398, +0.787] |
-| action_days (d_same≠0) | +0.851 (n=24) [+0.652, +0.937] |
-| action_days excl SVB | +0.851 (n=24) [+0.652, +0.937] |
-| hold_days vs (n_hawk−n_dove) dissent | -0.192 (n=22) [-0.513, +0.274] |
-| hold_days vs d_2y | -0.135 (n=22) [-0.594, +0.349] |
-| holds vs dissent excl SVB | -0.192 (n=22) [-0.513, +0.274] |
-| holds vs d_2y excl SVB | -0.135 (n=22) [-0.594, +0.349] |
+Secondary score_jev: all=+0.589 (n=93, STE=0.063) [+0.460, +0.701]; action=+0.918 (n=30, STE=0.033) [+0.812, +0.953].
 
-Secondary Score-pass (`score_jev`): all=+0.589 (n=93) [+0.460, +0.701]; action=+0.918 (n=30) [+0.812, +0.953]; holds vs dissent=-0.064 (n=63) [-0.290, +0.175]; holds vs d_2y=+0.071 (n=63) [-0.199, +0.330].
-
-BT fit: n_statements=48, n_comparisons=124 (strata A+C Choice probs; Shah excluded), converged=True, γ(position)=-0.1378.
+BT fit: n_statements=48, n_comparisons=124, converged=True, γ=-0.1378.
 
 ### Gate 4 holds vs cuts
 
-| Score | mean holds (n) | mean cuts (n) | mean hikes (n) | gap (holds−cuts) |
-|-------|----------------|---------------|----------------|------------------|
-| BT | -0.7199 (22) | -1.2385 (8) | 1.8273 (16) | 0.5186 |
-| score_jev | 1.4570 (63) | 1.0356 (9) | 3.0671 (21) | 0.4214 |
+| Score | mean holds (STE, n) | mean cuts (STE, n) | mean hikes (STE, n) | gap (STE) |
+|-------|---------------------|--------------------|---------------------|-----------|
+| BT | -0.7199 (0.3345, 22) | -1.2385 (0.1528, 8) | 1.8273 (0.5319, 16) | 0.5186 (0.3677) |
+| score_jev | 1.4570 (0.1144, 63) | 1.0356 (0.1216, 9) | 3.0671 (0.1346, 21) | 0.4214 (0.1670) |
 
+Gate 4 is evidence that same-day funds-rate changes are an incomplete label for textual hawkishness under holds. Pre-registered pass: point means. BT gap 95% CI includes 0; score_jev gap CI does not.
 
-### Gate 6 name ablation (Stratum A, raw_text / names left in)
+### FedLock fidelity (Gate 7)
 
-| | |
-|--|--:|
-| Baseline inversion (stripped) | 0.0000 |
-| Names-in inversion | 0.0000 |
-| Δ inversion | 0.0000 |
-| Pass line | ≤ 0.05 |
-| Result | **PASS** |
-| n pairs / calls | 40 / 80 |
-| Order-flip rate | 0.0000 |
-| Add-on input tokens | 260,824 |
-| Add-on USD | $0.010955 |
-| Cache key suffix | `names=1` |
-| Answers log | `runs/jev/answers_names.jsonl` |
-| Judgments | `results/pair_judgments_names.jsonl` |
+See `results/fedlock_fidelity.md`. Shared: pairwise text hawkishness; our anonymization; external score check. Not reproduced: macro-conditioned prompts; TrueSkill; `ma` as primary; full corpus; Llama judge; Swiss matching. Matching prefers title date; delta(`d`−meeting) mostly +1 when falling back to `d` field. Primary contrast uses raw `m`; `ma` is sensitivity.
 
-Main analysis still uses meta-stripped text. Name ablation re-ran Stratum A Choice both orders with `raw_text` unstripped; cache keys include `|names=1` to avoid colliding with stripped cache. Note: presser openings rarely embed Chair names/dates, so strip_meta changes are small for most Stratum A docs — the ablation still verifies order stability under the unstripped presentation.
+### Cost and timing
 
-### Cost
-
-| | |
-|--|--:|
-| Total USD | $0.031204 |
-| Input tokens | 742,941 |
-| Output tokens | 18,049 (free) |
-| n_calls (cache-backed) | 619 |
-| n_choice / n_score | 524 / 95 |
-| USD / gold pair | $0.000119 |
-| Name ablation add-on | $0.010955 (80 calls) |
-| Grand total (main+ablation) | $0.042158 |
-
-By stratum: extreme $0.01096; shah $0.00675; adjacent $0.00605; score_docs $0.00744.
-
-### Timing
-
-Concurrency: **6** (`score.py` ThreadPoolExecutor). Full-run wall clock was not separately logged; figures below are per-call `latency_ms` from `runs/jev/answers.jsonl` (deduped to one record per logical call).
-
-| Scope | n | mean ms | p50 | p95 | max | sum ms |
-|-------|--:|--------:|----:|----:|----:|-------:|
-| Overall | 619 | 214.1 | 202.0 | 321.3 | 644 | 132550 |
-| Choice | 524 | 207.3 | 196.0 | 304.2 | 644 | 108628 |
-| Score | 95 | 251.8 | 237.0 | 356.1 | 452 | 23922 |
-| extreme | 80 | 263.8 | 241.0 | 455.2 | 644 | 21103 |
-| shah | 400 | 191.7 | 187.0 | 256.0 | 383 | 76679 |
-| adjacent | 44 | 246.5 | 245.5 | 324.9 | 351 | 10846 |
-| score_docs | 95 | 251.8 | 237.0 | 356.1 | 452 | 23922 |
-
-Approx wall if perfect parallel (sum/6): **22091 ms** (~22.1s).
+Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 214 ms @ concurrency 6. Haiku Choice comparison: ≈ $0.636 and ≈ 676 ms mean vs Jev Choice ≈ $0.024 and ≈ 207 ms; inversions nearly tied on A/C.
 
 ### Artifacts
 
 | Path | Role |
 |------|------|
-| `results/pair_judgments.jsonl` | Per gold pair, both orders averaged, Brier on p(gold) |
-| `results/statement_scores.csv` | BT `score`/`se`/`n_pairs` + `score_jev` |
-| `results/gates.json` | Machine-readable gate results |
-| `results/cost.json` | Token/USD rollup |
-| `results/timing.json` | Latency summary |
-| `runs/jev/answers.jsonl` | Raw Jev answers |
+| `results/pair_judgments.jsonl` | Per gold pair, both orders averaged |
+| `results/statement_scores.csv` | BT score/se/n_pairs + score_jev |
+| `results/gates.json` | Gates with STE fields |
+| `results/interpretation.json` | Estimator glossary + headline metrics |
+| `results/fedlock_fidelity.md` | Gate 7 fidelity statement |
+| `runs/jev/answers.jsonl` | Raw answers |
 
+## Discussion (brief)
 
-## Comparison: Haiku 4.5
-
-**Comparison arm only** — primary gate pass/fail remains Jev. Same 262 gold pairs × both orders (524 Choice calls), criterion `more hawkish about inflation`, meta stripped via `scripts/strip_meta.py`.
-
-| Metric | Jev 1.13.0 | Haiku 4.5 (`claude-haiku-4-5-20251001`) | Ratio H/J |
-|--------|-----------:|----------------------------------------:|----------:|
-| Gate 1 inv (extreme) | 0.0000 (0/40) | 0.0000 (0/40) | — |
-| Gate 2 inv (shah) | 0.1900 (38/200) | 0.1700 (34/200) | — |
-| Gate 2 mean Brier | 0.1384 | 0.1437 | 1.04× |
-| Gate 2 mean p(gold) | 0.7452 | 0.6886 | — |
-| Adjacent inv | 0.0455 (1/22) | 0.0455 (1/22) | — |
-| Adjacent mean Brier | 0.0460 | 0.1089 | 2.37× |
-| Choice $ total | $0.0238 | $0.6363 | **26.8×** |
-| Latency p50 (ms) | 196 | 621 | **3.17×** |
-| Latency mean (ms) | 207 | 676 | **3.26×** |
-| Latency p95 (ms) | 304 | 938 | 3.08× |
-| Wall time (Choice) | ~18.1s (sum/6) | ~49.1s (cache mtime span) | ~2.7× |
-
-**Pricing used:** Haiku 4.5 $1/MTok in + $5/MTok out → 500,252 in + 27,208 out = **$0.636292**. Jev Choice-only stratum sum ≈ **$0.023766** (full Jev run incl. Score: $0.031204).
-
-**Probabilities:** Haiku returned calibrated soft `p_A`/`p_B` (sum≈1) on all 524 calls — Brier is comparable to Jev's distributional scores (not one-hot fallback).
-
-**Order flips:** Haiku shah order-flip 0.24 vs Jev 0.105 (higher instability under A/B swap).
-
-**Artifacts:** `runs/haiku/answers.jsonl`, `runs/haiku/cache/`, `results/haiku_pair_judgments.jsonl`, `results/haiku_comparison.json`, `results/haiku_cost.json`, `results/haiku_timing.json`.
-
-**Takeaway:** Accuracy nearly ties Jev on easy/adjacent and is slightly better on Shah inversion; Haiku is ~27× more expensive per Choice dollar and ~3× slower per call.
+Gates 1/3/4/6 pass under pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 reference point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows independent text-system agreement (especially Score vs `m`) without FedLock replication. Limitations: sparse BT graph, partial dissent scrape, openings ≠ full pressers. Follow-on experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative) are stubbed in ANALYSIS §11.

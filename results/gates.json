@@ -49,6 +49,8 @@
         "all_scheduled": {
           "rho": 0.6230589748774047,
           "n": 46,
+          "ste": 0.09635434121012468,
+          "se": 0.09635434121012468,
           "ci_low": 0.3977300127222524,
           "ci_high": 0.7870325764959779,
           "n_boot": 1000
@@ -56,6 +58,8 @@
         "all_scheduled_excl_svb": {
           "rho": 0.6230589748774047,
           "n": 46,
+          "ste": 0.09635434121012468,
+          "se": 0.09635434121012468,
           "ci_low": 0.3977300127222524,
           "ci_high": 0.7870325764959779,
           "n_boot": 1000
@@ -63,6 +67,8 @@
         "action_days": {
           "rho": 0.8510180796718418,
           "n": 24,
+          "ste": 0.07400353768188002,
+          "se": 0.07400353768188002,
           "ci_low": 0.651783643097329,
           "ci_high": 0.936883957435586,
           "n_boot": 1000
@@ -70,6 +76,8 @@
         "action_days_excl_svb": {
           "rho": 0.8510180796718418,
           "n": 24,
+          "ste": 0.07400353768188002,
+          "se": 0.07400353768188002,
           "ci_low": 0.651783643097329,
           "ci_high": 0.936883957435586,
           "n_boot": 1000
@@ -78,6 +86,8 @@
         "hold_vs_dissent_net": {
           "rho": -0.19193472573021592,
           "n": 22,
+          "ste": 0.2021383932341222,
+          "se": 0.2021383932341222,
           "ci_low": -0.5134314604033221,
           "ci_high": 0.2743966334804354,
           "n_boot": 999
@@ -85,6 +95,8 @@
         "hold_vs_d_2y": {
           "rho": -0.13487927870904742,
           "n": 22,
+          "ste": 0.24394162853345797,
+          "se": 0.24394162853345797,
           "ci_low": -0.5938199171837073,
           "ci_high": 0.34942534233821304,
           "n_boot": 1000
@@ -92,6 +104,8 @@
         "hold_vs_dissent_excl_svb": {
           "rho": -0.19193472573021592,
           "n": 22,
+          "ste": 0.2021383932341222,
+          "se": 0.2021383932341222,
           "ci_low": -0.5134314604033221,
           "ci_high": 0.2743966334804354,
           "n_boot": 999
@@ -99,6 +113,8 @@
         "hold_vs_d_2y_excl_svb": {
           "rho": -0.13487927870904742,
           "n": 22,
+          "ste": 0.24394162853345797,
+          "se": 0.24394162853345797,
           "ci_low": -0.5938199171837073,
           "ci_high": 0.34942534233821304,
           "n_boot": 1000
@@ -111,6 +127,8 @@
         "all_scheduled": {
           "rho": 0.589188701291886,
           "n": 93,
+          "ste": 0.0630821267920123,
+          "se": 0.0630821267920123,
           "ci_low": 0.459910239694125,
           "ci_high": 0.7010080018997958,
           "n_boot": 1000
@@ -118,6 +136,8 @@
         "all_scheduled_excl_svb": {
           "rho": 0.5843443620172634,
           "n": 92,
+          "ste": 0.0647061878870949,
+          "se": 0.0647061878870949,
           "ci_low": 0.4471929876870556,
           "ci_high": 0.7030293024087237,
           "n_boot": 1000
@@ -125,6 +145,8 @@
         "action_days": {
           "rho": 0.9178773625255442,
           "n": 30,
+          "ste": 0.033280981338253725,
+          "se": 0.033280981338253725,
           "ci_low": 0.8118368144570292,
           "ci_high": 0.9527555242395256,
           "n_boot": 1000
@@ -132,6 +154,8 @@
         "action_days_excl_svb": {
           "rho": 0.9227634637484274,
           "n": 29,
+          "ste": 0.03213387095490581,
+          "se": 0.03213387095490581,
           "ci_low": 0.8188162023029001,
           "ci_high": 0.956545651682412,
           "n_boot": 1000
@@ -140,6 +164,8 @@
         "hold_vs_dissent_net": {
           "rho": -0.06369326568905655,
           "n": 63,
+          "ste": 0.11709513222121036,
+          "se": 0.11709513222121036,
           "ci_low": -0.2903205688215431,
           "ci_high": 0.1754637429940353,
           "n_boot": 1000
@@ -147,6 +173,8 @@
         "hold_vs_d_2y": {
           "rho": 0.07109008409518758,
           "n": 63,
+          "ste": 0.1365353742123043,
+          "se": 0.1365353742123043,
           "ci_low": -0.1989381948940279,
           "ci_high": 0.32967189179076933,
           "n_boot": 1000
@@ -154,6 +182,8 @@
         "hold_vs_dissent_excl_svb": {
           "rho": -0.06369326568905655,
           "n": 63,
+          "ste": 0.11709513222121036,
+          "se": 0.11709513222121036,
           "ci_low": -0.2903205688215431,
           "ci_high": 0.1754637429940353,
           "n_boot": 1000
@@ -161,6 +191,8 @@
         "hold_vs_d_2y_excl_svb": {
           "rho": 0.07109008409518758,
           "n": 63,
+          "ste": 0.1365353742123043,
+          "se": 0.1365353742123043,
           "ci_low": -0.1989381948940279,
           "ci_high": 0.32967189179076933,
           "n_boot": 1000
@@ -177,32 +209,50 @@
       "primary_source": "BT",
       "primary": {
         "mean_holds": -0.7198943961842684,
+        "ste_holds": 0.33450255877061813,
         "n_holds": 22,
         "mean_cuts": -1.2385400245730058,
+        "ste_cuts": 0.15280033556306497,
         "n_cuts": 8,
         "mean_hikes": 1.8272970796932348,
+        "ste_hikes": 0.5319399484281156,
         "n_hikes": 16,
         "gap_holds_minus_cuts": 0.5186456283887374,
+        "ste_gap_holds_minus_cuts": 0.3677497850064308,
+        "ci_gap_low": -0.202143950223867,
+        "ci_gap_high": 1.2394352070013417,
         "pass": true
       },
       "bt": {
         "mean_holds": -0.7198943961842684,
+        "ste_holds": 0.33450255877061813,
         "n_holds": 22,
         "mean_cuts": -1.2385400245730058,
+        "ste_cuts": 0.15280033556306497,
         "n_cuts": 8,
         "mean_hikes": 1.8272970796932348,
+        "ste_hikes": 0.5319399484281156,
         "n_hikes": 16,
         "gap_holds_minus_cuts": 0.5186456283887374,
+        "ste_gap_holds_minus_cuts": 0.3677497850064308,
+        "ci_gap_low": -0.202143950223867,
+        "ci_gap_high": 1.2394352070013417,
         "pass": true
       },
       "score_jev": {
         "mean_holds": 1.456984126984127,
+        "ste_holds": 0.11442382989551947,
         "n_holds": 63,
         "mean_cuts": 1.0355555555555556,
+        "ste_cuts": 0.12159942332546819,
         "n_cuts": 9,
         "mean_hikes": 3.067142857142857,
+        "ste_hikes": 0.13460549563737104,
         "n_hikes": 21,
         "gap_holds_minus_cuts": 0.4214285714285715,
+        "ste_gap_holds_minus_cuts": 0.1669707537296433,
+        "ci_gap_low": 0.09416589411847065,
+        "ci_gap_high": 0.7486912487386723,
         "pass": true
       },
       "pass": true
@@ -213,6 +263,8 @@
       "bt": {
         "rho": 0.3569177472056242,
         "n": 44,
+        "ste": 0.15423471018545262,
+        "se": 0.15423471018545262,
         "ci_low": 0.042213685091493446,
         "ci_high": 0.6266851347702044,
         "n_boot": 1000
@@ -220,6 +272,8 @@
       "score_jev": {
         "rho": 0.511475302902932,
         "n": 91,
+        "ste": 0.08108732662328799,
+        "se": 0.08108732662328799,
         "ci_low": 0.33625492252457884,
         "ci_high": 0.6522175021125742,
         "n_boot": 1000
@@ -248,21 +302,107 @@
       "pass": true
     },
     "7_fedlock_consistency": {
-      "metric": "Spearman Jev vs FedLock press_conference m (meeting\u00b11d match)",
+      "metric": "Spearman Jev vs FedLock press_conference (m raw primary; ma era-adjusted sensitivity)",
       "pass_line": "report only",
       "n_fedlock_matched_meetings": 92,
-      "bt": {
-        "rho": 0.6845627094608667,
+      "mean_fedlock_s_matched": 1.7762222222222224,
+      "matching": {
+        "policy": "prefer title-embedded meeting date; else d-field delta 0, +1, -1, +2",
+        "n_matched_meetings": 92,
+        "n_matched_main_analysis": 90,
+        "n_same_calendar_day_d_field": 1,
+        "delta_days_distribution": {
+          "0": 1,
+          "1": 89
+        },
+        "match_via_distribution": {
+          "title_date": 90
+        },
+        "mean_fedlock_s_on_matched": 1.7762222222222224
+      },
+      "fidelity": {
+        "faithful": [
+          "pairwise text hawkishness judgment",
+          "name anonymization / meta strip on our Jev Choice calls",
+          "use FedLock press_conference scores as external consistency check"
+        ],
+        "not_reproduced": [
+          "macro-conditioned judge prompts (Core PCE, U, GDP, VIX at speech time)",
+          "TrueSkill aggregator (mu start 50, sigma=8.33 -> sigma<2)",
+          "era adjustment (ma) as Gate 7 primary \u2014 ma reported as sensitivity",
+          "full ~4k speech corpus / ~60k comparisons",
+          "Llama 3.3 70B judge",
+          "Swiss / uncertainty-targeted matching"
+        ],
+        "implication": "Gate 7 rho asks whether two independent text-scoring systems agree on meeting-day hawkishness \u2014 not whether we replicated FedLock.",
+        "corpus_mismatch": "Our docs are chair openings (jsort-style); FedLock press_conference may be fuller presser text. Agreement is informative but not same-document.",
+        "matching": {
+          "policy": "prefer title-embedded meeting date; else d-field delta 0, +1, -1, +2",
+          "n_matched_meetings": 92,
+          "n_matched_main_analysis": 90,
+          "n_same_calendar_day_d_field": 1,
+          "delta_days_distribution": {
+            "0": 1,
+            "1": 89
+          },
+          "match_via_distribution": {
+            "title_date": 90
+          },
+          "mean_fedlock_s_on_matched": 1.7762222222222224
+        }
+      },
+      "bt_vs_m": {
+        "rho": 0.6794969083440189,
         "n": 46,
-        "ci_low": 0.44282117568166873,
-        "ci_high": 0.8629160165744668,
+        "ste": 0.11167808345276513,
+        "se": 0.11167808345276513,
+        "ci_low": 0.43617314102760063,
+        "ci_high": 0.8614263605152117,
+        "n_boot": 1000
+      },
+      "bt_vs_ma": {
+        "rho": 0.5941196261064123,
+        "n": 46,
+        "ste": 0.10411055818313164,
+        "se": 0.10411055818313164,
+        "ci_low": 0.36057414261274706,
+        "ci_high": 0.7699011990703606,
+        "n_boot": 1000
+      },
+      "score_jev_vs_m": {
+        "rho": 0.9444460469198903,
+        "n": 90,
+        "ste": 0.016319549720495926,
+        "se": 0.016319549720495926,
+        "ci_low": 0.8996421128304166,
+        "ci_high": 0.9659829072807179,
+        "n_boot": 1000
+      },
+      "score_jev_vs_ma": {
+        "rho": 0.7735785391784405,
+        "n": 90,
+        "ste": 0.04355842667609252,
+        "se": 0.04355842667609252,
+        "ci_low": 0.6731558392001854,
+        "ci_high": 0.8393883622711565,
+        "n_boot": 1000
+      },
+      "bt": {
+        "rho": 0.6794969083440189,
+        "n": 46,
+        "ste": 0.11167808345276513,
+        "se": 0.11167808345276513,
+        "ci_low": 0.43617314102760063,
+        "ci_high": 0.8614263605152117,
         "n_boot": 1000
       },
       "score_jev": {
-        "rho": 0.9456067652503388,
+        "rho": 0.9444460469198903,
         "n": 90,
-        "ci_low": 0.9003115496469547,
-        "ci_high": 0.9666906689452536,
+        "ste": 0.016319549720495926,
+        "se": 0.016319549720495926,
+        "ci_low": 0.8996421128304166,
+        "ci_high": 0.9659829072807179,
         "n_boot": 1000
       },
       "pass": null,
@@ -274,17 +414,34 @@
       "n": 40,
       "n_inverted": 0,
       "inversion_rate": 0.0,
+      "ste_inversion": 0.0,
+      "se_inversion": 0.0,
+      "ci_inversion_low": 0.0,
+      "ci_inversion_high": 0.0,
       "mean_brier": 0.0,
+      "ste_brier": 0.0,
+      "se_brier": 0.0,
+      "ci_brier_low": 0.0,
+      "ci_brier_high": 0.0,
       "mean_p_gold": 1.0,
       "n_order_flip": 0,
       "order_flip_rate": 0.0,
-      "inverted_pair_ids": []
+      "inverted_pair_ids": [],
+      "note_inversion": "Fraction of gold pairs where averaged two-order winner != gold. STE = sqrt(p(1-p)/n) binomial."
     },
     "shah": {
       "n": 200,
       "n_inverted": 38,
       "inversion_rate": 0.19,
+      "ste_inversion": 0.027739863013360393,
+      "se_inversion": 0.027739863013360393,
+      "ci_inversion_low": 0.13562986849381364,
+      "ci_inversion_high": 0.24437013150618636,
       "mean_brier": 0.13841825,
+      "ste_brier": 0.015645213379397286,
+      "se_brier": 0.015645213379397286,
+      "ci_brier_low": 0.10775363177638131,
+      "ci_brier_high": 0.16908286822361868,
       "mean_p_gold": 0.74515,
       "n_order_flip": 21,
       "order_flip_rate": 0.105,
@@ -327,19 +484,29 @@
         "B179",
         "B192",
         "B197"
-      ]
+      ],
+      "note_inversion": "Fraction of gold pairs where averaged two-order winner != gold. STE = sqrt(p(1-p)/n) binomial."
     },
     "adjacent": {
       "n": 22,
       "n_inverted": 1,
       "inversion_rate": 0.045454545454545456,
+      "ste_inversion": 0.04440947367810884,
+      "se_inversion": 0.04440947367810884,
+      "ci_inversion_low": 0.0,
+      "ci_inversion_high": 0.13249711386363877,
       "mean_brier": 0.04595,
+      "ste_brier": 0.017791361783532873,
+      "se_brier": 0.017791361783532873,
+      "ci_brier_low": 0.011078930904275565,
+      "ci_brier_high": 0.08082106909572442,
       "mean_p_gold": 0.8554545454545455,
       "n_order_flip": 2,
       "order_flip_rate": 0.09090909090909091,
       "inverted_pair_ids": [
         "C018"
-      ]
+      ],
+      "note_inversion": "Fraction of gold pairs where averaged two-order winner != gold. STE = sqrt(p(1-p)/n) binomial."
     }
   },
   "adjacent_labeled": {
@@ -354,9 +521,9 @@
   "cost_usd_total": 0.03120352,
   "timing_summary": {
     "n_calls": 619,
-    "mean_latency_ms": 214.1357027463651,
+    "mean_latency_ms": 214.50242326332796,
     "p50_latency_ms": 202.0,
-    "p95_latency_ms": 321.30000000000007,
+    "p95_latency_ms": 324.20000000000005,
     "concurrency": 6
   }
 }
