@@ -6,7 +6,7 @@ Description: Pre-registered scientific evaluation harness that ranks FOMC chair 
 
 **Spec status:** RETROSPECTIVE / AS-BUILT — freezes the shipped system for `run_id=fedjev-2026-09-20`.  
 **Pages:** https://maybern-tripp-smith.github.io/fedjev-bench/  
-**Skill:** [comprehensive-specification](../maybern-skills/agent-workflow/comprehensive-specification/SKILL.md) (local Mac path under `maybern-tripp-smith/maybern-skills`).
+**Skill:** Written against the local `comprehensive-specification` skill (`maybern-tripp-smith/maybern-skills/agent-workflow/comprehensive-specification/`); section titles match that skill’s `reference.md` §§1–22.
 
 ---
 
