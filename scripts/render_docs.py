@@ -405,15 +405,17 @@ def index_body() -> str:
 <p>This note reports a pre-registered evaluation of TypeSafe/Jev on chair press-conference openings under the fixed pairwise criterion <code>more hawkish about inflation</code>. Primary quantities include standard errors (STE) and bootstrap percentile confidence intervals. Gate 4 is a construct-validity result: same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. Gate 7 is Spearman agreement with an independent FedLock text score. It is not a TrueSkill or macro-conditioned methodological replication.</p>
 </div>
 
-<h2>Measurement</h2>
-<p>Two constructs are distinguished throughout. The behavioral measure is the same-day change in the funds target (<code>d_same</code>). The textual measure is the stance in the Chair’s opening remarks, recovered by dual-order Choice and Bradley–Terry aggregation, with a secondary Score pass.</p>
-<p>Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. The exercise does not identify a causal effect of communication on rates.</p>
+<h2>Contributions</h2>
+<p>The note distinguishes a behavioral measure (the same-day funds-target change, <code>d_same</code>) from a textual measure of hawkishness recovered by dual-order Choice and Bradley–Terry aggregation. It reports pre-registered gates, a construct-validity result under holds, and external rank agreement with FedLock scores. It does not identify a causal effect of communication on rates.</p>
 
-<h2>Selected estimates</h2>
+<h2>Methods</h2>
+<p>The protocol is pairwise Choice under a fixed criterion, presented in both orders, with a secondary Score pass. Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. Uncertainty is bootstrap STE for Spearman correlations and binomial STE for inversion rates.</p>
+
+<h2>Results</h2>
 <table>
 <thead><tr><th>Gate</th><th>Estimate</th></tr></thead>
 <tbody>
-<tr><td>1 Easy-pair inversion</td><td><span class="pass">PASS</span> — 0.000 (n=40, STE=0.000)</td></tr>
+<tr><td>1 Rate-extreme inversion</td><td><span class="pass">PASS</span> — 0.000 (n=40, STE=0.000)</td></tr>
 <tr><td>3 Action-day Spearman (BT vs <code>d_same</code>)</td><td><span class="pass">PASS</span> — +0.851 (n=24, STE=0.074)</td></tr>
 <tr><td>4 Holds − cuts (BT mean gap)</td><td><span class="pass">PASS</span> — +0.519 (STE=0.368)</td></tr>
 <tr><td>6 Name/order stability</td><td><span class="pass">PASS</span> — Δ inversion = 0.000</td></tr>
@@ -421,19 +423,21 @@ def index_body() -> str:
 </tbody>
 </table>
 
-<h2>Selected figures</h2>
 <figure>
 <img src="figures/score_vs_d_same.svg" alt="Text scores versus same-day target change">
 <figcaption>Figure 6. BT (n=46) and <code>score_jev</code> (n=93) against <code>d_same</code>. Holds stack at zero. Spearman ρ and bootstrap STE are the Gate 3 all-scheduled estimates.</figcaption>
 </figure>
 <figure>
 <img src="figures/gate4_means.svg" alt="Mean scores for holds, cuts, and hikes">
-<figcaption>Figure 8. Mean text scores by same-day action, ± STE. Holds sit above cuts on both the BT and Score axes.</figcaption>
+<figcaption>Figure 8. Mean text scores by same-day action, ± STE. Mean hold scores exceed mean cut scores on both the BT and Score axes.</figcaption>
 </figure>
+
+<h2>Discussion and limitations</h2>
+<p>Action-day rank agreement with <code>d_same</code> exceeds the pre-registered +0.30 line. Under holds, <code>d_same</code> cannot encode hawkish- versus dovish-hold language. Gate 7 is agreement with an independent text score, not a TrueSkill replication. A separate FedLock-faithful TrueSkill replica on 95 openings is reported in the Analysis (Figures 19–24); Jev↔FedLock <code>m</code> Spearman=+0.965 (STE=0.011, n=92). The Bradley–Terry graph is sparse; chair openings are not full press conferences; the Gate 4 BT gap interval includes zero.</p>
 
 <h2>Documents</h2>
 <ul>
-<li><a href="analysis.html">Analysis</a> — methods, results, figures, FedLock fidelity, limitations</li>
+<li><a href="analysis.html">Analysis</a> — Abstract, Contributions, Methods, Results, Discussion, Limitations</li>
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_fidelity.md</code></li>
 </ul>

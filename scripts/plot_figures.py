@@ -525,8 +525,155 @@ def fig_timeline(jev: pd.DataFrame) -> None:
     save(fig, "score_timeline")
 
 
+def fig_exp3(exp3: dict, csv: pd.DataFrame) -> None:
+    main = csv[
+        (csv["is_scheduled"] == True)
+        & (csv["exclude_main"] == False)
+        & csv["d_same"].notna()
+        & csv["composite"].notna()
+        & ~csv["date"].astype(str).isin(CRISIS)
+    ].copy()
+    fig, ax = plt.subplots(figsize=(5.6, 3.7))
+    scatter_by_action(ax, main["d_same"], main["composite"], main["d_same"], main["date"])
+    ax.axvline(0, color=EDGE, linewidth=0.8)
+    ax.set_xlabel(r"$d_{\mathrm{same}}$ (percentage points)")
+    ax.set_ylabel("Equal-weight composite")
+    ax.set_title("Experiment 3 — composite vs same-day move")
+    blk = exp3["correlations"]["vs_d_same"]
+    annotate_rho(ax, blk["rho"], blk["ste"], blk["n"], "upper left")
+    ax.legend(loc="lower right", handletextpad=0.3)
+    fig.tight_layout()
+    save(fig, "exp3_composite_vs_dsame")
+
+    labels = [
+        ("drop_inflation_urgency", "Drop inflation\nurgency"),
+        ("drop_tightness_preference", "Drop tightness\npreference"),
+        ("drop_reaction_toughness", "Drop reaction\ntoughness"),
+        ("drop_guidance_firmness", "Drop guidance\nfirmness"),
+    ]
+    fig, ax = plt.subplots(figsize=(6.6, 3.5))
+    x = np.arange(len(labels))
+    rhos = [exp3["ablations_drop_one"][k]["rho"] for k, _ in labels]
+    stes = [exp3["ablations_drop_one"][k]["ste"] for k, _ in labels]
+    full = exp3["correlations"]["vs_d_same"]["rho"]
+    ax.bar(x, rhos, color=NAVY, width=0.62, edgecolor="white")
+    ax.errorbar(x, rhos, yerr=stes, fmt="none", ecolor=INK, elinewidth=1.0, capsize=3)
+    ax.axhline(full, color=RUST, linestyle="--", linewidth=0.9)
+    ax.set_xticks(x)
+    ax.set_xticklabels([lab for _, lab in labels])
+    ax.set_ylabel(r"Spearman $\rho$ vs $d_{\mathrm{same}}$")
+    ax.set_title("Experiment 3 — leave-one-dimension-out")
+    ax.text(0.98, full, f" full ρ={full:+.3f}", ha="right", va="bottom", fontsize=8, color=RUST, transform=ax.get_yaxis_transform())
+    fig.tight_layout()
+    save(fig, "exp3_ablation")
+
+
+def fig_exp4(exp4: dict) -> None:
+    eras = ["2020", "2022_hikes", "2023_SVB", "2023_other", "2024", "2025_26", "other"]
+    pretty = {
+        "2020": "2020",
+        "2022_hikes": "2022\nhikes",
+        "2023_SVB": "2023\nSVB",
+        "2023_other": "2023\nother",
+        "2024": "2024",
+        "2025_26": "2025–26",
+        "other": "other",
+    }
+    keys = exp4["noul_keys"]
+    colors = [NAVY, TEAL, RUST, HAIKU]
+    fig, ax = plt.subplots(figsize=(8.4, 3.7))
+    x = np.arange(len(eras))
+    w = 0.18
+    for i, (key, color) in enumerate(zip(keys, colors)):
+        means, stes = [], []
+        for era in eras:
+            block = exp4["by_era"][era][key]
+            n = exp4["by_era"][era]["n"]
+            means.append(block["mean"])
+            stes.append(0.0 if n <= 1 else block["std"] / np.sqrt(n))
+        ax.bar(x + (i - 1.5) * w, means, w, color=color, edgecolor="white", label=key.replace("_", " "))
+        ax.errorbar(x + (i - 1.5) * w, means, yerr=stes, fmt="none", ecolor=INK, elinewidth=0.8, capsize=2)
+    ax.set_xticks(x)
+    ax.set_xticklabels([f"{pretty[e]}\nn={exp4['by_era'][e]['n']}" for e in eras])
+    ax.set_ylabel("Mean Noul probability")
+    ax.set_ylim(0, 1.08)
+    ax.set_title("Experiment 4 — Nouls by era")
+    ax.legend(loc="upper right", fontsize=7, ncol=2)
+    fig.tight_layout()
+    save(fig, "exp4_noul_by_era")
+
+
+def fig_exp5(exp5: dict) -> None:
+    rows = [
+        ("Baseline", 0.0, exp5["baseline"]["calibration"]["ece"]),
+        ("Tighter stance", exp5["paraphrases"]["para_tighter_stance"]["mean_abs_delta_p_gold_vs_baseline"], exp5["paraphrases"]["para_tighter_stance"]["calibration"]["ece"]),
+        ("Less accommodative", exp5["paraphrases"]["para_less_accommodative"]["mean_abs_delta_p_gold_vs_baseline"], exp5["paraphrases"]["para_less_accommodative"]["calibration"]["ece"]),
+    ]
+    fig, axes = plt.subplots(1, 2, figsize=(7.4, 3.3))
+    x = np.arange(len(rows))
+    axes[0].bar(x, [r[1] for r in rows], color=NAVY, width=0.55, edgecolor="white")
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels([r[0] for r in rows], rotation=15, ha="right")
+    axes[0].set_ylabel(r"Mean $|\Delta p|$ vs baseline")
+    axes[0].set_title("Paraphrase |Δp| (n=40)")
+    axes[1].bar(x, [r[2] for r in rows], color=NAVY, width=0.55, edgecolor="white")
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels([r[0] for r in rows], rotation=15, ha="right")
+    axes[1].set_ylabel("ECE")
+    axes[1].set_title("ECE (n=40)")
+    fig.tight_layout()
+    save(fig, "exp5_paraphrase")
+
+
+def fig_exp6(exp6: dict) -> None:
+    p = np.array([i["p_gold"] for i in exp6["items"] if i.get("p_gold") is not None], dtype=float)
+    fig, ax = plt.subplots(figsize=(5.4, 3.3))
+    ax.hist(p, bins=np.linspace(0, 1, 11), color=NAVY, edgecolor="white")
+    ax.axvline(0.5, color=RUST, linestyle="--", linewidth=0.9)
+    ax.set_xlabel(r"$p(\mathrm{gold})$")
+    ax.set_ylabel("Items")
+    ax.set_title("Experiment 6 — span Choice")
+    ax.text(
+        0.04,
+        0.96,
+        f"mean p = {exp6['mean_p_gold']:.3f} (STE {exp6['mean_p_gold_ste']:.3f})\n"
+        f"inversion = {exp6['inversion']['rate']:.2f} (STE {exp6['inversion']['ste']:.3f}) · n={exp6['inversion']['n']}",
+        transform=ax.transAxes,
+        va="top",
+        fontsize=8,
+        color=MUTED,
+    )
+    fig.tight_layout()
+    save(fig, "exp6_span_pgold")
+
+
+def fig_exp7(exp7: dict) -> None:
+    labels = ["Absolute\ninversion", "Macro\ninversion", "Winner\nagreement"]
+    vals = [
+        exp7["inversion_absolute"]["rate"],
+        exp7["inversion_macro"]["rate"],
+        exp7["agreement_abs_vs_macro_winners"]["rate"],
+    ]
+    stes = [
+        exp7["inversion_absolute"]["ste"],
+        exp7["inversion_macro"]["ste"],
+        exp7["agreement_abs_vs_macro_winners"]["ste"],
+    ]
+    fig, ax = plt.subplots(figsize=(5.2, 3.4))
+    x = np.arange(3)
+    ax.bar(x, vals, color=[NAVY, HAIKU, TEAL], width=0.55, edgecolor="white")
+    ax.errorbar(x, vals, yerr=stes, fmt="none", ecolor=INK, elinewidth=1.0, capsize=3)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.set_ylim(0, 1.15)
+    ax.set_ylabel("Rate")
+    ax.set_title("Experiment 7 — absolute vs macro (n=40)")
+    fig.tight_layout()
+    save(fig, "exp7_macro_agreement")
+
+
 def fig_gate7_m_vs_ma(jev: pd.DataFrame, fl: pd.DataFrame, gates: dict) -> None:
-    """Absolute vs era-adjusted FedLock (Gate 7 contrast; Exp 7 not separately run)."""
+    """Absolute vs era-adjusted FedLock (Gate 7 contrast)."""
     g7 = gates["gates"]["7_fedlock_consistency"]
     jev2 = jev.merge(fl, on="date", how="inner")
     fig, axes = plt.subplots(1, 2, figsize=(8.0, 3.55))
@@ -570,6 +717,16 @@ def main() -> None:
     fig_gate7(bt, jev, fl, gates)
     fig_gate7_m_vs_ma(jev, fl, gates)
     fig_cost_latency(haiku, cost, timing)
+    exp_dir = ROOT / "results/experiments"
+    if (exp_dir / "exp3_composite.json").exists():
+        exp3 = load_json(exp_dir / "exp3_composite.json")
+        exp3_csv = pd.read_csv(exp_dir / "exp3_composite.csv")
+        exp3_csv["date"] = exp3_csv["date"].astype(str)
+        fig_exp3(exp3, exp3_csv)
+        fig_exp4(load_json(exp_dir / "exp4_nouls.json"))
+        fig_exp5(load_json(exp_dir / "exp5_calibration.json"))
+        fig_exp6(load_json(exp_dir / "exp6_span_choice.json"))
+        fig_exp7(load_json(exp_dir / "exp7_macro_relative.json"))
     print(f"wrote figures to {OUT} and {DOCS}")
     print(f"BT n={len(bt)} score_jev n={len(jev)} fedlock matched jev={len(jev.merge(fl, on='date'))}")
 

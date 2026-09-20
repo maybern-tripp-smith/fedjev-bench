@@ -9,18 +9,24 @@ Long-form write-up and figures: [`ANALYSIS.md`](ANALYSIS.md). SVG/PNG: `results/
 
 ## Abstract
 
-This report records pre-registered gates for TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion `more hawkish about inflation`. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where `d_same` is uninformative by construction. Gate 7 reports Spearman agreement with an independent FedLock text score. It does not claim a TrueSkill or macro-conditioned replication. Associations include STE and, where computed, bootstrap percentile confidence intervals.
+This report records pre-registered gates for TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion `more hawkish about inflation`. The measurement questions are construct validity on rate-extreme pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where `d_same` is uninformative by construction. Gate 7 reports Spearman agreement with an independent FedLock text score. It does not claim a TrueSkill or macro-conditioned replication. Associations include STE and, where computed, bootstrap percentile confidence intervals.
 
-## Analysis exclusions (pre-registered)
+## Contributions
+
+The tables below record the pre-registered pass/fail rules, the measurement protocol, and the estimates. Gate 4 is a construct-validity result: same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. Gate 7 is agreement with an independent text score, not a methodological replication. Experiments 3–7 vary the question interface on unchanged gold labels.
+
+## Methods
+
+### Analysis exclusions (pre-registered)
 
 - **Exclude from main analysis:** 2020-03-03, 2020-03-15 (unscheduled / intermeeting cuts), and any other `exclude_main` or `is_scheduled=false` rows.
 - **Flag, do not drop:** 2023-03-22 (SVB) — column `flag_svb`.
 
-## Gates (registered before any Jev output)
+### Gates (registered before any Jev output)
 
 | # | Gate | Metric / rule | Pass line |
 |---|------|---------------|-----------|
-| 1 | Easy-pair inversion | Stratum A; average both presentation orders | inversion ≤ 0.05 |
+| 1 | Rate-extreme (easy-pair) inversion | Stratum A; average both presentation orders | inversion ≤ 0.05 |
 | 2 | Sentence discrimination | Stratum B; inversion + Brier on p(gold) | **report only** |
 | 3 | Statement score vs action | Spearman(BT score, `d_same`) scheduled excl. crisis; signal +0.30 (jsort pub. +0.46); action vs hold splits | Spearman ≥ +0.30 |
 | 4 | Holds vs cuts | mean score holds (`d_same=0`) vs cuts (`d_same<0`) | mean(holds) > mean(cuts) |
@@ -28,7 +34,7 @@ This report records pre-registered gates for TypeSafe/Jev pairwise rankings of F
 | 6 | Order/name stability | Stratum A names-in; Δ inversion | Δ ≤ 0.05 |
 | 7 | FedLock consistency | Spearman vs FedLock `m` / `ma` | **report only** |
 
-## Scoring protocol
+### Scoring protocol
 
 - Criterion (exact): `more hawkish about inflation`
 - Choice: Text A / Text B; meta stripped; both orders; inversion on averaged winner
@@ -41,7 +47,7 @@ This report records pre-registered gates for TypeSafe/Jev pairwise rankings of F
 
 | # | Gate | Result | Detail (STE where defined) |
 |---|------|--------|----------------------------|
-| 1 | Easy-pair inversion | **PASS** | 0.0000 (n=40, STE=0.0000) |
+| 1 | Rate-extreme inversion | **PASS** | 0.0000 (n=40, STE=0.0000) |
 | 2 | Sentence discrimination | report | inv=0.1900 STE=0.0277; Brier=0.1384 STE=0.0156 (n=200) |
 | 3 | Action ranking | **PASS** | BT all=+0.623 (n=46, STE=0.096) [+0.398, +0.787]; action=+0.851 (n=24, STE=0.074) [+0.652, +0.937] |
 | 4 | Holds vs cuts | **PASS** | BT: holds=−0.7199 (STE=0.3345, n=22) > cuts=−1.2385 (STE=0.1528, n=8); gap=0.5186 (STE=0.3677) |
@@ -100,8 +106,43 @@ Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 21
 | `results/fedlock_fidelity.md` | Gate 7 fidelity statement |
 | `runs/jev/answers.jsonl` | Raw answers |
 
-## Interpretation (brief)
+### Experiments 3–7 (from `results/experiments/`)
+
+Suite cost $0.04453 (385 calls, `jev-latest`). Gold labels unchanged.
+
+| Exp | Design | Selected estimate |
+|-----|--------|-------------------|
+| 3 | Equal-weight four-Score composite | vs `d_same` ρ=+0.562 (n=93, STE=0.063); action-day ρ=+0.893 (n=30, STE=0.037); vs `score_jev` +0.962; vs FedLock `m` +0.957 |
+| 4 | Four Nouls; era means | 2023-03-22 `acknowledges_banking_stress`=0.99; n multi-high (≥0.6)=9 |
+| 5 | Stratum A paraphrases | inversion=0.000 on baseline and both paraphrases (n=40); max mean \|Δp\|=0.00225 |
+| 6 | Span Choice among Shah distractors | inversion=0.48 (n=50, STE=0.071); mean p(gold)=0.484 (STE=0.055) |
+| 7 | Macro-conditioned vs text-absolute Choice | both inversions=0.000; winner agreement=1.000 (n=40) |
+
+Experiment 7 is not a TrueSkill / FedLock replication.
+
+### FedLock-faithful protocol replica (`fedjev-fedlock-replica-2026-09-20`)
+
+This is not Gate 7. Artifacts: `results/fedlock_replica/`. Figures 19–24 in ANALYSIS.
+
+| Contrast | Spearman ρ (STE, n) | Kendall τ (STE) |
+|----------|---------------------|-----------------|
+| Jev↔Haiku | +0.955 (0.012, 95) | +0.830 (0.023) |
+| Jev↔FedLock `m` | +0.965 (0.011, 92) | +0.850 (0.021) |
+| Jev↔FedLock `ma` | +0.790 (0.044, 92) | +0.576 (0.043) |
+| Haiku↔FedLock `m` | +0.945 (0.013, 92) | +0.798 (0.023) |
+| Haiku↔FedLock `ma` | +0.768 (0.042, 92) | +0.550 (0.042) |
+
+| Arm | n comps | USD | USD/comp | latency mean / p50 / p95 (ms) |
+|-----|--------:|----:|---------:|------------------------------:|
+| Jev | 1,034 | 0.1418 | 0.000137 | 283 / 271 / 419 |
+| Haiku | 1,033 | 3.5897 | 0.003475 | 732 / 687 / 988 |
+
+Stop: both `all_sigma_lt_2` (Jev max σ=1.986; Haiku max σ=1.965). Full Methods, Results, Discussion, and Limitations: ANALYSIS.
+
+## Discussion
 
 Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows agreement with an independent text score (especially Score versus `m`) and is not a FedLock replication.
 
-Limitations: sparse BT graph; incomplete dissent scrape; openings are not full pressers; Gate 4 BT gap interval includes zero. Experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative scoring) are reserved; `results/experiments/` is not in this repository. Figures in `ANALYSIS.md` plot only series that exist in `results/` and `data/`.
+## Limitations
+
+The BT graph is sparse (48 statements, 124 comparisons). The dissent scrape is incomplete. Chair openings are not full press conferences. The Gate 4 BT gap interval includes zero. Experiments 3–7 do not re-identify the hold-day labeling wedge.

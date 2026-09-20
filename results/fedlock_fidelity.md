@@ -2,20 +2,19 @@
 
 Gate 7 is an **external consistency check**, not a FedLock replication.
 
-## What we faithfully share
+## Shared elements
 - Pairwise text hawkishness judgments
-- Name anonymization / meta-stripping on *our* Jev Choice calls
+- Name anonymization / meta-stripping on the Jev Choice calls
 - Use of FedLock `press_conference` scores as an independent text-scoring reference
 
-## What we do **not** reproduce
+## Elements not reproduced
 - Macro-conditioned judge prompts (Core PCE, unemployment, GDP growth, VIX at speech time)
 - TrueSkill aggregator (μ start 50, σ≈8.33 → converge σ<2); ~60k comparisons / ~4k speeches
-- Era adjustment (`ma`) as the Gate 7 **primary** metric (we report `ma` as sensitivity alongside raw `m`)
+- Era adjustment (`ma`) as the Gate 7 **primary** metric (`ma` is reported as a sensitivity alongside raw `m`)
 - Full speech corpus, Llama 3.3 70B judge, Swiss / uncertainty-targeted matching
 
 ## Implication
-Gate 7 ρ asks: *do two independent text-scoring systems agree on meeting-day hawkishness?*
-It does **not** claim: *we replicated FedLock*.
+Gate 7 ρ measures rank agreement between two independent text-scoring systems on meeting-day hawkishness. It does not claim a methodological replication of FedLock.
 
 ## Matching
 - Policy: prefer title-embedded meeting date; else FedLock `d` with deltas 0, +1, −1, +2
@@ -35,9 +34,9 @@ It does **not** claim: *we replicated FedLock*.
 | score_jev vs `ma` | +0.774 | 0.044 | 90 | [+0.673, +0.839] |
 
 ## Corpus mismatch
-Our documents are chair **openings** (jsort-style). FedLock `press_conference` may be fuller presser text. Agreement is still informative but not same-document.
+The documents here are chair **openings** (jsort-style). FedLock `press_conference` entries may be fuller press-conference transcripts. Agreement is informative but is not a same-document comparison.
 
 ## Separate experiment: FedLock-faithful protocol replication
 
-Gate 7 remains an external consistency check only. A **separate** experiment implements a FedLock-V3-faithful protocol (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss/uncertainty pairing) on the 95 openings corpus, comparing Jev, Haiku, and published FedLock `m`/`ma`. See `results/fedlock_replica/FINDINGS.md` and ANALYSIS §12. That run is **not** a 4k-speech / ~60k-comparison scale replication.
+Gate 7 remains an external consistency check only. A **separate** experiment implements a FedLock-V3-faithful protocol (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss/uncertainty pairing) on the 95 openings corpus, comparing Jev, Haiku, and published FedLock `m`/`ma`. See `results/fedlock_replica/FINDINGS.md` and ANALYSIS (Results). That run is **not** a 4k-speech / ~60k-comparison scale replication.
 
