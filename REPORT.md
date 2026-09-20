@@ -9,7 +9,7 @@ Long-form write-up and figures: [`ANALYSIS.md`](ANALYSIS.md). SVG/PNG: `results/
 
 ## Abstract
 
-This report records pre-registered gates for TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion `more hawkish about inflation`. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where `d_same` is uninformative by construction. Gate 7 reports Spearman agreement with an independent FedLock text score. It does not claim a TrueSkill or macro-conditioned replication. Associations include STE and, where computed, bootstrap percentile confidence intervals.
+This report records pre-registered gates for TypeSafe/Jev pairwise rankings of Federal Open Market Committee (FOMC) chair openings under the criterion `more hawkish about inflation`. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where `d_same` (the same-day funds-target change) is uninformative by construction. Gate 7 reports Spearman’s rank correlation with FedLock, an independent published text-scoring project ([methodology](https://jnathan9.github.io/fedlock/)): raw TrueSkill mean `m` and era-adjusted `ma`. Gate 7 reads those published scores. It does not re-run FedLock’s TrueSkill tournament or its macro-conditioned judge. A separate protocol-fidelity replica is `results/fedlock_replica/FINDINGS.md`. Associations include a standard error (s.e.) and, where computed, bootstrap percentile confidence intervals.
 
 ## Analysis exclusions (pre-registered)
 
@@ -26,7 +26,7 @@ This report records pre-registered gates for TypeSafe/Jev pairwise rankings of F
 | 4 | Holds vs cuts | mean score holds (`d_same=0`) vs cuts (`d_same<0`) | mean(holds) > mean(cuts) |
 | 5 | Forward path | Spearman vs `d_90` | **secondary** |
 | 6 | Order/name stability | Stratum A names-in; Δ inversion | Δ ≤ 0.05 |
-| 7 | FedLock consistency | Spearman vs FedLock `m` / `ma` | **report only** |
+| 7 | FedLock consistency (published-score agreement; not a TrueSkill replication) | Spearman vs FedLock raw `m` (primary) and era-adjusted `ma` (sensitivity) | **report only** |
 
 ## Scoring protocol
 
@@ -47,7 +47,7 @@ This report records pre-registered gates for TypeSafe/Jev pairwise rankings of F
 | 4 | Holds vs cuts | **PASS** | BT: holds=−0.7199 (STE=0.3345, n=22) > cuts=−1.2385 (STE=0.1528, n=8); gap=0.5186 (STE=0.3677) |
 | 5 | Forward path | secondary | BT=+0.357 (n=44, STE=0.154) [+0.042, +0.627]; score_jev=+0.511 (n=91, STE=0.081) [+0.336, +0.652] |
 | 6 | Order/name stability | **PASS** | Δ=0.0000; add-on $0.010955 |
-| 7 | FedLock consistency | report | BT vs m=+0.679 (n=46, STE=0.112) [+0.436, +0.861]; vs ma=+0.594 (n=46, STE=0.104) [+0.361, +0.770]; score_jev vs m=+0.944 (n=90, STE=0.016) [+0.900, +0.966]; vs ma=+0.774 (n=90, STE=0.044) [+0.673, +0.839]; mean s=1.776; matched=92 |
+| 7 | FedLock consistency (published scores; not a TrueSkill replication) | report | Bradley–Terry vs raw `m`=+0.679 (n=46, s.e.=0.112) [+0.436, +0.861]; vs era-adjusted `ma`=+0.594 (n=46, s.e.=0.104) [+0.361, +0.770]; score_jev vs `m`=+0.944 (n=90, s.e.=0.016) [+0.900, +0.966]; vs `ma`=+0.774 (n=90, s.e.=0.044) [+0.673, +0.839]; mean FedLock uncertainty `s`=1.776; matched meetings=92 |
 
 ### Inversion tables
 
@@ -83,7 +83,13 @@ Gate 4 is a construct-validity result: same-day funds-rate changes are an incomp
 
 ### FedLock fidelity (Gate 7)
 
-See `results/fedlock_fidelity.md`. Shared: pairwise textual hawkishness; anonymization of Jev Choice calls; use of FedLock scores as an external reference. Not reproduced: macro-conditioned prompts; TrueSkill; `ma` as primary; full corpus; Llama judge; Swiss matching. Matching prefers the title date; delta(`d`−meeting) is mostly +1 when falling back to the `d` field. The primary contrast is raw `m`; `ma` is a sensitivity. Gate 7 is agreement with an independent text score, not a methodological replication.
+See `results/fedlock_fidelity.md` for the re-implementation note. **FedLock** is an independent published tournament ([methodology](https://jnathan9.github.io/fedlock/)): Llama 3.3 70B compares anonymized speeches on hawkishness *given* contemporaneous macro conditions and aggregates with TrueSkill (Microsoft’s Bayesian skill-rating system). Gate 7 does not re-run that tournament. It asks whether this repository’s Bradley–Terry and Score series agree in rank with the published press-conference scores.
+
+Shared with FedLock, in a limited sense: pairwise textual hawkishness as the object of measurement; name and date stripping on this repository’s Jev Choice calls; use of the published scores as an external reference. Not reproduced on the Gate 7 left-hand side: macro-conditioned prompts (core personal consumption expenditures inflation, unemployment, real gross domestic product growth, CBOE Volatility Index); TrueSkill aggregation; era-adjusted `ma` as the headline (it is a sensitivity); the full ~4,000-speech corpus; the Llama judge; Swiss / uncertainty-targeted pairing.
+
+Matching prefers the date embedded in the FedLock title; when the match falls back to the FedLock `d` field, the offset (`d` − meeting) is +1 day on 89 of 90 main-analysis rows (1 row is offset 0). Primary contrast: raw `m`. Sensitivity: `ma`. Mean published uncertainty `s` on the matched main set = 1.7762. Matched meetings = 92; main-analysis matched = 90.
+
+Gate 7 is agreement between two text measures. It is not a methodological replication. The separate TrueSkill replica (`run_id` `fedjev-fedlock-replica-2026-09-20`) is `results/fedlock_replica/FINDINGS.md` and ANALYSIS §12.
 
 ### Cost and timing
 
@@ -97,11 +103,12 @@ Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 21
 | `results/statement_scores.csv` | BT score/se/n_pairs + score_jev |
 | `results/gates.json` | Gates with STE fields |
 | `results/interpretation.json` | Estimator glossary and selected estimates |
-| `results/fedlock_fidelity.md` | Gate 7 fidelity statement |
+| `results/fedlock_fidelity.md` | Gate 7 fidelity statement (published-score agreement; not a TrueSkill replication) |
+| `results/fedlock_replica/FINDINGS.md` | Separate FedLock-faithful TrueSkill replica |
 | `runs/jev/answers.jsonl` | Raw answers |
 
 ## Interpretation (brief)
 
-Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows agreement with an independent text score (especially Score versus `m`) and is not a FedLock replication.
+Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day Bradley–Terry Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds (`d_same` is zero when the target is unchanged). Gate 7 shows rank agreement with an independent FedLock text score — especially Score versus raw `m` (ρ = +0.944, s.e. = 0.016, n = 90) — and is not a FedLock replication. The TrueSkill replica is a different experiment.
 
 Limitations: sparse BT graph; incomplete dissent scrape; openings are not full pressers; Gate 4 BT gap interval includes zero. Experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative scoring) are reserved; `results/experiments/` is not in this repository. Figures in `ANALYSIS.md` plot only series that exist in `results/` and `data/`.

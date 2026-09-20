@@ -6,7 +6,7 @@
 **repository:** [maybern-tripp-smith/fedjev-bench](https://github.com/maybern-tripp-smith/fedjev-bench)  
 **pages:** [https://maybern-tripp-smith.github.io/fedjev-bench/](https://maybern-tripp-smith.github.io/fedjev-bench/)
 
-Companion gate tables: [`REPORT.md`](REPORT.md). Machine-readable estimates: [`results/gates.json`](results/gates.json). Estimator glossary: [`results/interpretation.json`](results/interpretation.json). FedLock matching and fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+Companion gate tables: [`REPORT.md`](REPORT.md). Machine-readable estimates: [`results/gates.json`](results/gates.json). Estimator glossary: [`results/interpretation.json`](results/interpretation.json). Gate 7 matching and fidelity (external consistency with published FedLock scores, not a TrueSkill replication): [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). FedLock-faithful TrueSkill replica (separate experiment): [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md).
 
 ---
 
@@ -14,9 +14,9 @@ Companion gate tables: [`REPORT.md`](REPORT.md). Machine-readable estimates: [`r
 
 Same-day changes in the federal funds target are a convenient but incomplete label for the hawkishness of Federal Open Market Committee (FOMC) communication. Policy actions and textual stance often co-move on scheduled action days. They need not coincide when the Committee leaves the target unchanged.
 
-This note reports a pre-registered evaluation of TypeSafe/Jev on chair press-conference openings. The protocol is pairwise Choice under the fixed criterion string `more hawkish about inflation`, presented in both orders, aggregated by Bradley–Terry (BT), with a secondary direct Score pass. Seven gates examine construct validity on easy pairs, rank agreement with same-day target moves, separation of holds from cuts on the text axis, forward-path correlation, order and name stability, and external consistency with an independent text score (FedLock).
+This note reports a pre-registered evaluation of TypeSafe/Jev on chair press-conference openings. The protocol is pairwise Choice under the fixed criterion string `more hawkish about inflation`, presented in both orders, aggregated by Bradley–Terry (BT) — a pairwise strength model on a fixed gold-pair graph — with a secondary direct Score pass. Seven gates examine construct validity on easy pairs, rank agreement with same-day target moves, separation of holds from cuts on the text axis, forward-path correlation, order and name stability, and external consistency with FedLock, an independent published text-scoring project ([methodology](https://jnathan9.github.io/fedlock/)).
 
-Primary quantities are reported with standard errors (STE) and, where applicable, bootstrap percentile confidence intervals. Gate 4 is a construct-validity result: when the target is unchanged, `d_same` is identically zero and cannot encode hawkish- versus dovish-hold language. Gate 7 is Spearman agreement with FedLock raw (`m`) and era-adjusted (`ma`) scores. It is not a TrueSkill or macro-conditioned methodological replication.
+Primary quantities are reported with standard errors (s.e.) and, where applicable, bootstrap percentile confidence intervals. Gate 4 is a construct-validity result: when the target is unchanged, `d_same` is identically zero and cannot encode hawkish- versus dovish-hold language. Gate 7 is Spearman’s rank correlation — do two orderings of meetings agree? — between this repository’s Bradley–Terry / Score series and FedLock’s published press-conference scores: raw TrueSkill mean `m`, and era-adjusted mean `ma` (`m` after subtracting a quarterly average). Gate 7 reads those published scores; it does not re-run FedLock’s TrueSkill tournament or its macro-conditioned judge. A separate protocol-fidelity experiment is in §12.
 
 ---
 
@@ -44,7 +44,7 @@ The note is a measurement exercise. It does not identify a causal effect of comm
 |------|--------------|------------------------|
 | **jsort** ([keltokhy/jsort](https://github.com/keltokhy/jsort)) | Statement ranking; published Spearman versus same-day move ≈ **+0.46** | Label formulas (`d_same`, `d_90`, `d_2y`); Gate 3 signal line (+0.30) and published reference (+0.46) |
 | **Shah et al.** ([gtfintechlab/fomc-hawkish-dovish](https://github.com/gtfintechlab/fomc-hawkish-dovish); CC BY-NC 4.0) | Sentence-level hawk/dove/neutral labels | Stratum B; Gate 2 report-only |
-| **FedLock** ([jnathan9.github.io/fedlock](https://jnathan9.github.io/fedlock/)) | Independent LLM pairwise tournament with TrueSkill scores | Gate 7 external consistency (report-only); see §6 |
+| **FedLock** ([jnathan9.github.io/fedlock](https://jnathan9.github.io/fedlock/)) | Independent pairwise tournament on anonymized speeches: a large language model (Llama 3.3 70B) chooses the more hawkish stance *given* contemporaneous macro conditions; wins are aggregated with TrueSkill (Microsoft’s Bayesian skill-rating system) over ~60,000 comparisons and ~4,000 speeches. Published fields include raw mean `m` and era-adjusted `ma`. | Gate 7 external consistency (report-only): rank agreement with those published scores; see §6. The TrueSkill replica in §12 is a different claim. |
 
 jsort supplies the behavioral-label algebra and a published rank-correlation reference. Shah supplies sentence gold for a stress test that is not used to pass or fail the document-level claim. FedLock supplies an independent meeting-day text score. None of these sources is treated as a ground-truth hawkishness index.
 
@@ -57,7 +57,7 @@ jsort supplies the behavioral-label algebra and a published rank-correlation ref
 | Chair press-conference openings | `data/clean/statements.jsonl` (~95 documents) | Document-level Choice and Score |
 | Shah sentences | `data/clean/sentences.jsonl` | Stratum B |
 | Meeting calendar and FRED labels | `data/labels/meetings.parquet` | `d_same`, `d_90`, `d_2y`, dissent counts, exclusions |
-| FedLock snapshot | `data/raw/fedlock/data.json` | Gate 7 (`m`, `ma`, `s`, `st`) |
+| FedLock snapshot | `data/raw/fedlock/data.json` | Published press-conference scores for Gate 7 (`m` raw mean, `ma` era-adjusted, `s` uncertainty). Llama is not re-invoked. |
 | FRED CSVs | `data/raw/fred/` | DFEDTARU, DGS2 |
 
 **Labels (jsort-aligned).** `d_same` = DFEDTARU[t+1] − DFEDTARU[t−1]. `y_action` = sign(`d_same`). `d_90` = DFEDTARU[t+90] − DFEDTARU[t]. `d_2y` = DGS2[t] − DGS2[t−1].
@@ -94,7 +94,7 @@ jsort supplies the behavioral-label algebra and a published rank-correlation ref
 | 4 | Holds versus cuts | mean(holds) > mean(cuts) | **PASS** — BT gap=+0.519 STE=0.368 (n_h=22, n_c=8) |
 | 5 | Forward path (`d_90`) | secondary | BT=+0.357 (n=44, STE=0.154) [+0.042, +0.627]; score_jev=+0.511 (n=91, STE=0.081) [+0.336, +0.652] |
 | 6 | Order/name stability | Δ inv ≤ 0.05 | **PASS** — Δ=0.0000 |
-| 7 | FedLock consistency | report | BT vs m=+0.679 (n=46, STE=0.112) [+0.436, +0.861]; vs ma=+0.594 (n=46, STE=0.104) [+0.361, +0.770]; score_jev vs m=+0.944 (n=90, STE=0.016) [+0.900, +0.966]; vs ma=+0.774 (n=90, STE=0.044) [+0.673, +0.839] |
+| 7 | FedLock consistency (published-score agreement; not a TrueSkill replication) | report | BT vs raw `m`=+0.679 (n=46, s.e.=0.112) [+0.436, +0.861]; vs era-adjusted `ma`=+0.594 (n=46, s.e.=0.104) [+0.361, +0.770]; score_jev vs `m`=+0.944 (n=90, s.e.=0.016) [+0.900, +0.966]; vs `ma`=+0.774 (n=90, s.e.=0.044) [+0.673, +0.839] |
 
 ### 5.1 Inversion by stratum
 
@@ -180,34 +180,34 @@ Openings rarely embed Chair names or ISO dates that the stripper can remove. The
 
 ## 6. Relationship to FedLock
 
-Full note: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+Full fidelity note, written to be re-implemented from frozen artifacts: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
 
-FedLock V3 ([methodology](https://jnathan9.github.io/fedlock/)) is a pairwise tournament with Llama 3.3 70B on anonymized speeches. The judge prompt includes macro context (core PCE, unemployment, GDP growth, VIX). Scores are aggregated by TrueSkill (μ₀=50, σ₀≈8.33, target σ<2) over roughly 60,000 comparisons and 4,000 speeches. Published fields include `m` (raw μ), `ma` (era-adjusted), `s` (σ), `n`, and `st`.
+**Two claims, kept apart.** Gate 7 asks whether this repository’s Bradley–Terry and Score series *agree in rank* with FedLock’s already published press-conference scores. Section 12 asks whether a *new* TrueSkill tournament, run on the 95 openings under FedLock V3’s documented protocol, recovers a similar ordering. Gate 7 does not re-run TrueSkill. Section 12 does not replace Gate 7.
 
-**Shared with this evaluation.** Pairwise textual hawkishness as the object of measurement. Name and meta stripping on the Jev Choice calls. Use of FedLock `press_conference` scores as an external consistency check.
+**What published FedLock is.** FedLock V3 ([methodology](https://jnathan9.github.io/fedlock/)) is a pairwise tournament: Llama 3.3 70B sees two anonymized speeches and is asked which takes the more hawkish monetary-policy stance *given* contemporaneous macro conditions — core personal consumption expenditures inflation, the unemployment rate, real gross domestic product growth, and the CBOE Volatility Index. Wins are aggregated with TrueSkill (prior mean μ₀ = 50, prior uncertainty σ₀ ≈ 8.33, stop when every speech’s uncertainty σ < 2) over roughly 60,000 comparisons and 4,000 speeches. This repository does not re-invoke Llama. It reads the snapshot in `data/raw/fedlock/data.json`. The headline published field is raw mean `m`. Era-adjusted `ma` subtracts a quarterly average and is reported here only as a sensitivity. Field `s` is TrueSkill uncertainty; mean `s` on the matched main-analysis set is 1.7762.
 
-**Not reproduced.** Macro-conditioned judge prompts. TrueSkill. Era adjustment as the Gate 7 primary (`ma` is reported as a sensitivity). The full speech corpus. The Llama judge. Swiss or uncertainty-targeted matching.
+**What Gate 7 shares, and what it does not.** Shared: pairwise textual hawkishness as the object of measurement; name and date stripping on this repository’s Jev Choice calls; use of FedLock `press_conference` scores as an external reference. Not reproduced on the Gate 7 left-hand side: macro-conditioned judge prompts; TrueSkill; Swiss or uncertainty-targeted pairing; the full speech corpus; the Llama judge. The left-hand series remain Bradley–Terry (fixed gold-pair graph) and the direct Score pass (`score_jev`).
 
-Gate 7 ρ is therefore agreement between two independent text-scoring systems on meeting-day hawkishness. It is not a methodological replication of FedLock.
+**Matching.** Prefer the meeting date embedded in the FedLock title; otherwise the FedLock `d` field with calendar offsets 0, +1, −1, +2 days. Matched meetings = 92; main-analysis matched = 90; same-calendar-day on the `d` field = 1; offset distribution = `{'0': 1, '1': 89}`; match route = `{'title_date': 90}`.
 
-**Matching.** Prefer the meeting date embedded in the FedLock title; otherwise the FedLock `d` field with deltas 0, +1, −1, +2. Matched meetings=92; main-analysis matched=90; same-calendar-day on the `d` field=1; delta distribution={'0': 1, '1': 89}; match-via={'title_date': 90}; mean FedLock `s` on the matched main set=1.7762.
+**Rank agreement.** Spearman’s rank correlation (ρ) asks whether the two series produce a similar ordering of meetings. The **standard error (s.e.)** is the standard deviation of 1,000 bootstrap meeting resamples; the 95 percent interval is the percentile interval from the same resamples.
 
-| Contrast | ρ | STE | n | 95% CI |
-|----------|--:|----:|--:|--------|
-| BT vs `m` | +0.679 | 0.112 | 46 | [+0.436, +0.861] |
-| BT vs `ma` | +0.594 | 0.104 | 46 | [+0.361, +0.770] |
-| score_jev vs `m` | +0.944 | 0.016 | 90 | [+0.900, +0.966] |
-| score_jev vs `ma` | +0.774 | 0.044 | 90 | [+0.673, +0.839] |
+| Contrast | ρ | Standard error | n | 95% confidence interval |
+|----------|--:|---------------:|--:|-------------------------|
+| Bradley–Terry vs `m` (raw) | +0.679 | 0.112 | 46 | [+0.436, +0.861] |
+| Bradley–Terry vs `ma` (era-adjusted) | +0.594 | 0.104 | 46 | [+0.361, +0.770] |
+| `score_jev` vs `m` | +0.944 | 0.016 | 90 | [+0.900, +0.966] |
+| `score_jev` vs `ma` | +0.774 | 0.044 | 90 | [+0.673, +0.839] |
 
-Agreement with raw `m` is stronger than with era-adjusted `ma`, especially for `score_jev`. The corpora differ: chair openings are not necessarily full FedLock press-conference transcripts.
+Agreement with raw `m` is stronger than with era-adjusted `ma`, especially for `score_jev` (ρ = +0.944, s.e. = 0.016, n = 90). The corpora differ: chair openings are not necessarily full FedLock press-conference transcripts.
 
 ![Jev versus FedLock](results/figures/gate7_fedlock.svg)
 
-*Figure 10. Meeting-level Jev scores against FedLock `press_conference` scores, main-analysis match (title date preferred). Top: BT versus raw `m` and era-adjusted `ma` (n=46). Bottom: `score_jev` versus `m` and `ma` (n=90). Markers are same-day actions. ρ and bootstrap STE match Gate 7. The teal outline is 2023-03-22. This is agreement with an independent text score, not a TrueSkill or macro-conditioned replication.*
+*Figure 10. Meeting-level scores from this repository against published FedLock press-conference scores, main-analysis match (title date preferred). Top: Bradley–Terry versus raw `m` and era-adjusted `ma` (n = 46). Bottom: `score_jev` versus `m` and `ma` (n = 90). Marker shape is the same-day funds-target action (the behavioral label `d_same`), not the FedLock score. Spearman ρ and bootstrap standard errors match the Gate 7 table. The teal outline is 2023-03-22. This is agreement with an independent text score. It is not a TrueSkill or macro-conditioned replication.*
 
 ![Absolute versus era-adjusted FedLock](results/figures/gate7_absolute_vs_macro.svg)
 
-*Figure 11. The same `score_jev` series against FedLock raw `m` (left; ρ=+0.944, STE=0.016, n=90) and era-adjusted `ma` (right; ρ=+0.774, STE=0.044, n=90). The raw contrast is near a rank ceiling. Experiment 7 (a separate macro-relative scoring design) is not in the repository; the panel uses the Gate 7 series that are.*
+*Figure 11. The same `score_jev` series against FedLock raw `m` (left; ρ = +0.944, s.e. = 0.016, n = 90) and era-adjusted `ma` (right; ρ = +0.774, s.e. = 0.044, n = 90). The raw contrast is near a rank ceiling. Experiment 7 in §11 is a separate macro-relative *Choice* design on gold pairs; it is not this figure and is not the §12 TrueSkill replica. The panel uses the Gate 7 series that are in `results/`.*
 
 ---
 
@@ -222,7 +222,8 @@ Agreement with raw `m` is stronger than with era-adjusted `ma`, especially for `
 | Inversion 0 on Stratum A | Averaged two-order winner matched gold on easy pairs. Does not imply calibration on hard pairs or policy forecasting |
 | BT `se` | Uncertainty from the pairwise BT likelihood, not a bootstrap over meetings |
 | Haiku versus Jev | Winner agreement (inversion) is the accuracy comparison. Listed USD and per-call latency are separate axes |
-| STE | Standard error as defined in §4 for each estimator family |
+| Standard error (s.e.) | Uncertainty as defined in §4 for each estimator family. Written “standard error” or “s.e.” — not STE |
+| Gate 7 vs §12 | Gate 7 = Spearman agreement with published FedLock `m` / `ma`. §12 = a separate TrueSkill tournament on 95 openings. Do not treat the main gates as a TrueSkill replication |
 
 ---
 
@@ -255,7 +256,7 @@ On Strata A and C the inversion rates are identical. On Shah, Haiku inversion is
 
 **Incomplete behavioral labels under holds (Gate 4).** When the target is unchanged, `d_same` cannot distinguish hawkish-hold from dovish-hold text. Higher mean text scores on holds than on cuts are informative about the textual construct where the behavioral label is uninformative. Same-day funds-rate changes are therefore an incomplete label for textual hawkishness under holds.
 
-**External consistency (Gate 7).** Jev scores agree with an independent FedLock text score, more so for the Score pass versus raw `m` than versus era-adjusted `ma`. Combined with the fidelity statement in §6, this is agreement between two text measures. It is not a TrueSkill or macro-conditioned replication.
+**External consistency (Gate 7).** This repository’s scores agree in rank with an independent FedLock text score, more so for the Score pass versus raw `m` (ρ = +0.944, s.e. = 0.016, n = 90) than versus era-adjusted `ma` (ρ = +0.774, s.e. = 0.044, n = 90). Combined with the fidelity statement in §6, this is agreement between two text measures. It is not a TrueSkill or macro-conditioned replication. The protocol-fidelity experiment is §12.
 
 **Limitations.** The BT graph is sparse (48 statements, 124 comparisons). The dissent scrape is incomplete, so hold-day dissent correlations are noisy. Chair openings are not full press conferences. The evaluation uses a single criterion string and a single model version. The Gate 4 BT gap interval includes zero. Follow-on designs listed in §11 are not estimated in this run.
 
@@ -312,7 +313,7 @@ Composite = equal-weight mean of the four scores ($w_d = 1/4$). Correlations use
 - Composite vs `d_same`: rho=0.562 (n=93, STE=0.063)
 - Composite vs `d_same` (action days only): rho=0.893 (n=30, STE=0.037)
 - Composite vs existing `score_jev`: rho=0.962 (n=93, STE=0.010)
-- Composite vs FedLock press-conference `m` (meeting±1d match): rho=0.957 (n=90, STE=0.012)
+- Composite vs FedLock press-conference raw mean `m` (published TrueSkill score; meeting ±1 day match; this is the same external *text* comparison as Gate 7, not the §12 replica): rho=0.957 (n=90, s.e.=0.012)
 
 Leave-one-dimension-out (Delta-rho vs full composite on `d_same`):
 
@@ -325,7 +326,7 @@ Artifacts: `results/experiments/exp3_composite.json`, `exp3_composite.csv`.
 
 #### Interpretation
 
-The four-way composite is a structured absolute score of communicated stance, not a pairwise Choice aggregate. Concordance with `score_jev` tests whether the richer rubric collapses to the single hawkishness Score used in the main run; concordance with `d_same` and FedLock `m` situates the composite in the same external comparisons as Gates 3 and 7. Ablation Delta-rho identifies which atomic construct carries most of the association with the rate move.
+The four-way composite is a structured absolute score of communicated stance, not a pairwise Choice aggregate. Concordance with `score_jev` tests whether the richer rubric collapses to the single hawkishness Score used in the main run; concordance with `d_same` (the same-day funds-target *behavioral* label) and with FedLock raw `m` (an independent *text* score) situates the composite in the same external comparisons as Gates 3 and 7. Ablation Delta-rho identifies which atomic construct carries most of the association with the rate move.
 
 #### Limitations
 
@@ -485,65 +486,77 @@ Gate and experiment plots (PNG/PDF under `results/figures/` and `docs/figures/`;
 
 ## 12. FedLock-faithful protocol replication (separate experiment)
 
+Full re-implementation note: [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md). Numbers below are copied from `agreement.json` and `cost_performance.json`.
+
 **run_id:** `fedjev-fedlock-replica-2026-09-20`  
-**Scope:** Separate experiment on the 95 chair-opening corpus. Faithful protocol relative to FedLock V3 documentation; **not** a 4k-speech / ~60k-comparison scale replication. Does not replace Gate 7 (external consistency under the main BT/Score protocol).
+**Scope.** A *separate* tournament on the same 95 chair openings, following FedLock V3’s documented protocol. It is not a 4,000-speech / ~60,000-comparison scale copy of published FedLock. It does not replace Gate 7 (rank agreement between the main Bradley–Terry / Score series and published FedLock scores; §6).
 
-### Methods
-The judge task follows FedLock V3: pairwise selection of the more hawkish monetary-policy stance **conditional on macroeconomic conditions** attached to each text (Core PCE from PCEPILFE year-over-year when computable else level; UNRATE; real GDP growth from GDPC1 quarter-over-quarter SAAR when available else year-over-year; VIXCLS). Texts are anonymized via `scripts/strip_meta.py` (speaker titles, dates, and chair surnames removed); Chair identity is not placed in judge state.
+### What is being compared
 
-Aggregation uses Microsoft TrueSkill with priors μ₀=50, σ₀=8.33, stopping when all σ<2.0 or approximately 30 comparisons per document (global cap 2,850). Pairing is Swiss-style with uncertainty targeting (prefer high-σ players and similar μ). Soft probabilities from the judge update ratings by outcome interpolation (confidence-weighted). Presentation order of Text A/B is randomized each match.
+**Textual hawkishness, not `d_same`.** The replica ranks openings on how hawkish the wording is *relative to the macro conditions attached to each text*. It does not score against the same-day funds-target change.
 
-Arms: (i) TypeSafe SystemOne Choice (`jev-latest`); (ii) Claude `claude-haiku-4-5-20251001` with structured JSON winner and soft probabilities; (iii) published FedLock `press_conference` fields `m`, `ma`, `s`, `n` from `data/raw/fedlock/data.json` (Llama not re-invoked).
+**TrueSkill, not Bradley–Terry.** The main bench fits Bradley–Terry on a fixed gold-pair graph. This replica uses Microsoft TrueSkill: each document starts at prior mean μ₀ = 50 with prior uncertainty σ₀ = 8.33; after each match the winner’s mean rises, the loser’s falls, and both uncertainties shrink. The stop rule **σ < 2.0** means “enough matches that further matches are unlikely to reorder this document much.” It is not a hawkishness cutoff.
 
-FedLock date matching (deltas 0, +1, −1, +2 on `d`): **92** of 95 openings matched.
+**Macro-conditioned, anonymized pairwise tournament.** Each match shows two texts after `scripts/strip_meta.py` has removed speaker titles, dates, and chair surnames. The judge also sees four Federal Reserve Economic Data series as of that speech date: core personal consumption expenditures inflation (PCEPILFE, year-over-year when computable, otherwise the level); the civilian unemployment rate (UNRATE); real gross domestic product growth (GDPC1, quarter-over-quarter at a seasonally adjusted annual rate when available, otherwise year-over-year); and the CBOE Volatility Index close (VIXCLS). The instruction is relative hawkishness *given those conditions*. Text A / Text B order is randomized each match.
 
-### Protocol deviations / notes
+**Three arms.** (i) **Jev** — TypeSafe SystemOne Choice, `jev-latest`. (ii) **Haiku** — Claude `claude-haiku-4-5-20251001`, structured JSON winner and a soft probability. (iii) **Published FedLock** — frozen `m` (raw mean), `ma` (era-adjusted), `s`, `n` from `data/raw/fedlock/data.json`. Llama is not re-invoked.
 
-- Corpus is 95 chair openings (jsort-style), not FedLock’s ~4k-speech pool.
-- Soft TrueSkill via outcome interpolation of rate_1vs1 under judge p_A / p_B (confidence-weighted).
-- VIXCLS and GDPC1 downloaded into data/raw/fred/ for this experiment (full macro set).
-- One Haiku comparison failed JSON parse mid-tournament (truncated rationale); round continued with 46 pairs. Parser later hardened.
-- Both arms stopped on all σ<2.0 (~22 comparisons per document on average), below the 30/doc and 2,850 global caps.
+**Pairing and updates.** Swiss-style with uncertainty targeting: prefer documents that still have high σ and opponents with similar μ. Soft probabilities update ratings by interpolating a decisive win and a decisive loss, weighted by the judge’s p(A wins). Caps: about 30 comparisons per document, 2,850 globally.
 
-### Results
+**Date match.** Offsets 0, +1, −1, +2 on the FedLock `d` field: **92** of 95 openings matched.
+
+### Protocol deviations / notes (observed)
+
+- Corpus is 95 chair openings, not FedLock’s ~4,000-speech pool.
+- Soft TrueSkill via `rate_1vs1` interpolation is an approximation to FedLock’s documented “updates by judge confidence,” not a bit-exact unpublished kernel.
+- VIXCLS and GDPC1 were downloaded into `data/raw/fred/` so the four-series macro set is complete.
+- One Haiku comparison failed JSON parse mid-tournament (truncated rationale); that round continued with 46 pairs. The parser was later hardened.
+- Both live arms stopped on `all_sigma_lt_2` (about 22 comparisons per document on average), below the 30-per-document and 2,850 global caps.
+
 ### Rank agreement
 
-- **Jev↔Haiku.** Spearman=+0.955 (STE=0.012; 95% CI [+0.923, +0.971]; n=95); Kendall=+0.830 (STE=0.023; 95% CI [+0.784, +0.873]; n=95).
-- **Jev↔FedLock m.** Spearman=+0.965 (STE=0.011; 95% CI [+0.934, +0.978]; n=92); Kendall=+0.850 (STE=0.021; 95% CI [+0.806, +0.888]; n=92).
-- **Jev↔FedLock ma.** Spearman=+0.790 (STE=0.044; 95% CI [+0.681, +0.853]; n=92); Kendall=+0.576 (STE=0.043; 95% CI [+0.492, +0.658]; n=92).
-- **Haiku↔FedLock m.** Spearman=+0.945 (STE=0.013; 95% CI [+0.910, +0.962]; n=92); Kendall=+0.798 (STE=0.023; 95% CI [+0.753, +0.841]; n=92).
-- **Haiku↔FedLock ma.** Spearman=+0.768 (STE=0.042; 95% CI [+0.666, +0.828]; n=92); Kendall=+0.550 (STE=0.042; 95% CI [+0.463, +0.629]; n=92).
+**Spearman’s rank correlation** compares two orderings of meetings. **Kendall’s rank correlation** is the pairwise version of the same question and is typically smaller on the same data. The **standard error (s.e.)** is the standard deviation of 1,000 bootstrap meeting resamples; the 95 percent interval is the percentile interval from the same resamples (`n_boot` in `agreement.json`).
 
-### Cost and performance
+- **Jev ↔ Haiku.** Spearman = +0.955 (s.e. = 0.012; 95% CI [+0.923, +0.971]; n = 95); Kendall = +0.830 (s.e. = 0.023; 95% CI [+0.784, +0.873]; n = 95).
+- **Jev ↔ FedLock `m`.** Spearman = +0.965 (s.e. = 0.011; 95% CI [+0.934, +0.978]; n = 92); Kendall = +0.850 (s.e. = 0.021; 95% CI [+0.806, +0.888]; n = 92).
+- **Jev ↔ FedLock `ma`.** Spearman = +0.790 (s.e. = 0.044; 95% CI [+0.681, +0.853]; n = 92); Kendall = +0.576 (s.e. = 0.043; 95% CI [+0.492, +0.658]; n = 92).
+- **Haiku ↔ FedLock `m`.** Spearman = +0.945 (s.e. = 0.013; 95% CI [+0.910, +0.962]; n = 92); Kendall = +0.798 (s.e. = 0.023; 95% CI [+0.753, +0.841]; n = 92).
+- **Haiku ↔ FedLock `ma`.** Spearman = +0.768 (s.e. = 0.042; 95% CI [+0.666, +0.828]; n = 92); Kendall = +0.550 (s.e. = 0.042; 95% CI [+0.463, +0.629]; n = 92).
 
-| Arm | n_comps | input tok | output tok | USD | $/MTok eff. | $/comp | lat mean / p50 / p95 (ms) | comps/s |
-|-----|--------:|----------:|-----------:|----:|------------:|-------:|---------------------------:|--------:|
-| jev | 1034 | 3376150 | 28768 | 0.1418 | 0.0416 | 0.000137 | 283 / 271 / 419 | 22.978 |
-| haiku | 1033 | 3347688 | 48412 | 3.5897 | 1.0570 | 0.003475 | 732 / 687 / 988 | 8.156 |
+### Cost and performance (listed prices; not an accuracy claim)
 
-Jev stop: `all_sigma_lt_2`; max σ=1.986; fraction σ<2=1.000.
-Haiku stop: `all_sigma_lt_2`; max σ=1.965; fraction σ<2=1.000.
+Prices used for the accounting: Jev $0.042 per million input tokens, output free; Haiku $1.0 per million input tokens and $5.0 per million output tokens.
+
+| Arm | Comparisons | Input tokens | Output tokens | USD | Effective $/million tokens | $/comparison | Latency mean / median / 95th percentile (ms) | Comparisons/s |
+|-----|------------:|-------------:|--------------:|----:|---------------------------:|-------------:|---------------------------------------------:|--------------:|
+| Jev | 1034 | 3,376,150 | 28,768 | 0.1418 | 0.0416 | 0.000137 | 283 / 271 / 419 | 22.978 |
+| Haiku | 1033 | 3,347,688 | 48,412 | 3.5897 | 1.0570 | 0.003475 | 732 / 687 / 988 | 8.156 |
+
+Jev stop: `all_sigma_lt_2`; max σ = 1.986; fraction with σ < 2 = 1.000.  
+Haiku stop: `all_sigma_lt_2`; max σ = 1.965; fraction with σ < 2 = 1.000.
 
 ### Interpretation
-Spearman/Kendall concordance between Jev and Haiku under a shared FedLock-style protocol measures cross-judge stability of the relative-hawkishness construct on this openings sample. Concordance with published FedLock `m` / `ma` asks whether the same protocol family, applied to chair openings rather than FedLock’s broader speech corpus and Llama 3.3 70B judge, recovers a similar ordering of meeting-day stance. Era-adjusted `ma` removes quarterly means; disagreement between `m` and `ma` contrasts therefore partly reflects era composition of the 2011–2026 openings window.
 
-Cost and latency columns are accounting facts for the listed prices (Jev $0.042/MTok input, output free; Haiku $1.0/MTok input, $5.0/MTok output). They are not accuracy claims.
+Concordance between Jev and Haiku under a shared FedLock-style protocol measures cross-judge stability of relative hawkishness on this openings sample. Concordance with published `m` / `ma` asks whether that protocol family, applied to chair openings rather than FedLock’s broader corpus and Llama 3.3 70B judge, recovers a similar meeting-day ordering. Era-adjusted `ma` removes quarterly means; the gap between the `m` and `ma` contrasts partly reflects the era composition of the 2011–2026 openings window.
+
+Cost and latency columns are accounting facts at the listed prices. They are not accuracy claims.
 
 ### Limitations
-- **Scale.** FedLock reports ~60k comparisons on ~4k speeches; this run uses the 95 openings corpus with a ~2,850-comparison cap. Convergence to σ<2 for every document is not guaranteed at this scale.
+
+- **Scale.** FedLock reports ~60,000 comparisons on ~4,000 speeches; this run uses 95 openings and a 2,850-comparison cap. Convergence to σ < 2 for every document is not guaranteed at this scale; it occurred here (max σ = 1.986 Jev, 1.965 Haiku).
 - **Document mismatch.** Openings are a subset of press-conference communication; FedLock `press_conference` scores may reflect fuller presser text.
-- **Judge stack.** FedLock’s published scores use Llama 3.3 70B; this replica uses Jev and Haiku. Agreement with `m`/`ma` mixes protocol fidelity and model differences.
-- **Soft TrueSkill.** Confidence-weighted updates via outcome interpolation are a documented approximation to FedLock’s “updates by judge confidence,” not a bit-exact reimplementation of an unpublished update kernel.
-- **Macro vintage.** FRED series are taken as-of speech date from the local dump (plus downloaded VIXCLS/GDPC1); real-time vintage differs from revised series.
+- **Judge stack.** Published FedLock uses Llama 3.3 70B; this replica uses Jev and Haiku. Agreement with `m` / `ma` mixes protocol fidelity and model differences.
+- **Soft TrueSkill.** Outcome interpolation approximates FedLock’s “updates by judge confidence”; it is not a bit-exact unpublished kernel.
+- **Macro vintage.** FRED series are as-of the speech date from the local dump (plus downloaded VIXCLS / GDPC1). Real-time vintages differ from revised series.
 
 ### Artifacts
+
 - `results/fedlock_replica/trueskill_{jev,haiku}.csv`
 - `results/fedlock_replica/comparisons_{jev,haiku}.jsonl`
 - `results/fedlock_replica/cost_performance.json`
 - `results/fedlock_replica/agreement.json`
-- `results/figures/fedlock_replica_*.png` (copied to `docs/figures/`)
-
-Figures: `results/figures/fedlock_replica_*.png` (also under `docs/figures/`).
+- `results/fedlock_replica/fedlock_matches.json`
+- `results/figures/fedlock_replica_*.png` when the replica plotting path is run (also under `docs/figures/`)
 
 ## 13. Ethics and licenses
 
@@ -554,7 +567,7 @@ Figures: `results/figures/fedlock_replica_*.png` (also under `docs/figures/`).
 | FRED | St. Louis Fed terms |
 | Shah | CC BY-NC 4.0 — attribution; non-commercial; full dump not vendored |
 | jsort | MIT |
-| FedLock | Upstream site terms; snapshot for Gate 7 only |
+| FedLock | Upstream site terms; snapshot used as a published-score reference for Gate 7 and as the third arm of the §12 replica. Llama is not re-invoked. |
 
 Research instrumentation only; not investment advice.
 
