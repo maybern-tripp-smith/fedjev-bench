@@ -5,7 +5,7 @@
 **list price (this run):** $0.042 / Mtok input; output free  
 **artifacts:** `results/gates.json` · `results/interpretation.json` · `results/fedlock_fidelity.md` · `results/cost.json` · `results/timing.json`
 
-Long-form write-up and figures: [`ANALYSIS.md`](ANALYSIS.md). SVG/PNG: `results/figures/` (copied to `docs/figures/`).
+Long-form write-up and figures: [`ANALYSIS.md`](ANALYSIS.md). Scoreboard guide: [`HOW_TO_READ.md`](HOW_TO_READ.md). SVG/PNG: `results/figures/` (copied to `docs/figures/`).
 
 ## Abstract
 

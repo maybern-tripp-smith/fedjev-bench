@@ -151,7 +151,7 @@ figcaption {
 <p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
 </header>
 <nav>
-<a href="index.html" class="active">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+<a href="index.html" class="active">Overview</a> <a href="how-to-read.html">How to read</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
 </nav>
 <main>
 <div class="abstract">
@@ -162,7 +162,7 @@ figcaption {
 
 <h2>Measurement</h2>
 <p>Two constructs are distinguished throughout. The behavioral measure is the same-day change in the funds target (<code>d_same</code> — hike, hold, or cut; identically zero on holds). The textual measure is the stance in the Chair’s opening remarks, recovered by dual-order Choice and Bradley–Terry aggregation (a pairwise strength model on a fixed gold-pair graph), with a secondary Score pass. FedLock’s published scores are a second text measure, not a behavioral label.</p>
-<p>Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. Gate 7 is not a TrueSkill replication. The exercise does not identify a causal effect of communication on rates.</p>
+<p>Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. Gate 7 is not a TrueSkill replication. The exercise does not identify a causal effect of communication on rates. A <a href="how-to-read.html">plain-language scoreboard guide</a> explains what each gate answers and how to read inversion rates, rank correlations, Score gaps, and cost.</p>
 
 <h2>Selected estimates</h2>
 <table>
@@ -188,6 +188,7 @@ figcaption {
 
 <h2>Documents</h2>
 <ul>
+<li><a href="how-to-read.html">How to read the results</a> — scoreboard guide (not a second analysis)</li>
 <li><a href="analysis.html">Analysis</a> — methods, results, figures, limitations</li>
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li><a href="fedlock.html">FedLock (Gate 7)</a> — published-score agreement; how to rebuild the match</li>

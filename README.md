@@ -13,7 +13,7 @@ Pre-registered evaluation of TypeSafe/Jev pairwise rankings of Federal Open Mark
 
 **Abstract.** Same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. The evaluation asks whether Jev recovers easy hawk/dove orderings, agrees in rank with `d_same` on scheduled action days, and still separates holds from cuts on the text axis. Gate 7 reports Spearman’s rank correlation with FedLock’s published press-conference scores (raw TrueSkill mean `m`; era-adjusted `ma` as a sensitivity). It reads those scores; it does not re-run FedLock’s tournament. A separate FedLock-faithful TrueSkill replica on the 95 openings is documented in [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md).
 
-Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). Figures: [`results/figures/`](results/figures/). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+How to read the scoreboard: [`HOW_TO_READ.md`](HOW_TO_READ.md) ([Pages](https://maybern-tripp-smith.github.io/fedjev-bench/how-to-read.html)). Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). Figures: [`results/figures/`](results/figures/). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
 
 ---
 
@@ -50,7 +50,7 @@ python scripts/analyze_gates.py
 
 ## GitHub Pages
 
-Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-bench/
+Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-bench/. Scoreboard guide: https://maybern-tripp-smith.github.io/fedjev-bench/how-to-read.html.
 
 ## Citation and license
 

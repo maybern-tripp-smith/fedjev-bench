@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render ANALYSIS.md / REPORT.md into the light paper HTML under docs/."""
+"""Render ANALYSIS.md / REPORT.md / HOW_TO_READ.md / FedLock notes into docs/."""
 
 from __future__ import annotations
 
@@ -151,6 +151,7 @@ REPO = "https://github.com/maybern-tripp-smith/fedjev-bench"
 PAGE_LINKS = {
     "ANALYSIS.md": "analysis.html",
     "REPORT.md": "report.html",
+    "HOW_TO_READ.md": "how-to-read.html",
     "results/fedlock_fidelity.md": "fedlock.html",
     "results/fedlock_replica/FINDINGS.md": "fedlock-replica.html",
     "CITATION": "https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/CITATION",
@@ -231,7 +232,16 @@ def parse_table(lines: list[str]) -> str:
     return "".join(out)
 
 
-def md_to_html(md: str, *, drop_h1: bool = True, abstract_box: bool = False) -> str:
+def md_to_html(
+    md: str,
+    *,
+    drop_h1: bool = True,
+    abstract_box: bool = False,
+    box_headings: set[str] | None = None,
+) -> str:
+    boxes = set(box_headings or [])
+    if abstract_box:
+        boxes.add("Abstract")
     lines = md.replace("\r\n", "\n").split("\n")
     out: list[str] = []
     i = 0
@@ -269,12 +279,12 @@ def md_to_html(md: str, *, drop_h1: bool = True, abstract_box: bool = False) -> 
                 skipped_h1 = True
                 i += 1
                 continue
-            if title == "Abstract" and abstract_box:
+            if title in boxes:
                 if in_abstract:
                     out.append("</div>")
                     in_abstract = False
                 out.append('<div class="abstract">')
-                out.append('<p class="label">Abstract</p>')
+                out.append(f'<p class="label">{inline(title)}</p>')
                 in_abstract = True
                 i += 1
                 continue
@@ -357,6 +367,7 @@ def page(
     nav = []
     for href, label, key in (
         ("index.html", "Overview", "index"),
+        ("how-to-read.html", "How to read", "howto"),
         ("analysis.html", "Analysis", "analysis"),
         ("report.html", "Report", "report"),
         ("fedlock.html", "FedLock (Gate 7)", "fedlock"),
@@ -411,7 +422,7 @@ def index_body() -> str:
 
 <h2>Measurement</h2>
 <p>Two constructs are distinguished throughout. The behavioral measure is the same-day change in the funds target (<code>d_same</code> — hike, hold, or cut; identically zero on holds). The textual measure is the stance in the Chair’s opening remarks, recovered by dual-order Choice and Bradley–Terry aggregation (a pairwise strength model on a fixed gold-pair graph), with a secondary Score pass. FedLock’s published scores are a second text measure, not a behavioral label.</p>
-<p>Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. Gate 7 is not a TrueSkill replication. The exercise does not identify a causal effect of communication on rates.</p>
+<p>Gates 1, 3, 4, and 6 are pre-registered pass/fail tests. Gates 2, 5, and 7 are report-only or secondary. Gate 7 is not a TrueSkill replication. The exercise does not identify a causal effect of communication on rates. A <a href="how-to-read.html">plain-language scoreboard guide</a> explains what each gate answers and how to read inversion rates, rank correlations, Score gaps, and cost.</p>
 
 <h2>Selected estimates</h2>
 <table>
@@ -437,6 +448,7 @@ def index_body() -> str:
 
 <h2>Documents</h2>
 <ul>
+<li><a href="how-to-read.html">How to read the results</a> — scoreboard guide (not a second analysis)</li>
 <li><a href="analysis.html">Analysis</a> — methods, results, figures, limitations</li>
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li><a href="fedlock.html">FedLock (Gate 7)</a> — published-score agreement; how to rebuild the match</li>
@@ -449,15 +461,29 @@ def index_body() -> str:
 def main() -> None:
     analysis_md = (ROOT / "ANALYSIS.md").read_text()
     report_md = (ROOT / "REPORT.md").read_text()
+    howto_md = (ROOT / "HOW_TO_READ.md").read_text()
     fidelity_md = (ROOT / "results/fedlock_fidelity.md").read_text()
     replica_md = (ROOT / "results/fedlock_replica/FINDINGS.md").read_text()
     analysis_html = md_to_html(analysis_md, drop_h1=True, abstract_box=True)
     report_html = md_to_html(report_md, drop_h1=True, abstract_box=True)
+    howto_html = md_to_html(
+        howto_md,
+        drop_h1=True,
+        box_headings={"If you only look at three numbers"},
+    )
     fidelity_html = md_to_html(fidelity_md, drop_h1=True, abstract_box=False)
     replica_html = md_to_html(replica_md, drop_h1=True, abstract_box=False)
 
     (DOCS / "index.html").write_text(
         page("fedjev-bench — Overview", "index", index_body().strip())
+    )
+    (DOCS / "how-to-read.html").write_text(
+        page(
+            "fedjev-bench — How to read the results",
+            "howto",
+            howto_html,
+            heading="How to read the results",
+        )
     )
     (DOCS / "analysis.html").write_text(
         page(
@@ -492,8 +518,8 @@ def main() -> None:
         )
     )
     print(
-        "wrote docs/index.html docs/analysis.html docs/report.html "
-        "docs/fedlock.html docs/fedlock-replica.html"
+        "wrote docs/index.html docs/how-to-read.html docs/analysis.html "
+        "docs/report.html docs/fedlock.html docs/fedlock-replica.html"
     )
 
 

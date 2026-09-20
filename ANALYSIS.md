@@ -6,7 +6,7 @@
 **repository:** [maybern-tripp-smith/fedjev-bench](https://github.com/maybern-tripp-smith/fedjev-bench)  
 **pages:** [https://maybern-tripp-smith.github.io/fedjev-bench/](https://maybern-tripp-smith.github.io/fedjev-bench/)
 
-Companion gate tables: [`REPORT.md`](REPORT.md). Machine-readable estimates: [`results/gates.json`](results/gates.json). Estimator glossary: [`results/interpretation.json`](results/interpretation.json). Gate 7 matching and fidelity (external consistency with published FedLock scores, not a TrueSkill replication): [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). FedLock-faithful TrueSkill replica (separate experiment): [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md).
+Companion gate tables: [`REPORT.md`](REPORT.md). Scoreboard guide: [`HOW_TO_READ.md`](HOW_TO_READ.md). Machine-readable estimates: [`results/gates.json`](results/gates.json). Estimator glossary: [`results/interpretation.json`](results/interpretation.json). Gate 7 matching and fidelity (external consistency with published FedLock scores, not a TrueSkill replication): [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). FedLock-faithful TrueSkill replica (separate experiment): [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md).
 
 ---
 
@@ -212,6 +212,8 @@ Agreement with raw `m` is stronger than with era-adjusted `ma`, especially for `
 ---
 
 ## 7. How to read the estimates
+
+Plain-language scoreboard (what each gate answers; PASS versus report; strong / weak / inconclusive for this design): [`HOW_TO_READ.md`](HOW_TO_READ.md).
 
 | Quantity | Meaning in this note |
 |----------|----------------------|

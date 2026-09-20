@@ -151,12 +151,12 @@ figcaption {
 <p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
 </header>
 <nav>
-<a href="index.html">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html" class="active">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+<a href="index.html">Overview</a> <a href="how-to-read.html">How to read</a> <a href="analysis.html">Analysis</a> <a href="report.html" class="active">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
 </nav>
 <main>
 <h1 class="page">Report</h1>
 <p><strong>run_id:</strong> <code>fedjev-2026-09-20</code>   <strong>model:</strong> jev-1.13.0   <strong>list price (this run):</strong> $0.042 / Mtok input; output free   <strong>artifacts:</strong> <code>results/gates.json</code> · <code>results/interpretation.json</code> · <code>results/fedlock_fidelity.md</code> · <code>results/cost.json</code> · <code>results/timing.json</code></p>
-<p>Long-form write-up and figures: <a href="analysis.html"><code>ANALYSIS.md</code></a>. SVG/PNG: <code>results/figures/</code> (copied to <code>docs/figures/</code>).</p>
+<p>Long-form write-up and figures: <a href="analysis.html"><code>ANALYSIS.md</code></a>. Scoreboard guide: <a href="how-to-read.html"><code>HOW_TO_READ.md</code></a>. SVG/PNG: <code>results/figures/</code> (copied to <code>docs/figures/</code>).</p>
 <div class="abstract">
 <p class="label">Abstract</p>
 <p>This report records pre-registered gates for TypeSafe/Jev pairwise rankings of Federal Open Market Committee (FOMC) chair openings under the criterion <code>more hawkish about inflation</code>. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where <code>d_same</code> (the same-day funds-target change) is uninformative by construction. Gate 7 reports Spearman’s rank correlation with FedLock, an independent published text-scoring project (<a href="https://jnathan9.github.io/fedlock/">methodology</a>): raw TrueSkill mean <code>m</code> and era-adjusted <code>ma</code>. Gate 7 reads those published scores. It does not re-run FedLock’s TrueSkill tournament or its macro-conditioned judge. A separate protocol-fidelity replica is <code>results/fedlock_replica/FINDINGS.md</code>. Associations include a standard error (s.e.) and, where computed, bootstrap percentile confidence intervals.</p>

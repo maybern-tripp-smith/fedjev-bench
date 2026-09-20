@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pre-registered evaluation of TypeSafe/Jev on FOMC chair openings (fedjev-2026-09-20).">
+<meta http-equiv="Cache-Control" content="no-cache">
+<title>fedjev-bench — How to read the results</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+
+:root {
+  --bg: #f7f5f0;
+  --paper: #ffffff;
+  --text: #1a1a1a;
+  --muted: #4a5568;
+  --accent: #1a365d;
+  --border: #d4cfc4;
+  --pass: #276749;
+  --serif: "Source Serif 4", "Palatino Linotype", Palatino, "Times New Roman", Times, serif;
+  --sans: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 17px;
+}
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem 1.25rem;
+}
+header .kicker {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+header h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.02em;
+}
+header p { margin: 0; color: var(--muted); font-size: 0.95rem; font-family: var(--sans); }
+nav {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  padding: 0.65rem 1.5rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+}
+nav a { color: var(--accent); text-decoration: none; }
+nav a.active { font-weight: 600; border-bottom: 2px solid var(--accent); }
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 70vh;
+}
+h1.page { font-size: 1.45rem; margin: 0 0 1rem; font-weight: 600; }
+h2 {
+  font-size: 1.15rem;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+h3 { font-size: 1.02rem; margin: 1.35rem 0 0.5rem; font-weight: 600; }
+p { margin: 0.75rem 0; }
+.abstract {
+  background: #f0ebe3;
+  border: 1px solid var(--border);
+  padding: 1rem 1.15rem;
+  margin: 0 0 1.5rem;
+  font-size: 0.98rem;
+}
+.abstract .label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+.abstract p { margin: 0.55rem 0; }
+.abstract p:last-child { margin-bottom: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; font-family: var(--sans); }
+th, td { border: 1px solid var(--border); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
+th { background: #f0ebe3; font-weight: 600; }
+code, pre { font-family: var(--mono); font-size: 0.84rem; }
+code { background: #f0ebe3; padding: 0.1em 0.3em; }
+pre { background: #f0ebe3; padding: 1rem; overflow: auto; border: 1px solid var(--border); }
+pre code { background: none; padding: 0; }
+blockquote {
+  margin: 1rem 0;
+  padding: 0.35rem 1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+.pass { color: var(--pass); font-weight: 600; font-family: var(--sans); }
+ul, ol { padding-left: 1.25rem; }
+li { margin: 0.35rem 0; }
+footer {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-family: var(--sans);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--paper);
+}
+a { color: var(--accent); }
+.meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
+
+</style>
+</head>
+<body>
+<header>
+<p class="kicker">Technical report · run fedjev-2026-09-20</p>
+<h1>fedjev-bench</h1>
+<p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
+</header>
+<nav>
+<a href="index.html">Overview</a> <a href="how-to-read.html" class="active">How to read</a> <a href="analysis.html">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+</nav>
+<main>
+<h1 class="page">How to read the results</h1>
+<p>This is a scoreboard guide for <code>run_id</code> <code>fedjev-2026-09-20</code>. It is not a second analysis.</p>
+<p>The question is measurement. Did TypeSafe/Jev — the model under test — recover a usable ranking of Chair openings under one fixed pairwise question: <code>more hawkish about inflation</code>?</p>
+<p>Numbers below are copied from <a href="report.html"><code>REPORT.md</code></a> and <a href="https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/results/gates.json"><code>results/gates.json</code></a>. None were invented for this page. Machine-readable glossary: <a href="https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/results/interpretation.json"><code>results/interpretation.json</code></a>.</p>
+<p>This note writes “standard error” or “s.e.” It does not use the label STE.</p>
+<div class="abstract">
+<p class="label">If you only look at three numbers</p>
+<ol><li><strong>Easy-pair inversion = 0.000</strong> (n = 40, s.e. 0.000). Gate 1. On the 40 obvious hawk-versus-dove document pairs, the averaged two-order winner never missed the labeled side.</li><li><strong>Action-day Spearman ρ = +0.851</strong> (n = 24, s.e. 0.074). Gate 3. When the Committee hiked or cut, Bradley–Terry ranks tracked the signed same-day funds-target move. The 95 percent interval is [+0.652, +0.937].</li><li><strong>Score versus FedLock raw <code>m</code> = +0.944</strong> (n = 90, s.e. 0.016). Gate 7. A direct Score pass and an independent published text score order meetings almost the same way. That is agreement of two text measures. It is not a TrueSkill replication.</li></ol>
+<p>None of these three is a forecast of the next meeting. None is a causal effect of words on rates.</p>
+</div>
+<h2>What is being measured</h2>
+<p>Two constructs are kept apart.</p>
+<p>The <strong>behavioral label</strong> is <code>d_same</code>: the same-day change in the federal funds target (hike, hold, or cut). On a hold the target did not move, so <code>d_same</code> is identically zero. A zero cannot encode hawkish-hold versus dovish-hold wording.</p>
+<p>The <strong>textual measure</strong> is the stance in the Chair’s opening remarks, recovered under that fixed pairwise criterion.</p>
+<p>The Federal Open Market Committee (FOMC) is the Federal Reserve committee that sets the funds target. The documents here are Chair press-conference <em>openings</em>, not necessarily the full press conference.</p>
+<p><strong>Choice</strong> is the primary interface. The model sees two texts and picks which is more hawkish about inflation. Each pair is shown in both orders (A-then-B and B-then-A). An <strong>inversion</strong> is a pair whose <em>averaged</em> winner does not match the pre-labeled (“gold”) side.</p>
+<p><strong>Bradley–Terry</strong> is a pairwise strength model. It turns those Choice probabilities into one score per document on a fixed gold-pair graph (Strata A and C; 48 statements, 124 comparisons in this run).</p>
+<p><strong>Score</strong> is a secondary pass: a five-level rating mapped to a continuous <code>score_jev</code> for each opening.</p>
+<p><strong>Spearman’s rank correlation (ρ)</strong> asks whether two series produce a similar <em>ordering</em> of meetings. It does not ask whether the units match.</p>
+<p>A <strong>standard error</strong> is the uncertainty attached to a point estimate. For rank correlations it is the standard deviation of 1,000 bootstrap meeting resamples. For inversion rates it is the binomial formula √[p(1−p)/n]. For means it is the sample standard deviation divided by √n. A 95 percent confidence interval, where reported, is the bootstrap percentile interval from the same resamples.</p>
+<h2>What “PASS” versus “report” means here</h2>
+<p>Gates were registered before any Jev output. A <span class="pass">PASS</span> means the pre-registered rule was met on this run. It is not a journal accept/reject, and it is not a claim that the construct is “solved.”</p>
+<table><thead><tr><th>#</th><th>Gate</th><th>Rule on this design</th><th>Status</th></tr></thead><tbody><tr><td>1</td><td>Easy-pair inversion</td><td>inversion ≤ 0.05 on Stratum A</td><td><span class="pass">PASS</span></td></tr><tr><td>2</td><td>Sentence discrimination</td><td>no pass line</td><td>report</td></tr><tr><td>3</td><td>Action ranking</td><td>Spearman(Bradley–Terry, <code>d_same</code>) ≥ +0.30 on scheduled meetings</td><td><span class="pass">PASS</span></td></tr><tr><td>4</td><td>Holds versus cuts</td><td>mean text score(holds) &gt; mean text score(cuts)</td><td><span class="pass">PASS</span></td></tr><tr><td>5</td><td>Forward path</td><td>no pass line</td><td>secondary</td></tr><tr><td>6</td><td>Order / name stability</td><td>change in Stratum A inversion ≤ 0.05 when names stay in</td><td><span class="pass">PASS</span></td></tr><tr><td>7</td><td>FedLock consistency</td><td>no pass line</td><td>report</td></tr></tbody></table>
+<p><strong>Report</strong> (or <strong>secondary</strong>) means: publish the estimate with a standard error. Do not treat the number as a pass/fail of the document-level claim.</p>
+<p>Gate 2 is a sentence-level stress test (Shah hawk-versus-dove sentences). Gate 5 correlates text with the subsequent 90-day change in the funds target (<code>d_90</code>). Gate 7 correlates two text scores. None of those three can fail the bench under the registered rules.</p>
+<h2>What question each gate answers</h2>
+<p><strong>Gate 1 — easy pairs.</strong> If you put an obvious hawk opening next to an obvious dove opening, does the ranking recover that order? This is construct validity on the easy cases. It is not a test of hard adjacent meetings.</p>
+<p><strong>Gate 2 — sentences.</strong> Can the same criterion separate hawk versus dove <em>sentences</em> from Shah et al.? Published here: inversion 0.190 (s.e. 0.028, n = 200). That is a stress test. It is not a pass/fail of the document-level claim.</p>
+<p><strong>Gate 3 — action ranking.</strong> On scheduled meetings, do text ranks agree with the signed same-day funds-target move? The registered pass line is +0.30. A published reference from jsort is about +0.46 (standard error not re-estimated here). Action-day ρ is the cleaner slice: holds contribute no variation in <code>d_same</code>.</p>
+<p><strong>Gate 4 — holds versus cuts.</strong> When the target is unchanged, <code>d_same</code> cannot tell hawkish-hold from dovish-hold text. Do mean text scores still place holds above cuts? A yes is evidence that the <em>behavioral label</em> is incomplete on holds. It is not a judgment that the text is “right” or that the voted action was wrong.</p>
+<p><strong>Gate 5 — forward path.</strong> Do text ranks co-move with the funds target over the next 90 days? Secondary. A modest positive ρ is association, not a forecast evaluation.</p>
+<p><strong>Gate 6 — names and order.</strong> Does leaving Chair names in the text change the easy-pair inversion rate by more than 0.05? A zero change is also a check that reversing presentation order did not flip easy winners. Openings rarely embed names the stripper can remove, so the zero is more informative about order than about name confounding.</p>
+<p><strong>Gate 7 — FedLock.</strong> Do this repository’s scores agree in rank with FedLock’s published press-conference scores (raw TrueSkill mean <code>m</code>; era-adjusted <code>ma</code> as a sensitivity)? FedLock is an independent published text-scoring project. Gate 7 <em>reads</em> those published numbers. It does not re-run FedLock’s tournament. See <a href="fedlock.html"><code>results/fedlock_fidelity.md</code></a>.</p>
+<h2>How to read inversion rates</h2>
+<p>Inversion is a miss rate on labeled pairs, after averaging both presentation orders.</p>
+<ul><li><strong>0</strong> means every averaged winner matched gold.</li><li><strong>0.05</strong> is the Gate 1 pass line (at most one miss in twenty easy pairs).</li><li><strong>0.50</strong> is a coin flip on balanced pairs.</li></ul>
+<p>This run:</p>
+<table><thead><tr><th>Stratum</th><th>What it is</th><th>n</th><th>Inverted</th><th>Inversion (s.e.)</th></tr></thead><tbody><tr><td>A extreme</td><td>obvious hawk versus dove documents</td><td>40</td><td>0</td><td>0.000 (0.000)</td></tr><tr><td>B Shah</td><td>hawk versus dove sentences</td><td>200</td><td>38</td><td>0.190 (0.028)</td></tr><tr><td>C adjacent</td><td>neighboring scheduled meetings with a nonzero <code>d_same</code></td><td>22</td><td>1</td><td>0.045 (0.044)</td></tr></tbody></table>
+<p>The one inverted adjacent pair is <strong>C018</strong>. Accuracy is 1 − inversion (A: 1.000; B: 0.810; C: 0.955).</p>
+<p>An <strong>order-flip</strong> is a pair whose winner changes when A and B are swapped. Order-flips on A were 0.000. On B they were 0.105. On C they were 0.091.</p>
+<p><strong>Brier score</strong> here is the mean squared error of the gold-side probability. Lower is better. A: 0.000 (n = 40). B: 0.138 (s.e. 0.016, n = 200). C: 0.046 (s.e. 0.018, n = 22).</p>
+<p>Zero inversion on A does not imply well-calibrated probabilities on hard pairs. It does not imply the model can forecast policy.</p>
+<h2>How to read rank correlations</h2>
+<p>Spearman ρ = +1 means the two series order meetings the same way. ρ = 0 means no rank association. ρ = −1 means they order meetings in opposite ways.</p>
+<p>Read three things together: the point estimate, the standard error, and the 95 percent interval. An interval that includes zero is compatible with no rank association in that slice.</p>
+<p><strong>Why action-day ρ exceeds all-scheduled ρ.</strong> Holds have <code>d_same</code> = 0. They add meetings with no variation in the behavioral label. That dilutes the pooled correlation. It is an algebra fact, not a second finding.</p>
+<p><strong>Why hold-day ρ versus <code>d_same</code> is not computed.</strong> Spearman needs variation in both series. On holds, <code>d_same</code> is constant. The correlation is undefined.</p>
+<p>Gate 3 (Bradley–Terry versus <code>d_same</code>):</p>
+<table><thead><tr><th>Slice</th><th>Spearman ρ</th><th>s.e.</th><th>n</th><th>95% interval</th></tr></thead><tbody><tr><td>All scheduled (crisis dates dropped)</td><td>+0.623</td><td>0.096</td><td>46</td><td>[+0.398, +0.787]</td></tr><tr><td>Action days only</td><td>+0.851</td><td>0.074</td><td>24</td><td>[+0.652, +0.937]</td></tr><tr><td>Holds versus net dissents</td><td>−0.192</td><td>0.202</td><td>22</td><td>[−0.513, +0.274]</td></tr><tr><td>Holds versus same-day 2-year yield change</td><td>−0.135</td><td>0.244</td><td>22</td><td>[−0.594, +0.349]</td></tr></tbody></table>
+<p>The secondary Score pass is similar in sign: all-scheduled +0.589 (n = 93, s.e. 0.063); action-day +0.918 (n = 30, s.e. 0.033).</p>
+<p>Hold-day associations with dissents and the 2-year yield have intervals that include zero. That is consistent with holds mixing hawkish-hold and dovish-hold communications. The dissent scrape is also incomplete, so those two rows are noisy.</p>
+<p>Gate 5 (versus <code>d_90</code>): Bradley–Terry +0.357 (n = 44, s.e. 0.154) [+0.042, +0.627]; Score +0.511 (n = 91, s.e. 0.081) [+0.336, +0.652]. Intervals exclude zero. The gate remains secondary.</p>
+<p>The Bradley–Terry <code>se</code> column in <code>results/statement_scores.csv</code> is different. That is fit uncertainty from the pairwise likelihood, not a bootstrap over meetings. The comparison graph is sparse. Do not treat a document’s Bradley–Terry <code>se</code> as a meeting-sampling standard error.</p>
+<h2>How to read Score gaps</h2>
+<p>The Gate 4 gap is mean text score on holds minus mean text score on cuts.</p>
+<table><thead><tr><th>Score</th><th>Mean holds (s.e., n)</th><th>Mean cuts (s.e., n)</th><th>Gap (s.e.)</th><th>95% interval on the gap</th></tr></thead><tbody><tr><td>Bradley–Terry</td><td>−0.720 (0.335, 22)</td><td>−1.239 (0.153, 8)</td><td>+0.519 (0.368)</td><td>[−0.202, +1.239]</td></tr><tr><td><code>score_jev</code></td><td>1.457 (0.114, 63)</td><td>1.036 (0.122, 9)</td><td>+0.421 (0.167)</td><td>[+0.094, +0.749]</td></tr></tbody></table>
+<p>The registered pass rule is the <em>point</em> comparison: mean(holds) &gt; mean(cuts). Both series pass.</p>
+<p>The Bradley–Terry gap interval includes zero. The Score gap interval does not. So the sign of the Bradley–Terry gap is the registered result; the precision of that gap is limited (eight cut meetings on the Bradley–Terry graph).</p>
+<p>Hikes sit well above both: Bradley–Terry mean +1.827 (s.e. 0.532, n = 16); Score mean 3.067 (s.e. 0.135, n = 21). That is expected if hikes are the hawkish tail of the same-day action. It is not the Gate 4 test.</p>
+<h2>How to read cost and latency</h2>
+<p>Cost and latency are accounting facts. They are not gate criteria.</p>
+<p>List price for jev-1.13.0 in this run: $0.042 per million input tokens; output free.</p>
+<ul><li>Main run ≈ $0.03120 (619 calls: 524 Choice + 95 Score).</li><li>Name-ablation add-on ≈ $0.011 (80 calls).</li><li>Grand total ≈ $0.042.</li><li>Mean per-call latency ≈ 214 ms at concurrency 6.</li></ul>
+<p>Same-protocol Choice comparison against Claude Haiku 4.5 (524 Choice calls):</p>
+<table><thead><tr><th></th><th>Jev 1.13.0</th><th>Haiku 4.5</th></tr></thead><tbody><tr><td>Stratum A / C inversion</td><td>0.000 / 0.045</td><td>0.000 / 0.045</td></tr><tr><td>Stratum B inversion</td><td>0.190</td><td>0.170</td></tr><tr><td>Choice USD</td><td>≈ $0.024</td><td>≈ $0.636 (about 27×)</td></tr><tr><td>Mean latency</td><td>≈ 207 ms</td><td>≈ 676 ms (about 3.3×)</td></tr></tbody></table>
+<p>Winner agreement (inversion) is the accuracy comparison. Listed dollars and milliseconds are separate axes. On Strata A and C the inversion rates match. On Shah, Haiku inversion is 0.170 versus 0.190 for Jev, with a higher Haiku order-flip rate (0.24 versus 0.105). That is not a gate.</p>
+<h2>Strong, weak, and inconclusive evidence — for this design</h2>
+<p>These bars are the bars that were registered. They are not universal grades for every hawkishness paper.</p>
+<p><strong>Strong, on this protocol.</strong></p>
+<ul><li>Gate 1 inversion at or near 0, and well below 0.05, on n = 40 easy pairs.</li><li>Gate 3 action-day ρ above the +0.30 pass line <em>and</em> above the jsort +0.46 reference, with a 95 percent interval that excludes zero.</li><li>Gate 6 inversion change at or near 0.</li><li>Gate 7 Score-versus-<code>m</code> near a rank ceiling, with a tight standard error, <em>read as consistency between two text scores</em>.</li></ul>
+<p>This run meets those descriptions: inversion 0.000; action-day ρ +0.851 (s.e. 0.074); name/order Δ 0.000; Score versus <code>m</code> +0.944 (s.e. 0.016, n = 90).</p>
+<p><strong>Weak, on this protocol.</strong></p>
+<ul><li>Gate 1 inversion above 0.05 (easy pairs fail).</li><li>Gate 3 action-day ρ below +0.30, or an interval that includes zero or goes negative.</li><li>Gate 4 mean(holds) ≤ mean(cuts) — the text axis would not separate the two regimes where <code>d_same</code> is uninformative.</li><li>Gate 6 inversion change above 0.05.</li></ul>
+<p><strong>Inconclusive, even when a gate PASSes.</strong></p>
+<ul><li>The Gate 4 Bradley–Terry gap interval includes zero. The point estimate passes; the gap is imprecisely estimated.</li><li>Gate 2 at 19 percent inversion. Useful as a sentence stress test. Not a verdict on documents.</li><li>Hold-day dissent and 2-year-yield correlations. Wide intervals; incomplete dissent scrape.</li><li>Gate 5. Secondary by design; modest ρ; not a trading rule.</li><li>Gate 7. Report-only. High agreement does not validate either scoring system against “true” hawkishness. There is no such index in this repository.</li><li>A sparse Bradley–Terry graph (48 statements, 124 comparisons). Document-level Bradley–Terry scores are not a dense tournament.</li></ul>
+<h2>What these results do not prove</h2>
+<p><strong>Holds make <code>d_same</code> an incomplete label.</strong> That is a statement about the <em>behavioral</em> series. When the target is unchanged, the same-day move cannot encode hawkish-hold versus dovish-hold language. Gate 4 is construct validity for that claim. It does not prove that text “overrides” the voted action.</p>
+<p><strong>Gate 7 is agreement with FedLock text scores.</strong> Spearman between this repository’s Bradley–Terry / Score series and FedLock’s published <code>m</code> / <code>ma</code>. It is not a TrueSkill replication. It does not re-run Llama 3.3 70B, macro-conditioned prompts, Swiss pairing, or FedLock’s ~60,000-comparison / ~4,000-speech tournament. Details: <a href="fedlock.html"><code>results/fedlock_fidelity.md</code></a>.</p>
+<p><strong>The replica is a separate experiment.</strong> <code>run_id</code> <code>fedjev-fedlock-replica-2026-09-20</code> re-runs a FedLock-style TrueSkill tournament on the 95 openings (Jev arm and Haiku arm) and compares those ratings to published <code>m</code> / <code>ma</code>. That is protocol fidelity on a 95-document corpus. It is not Gate 7, and it is not FedLock’s full scale. See <a href="fedlock-replica.html"><code>results/fedlock_replica/FINDINGS.md</code></a>.</p>
+<p><strong>Other non-claims.</strong></p>
+<ul><li>No causal effect of communication on rates, markets, or later policy.</li><li>No forecast of the next funds-target decision.</li><li>Zero easy-pair inversion does not imply calibration on hard pairs.</li><li>Chair openings are not full press conferences. Agreement with FedLock <code>press_conference</code> scores is not a same-document comparison.</li><li>Cost and latency do not decide validity.</li><li>Experiments 3–7 in <a href="analysis.html"><code>ANALYSIS.md</code></a> §11 are exploratory. They are not the registered gates.</li></ul>
+<h2>Where to go next</h2>
+<table><thead><tr><th>If you want</th><th>Open</th></tr></thead><tbody><tr><td>Methods, figures, limitations</td><td><a href="analysis.html"><code>ANALYSIS.md</code></a></td></tr><tr><td>Gate tables and artifacts</td><td><a href="report.html"><code>REPORT.md</code></a></td></tr><tr><td>Gate 7 match and fidelity</td><td><a href="fedlock.html"><code>results/fedlock_fidelity.md</code></a></td></tr><tr><td>TrueSkill replica (separate)</td><td><a href="fedlock-replica.html"><code>results/fedlock_replica/FINDINGS.md</code></a></td></tr><tr><td>Machine-readable estimates</td><td><a href="https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/results/gates.json"><code>results/gates.json</code></a>, <a href="https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/results/interpretation.json"><code>results/interpretation.json</code></a></td></tr></tbody></table>
+</main>
+<footer>
+Research instrumentation only. Not investment advice. No Federal Reserve endorsement implied. Companion repository:
+<a href="https://github.com/maybern-tripp-smith/fedjev-bench">maybern-tripp-smith/fedjev-bench</a>.
+
+</footer>
+</body>
+</html>
