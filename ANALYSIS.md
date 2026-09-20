@@ -302,23 +302,6 @@ These designs remain distinct from the pre-registered gates.
 **run_id:** `fedjev-fedlock-replica-2026-09-20`  
 **Scope:** Separate experiment on the 95 chair-opening corpus. Faithful protocol relative to FedLock V3 documentation; **not** a 4k-speech / ~60k-comparison scale replication. Does not replace Gate 7 (external consistency under the main BT/Score protocol).
 
-## 13. Licenses
-
-| Asset | Status |
-|-------|--------|
-| Code | MIT |
-| FOMC openings | U.S. government works; cite federalreserve.gov; no Federal Reserve endorsement |
-| FRED | St. Louis Fed terms |
-| Shah | CC BY-NC 4.0 — attribution; non-commercial; full dump not vendored |
-| jsort | MIT |
-| FedLock | Upstream site terms; snapshot for Gate 7 only |
-
-Research instrumentation only. Not investment advice.
-
-## Citation
-
-See [`CITATION`](CITATION).
-
 ## Methods
 
 The judge task follows FedLock V3: pairwise selection of the more hawkish monetary-policy stance **conditional on macroeconomic conditions** attached to each text (Core PCE from PCEPILFE year-over-year when computable else level; UNRATE; real GDP growth from GDPC1 quarter-over-quarter SAAR when available else year-over-year; VIXCLS). Texts are anonymized via `scripts/strip_meta.py` (speaker titles, dates, and chair surnames removed); Chair identity is not placed in judge state.
