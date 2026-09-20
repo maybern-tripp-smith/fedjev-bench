@@ -1,6 +1,8 @@
-"""Strip speaker names, titles, and meeting dates from text for Jev calls.
+"""Strip speaker names, titles, and meeting dates from text for judge calls.
 
 Keeps semantic content; use raw_text fields for ablation.
+Extended for FedLock-faithful anonymization: chair surnames and
+common FOMC honorifics are removed so no Chair names remain in state.
 """
 from __future__ import annotations
 
@@ -10,6 +12,11 @@ import re
 SPEAKER = re.compile(
     r"\b((?:Chair(?:man|woman)?|Vice\s+Chair(?:man|woman)?|Governor|President|"
     r"Mr\.|Ms\.|Mrs\.|Dr\.)\s+[A-Z][a-zA-Z\-']+(?:\s+[A-Z][a-zA-Z\-']+)?)\b"
+)
+# Bare chair surnames (FedLock-style anonymization)
+CHAIR_SURNAMES = re.compile(
+    r"\b(?:Bernanke|Yellen|Powell|Greenspan|Volcker|Burns|Miller|"
+    r"Martin|Eccles|McCabe|Meyer)\b"
 )
 DATE_PAT = re.compile(
     r"\b(?:January|February|March|April|May|June|July|August|September|October|November|December)"
@@ -34,6 +41,7 @@ def strip_meta(text: str) -> str:
     out = DATE_PAT.sub("[DATE]", out)
     out = ISO_DATE.sub("[DATE]", out)
     out = SPEAKER.sub("[SPEAKER]", out)
+    out = CHAIR_SURNAMES.sub("[SPEAKER]", out)
     out = re.sub(r"\s+", " ", out).strip()
     return out
 

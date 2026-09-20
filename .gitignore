@@ -30,3 +30,7 @@ id_rsa*
 *.log
 core_candidates*.json
 briefs/
+
+# FedLock replica judge caches (regenerable; judgments in comparisons_*.jsonl)
+runs/fedlock_replica/*/cache/
+

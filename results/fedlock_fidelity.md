@@ -36,3 +36,8 @@ It does **not** claim: *we replicated FedLock*.
 
 ## Corpus mismatch
 Our documents are chair **openings** (jsort-style). FedLock `press_conference` may be fuller presser text. Agreement is still informative but not same-document.
+
+## Separate experiment: FedLock-faithful protocol replication
+
+Gate 7 remains an external consistency check only. A **separate** experiment implements a FedLock-V3-faithful protocol (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss/uncertainty pairing) on the 95 openings corpus, comparing Jev, Haiku, and published FedLock `m`/`ma`. See `results/fedlock_replica/FINDINGS.md` and ANALYSIS §12. That run is **not** a 4k-speech / ~60k-comparison scale replication.
+

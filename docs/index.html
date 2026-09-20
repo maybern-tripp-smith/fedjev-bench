@@ -8,6 +8,7 @@
 <title>fedjev-bench — Overview</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
+
 :root {
   --bg: #f7f5f0;
   --paper: #ffffff;
@@ -124,6 +125,7 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+
 </style>
 </head>
 <body>
@@ -139,11 +141,11 @@ a { color: var(--accent); }
 <main>
 
 <h1 class="page">Overview</h1>
-<p class="meta"><code>jev-1.13.0</code> · criterion <code>more hawkish about inflation</code> · both presentation orders</p>
+<p class="meta"><code>jev-1.13.0</code> · criterion <code>more hawkish about inflation</code> · both presentation orders · Experiments 3–7 on <code>jev-latest</code></p>
 
 <div class="abstract">
 <p class="label">Abstract</p>
-<p>Same-day changes in the federal funds target are a convenient but incomplete label for the hawkishness of FOMC communication. This report evaluates TypeSafe/Jev under a fixed pairwise Choice criterion on chair press-conference openings, with Bradley–Terry aggregation and pre-registered gates. Primary quantities include standard errors (STE) and bootstrap confidence intervals. Correlation with FedLock press-conference scores is reported as an external consistency check, not as a methodological replication.</p>
+<p>Same-day changes in the federal funds target are a convenient but incomplete label for the hawkishness of FOMC communication. This report evaluates TypeSafe/Jev under a fixed pairwise Choice criterion on chair press-conference openings, with Bradley–Terry aggregation and pre-registered gates. Primary quantities include standard errors (STE) and bootstrap confidence intervals. Gate 4 treats same-day funds-rate changes as an incomplete label for textual hawkishness under holds. Gate 7 reports correlation with FedLock press-conference scores as an external consistency check, not as a methodological replication. Experiments 3–7 hold gold labels fixed while varying the question interface.</p>
 </div>
 
 <h2>Contributions</h2>
@@ -153,6 +155,7 @@ a { color: var(--accent); }
 <li>Pre-registered tests separating scheduled action days from holds.</li>
 <li>Explicit FedLock fidelity statement (agreement vs replication).</li>
 <li>Head-to-head Choice comparison with Claude Haiku 4.5 under matched pairs.</li>
+<li>Interface probes (Experiments 3–7): composite Scores, multi-label Nouls, paraphrase calibration, span Choice, macro-conditioned Choice.</li>
 </ol>
 
 <h2>Headline results</h2>
@@ -167,13 +170,33 @@ a { color: var(--accent); }
 </tbody>
 </table>
 
+<h2>Experiments 3–7 (summary)</h2>
+<table>
+<thead><tr><th>#</th><th>Probe</th><th>Headline</th></tr></thead>
+<tbody>
+<tr><td>3</td><td>Composite Scores</td><td>vs <code>d_same</code> ρ=0.562 (n=93, STE=0.063); vs <code>score_jev</code> ρ=0.962; vs FedLock <code>m</code> ρ=0.957</td></tr>
+<tr><td>4</td><td>Multi-label Nouls</td><td>SVB banking Noul=0.99; n with ≥2 high Nouls=9</td></tr>
+<tr><td>5</td><td>Paraphrase / calibration</td><td>Stratum A inversions=0.0 under baseline and paraphrases</td></tr>
+<tr><td>6</td><td>Span Choice</td><td>inversion=0.48 (n=50, STE=0.0707); mean p(gold)=0.4836</td></tr>
+<tr><td>7</td><td>Macro vs absolute</td><td>agreement=1.0 (n=40); both arms inversion=0.0</td></tr>
+</tbody>
+</table>
+<p class="meta">Suite cost $0.04452752 (385 calls). Full write-up in <a href="analysis.html">Analysis §11</a>; machine-readable under <code>results/experiments/</code>.</p>
+
 <h2>Documents</h2>
 <ul>
-<li><a href="analysis.html">Analysis</a> — full write-up (methods, FedLock fidelity, discussion)</li>
-<li><a href="report.html">Report</a> — gate tables and cost/latency</li>
-<li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_fidelity.md</code></li>
+<li><a href="analysis.html">Analysis</a> — full write-up (methods, FedLock fidelity, Experiments 3–7, discussion)</li>
+<li><a href="report.html">Report</a> — gate tables, cost/latency, experiment summary</li>
+<li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/experiments/</code>, <code>results/fedlock_fidelity.md</code></li>
 </ul>
 
+<h2>FedLock-faithful protocol replica (separate)</h2>
+<p>A separate experiment implements FedLock V3–style pairwise judgments (macro-conditioned relative hawkishness, anonymization, TrueSkill with Swiss/uncertainty pairing) on the 95 openings corpus, comparing Jev, Haiku, and published FedLock <code>m</code>/<code>ma</code>. It does not replace Gate 7. See <a href="analysis.html#fedlock-replica">Analysis §12</a> and <code>results/fedlock_replica/FINDINGS.md</code>.</p>
+<table><thead><tr><th>Contrast</th><th>Spearman ρ (STE)</th><th>n</th></tr></thead><tbody>
+<tr><td>Jev ↔ Haiku</td><td>+0.955 (0.012)</td><td>95</td></tr>
+<tr><td>Jev ↔ FedLock m</td><td>+0.965 (0.011)</td><td>92</td></tr>
+<tr><td>Haiku ↔ FedLock m</td><td>+0.945 (0.013)</td><td>92</td></tr>
+</tbody></table>
 </main>
 <footer>
 Not investment advice. No Federal Reserve endorsement implied. Companion repository:

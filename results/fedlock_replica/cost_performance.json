@@ -1,0 +1,45 @@
+{
+  "jev": {
+    "n_comps": 1034,
+    "input_tokens": 3376150,
+    "output_tokens": 28768,
+    "usd": 0.14179830000000002,
+    "usd_per_mtok_effective": 0.04164514387718001,
+    "usd_per_comparison": 0.00013713568665377177,
+    "latency_ms": {
+      "mean": 283.3653017241379,
+      "p50": 271.0,
+      "p95": 418.65
+    },
+    "comps_per_second": 22.977777777777778,
+    "wall_seconds": 45.0,
+    "stop_reason": "all_sigma_lt_2",
+    "max_sigma": 1.9858540266736011,
+    "mean_sigma": 1.8941901908880772,
+    "frac_sigma_lt_2": 1.0
+  },
+  "haiku": {
+    "n_comps": 1033,
+    "input_tokens": 3347688,
+    "output_tokens": 48412,
+    "usd": 3.589748,
+    "usd_per_mtok_effective": 1.0570207002149525,
+    "usd_per_comparison": 0.0034750706679574058,
+    "latency_ms": {
+      "mean": 732.1632653061224,
+      "p50": 687.0,
+      "p95": 988.0
+    },
+    "comps_per_second": 8.156336360047375,
+    "wall_seconds": 126.65,
+    "stop_reason": "all_sigma_lt_2",
+    "max_sigma": 1.965034132477803,
+    "mean_sigma": 1.892256185673115,
+    "frac_sigma_lt_2": 1.0
+  },
+  "fedlock_published": {
+    "n_comps": null,
+    "note": "Published press_conference m/ma/s/n from data/raw/fedlock/data.json; Llama not re-called",
+    "usd": 0.0
+  }
+}
