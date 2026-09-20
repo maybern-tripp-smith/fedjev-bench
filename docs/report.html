@@ -127,6 +127,20 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
 
 </style>
 </head>
@@ -142,7 +156,7 @@ a { color: var(--accent); }
 <main>
 <h1 class="page">Report</h1>
 <p><strong>run_id:</strong> <code>fedjev-2026-09-20</code>   <strong>model:</strong> jev-1.13.0   <strong>list price (this run):</strong> $0.042 / Mtok input; output free   <strong>artifacts:</strong> <code>results/gates.json</code> · <code>results/interpretation.json</code> · <code>results/fedlock_fidelity.md</code> · <code>results/cost.json</code> · <code>results/timing.json</code></p>
-<p>Long-form write-up: <a href="analysis.html"><code>ANALYSIS.md</code></a>.</p>
+<p>Long-form write-up and figures: <a href="analysis.html"><code>ANALYSIS.md</code></a>. SVG/PNG: <code>results/figures/</code> (copied to <code>docs/figures/</code>).</p>
 <div class="abstract">
 <p class="label">Abstract</p>
 <p>This report records pre-registered gates for TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion <code>more hawkish about inflation</code>. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where <code>d_same</code> is uninformative by construction. Gate 7 reports Spearman agreement with an independent FedLock text score. It does not claim a TrueSkill or macro-conditioned replication. Associations include STE and, where computed, bootstrap percentile confidence intervals.</p>

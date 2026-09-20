@@ -127,6 +127,20 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
 
 </style>
 </head>
@@ -165,6 +179,10 @@ a { color: var(--accent); }
 <p><strong>Labels (jsort-aligned).</strong> <code>d_same</code> = DFEDTARU[t+1] − DFEDTARU[t−1]. <code>y_action</code> = sign(<code>d_same</code>). <code>d_90</code> = DFEDTARU[t+90] − DFEDTARU[t]. <code>d_2y</code> = DGS2[t] − DGS2[t−1].</p>
 <p><strong>Exclusions (pre-registered).</strong> Drop 2020-03-03 and 2020-03-15 (unscheduled) and other <code>exclude_main</code> or unscheduled rows from the main analysis. Flag 2023-03-22 (SVB) without dropping.</p>
 <p><strong>Gold strata (frozen before scoring).</strong> A, extreme document pairs, n=40. B, Shah hawk versus dove sentences, n=200, seed 20260920. C, adjacent scheduled meetings with nonzero change in <code>d_same</code>, n=22. Manifest: <code>data/pairs/PAIR_MANIFEST.md</code>.</p>
+<figure>
+<img src="figures/score_timeline.svg" alt="Direct Score over the meeting calendar">
+<figcaption>Figure 1. Direct Score (<code>score_jev</code>) on scheduled openings in the main sample (crisis dates dropped; n=93). Marker shape is the same-day action: hike, hold, or cut. The teal circle marks 2023-03-22 (SVB), which is flagged and retained. Holds sit at a wide range of text scores even though <code>d_same</code> is zero.</figcaption>
+</figure>
 <h2>4. Measurement</h2>
 <p><strong>Choice (primary).</strong> Criterion string: <code>more hawkish about inflation</code>. Each gold pair is presented in both orders (<code>ab</code> and <code>ba</code>). Choice probabilities are mapped to the gold side and averaged. An inversion is an averaged winner that does not match gold. Chair names and ISO dates are stripped (<code>scripts/strip_meta.py</code>).</p>
 <p><strong>Score (secondary).</strong> A five-level ordinal rating is mapped to a continuous <code>score_jev</code> for each opening.</p>
@@ -175,16 +193,50 @@ a { color: var(--accent); }
 <h3>5.1 Inversion by stratum</h3>
 <table><thead><tr><th>Stratum</th><th>n</th><th>inverted</th><th>inversion (STE)</th><th>mean p(gold)</th><th>mean Brier (STE)</th><th>order-flip</th></tr></thead><tbody><tr><td>A extreme</td><td>40</td><td>0</td><td>0.000 (0.000)</td><td>1.000</td><td>0.000 (0.000)</td><td>0.000</td></tr><tr><td>B Shah</td><td>200</td><td>38</td><td>0.190 (0.028)</td><td>0.745</td><td>0.138 (0.016)</td><td>0.105</td></tr><tr><td>C adjacent</td><td>22</td><td>1</td><td>0.045 (0.044)</td><td>0.855</td><td>0.046 (0.018)</td><td>0.091</td></tr></tbody></table>
 <p>Stratum A has no inversions. The inverted adjacent pair is <strong>C018</strong>. Gate 2 (19 percent inversion) is a sentence-level stress test. It is not a pass/fail of the document-level claim.</p>
+<figure>
+<img src="figures/inversion_rates.svg" alt="Inversion rates by stratum">
+<figcaption>Figure 2. Inversion rate by gold stratum, Jev versus Haiku 4.5 under the same pairs and criterion. Error bars are binomial STE √[p(1−p)/n]. The dashed line is the Gate 1 pass line (0.05). Stratum A is zero for both models (n=40, STE=0). Stratum B: Jev 0.190 (STE 0.028, n=200); Haiku 0.170 (n=200). Stratum C: 0.045 (STE 0.044, n=22) for both.</figcaption>
+</figure>
+<figure>
+<img src="figures/p_gold.svg" alt="p(gold) histograms">
+<figcaption>Figure 3. Distribution of averaged two-order p(gold) by stratum. The dashed line is 0.5. Stratum A is a point mass at 1.0 (n=40). Stratum B (n=200) has interior probabilities. Stratum C (n=22) is concentrated above 0.5.</figcaption>
+</figure>
+<figure>
+<img src="figures/accuracy_vs_chance.svg" alt="Accuracy versus chance">
+<figcaption>Figure 4. Choice accuracy (1 − inversion) versus a 0.5 chance line. Error bars are the binomial STE of the inversion rate. A: 1.000 (n=40). B: 0.810 (STE 0.028, n=200). C: 0.955 (STE 0.044, n=22).</figcaption>
+</figure>
+<figure>
+<img src="figures/reliability.svg" alt="Reliability and Brier">
+<figcaption>Figure 5. Left: Stratum B confidence diagnostic. Gold-pair frequency is identically 1 by construction of the gold set, so the panel plots bin-mean p(gold) against 1. ECE is the bin-weighted |1 − p̄| = 0.255 (n=200). This is not a reliability curve versus an independent outcome; inversion is a function of the same p. Right: mean Brier ± STE. A: 0.000 (n=40). B: 0.138 (STE 0.016, n=200). C: 0.046 (STE 0.018, n=22). A separate paraphrase-|Δp| series is not in the repository.</figcaption>
+</figure>
 <h3>5.2 Gate 3 — rank agreement with policy actions</h3>
 <table><thead><tr><th>Slice</th><th>BT Spearman ρ [STE; 95% CI]</th><th>n</th></tr></thead><tbody><tr><td>All scheduled (excl. crisis)</td><td>+0.623 (n=46, STE=0.096) [+0.398, +0.787]</td><td>46</td></tr><tr><td>action_days (<code>d_same</code>≠0)</td><td>+0.851 (n=24, STE=0.074) [+0.652, +0.937]</td><td>24</td></tr><tr><td>hold_days vs (n_hawk−n_dove)</td><td>−0.192 (n=22, STE=0.202) [−0.513, +0.274]</td><td>22</td></tr><tr><td>hold_days vs <code>d_2y</code></td><td>−0.135 (n=22, STE=0.244) [−0.594, +0.349]</td><td>22</td></tr></tbody></table>
 <p>Secondary <code>score_jev</code>: all=+0.589 (n=93, STE=0.063) [+0.460, +0.701]; action=+0.918 (n=30, STE=0.033) [+0.812, +0.953].</p>
 <p>Action-day ρ exceeds all-scheduled ρ because holds contribute no variation in <code>d_same</code>. Spearman versus <code>d_same</code> on holds alone is undefined and is not computed. Hold-day associations with net dissents and <code>d_2y</code> are weak. That pattern is consistent with holds mixing hawkish-hold and dovish-hold communications.</p>
 <p>The jsort published reference is Spearman ≈ +0.46 (STE not re-estimated here). BT action-day ρ=+0.851 (STE=0.074) exceeds both the pre-registered +0.30 line and that published point estimate. Bootstrap intervals on the action-day and all-scheduled slices exclude zero.</p>
+<figure>
+<img src="figures/score_vs_d_same.svg" alt="Text scores versus d_same">
+<figcaption>Figure 6. Meeting-level text scores against <code>d_same</code> on scheduled meetings excluding unscheduled crisis dates. Left: Bradley–Terry (n=46). Right: <code>score_jev</code> (n=93). Triangles are action days; circles are holds (<code>d_same</code> = 0). The teal outline is 2023-03-22 (SVB). Spearman ρ and bootstrap STE are the Gate 3 all-scheduled estimates. Holds form a vertical stack because the behavioral label does not vary.</figcaption>
+</figure>
+<figure>
+<img src="figures/gate3_rho.svg" alt="Gate 3 Spearman intervals">
+<figcaption>Figure 7. BT Spearman ρ with bootstrap percentile 95 percent intervals. All scheduled: +0.623 (n=46, STE=0.096). Action days: +0.851 (n=24, STE=0.074). Hold-day contrasts versus dissent net and <code>d_2y</code> have intervals that include zero. Vertical lines mark the pre-registered +0.30 pass line and the jsort published point estimate +0.46.</figcaption>
+</figure>
 <h3>5.3 Gate 4 — holds versus cuts on the text axis</h3>
 <table><thead><tr><th>Score</th><th>mean holds (STE, n)</th><th>mean cuts (STE, n)</th><th>mean hikes (STE, n)</th><th>gap holds−cuts (STE)</th></tr></thead><tbody><tr><td>BT</td><td>−0.720 (0.335, 22)</td><td>−1.239 (0.153, 8)</td><td>1.827 (0.532, 16)</td><td>+0.519 (0.368)</td></tr><tr><td>score_jev</td><td>1.457 (0.114, 63)</td><td>1.036 (0.122, 9)</td><td>3.067 (0.135, 21)</td><td>+0.421 (0.167)</td></tr></tbody></table>
 <p>Under holds, <code>d_same</code> is identically zero. It therefore cannot encode hawkish- versus dovish-hold communications. A higher mean text score on holds than on cuts indicates that the textual measure separates these regimes where the same-day behavioral label cannot.</p>
 <p>This is a construct-validity result: same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. It is not a claim that text overrides the voted action, nor a judgment of policy correctness.</p>
 <p>The BT gap 95 percent interval includes zero ([−0.202, +1.239]). The <code>score_jev</code> gap interval does not ([+0.094, +0.749]). The pre-registered pass rule is the point comparison mean(holds) &gt; mean(cuts).</p>
+<figure>
+<img src="figures/gate4_means.svg" alt="Gate 4 mean scores">
+<figcaption>Figure 8. Mean text scores by same-day action, ± STE (sd/√n). Left, BT: cuts −1.239 (STE 0.153, n=8); holds −0.720 (STE 0.335, n=22); hikes +1.827 (STE 0.532, n=16); holds−cuts gap +0.519 (STE 0.368). Right, <code>score_jev</code>: cuts 1.036 (STE 0.122, n=9); holds 1.457 (STE 0.114, n=63); hikes 3.067 (STE 0.135, n=21); gap +0.421 (STE 0.167). Holds sit above cuts on both scales.</figcaption>
+</figure>
+<h3>5.5 Gate 5 — forward path</h3>
+<p>BT versus <code>d_90</code>: +0.357 (n=44, STE=0.154) [+0.042, +0.627]. <code>score_jev</code> versus <code>d_90</code>: +0.511 (n=91, STE=0.081) [+0.336, +0.652]. The gate is secondary.</p>
+<figure>
+<img src="figures/gate5_d90.svg" alt="Text scores versus d_90">
+<figcaption>Figure 9. Text scores against the 90-day subsequent change in the funds target (<code>d_90</code>). Markers follow the same-day action, not the forward path. Left: BT, n=44. Right: <code>score_jev</code>, n=91. Spearman ρ and bootstrap STE are the Gate 5 estimates. Intervals exclude zero on both slices.</figcaption>
+</figure>
 <h3>5.4 Gate 6 — name ablation</h3>
 <p>Baseline inversion (names stripped) = 0.0000. Names left in = 0.0000. Δ = 0.0000 ≤ 0.05 (<span class="pass">PASS</span>). Add-on cost $0.010955 (80 calls).</p>
 <p>Openings rarely embed Chair names or ISO dates that the stripper can remove. The zero delta is therefore more informative about order stability than about name confounding.</p>
@@ -197,6 +249,14 @@ a { color: var(--accent); }
 <p><strong>Matching.</strong> Prefer the meeting date embedded in the FedLock title; otherwise the FedLock <code>d</code> field with deltas 0, +1, −1, +2. Matched meetings=92; main-analysis matched=90; same-calendar-day on the <code>d</code> field=1; delta distribution={&#x27;0&#x27;: 1, &#x27;1&#x27;: 89}; match-via={&#x27;title_date&#x27;: 90}; mean FedLock <code>s</code> on the matched main set=1.7762.</p>
 <table><thead><tr><th>Contrast</th><th>ρ</th><th>STE</th><th>n</th><th>95% CI</th></tr></thead><tbody><tr><td>BT vs <code>m</code></td><td>+0.679</td><td>0.112</td><td>46</td><td>[+0.436, +0.861]</td></tr><tr><td>BT vs <code>ma</code></td><td>+0.594</td><td>0.104</td><td>46</td><td>[+0.361, +0.770]</td></tr><tr><td>score_jev vs <code>m</code></td><td>+0.944</td><td>0.016</td><td>90</td><td>[+0.900, +0.966]</td></tr><tr><td>score_jev vs <code>ma</code></td><td>+0.774</td><td>0.044</td><td>90</td><td>[+0.673, +0.839]</td></tr></tbody></table>
 <p>Agreement with raw <code>m</code> is stronger than with era-adjusted <code>ma</code>, especially for <code>score_jev</code>. The corpora differ: chair openings are not necessarily full FedLock press-conference transcripts.</p>
+<figure>
+<img src="figures/gate7_fedlock.svg" alt="Jev versus FedLock">
+<figcaption>Figure 10. Meeting-level Jev scores against FedLock <code>press_conference</code> scores, main-analysis match (title date preferred). Top: BT versus raw <code>m</code> and era-adjusted <code>ma</code> (n=46). Bottom: <code>score_jev</code> versus <code>m</code> and <code>ma</code> (n=90). Markers are same-day actions. ρ and bootstrap STE match Gate 7. The teal outline is 2023-03-22. This is agreement with an independent text score, not a TrueSkill or macro-conditioned replication.</figcaption>
+</figure>
+<figure>
+<img src="figures/gate7_absolute_vs_macro.svg" alt="Absolute versus era-adjusted FedLock">
+<figcaption>Figure 11. The same <code>score_jev</code> series against FedLock raw <code>m</code> (left; ρ=+0.944, STE=0.016, n=90) and era-adjusted <code>ma</code> (right; ρ=+0.774, STE=0.044, n=90). The raw contrast is near a rank ceiling. Experiment 7 (a separate macro-relative scoring design) is not in the repository; the panel uses the Gate 7 series that are.</figcaption>
+</figure>
 <h2>7. How to read the estimates</h2>
 <table><thead><tr><th>Quantity</th><th>Meaning in this note</th></tr></thead><tbody><tr><td>Spearman ρ vs <code>d_same</code></td><td>Rank agreement between meeting-level text hawkishness and the same-day target move</td></tr><tr><td>Why action-day ρ exceeds all-scheduled ρ</td><td>Holds add no <code>d_same</code> variation and dilute the pooled correlation</td></tr><tr><td>Hold-day ρ vs <code>d_same</code></td><td>Undefined; not computed (<code>d_same</code> is constant 0)</td></tr><tr><td>Gate 4 gap</td><td>Mean text score(holds) − mean text score(cuts)</td></tr><tr><td>Inversion 0 on Stratum A</td><td>Averaged two-order winner matched gold on easy pairs. Does not imply calibration on hard pairs or policy forecasting</td></tr><tr><td>BT <code>se</code></td><td>Uncertainty from the pairwise BT likelihood, not a bootstrap over meetings</td></tr><tr><td>Haiku versus Jev</td><td>Winner agreement (inversion) is the accuracy comparison. Listed USD and per-call latency are separate axes</td></tr><tr><td>STE</td><td>Standard error as defined in §4 for each estimator family</td></tr></tbody></table>
 <h2>8. Implementation cost and latency</h2>
@@ -204,6 +264,10 @@ a { color: var(--accent); }
 <h3>Same-protocol Choice comparison (Claude Haiku 4.5)</h3>
 <table><thead><tr><th></th><th>Jev 1.13.0</th><th>Haiku 4.5</th></tr></thead><tbody><tr><td>Stratum A / C inversion</td><td>0.000 / 0.045</td><td>0.000 / 0.045</td></tr><tr><td>Stratum B inversion</td><td>0.190</td><td>0.170</td></tr><tr><td>Choice USD</td><td>≈ $0.024</td><td>≈ $0.636 (~27×)</td></tr><tr><td>Mean latency</td><td>≈ 207 ms</td><td>≈ 676 ms (~3.3×)</td></tr></tbody></table>
 <p>On Strata A and C the inversion rates are identical. On Shah, Haiku inversion is 0.170 versus 0.190 for Jev, with a higher Haiku order-flip rate (0.24 versus 0.105). Winner agreement is the primary accuracy comparison. Listed cost and latency are reported separately and are not used as gate criteria.</p>
+<figure>
+<img src="figures/haiku_vs_jev.svg" alt="Choice cost and latency">
+<figcaption>Figure 12. Same-protocol Choice arm (524 calls). Left: listed USD (Jev ≈ $0.024; Haiku ≈ $0.636). Right: mean per-call latency (Jev ≈ 207 ms; Haiku ≈ 676 ms). These axes are not gate criteria.</figcaption>
+</figure>
 <h2>9. Interpretation and limitations</h2>
 <p><strong>Construct validity (Gate 1).</strong> Zero inversion on Stratum A indicates that, under the fixed criterion and dual-order protocol, the ranking recovers obvious hawk-versus-dove document orderings.</p>
 <p><strong>Rank agreement on action days (Gate 3).</strong> BT ranks track <code>d_same</code> on scheduled action days above the pre-registered +0.30 line and above the jsort +0.46 published point estimate. Bootstrap intervals exclude zero. This is rank agreement with a behavioral label, not identification of a policy-rule residual.</p>
@@ -218,12 +282,17 @@ pip install typesafe-sdk pandas pyarrow openpyxl scipy matplotlib
 export TYPESAFE_API_KEY=...   # never commit
 python score.py --live --full
 python scripts/run_name_ablation.py --live
-python scripts/analyze_gates.py</code></pre>
-<p>Frozen inputs: <code>data/pairs/gold_pairs.jsonl</code>, <code>data/clean/</code>, <code>data/labels/</code>. Outputs: <code>results/</code>, <code>runs/jev/</code>. Cached answers under <code>runs/jev/</code> permit offline re-analysis via <code>python scripts/analyze_gates.py</code>.</p>
+python scripts/analyze_gates.py
+python scripts/plot_figures.py</code></pre>
+<p>Frozen inputs: <code>data/pairs/gold_pairs.jsonl</code>, <code>data/clean/</code>, <code>data/labels/</code>. Outputs: <code>results/</code>, <code>runs/jev/</code>. Cached answers under <code>runs/jev/</code> permit offline re-analysis via <code>python scripts/analyze_gates.py</code>. Figures: <code>python scripts/plot_figures.py</code> writes SVG/PNG to <code>results/figures/</code> and <code>docs/figures/</code>.</p>
 <h2>11. Reserved follow-on experiments</h2>
-<p><code>results/experiments/FINDINGS.md</code> and experiment JSON are not present in this repository. Experiments 3–7 are therefore reserved and are <strong>not estimated</strong> in run <code>fedjev-2026-09-20</code>. Names below follow the stub in <code>results/interpretation.json</code>. No magnitudes are reported.</p>
-<table><thead><tr><th>#</th><th>Experiment</th><th>Status in this run</th></tr></thead><tbody><tr><td>3</td><td>Composite Scores</td><td>reserved; no estimates</td></tr><tr><td>4</td><td>Multi-label Nouls</td><td>reserved; no estimates</td></tr><tr><td>5</td><td>Calibration</td><td>reserved; no estimates</td></tr><tr><td>6</td><td>Span Choice</td><td>reserved; no estimates</td></tr><tr><td>7</td><td>Macro-relative scoring</td><td>reserved; no estimates</td></tr></tbody></table>
-<p>These designs are distinct from the pre-registered gates. In particular, Experiment 7 (macro-relative scoring) is not a substitute for Gate 7. Gate 7 remains agreement with FedLock <code>m</code> / <code>ma</code>, not a macro-conditioned re-implementation of FedLock.</p>
+<p><code>results/experiments/FINDINGS.md</code> and experiment JSON are not present in this repository. Experiments 3–7 were not run as separate designs in <code>fedjev-2026-09-20</code>. No composite, Nouls, paraphrase, or span-Choice series exist to plot. Where a main-protocol series answers the same <em>graphical</em> question, the figure is cross-referenced and the limitation is stated.</p>
+<p><strong>Experiment 3 — Composite Scores.</strong> No composite score and no ablation Δρ vector are in the repository. No figure.</p>
+<p><strong>Experiment 4 — Multi-label Nouls.</strong> No Nouls labels or era-mean Nouls series are in the repository. 2023-03-22 is marked on Figures 1, 6, 9, 10, and 11 as a flagged meeting, not as a Nouls estimate.</p>
+<p><strong>Experiment 5 — Calibration.</strong> Figure 5 is the only calibration-relevant plot that can be drawn from <code>results/pair_judgments.jsonl</code>: a gold-frequency confidence diagram (ECE 0.255 on Shah, n=200) and Brier ± STE. A classical reliability curve versus an independent outcome is not identified, because inversion is a function of the same p. A paraphrase |Δp| series is not present.</p>
+<p><strong>Experiment 6 — Span Choice.</strong> No span-level Choice file is in the repository. Figures 3 and 4 show document- and sentence-level p(gold) and accuracy versus chance from the main gold pairs, not from a span protocol.</p>
+<p><strong>Experiment 7 — Macro-relative scoring.</strong> Figure 11 is Gate 7 absolute (<code>m</code>) versus era-adjusted (<code>ma</code>) agreement. That is the only absolute-versus-macro contrast in the files. It is not a macro-conditioned re-implementation of FedLock. The <code>score_jev</code>–<code>m</code> rank correlation (+0.944, STE 0.016, n=90) is near a ceiling.</p>
+<p>These designs remain distinct from the pre-registered gates.</p>
 <h2>12. Licenses</h2>
 <table><thead><tr><th>Asset</th><th>Status</th></tr></thead><tbody><tr><td>Code</td><td>MIT</td></tr><tr><td>FOMC openings</td><td>U.S. government works; cite federalreserve.gov; no Federal Reserve endorsement</td></tr><tr><td>FRED</td><td>St. Louis Fed terms</td></tr><tr><td>Shah</td><td>CC BY-NC 4.0 — attribution; non-commercial; full dump not vendored</td></tr><tr><td>jsort</td><td>MIT</td></tr><tr><td>FedLock</td><td>Upstream site terms; snapshot for Gate 7 only</td></tr></tbody></table>
 <p>Research instrumentation only. Not investment advice.</p>

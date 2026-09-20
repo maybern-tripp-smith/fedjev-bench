@@ -129,6 +129,20 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
 """
 
 REPO = "https://github.com/maybern-tripp-smith/fedjev-bench"
@@ -269,6 +283,29 @@ def md_to_html(md: str, *, drop_h1: bool = True, abstract_box: bool = False) -> 
             out.append(f"<{tag}>{inline(title)}</{tag}>")
             i += 1
             continue
+        img = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", line)
+        if img:
+            alt, src = img.group(1), img.group(2)
+            if src.startswith("results/figures/"):
+                src = "figures/" + src.split("results/figures/", 1)[1]
+            cap = None
+            j = i + 1
+            if j < n and not lines[j].strip():
+                j += 1
+            if j < n and re.match(r"^\*.+\*\s*$", lines[j].strip()):
+                cap = lines[j].strip()[1:-1].strip()
+                i = j + 1
+            else:
+                i += 1
+            block = ['<figure>']
+            block.append(
+                f'<img src="{html.escape(src, quote=True)}" alt="{html.escape(alt, quote=True)}">'
+            )
+            if cap:
+                block.append(f"<figcaption>{inline(cap)}</figcaption>")
+            block.append("</figure>")
+            out.append("\n".join(block))
+            continue
         if line.startswith("> "):
             quote = [line[2:]]
             i += 1
@@ -384,9 +421,19 @@ def index_body() -> str:
 </tbody>
 </table>
 
+<h2>Selected figures</h2>
+<figure>
+<img src="figures/score_vs_d_same.svg" alt="Text scores versus same-day target change">
+<figcaption>Figure 6. BT (n=46) and <code>score_jev</code> (n=93) against <code>d_same</code>. Holds stack at zero. Spearman ρ and bootstrap STE are the Gate 3 all-scheduled estimates.</figcaption>
+</figure>
+<figure>
+<img src="figures/gate4_means.svg" alt="Mean scores for holds, cuts, and hikes">
+<figcaption>Figure 8. Mean text scores by same-day action, ± STE. Holds sit above cuts on both the BT and Score axes.</figcaption>
+</figure>
+
 <h2>Documents</h2>
 <ul>
-<li><a href="analysis.html">Analysis</a> — methods, results, FedLock fidelity, limitations</li>
+<li><a href="analysis.html">Analysis</a> — methods, results, figures, FedLock fidelity, limitations</li>
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_fidelity.md</code></li>
 </ul>

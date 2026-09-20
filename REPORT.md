@@ -5,7 +5,7 @@
 **list price (this run):** $0.042 / Mtok input; output free  
 **artifacts:** `results/gates.json` · `results/interpretation.json` · `results/fedlock_fidelity.md` · `results/cost.json` · `results/timing.json`
 
-Long-form write-up: [`ANALYSIS.md`](ANALYSIS.md).
+Long-form write-up and figures: [`ANALYSIS.md`](ANALYSIS.md). SVG/PNG: `results/figures/` (copied to `docs/figures/`).
 
 ## Abstract
 
@@ -104,4 +104,4 @@ Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 21
 
 Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows agreement with an independent text score (especially Score versus `m`) and is not a FedLock replication.
 
-Limitations: sparse BT graph; incomplete dissent scrape; openings are not full pressers; Gate 4 BT gap interval includes zero. Experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative scoring) are reserved; `results/experiments/` is not in this repository, and no estimates are reported.
+Limitations: sparse BT graph; incomplete dissent scrape; openings are not full pressers; Gate 4 BT gap interval includes zero. Experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative scoring) are reserved; `results/experiments/` is not in this repository. Figures in `ANALYSIS.md` plot only series that exist in `results/` and `data/`.

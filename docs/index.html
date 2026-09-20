@@ -127,6 +127,20 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+figure { margin: 1.5rem 0 1.75rem; }
+figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  display: block;
+}
+figcaption {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  line-height: 1.5;
+}
 
 </style>
 </head>
@@ -162,9 +176,19 @@ a { color: var(--accent); }
 </tbody>
 </table>
 
+<h2>Selected figures</h2>
+<figure>
+<img src="figures/score_vs_d_same.svg" alt="Text scores versus same-day target change">
+<figcaption>Figure 6. BT (n=46) and <code>score_jev</code> (n=93) against <code>d_same</code>. Holds stack at zero. Spearman ρ and bootstrap STE are the Gate 3 all-scheduled estimates.</figcaption>
+</figure>
+<figure>
+<img src="figures/gate4_means.svg" alt="Mean scores for holds, cuts, and hikes">
+<figcaption>Figure 8. Mean text scores by same-day action, ± STE. Holds sit above cuts on both the BT and Score axes.</figcaption>
+</figure>
+
 <h2>Documents</h2>
 <ul>
-<li><a href="analysis.html">Analysis</a> — methods, results, FedLock fidelity, limitations</li>
+<li><a href="analysis.html">Analysis</a> — methods, results, figures, FedLock fidelity, limitations</li>
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_fidelity.md</code></li>
 </ul>
