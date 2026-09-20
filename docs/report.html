@@ -8,6 +8,7 @@
 <title>fedjev-bench — Report</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
+
 :root {
   --bg: #f7f5f0;
   --paper: #ffffff;
@@ -83,7 +84,7 @@ p { margin: 0.75rem 0; }
   background: #f0ebe3;
   border: 1px solid var(--border);
   padding: 1rem 1.15rem;
-  margin: 1.25rem 0 1.5rem;
+  margin: 0 0 1.5rem;
   font-size: 0.98rem;
 }
 .abstract .label {
@@ -94,18 +95,20 @@ p { margin: 0.75rem 0; }
   color: var(--muted);
   margin: 0 0 0.5rem;
 }
+.abstract p { margin: 0.55rem 0; }
+.abstract p:last-child { margin-bottom: 0; }
 table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; font-family: var(--sans); }
 th, td { border: 1px solid var(--border); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
 th { background: #f0ebe3; font-weight: 600; }
 code, pre { font-family: var(--mono); font-size: 0.84rem; }
 code { background: #f0ebe3; padding: 0.1em 0.3em; }
 pre { background: #f0ebe3; padding: 1rem; overflow: auto; border: 1px solid var(--border); }
+pre code { background: none; padding: 0; }
 blockquote {
   margin: 1rem 0;
   padding: 0.35rem 1rem;
   border-left: 3px solid var(--accent);
   color: var(--muted);
-  font-style: italic;
 }
 .pass { color: var(--pass); font-weight: 600; font-family: var(--sans); }
 ul, ol { padding-left: 1.25rem; }
@@ -124,96 +127,57 @@ footer {
 }
 a { color: var(--accent); }
 .meta { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); }
+
 </style>
 </head>
 <body>
 <header>
 <p class="kicker">Technical report · run fedjev-2026-09-20</p>
 <h1>fedjev-bench</h1>
-<p>A pre-registered evaluation of TypeSafe/Jev textual hawkishness rankings on FOMC chair openings</p>
+<p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
 </header>
 <nav>
-<a href="index.html">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html" class="active">Report</a>
-<a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+<a href="index.html">Overview</a> <a href="analysis.html">Analysis</a> <a href="report.html" class="active">Report</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
 </nav>
 <main>
-<h1>fedjev-bench REPORT — pre-registered gates</h1>
-<p><strong>run_id:</strong> <code>fedjev-2026-09-20</code>   <strong>phase:</strong> Jev half complete — results filled   <strong>model:</strong> jev-1.13.0   <strong>pricing:</strong> $0.042 / Mtok input; output free   <strong>artifacts:</strong> <code>results/gates.json</code> · <code>results/interpretation.json</code> · <code>results/fedlock_fidelity.md</code> · <code>results/cost.json</code> · <code>results/timing.json</code></p>
-<h2>Abstract</h2>
-<p>This report summarizes pre-registered gates evaluating TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion <code>more hawkish about inflation</code>. The measurement question is whether a textual hawkishness score exhibits construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where same-day funds-rate changes are necessarily uninformative. Gate 7 reports external consistency with FedLock without claiming replication. All headline associations include STE (and CIs where applicable).</p>
+<h1 class="page">Report</h1>
+<p><strong>run_id:</strong> <code>fedjev-2026-09-20</code>   <strong>model:</strong> jev-1.13.0   <strong>list price (this run):</strong> $0.042 / Mtok input; output free   <strong>artifacts:</strong> <code>results/gates.json</code> · <code>results/interpretation.json</code> · <code>results/fedlock_fidelity.md</code> · <code>results/cost.json</code> · <code>results/timing.json</code></p>
+<p>Long-form write-up: <a href="analysis.html"><code>ANALYSIS.md</code></a>.</p>
+<div class="abstract">
+<p class="label">Abstract</p>
+<p>This report records pre-registered gates for TypeSafe/Jev pairwise rankings of FOMC chair openings under the criterion <code>more hawkish about inflation</code>. The measurement questions are construct validity on easy pairs, rank agreement with same-day target-rate changes on scheduled action days, and separation of holds from cuts on the text axis—where <code>d_same</code> is uninformative by construction. Gate 7 reports Spearman agreement with an independent FedLock text score. It does not claim a TrueSkill or macro-conditioned replication. Associations include STE and, where computed, bootstrap percentile confidence intervals.</p>
+</div>
 <h2>Analysis exclusions (pre-registered)</h2>
-<ul>
-<li><strong>Exclude from main analysis:</strong> 2020-03-03, 2020-03-15 (unscheduled / intermeeting cuts), and any other <code>exclude_main</code> / <code>is_scheduled=false</code> rows.</li>
-<li><strong>Flag, do not drop:</strong> 2023-03-22 (SVB) — column <code>flag_svb</code>.</li>
-</ul>
+<ul><li><strong>Exclude from main analysis:</strong> 2020-03-03, 2020-03-15 (unscheduled / intermeeting cuts), and any other <code>exclude_main</code> or <code>is_scheduled=false</code> rows.</li><li><strong>Flag, do not drop:</strong> 2023-03-22 (SVB) — column <code>flag_svb</code>.</li></ul>
 <h2>Gates (registered before any Jev output)</h2>
-<table><thead><tr><th>#</th><th>Gate</th><th>Metric / rule</th><th>Pass line</th></tr></thead><tbody>
-<tr><td>1</td><td>Easy-pair inversion</td><td>Stratum A; average both presentation orders</td><td>inversion ≤ 0.05</td></tr>
-<tr><td>2</td><td>Sentence discrimination</td><td>Stratum B; inversion + Brier on p(gold)</td><td><strong>report only</strong></td></tr>
-<tr><td>3</td><td>Statement score vs action</td><td>Spearman(BT score, <code>d_same</code>) scheduled excl crisis; signal +0.30 (jsort pub. +0.46); action vs hold splits</td><td>Spearman ≥ +0.30</td></tr>
-<tr><td>4</td><td>Holds vs cuts</td><td>mean score holds (<code>d_same=0</code>) vs cuts (<code>d_same&lt;0</code>)</td><td>mean(holds) &gt; mean(cuts)</td></tr>
-<tr><td>5</td><td>Forward path</td><td>Spearman vs <code>d_90</code></td><td><strong>secondary</strong></td></tr>
-<tr><td>6</td><td>Order/name stability</td><td>Stratum A names-in; Δ inversion</td><td>Δ ≤ 0.05</td></tr>
-<tr><td>7</td><td>FedLock consistency</td><td>Spearman vs FedLock <code>m</code> / <code>ma</code></td><td><strong>report only</strong></td></tr>
-</tbody></table>
+<table><thead><tr><th>#</th><th>Gate</th><th>Metric / rule</th><th>Pass line</th></tr></thead><tbody><tr><td>1</td><td>Easy-pair inversion</td><td>Stratum A; average both presentation orders</td><td>inversion ≤ 0.05</td></tr><tr><td>2</td><td>Sentence discrimination</td><td>Stratum B; inversion + Brier on p(gold)</td><td><strong>report only</strong></td></tr><tr><td>3</td><td>Statement score vs action</td><td>Spearman(BT score, <code>d_same</code>) scheduled excl. crisis; signal +0.30 (jsort pub. +0.46); action vs hold splits</td><td>Spearman ≥ +0.30</td></tr><tr><td>4</td><td>Holds vs cuts</td><td>mean score holds (<code>d_same=0</code>) vs cuts (<code>d_same&lt;0</code>)</td><td>mean(holds) &gt; mean(cuts)</td></tr><tr><td>5</td><td>Forward path</td><td>Spearman vs <code>d_90</code></td><td><strong>secondary</strong></td></tr><tr><td>6</td><td>Order/name stability</td><td>Stratum A names-in; Δ inversion</td><td>Δ ≤ 0.05</td></tr><tr><td>7</td><td>FedLock consistency</td><td>Spearman vs FedLock <code>m</code> / <code>ma</code></td><td><strong>report only</strong></td></tr></tbody></table>
 <h2>Scoring protocol</h2>
-<ul>
-<li>Criterion (exact): <code>more hawkish about inflation</code></li>
-<li>Choice: Text A / Text B; meta stripped; both orders; inversion on averaged winner</li>
-<li>Secondary Score: five-level → <code>score_jev</code></li>
-<li>Entry: <code>score.py</code> → <code>runs/jev/</code>; every answer logs tokens + <code>latency_ms</code></li>
-</ul>
+<ul><li>Criterion (exact): <code>more hawkish about inflation</code></li><li>Choice: Text A / Text B; meta stripped; both orders; inversion on averaged winner</li><li>Secondary Score: five-level → <code>score_jev</code></li><li>Entry: <code>score.py</code> → <code>runs/jev/</code>; every answer logs tokens and <code>latency_ms</code></li></ul>
 <h2>Results</h2>
 <h3>Gate pass/fail</h3>
-<table><thead><tr><th>#</th><th>Gate</th><th>Result</th><th>Detail (with STE where defined)</th></tr></thead><tbody>
-<tr><td>1</td><td>Easy-pair inversion</td><td><span class="pass">PASS</span></td><td>0.0000 (n=40, STE=0.0000)</td></tr>
-<tr><td>2</td><td>Sentence discrimination</td><td>report</td><td>inv=0.1900 STE=0.0277; Brier=0.1384 STE=0.0156 (n=200)</td></tr>
-<tr><td>3</td><td>Action ranking</td><td><span class="pass">PASS</span></td><td>BT all=+0.623 (n=46, STE=0.096) [+0.398, +0.787]; action=+0.851 (n=24, STE=0.074) [+0.652, +0.937]</td></tr>
-<tr><td>4</td><td>Holds vs cuts</td><td><span class="pass">PASS</span></td><td>BT: holds=-0.7199 (STE=0.3345, n=22) &gt; cuts=-1.2385 (STE=0.1528, n=8); gap=0.5186 (STE=0.3677)</td></tr>
-<tr><td>5</td><td>Forward path</td><td>secondary</td><td>BT=+0.357 (n=44, STE=0.154) [+0.042, +0.627]; score_jev=+0.511 (n=91, STE=0.081) [+0.336, +0.652]</td></tr>
-<tr><td>6</td><td>Order/name stability</td><td><span class="pass">PASS</span></td><td>Δ=0.0000; add-on $0.010955</td></tr>
-<tr><td>7</td><td>FedLock consistency</td><td>report</td><td>BT vs m=+0.679 (n=46, STE=0.112) [+0.436, +0.861]; vs ma=+0.594 (n=46, STE=0.104) [+0.361, +0.770]; score_jev vs m=+0.944 (n=90, STE=0.016) [+0.900, +0.966]; vs ma=+0.774 (n=90, STE=0.044) [+0.673, +0.839]; mean s=1.776; matched=92</td></tr>
-</tbody></table>
+<table><thead><tr><th>#</th><th>Gate</th><th>Result</th><th>Detail (STE where defined)</th></tr></thead><tbody><tr><td>1</td><td>Easy-pair inversion</td><td><span class="pass">PASS</span></td><td>0.0000 (n=40, STE=0.0000)</td></tr><tr><td>2</td><td>Sentence discrimination</td><td>report</td><td>inv=0.1900 STE=0.0277; Brier=0.1384 STE=0.0156 (n=200)</td></tr><tr><td>3</td><td>Action ranking</td><td><span class="pass">PASS</span></td><td>BT all=+0.623 (n=46, STE=0.096) [+0.398, +0.787]; action=+0.851 (n=24, STE=0.074) [+0.652, +0.937]</td></tr><tr><td>4</td><td>Holds vs cuts</td><td><span class="pass">PASS</span></td><td>BT: holds=−0.7199 (STE=0.3345, n=22) &gt; cuts=−1.2385 (STE=0.1528, n=8); gap=0.5186 (STE=0.3677)</td></tr><tr><td>5</td><td>Forward path</td><td>secondary</td><td>BT=+0.357 (n=44, STE=0.154) [+0.042, +0.627]; score_jev=+0.511 (n=91, STE=0.081) [+0.336, +0.652]</td></tr><tr><td>6</td><td>Order/name stability</td><td><span class="pass">PASS</span></td><td>Δ=0.0000; add-on $0.010955</td></tr><tr><td>7</td><td>FedLock consistency</td><td>report</td><td>BT vs m=+0.679 (n=46, STE=0.112) [+0.436, +0.861]; vs ma=+0.594 (n=46, STE=0.104) [+0.361, +0.770]; score_jev vs m=+0.944 (n=90, STE=0.016) [+0.900, +0.966]; vs ma=+0.774 (n=90, STE=0.044) [+0.673, +0.839]; mean s=1.776; matched=92</td></tr></tbody></table>
 <h3>Inversion tables</h3>
-<table><thead><tr><th>Stratum</th><th>n</th><th>inverted</th><th>inversion (STE)</th><th>mean p(gold)</th><th>mean Brier (STE)</th><th>order-flip</th></tr></thead><tbody>
-<tr><td>A extreme</td><td>40</td><td>0</td><td>0.0000 (0.0000)</td><td>1.0000</td><td>0.0000 (0.0000)</td><td>0.0000</td></tr>
-<tr><td>B Shah</td><td>200</td><td>38</td><td>0.1900 (0.0277)</td><td>0.7451</td><td>0.1384 (0.0156)</td><td>0.1050</td></tr>
-<tr><td>C adjacent</td><td>22</td><td>1</td><td>0.0455 (0.0444)</td><td>0.8555</td><td>0.0459 (0.0178)</td><td>0.0909</td></tr>
-</tbody></table>
+<table><thead><tr><th>Stratum</th><th>n</th><th>inverted</th><th>inversion (STE)</th><th>mean p(gold)</th><th>mean Brier (STE)</th><th>order-flip</th></tr></thead><tbody><tr><td>A extreme</td><td>40</td><td>0</td><td>0.0000 (0.0000)</td><td>1.0000</td><td>0.0000 (0.0000)</td><td>0.0000</td></tr><tr><td>B Shah</td><td>200</td><td>38</td><td>0.1900 (0.0277)</td><td>0.7451</td><td>0.1384 (0.0156)</td><td>0.1050</td></tr><tr><td>C adjacent</td><td>22</td><td>1</td><td>0.0455 (0.0444)</td><td>0.8555</td><td>0.0459 (0.0178)</td><td>0.0909</td></tr></tbody></table>
 <p>Inverted C: <strong>C018</strong>. Inverted A: none.</p>
-<h3>Gate 3 detail (BT primary; bootstrap 1000)</h3>
-<table><thead><tr><th>Slice</th><th>Spearman ρ [STE; 95% CI]</th></tr></thead><tbody>
-<tr><td>All scheduled (excl crisis)</td><td>+0.623 (n=46, STE=0.096) [+0.398, +0.787]</td></tr>
-<tr><td>action_days</td><td>+0.851 (n=24, STE=0.074) [+0.652, +0.937]</td></tr>
-<tr><td>hold_days vs dissent net</td><td>-0.192 (n=22, STE=0.202) [-0.513, +0.274]</td></tr>
-<tr><td>hold_days vs d_2y</td><td>-0.135 (n=22, STE=0.244) [-0.594, +0.349]</td></tr>
-</tbody></table>
+<h3>Gate 3 detail (BT primary; bootstrap 1,000)</h3>
+<table><thead><tr><th>Slice</th><th>Spearman ρ [STE; 95% CI]</th></tr></thead><tbody><tr><td>All scheduled (excl. crisis)</td><td>+0.623 (n=46, STE=0.096) [+0.398, +0.787]</td></tr><tr><td>action_days</td><td>+0.851 (n=24, STE=0.074) [+0.652, +0.937]</td></tr><tr><td>hold_days vs dissent net</td><td>−0.192 (n=22, STE=0.202) [−0.513, +0.274]</td></tr><tr><td>hold_days vs d_2y</td><td>−0.135 (n=22, STE=0.244) [−0.594, +0.349]</td></tr></tbody></table>
 <p>Secondary score_jev: all=+0.589 (n=93, STE=0.063) [+0.460, +0.701]; action=+0.918 (n=30, STE=0.033) [+0.812, +0.953].</p>
-<p>BT fit: n_statements=48, n_comparisons=124, converged=True, γ=-0.1378.</p>
+<p>BT fit: n_statements=48, n_comparisons=124, converged=True, γ=−0.1378.</p>
 <h3>Gate 4 holds vs cuts</h3>
-<table><thead><tr><th>Score</th><th>mean holds (STE, n)</th><th>mean cuts (STE, n)</th><th>mean hikes (STE, n)</th><th>gap (STE)</th></tr></thead><tbody>
-<tr><td>BT</td><td>-0.7199 (0.3345, 22)</td><td>-1.2385 (0.1528, 8)</td><td>1.8273 (0.5319, 16)</td><td>0.5186 (0.3677)</td></tr>
-<tr><td>score_jev</td><td>1.4570 (0.1144, 63)</td><td>1.0356 (0.1216, 9)</td><td>3.0671 (0.1346, 21)</td><td>0.4214 (0.1670)</td></tr>
-</tbody></table>
-<p>Gate 4 is evidence that same-day funds-rate changes are an incomplete label for textual hawkishness under holds. Pre-registered pass: point means. BT gap 95% CI includes 0; score_jev gap CI does not.</p>
+<table><thead><tr><th>Score</th><th>mean holds (STE, n)</th><th>mean cuts (STE, n)</th><th>mean hikes (STE, n)</th><th>gap (STE)</th></tr></thead><tbody><tr><td>BT</td><td>−0.7199 (0.3345, 22)</td><td>−1.2385 (0.1528, 8)</td><td>1.8273 (0.5319, 16)</td><td>0.5186 (0.3677)</td></tr><tr><td>score_jev</td><td>1.4570 (0.1144, 63)</td><td>1.0356 (0.1216, 9)</td><td>3.0671 (0.1346, 21)</td><td>0.4214 (0.1670)</td></tr></tbody></table>
+<p>Gate 4 is a construct-validity result: same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. The pre-registered pass rule is the point comparison of means. The BT gap 95 percent interval includes 0; the score_jev gap interval does not.</p>
 <h3>FedLock fidelity (Gate 7)</h3>
-<p>See <code>results/fedlock_fidelity.md</code>. Shared: pairwise text hawkishness; our anonymization; external score check. Not reproduced: macro-conditioned prompts; TrueSkill; <code>ma</code> as primary; full corpus; Llama judge; Swiss matching. Matching prefers title date; delta(<code>d</code>−meeting) mostly +1 when falling back to <code>d</code> field. Primary contrast uses raw <code>m</code>; <code>ma</code> is sensitivity.</p>
+<p>See <code>results/fedlock_fidelity.md</code>. Shared: pairwise textual hawkishness; anonymization of Jev Choice calls; use of FedLock scores as an external reference. Not reproduced: macro-conditioned prompts; TrueSkill; <code>ma</code> as primary; full corpus; Llama judge; Swiss matching. Matching prefers the title date; delta(<code>d</code>−meeting) is mostly +1 when falling back to the <code>d</code> field. The primary contrast is raw <code>m</code>; <code>ma</code> is a sensitivity. Gate 7 is agreement with an independent text score, not a methodological replication.</p>
 <h3>Cost and timing</h3>
-<p>Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 214 ms @ concurrency 6. Haiku Choice comparison: ≈ $0.636 and ≈ 676 ms mean vs Jev Choice ≈ $0.024 and ≈ 207 ms; inversions nearly tied on A/C.</p>
+<p>Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 214 ms at concurrency 6. Same-protocol Haiku Choice arm: ≈ $0.636 and ≈ 676 ms mean, versus Jev Choice ≈ $0.024 and ≈ 207 ms. Inversion rates match on Strata A and C.</p>
 <h3>Artifacts</h3>
-<table><thead><tr><th>Path</th><th>Role</th></tr></thead><tbody>
-<tr><td><code>results/pair_judgments.jsonl</code></td><td>Per gold pair, both orders averaged</td></tr>
-<tr><td><code>results/statement_scores.csv</code></td><td>BT score/se/n_pairs + score_jev</td></tr>
-<tr><td><code>results/gates.json</code></td><td>Gates with STE fields</td></tr>
-<tr><td><code>results/interpretation.json</code></td><td>Estimator glossary + headline metrics</td></tr>
-<tr><td><code>results/fedlock_fidelity.md</code></td><td>Gate 7 fidelity statement</td></tr>
-<tr><td><code>runs/jev/answers.jsonl</code></td><td>Raw answers</td></tr>
-</tbody></table>
-<h2>Discussion (brief)</h2>
-<p>Gates 1/3/4/6 pass under pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 reference point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows independent text-system agreement (especially Score vs <code>m</code>) without FedLock replication. Limitations: sparse BT graph, partial dissent scrape, openings ≠ full pressers. Follow-on experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative) are stubbed in ANALYSIS §11.</p>
+<table><thead><tr><th>Path</th><th>Role</th></tr></thead><tbody><tr><td><code>results/pair_judgments.jsonl</code></td><td>Per gold pair, both orders averaged</td></tr><tr><td><code>results/statement_scores.csv</code></td><td>BT score/se/n_pairs + score_jev</td></tr><tr><td><code>results/gates.json</code></td><td>Gates with STE fields</td></tr><tr><td><code>results/interpretation.json</code></td><td>Estimator glossary and selected estimates</td></tr><tr><td><code>results/fedlock_fidelity.md</code></td><td>Gate 7 fidelity statement</td></tr><tr><td><code>runs/jev/answers.jsonl</code></td><td>Raw answers</td></tr></tbody></table>
+<h2>Interpretation (brief)</h2>
+<p>Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day BT Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds. Gate 7 shows agreement with an independent text score (especially Score versus <code>m</code>) and is not a FedLock replication.</p>
+<p>Limitations: sparse BT graph; incomplete dissent scrape; openings are not full pressers; Gate 4 BT gap interval includes zero. Experiments 3–7 (composite Scores, multi-label Nouls, calibration, span Choice, macro-relative scoring) are reserved; <code>results/experiments/</code> is not in this repository, and no estimates are reported.</p>
 </main>
 <footer>
-Not investment advice. No Federal Reserve endorsement implied. Companion repository:
+Research instrumentation only. Not investment advice. No Federal Reserve endorsement implied. Companion repository:
 <a href="https://github.com/maybern-tripp-smith/fedjev-bench">maybern-tripp-smith/fedjev-bench</a>.
 
 </footer>

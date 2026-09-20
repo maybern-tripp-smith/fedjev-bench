@@ -1,6 +1,6 @@
 # fedjev-bench
 
-Pre-registered evaluation of **TypeSafe / Jev** rankings of FOMC chair press-conference openings under the criterion `more hawkish about inflation`, relative to same-day funds-rate changes and an external FedLock text-score reference.
+Pre-registered evaluation of TypeSafe/Jev pairwise rankings of FOMC chair press-conference openings under the criterion `more hawkish about inflation`. The behavioral comparison is the same-day federal funds target change (`d_same`). The external text comparison is FedLock press-conference scores.
 
 | | |
 |--|--|
@@ -8,16 +8,16 @@ Pre-registered evaluation of **TypeSafe / Jev** rankings of FOMC chair press-con
 | **model** | jev-1.13.0 |
 | **criterion** | `more hawkish about inflation` |
 | **Pages** | https://maybern-tripp-smith.github.io/fedjev-bench/ |
-| **Gates** | 1 PASS · 3 PASS · 4 PASS · 6 PASS (2/5/7 report) |
+| **Gates** | 1 PASS · 3 PASS · 4 PASS · 6 PASS (2 / 5 / 7 report) |
 | **Main cost** | ≈ $0.031 · ablation +$0.011 · grand ≈ $0.042 |
 
-Long-form: [`ANALYSIS.md`](ANALYSIS.md) (Abstract, methods, FedLock fidelity, Discussion). Short gates: [`REPORT.md`](REPORT.md). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). FedLock relationship: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+**Abstract.** Same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. The evaluation asks whether Jev recovers easy hawk/dove orderings, agrees in rank with `d_same` on scheduled action days, and still separates holds from cuts on the text axis. Gate 7 reports agreement with an independent FedLock text score. It is not a TrueSkill or macro-conditioned replication.
 
-**Measurement question (informal):** Are same-day target-rate changes a complete label for textual hawkishness? The evaluation asks whether Jev recovers easy hawk/dove orderings, tracks `d_same` on action days, and still separates holds from cuts on the text axis—where `d_same` is uninformative by construction.
+Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). FedLock fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
 
 ---
 
-## Quick start (offline analysis)
+## Offline analysis
 
 Cached answers ship under `runs/jev/`:
 
@@ -29,7 +29,7 @@ pip install typesafe-sdk pandas pyarrow openpyxl scipy matplotlib
 python scripts/analyze_gates.py
 ```
 
-Do **not** mutate `data/pairs/gold_pairs.jsonl` for this `run_id`.
+Do not mutate `data/pairs/gold_pairs.jsonl` for this `run_id`.
 
 ## Live re-score (optional)
 
@@ -44,6 +44,6 @@ python scripts/analyze_gates.py
 
 Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-bench/
 
-## Citation / license
+## Citation and license
 
 [`CITATION`](CITATION) · MIT code · data terms in [`DATA.md`](DATA.md) (Shah CC BY-NC 4.0 not fully vendored).
