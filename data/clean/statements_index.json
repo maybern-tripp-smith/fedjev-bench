@@ -1,0 +1,572 @@
+[
+  {
+    "doc_id": "stmt-2011-04-27",
+    "date": "2011-04-27",
+    "chair": "Chairman Bernanke",
+    "words": 1657
+  },
+  {
+    "doc_id": "stmt-2011-06-22",
+    "date": "2011-06-22",
+    "chair": "Chairman Bernanke",
+    "words": 1172
+  },
+  {
+    "doc_id": "stmt-2011-11-02",
+    "date": "2011-11-02",
+    "chair": "Chairman Bernanke",
+    "words": 1308
+  },
+  {
+    "doc_id": "stmt-2012-01-25",
+    "date": "2012-01-25",
+    "chair": "Chairman Bernanke",
+    "words": 1977
+  },
+  {
+    "doc_id": "stmt-2012-04-25",
+    "date": "2012-04-25",
+    "chair": "Chairman Bernanke",
+    "words": 636
+  },
+  {
+    "doc_id": "stmt-2012-06-20",
+    "date": "2012-06-20",
+    "chair": "Chairman Bernanke",
+    "words": 767
+  },
+  {
+    "doc_id": "stmt-2012-09-13",
+    "date": "2012-09-13",
+    "chair": "Chairman Bernanke",
+    "words": 1416
+  },
+  {
+    "doc_id": "stmt-2012-12-12",
+    "date": "2012-12-12",
+    "chair": "Chairman Bernanke",
+    "words": 1869
+  },
+  {
+    "doc_id": "stmt-2013-03-20",
+    "date": "2013-03-20",
+    "chair": "Chairman Bernanke",
+    "words": 1284
+  },
+  {
+    "doc_id": "stmt-2013-06-19",
+    "date": "2013-06-19",
+    "chair": "Chairman Bernanke",
+    "words": 1795
+  },
+  {
+    "doc_id": "stmt-2013-09-18",
+    "date": "2013-09-18",
+    "chair": "Chairman Bernanke",
+    "words": 2027
+  },
+  {
+    "doc_id": "stmt-2013-12-18",
+    "date": "2013-12-18",
+    "chair": "Chairman Bernanke",
+    "words": 1634
+  },
+  {
+    "doc_id": "stmt-2014-03-19",
+    "date": "2014-03-19",
+    "chair": "Chair Yellen",
+    "words": 1613
+  },
+  {
+    "doc_id": "stmt-2014-06-18",
+    "date": "2014-06-18",
+    "chair": "Chair Yellen",
+    "words": 1397
+  },
+  {
+    "doc_id": "stmt-2014-09-17",
+    "date": "2014-09-17",
+    "chair": "Chair Yellen",
+    "words": 2180
+  },
+  {
+    "doc_id": "stmt-2014-12-17",
+    "date": "2014-12-17",
+    "chair": "Chair Yellen",
+    "words": 1564
+  },
+  {
+    "doc_id": "stmt-2015-03-18",
+    "date": "2015-03-18",
+    "chair": "Chair Yellen",
+    "words": 1492
+  },
+  {
+    "doc_id": "stmt-2015-06-17",
+    "date": "2015-06-17",
+    "chair": "Chair Yellen",
+    "words": 1506
+  },
+  {
+    "doc_id": "stmt-2015-09-17",
+    "date": "2015-09-17",
+    "chair": "Chair Yellen",
+    "words": 1811
+  },
+  {
+    "doc_id": "stmt-2015-12-16",
+    "date": "2015-12-16",
+    "chair": "Chair Yellen",
+    "words": 2109
+  },
+  {
+    "doc_id": "stmt-2016-03-16",
+    "date": "2016-03-16",
+    "chair": "Chair Yellen",
+    "words": 1744
+  },
+  {
+    "doc_id": "stmt-2016-06-15",
+    "date": "2016-06-15",
+    "chair": "Chair Yellen",
+    "words": 1523
+  },
+  {
+    "doc_id": "stmt-2016-09-21",
+    "date": "2016-09-21",
+    "chair": "Chair Yellen",
+    "words": 1409
+  },
+  {
+    "doc_id": "stmt-2016-12-14",
+    "date": "2016-12-14",
+    "chair": "Chair Yellen",
+    "words": 1078
+  },
+  {
+    "doc_id": "stmt-2017-03-15",
+    "date": "2017-03-15",
+    "chair": "Chair Yellen",
+    "words": 1096
+  },
+  {
+    "doc_id": "stmt-2017-06-14",
+    "date": "2017-06-14",
+    "chair": "Chair Yellen",
+    "words": 1792
+  },
+  {
+    "doc_id": "stmt-2017-09-20",
+    "date": "2017-09-20",
+    "chair": "Chair Yellen",
+    "words": 1464
+  },
+  {
+    "doc_id": "stmt-2017-12-13",
+    "date": "2017-12-13",
+    "chair": "Chair Yellen",
+    "words": 1280
+  },
+  {
+    "doc_id": "stmt-2018-03-21",
+    "date": "2018-03-21",
+    "chair": "Chairman Powell",
+    "words": 953
+  },
+  {
+    "doc_id": "stmt-2018-06-13",
+    "date": "2018-06-13",
+    "chair": "Chairman Powell",
+    "words": 1603
+  },
+  {
+    "doc_id": "stmt-2018-09-26",
+    "date": "2018-09-26",
+    "chair": "Chairman Powell",
+    "words": 1053
+  },
+  {
+    "doc_id": "stmt-2018-12-19",
+    "date": "2018-12-19",
+    "chair": "Chairman Powell",
+    "words": 1435
+  },
+  {
+    "doc_id": "stmt-2019-01-30",
+    "date": "2019-01-30",
+    "chair": "Chairman Powell",
+    "words": 1438
+  },
+  {
+    "doc_id": "stmt-2019-03-20",
+    "date": "2019-03-20",
+    "chair": "Chair Powell",
+    "words": 1214
+  },
+  {
+    "doc_id": "stmt-2019-05-01",
+    "date": "2019-05-01",
+    "chair": "Chair Powell",
+    "words": 990
+  },
+  {
+    "doc_id": "stmt-2019-06-19",
+    "date": "2019-06-19",
+    "chair": "Chair Powell",
+    "words": 1117
+  },
+  {
+    "doc_id": "stmt-2019-07-31",
+    "date": "2019-07-31",
+    "chair": "Chair Powell",
+    "words": 840
+  },
+  {
+    "doc_id": "stmt-2019-09-18",
+    "date": "2019-09-18",
+    "chair": "Chair Powell",
+    "words": 1246
+  },
+  {
+    "doc_id": "stmt-2019-10-30",
+    "date": "2019-10-30",
+    "chair": "Chair Powell",
+    "words": 1014
+  },
+  {
+    "doc_id": "stmt-2019-12-11",
+    "date": "2019-12-11",
+    "chair": "Chair Powell",
+    "words": 1088
+  },
+  {
+    "doc_id": "stmt-2020-01-29",
+    "date": "2020-01-29",
+    "chair": "Chair Powell",
+    "words": 984
+  },
+  {
+    "doc_id": "stmt-2020-03-03",
+    "date": "2020-03-03",
+    "chair": "Chair Powell",
+    "words": 396
+  },
+  {
+    "doc_id": "stmt-2020-03-15",
+    "date": "2020-03-15",
+    "chair": "Chair Powell",
+    "words": 1321
+  },
+  {
+    "doc_id": "stmt-2020-04-29",
+    "date": "2020-04-29",
+    "chair": "Chair Powell",
+    "words": 1166
+  },
+  {
+    "doc_id": "stmt-2020-06-10",
+    "date": "2020-06-10",
+    "chair": "Chair Powell",
+    "words": 1774
+  },
+  {
+    "doc_id": "stmt-2020-07-29",
+    "date": "2020-07-29",
+    "chair": "Chair Powell",
+    "words": 1553
+  },
+  {
+    "doc_id": "stmt-2020-09-16",
+    "date": "2020-09-16",
+    "chair": "Chair Powell",
+    "words": 1652
+  },
+  {
+    "doc_id": "stmt-2020-11-05",
+    "date": "2020-11-05",
+    "chair": "Chair Powell",
+    "words": 1485
+  },
+  {
+    "doc_id": "stmt-2020-12-16",
+    "date": "2020-12-16",
+    "chair": "Chair Powell",
+    "words": 1685
+  },
+  {
+    "doc_id": "stmt-2021-01-27",
+    "date": "2021-01-27",
+    "chair": "Chair Powell",
+    "words": 1229
+  },
+  {
+    "doc_id": "stmt-2021-03-17",
+    "date": "2021-03-17",
+    "chair": "Chair Powell",
+    "words": 1357
+  },
+  {
+    "doc_id": "stmt-2021-04-28",
+    "date": "2021-04-28",
+    "chair": "Chair Powell",
+    "words": 967
+  },
+  {
+    "doc_id": "stmt-2021-06-16",
+    "date": "2021-06-16",
+    "chair": "Chair Powell",
+    "words": 1398
+  },
+  {
+    "doc_id": "stmt-2021-07-28",
+    "date": "2021-07-28",
+    "chair": "Chair Powell",
+    "words": 1154
+  },
+  {
+    "doc_id": "stmt-2021-09-22",
+    "date": "2021-09-22",
+    "chair": "Chair Powell",
+    "words": 1243
+  },
+  {
+    "doc_id": "stmt-2021-11-03",
+    "date": "2021-11-03",
+    "chair": "Chair Powell",
+    "words": 1144
+  },
+  {
+    "doc_id": "stmt-2021-12-15",
+    "date": "2021-12-15",
+    "chair": "Chair Powell",
+    "words": 1174
+  },
+  {
+    "doc_id": "stmt-2022-01-26",
+    "date": "2022-01-26",
+    "chair": "Chair Powell",
+    "words": 1194
+  },
+  {
+    "doc_id": "stmt-2022-03-16",
+    "date": "2022-03-16",
+    "chair": "Chair Powell",
+    "words": 1119
+  },
+  {
+    "doc_id": "stmt-2022-05-04",
+    "date": "2022-05-04",
+    "chair": "Chair Powell",
+    "words": 1184
+  },
+  {
+    "doc_id": "stmt-2022-06-15",
+    "date": "2022-06-15",
+    "chair": "Chair Powell",
+    "words": 1400
+  },
+  {
+    "doc_id": "stmt-2022-07-27",
+    "date": "2022-07-27",
+    "chair": "Chair Powell",
+    "words": 1026
+  },
+  {
+    "doc_id": "stmt-2022-09-21",
+    "date": "2022-09-21",
+    "chair": "Chair Powell",
+    "words": 1222
+  },
+  {
+    "doc_id": "stmt-2022-11-02",
+    "date": "2022-11-02",
+    "chair": "Chair Powell",
+    "words": 1057
+  },
+  {
+    "doc_id": "stmt-2022-12-14",
+    "date": "2022-12-14",
+    "chair": "Chair Powell",
+    "words": 1357
+  },
+  {
+    "doc_id": "stmt-2023-02-01",
+    "date": "2023-02-01",
+    "chair": "Chair Powell",
+    "words": 1020
+  },
+  {
+    "doc_id": "stmt-2023-03-22",
+    "date": "2023-03-22",
+    "chair": "Chair Powell",
+    "words": 1296
+  },
+  {
+    "doc_id": "stmt-2023-05-03",
+    "date": "2023-05-03",
+    "chair": "Chair Powell",
+    "words": 1085
+  },
+  {
+    "doc_id": "stmt-2023-06-14",
+    "date": "2023-06-14",
+    "chair": "Chair Powell",
+    "words": 1292
+  },
+  {
+    "doc_id": "stmt-2023-07-26",
+    "date": "2023-07-26",
+    "chair": "Chair Powell",
+    "words": 883
+  },
+  {
+    "doc_id": "stmt-2023-09-20",
+    "date": "2023-09-20",
+    "chair": "Chair Powell",
+    "words": 1248
+  },
+  {
+    "doc_id": "stmt-2023-11-01",
+    "date": "2023-11-01",
+    "chair": "Chair Powell",
+    "words": 1078
+  },
+  {
+    "doc_id": "stmt-2023-12-13",
+    "date": "2023-12-13",
+    "chair": "Chair Powell",
+    "words": 1330
+  },
+  {
+    "doc_id": "stmt-2024-01-31",
+    "date": "2024-01-31",
+    "chair": "Chair Powell",
+    "words": 997
+  },
+  {
+    "doc_id": "stmt-2024-03-20",
+    "date": "2024-03-20",
+    "chair": "Chair Powell",
+    "words": 1255
+  },
+  {
+    "doc_id": "stmt-2024-05-01",
+    "date": "2024-05-01",
+    "chair": "Chair Powell",
+    "words": 1145
+  },
+  {
+    "doc_id": "stmt-2024-06-12",
+    "date": "2024-06-12",
+    "chair": "Chair Powell",
+    "words": 1244
+  },
+  {
+    "doc_id": "stmt-2024-07-31",
+    "date": "2024-07-31",
+    "chair": "Chair Powell",
+    "words": 949
+  },
+  {
+    "doc_id": "stmt-2024-09-18",
+    "date": "2024-09-18",
+    "chair": "Chair Powell",
+    "words": 1171
+  },
+  {
+    "doc_id": "stmt-2024-11-07",
+    "date": "2024-11-07",
+    "chair": "Chair Powell",
+    "words": 849
+  },
+  {
+    "doc_id": "stmt-2024-12-18",
+    "date": "2024-12-18",
+    "chair": "Chair Powell",
+    "words": 1033
+  },
+  {
+    "doc_id": "stmt-2025-01-29",
+    "date": "2025-01-29",
+    "chair": "Chair Powell",
+    "words": 900
+  },
+  {
+    "doc_id": "stmt-2025-03-19",
+    "date": "2025-03-19",
+    "chair": "Chair Powell",
+    "words": 1216
+  },
+  {
+    "doc_id": "stmt-2025-05-07",
+    "date": "2025-05-07",
+    "chair": "Chair Powell",
+    "words": 997
+  },
+  {
+    "doc_id": "stmt-2025-06-18",
+    "date": "2025-06-18",
+    "chair": "Chair Powell",
+    "words": 1235
+  },
+  {
+    "doc_id": "stmt-2025-07-30",
+    "date": "2025-07-30",
+    "chair": "Chair Powell",
+    "words": 850
+  },
+  {
+    "doc_id": "stmt-2025-09-17",
+    "date": "2025-09-17",
+    "chair": "Chair Powell",
+    "words": 1021
+  },
+  {
+    "doc_id": "stmt-2025-10-29",
+    "date": "2025-10-29",
+    "chair": "Chair Powell",
+    "words": 1171
+  },
+  {
+    "doc_id": "stmt-2025-12-10",
+    "date": "2025-12-10",
+    "chair": "Chair Powell",
+    "words": 1378
+  },
+  {
+    "doc_id": "stmt-2026-01-28",
+    "date": "2026-01-28",
+    "chair": "Chair Powell",
+    "words": 675
+  },
+  {
+    "doc_id": "stmt-2026-03-18",
+    "date": "2026-03-18",
+    "chair": "Chair Powell",
+    "words": 814
+  },
+  {
+    "doc_id": "stmt-2026-04-29",
+    "date": "2026-04-29",
+    "chair": "Chair Powell",
+    "words": 1077
+  },
+  {
+    "doc_id": "stmt-2026-06-17",
+    "date": "2026-06-17",
+    "chair": "Chairman Warsh",
+    "words": 980
+  },
+  {
+    "doc_id": "stmt-2026-07-29",
+    "date": "2026-07-29",
+    "chair": "Chairman Warsh",
+    "words": 932
+  },
+  {
+    "doc_id": "stmt-2026-09-16",
+    "date": "2026-09-16",
+    "chair": "Chairman Warsh",
+    "words": 922
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "ablation": "names",
+  "stratum": "extreme",
+  "n_pairs": 40,
+  "n_calls_attempted": 80,
+  "n_ok": 80,
+  "n_live": 80,
+  "n_cache_hits": 0,
+  "n_failures": 0,
+  "n_inverted": 0,
+  "inversion_rate": 0.0,
+  "baseline_inversion": 0.0,
+  "inversion_delta": 0.0,
+  "pass_line": "\u0394 inversion \u2264 0.05",
+  "pass": true,
+  "order_flip_n": 0,
+  "order_flip_rate": 0.0,
+  "inverted_pairs": [],
+  "usage": {
+    "input_tokens": 260824,
+    "output_tokens": 2480,
+    "latency_ms_total": 20182,
+    "latency_ms_mean": 252.275,
+    "wall_ms": 3510
+  },
+  "cost_usd": {
+    "input": 0.01095461,
+    "output": 0.0,
+    "total": 0.01095461
+  },
+  "model": [
+    "jev-1.13.0"
+  ],
+  "cache_key_suffix": "names=1",
+  "note": "raw_text / unstripped; strip_meta NOT applied"
+}

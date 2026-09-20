@@ -1,0 +1,223 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "status": "complete",
+  "haiku_model": "claude-haiku-4-5-20251001",
+  "jev_model": "jev-1.13.0",
+  "criterion": "more hawkish about inflation",
+  "n_pairs_expected": 262,
+  "n_pairs_scored": 262,
+  "n_calls_expected": 524,
+  "haiku_inversion": {
+    "extreme": {
+      "n": 40,
+      "n_inverted": 0,
+      "inversion_rate": 0.0,
+      "mean_p_gold": 0.9797499999999999,
+      "mean_brier": 0.00046875000000000085,
+      "order_flip_rate": 0.0
+    },
+    "shah": {
+      "n": 200,
+      "n_inverted": 34,
+      "inversion_rate": 0.17,
+      "mean_p_gold": 0.6886,
+      "mean_brier": 0.14365775,
+      "order_flip_rate": 0.24
+    },
+    "adjacent": {
+      "n": 22,
+      "n_inverted": 1,
+      "inversion_rate": 0.045454545454545456,
+      "mean_p_gold": 0.6934090909090909,
+      "mean_brier": 0.10885568181818182,
+      "order_flip_rate": 0.09090909090909091
+    }
+  },
+  "jev_inversion": {
+    "extreme": {
+      "n": 40,
+      "n_inverted": 0,
+      "inversion_rate": 0.0,
+      "mean_p_gold": 1.0,
+      "mean_brier": 0.0,
+      "order_flip_rate": 0.0
+    },
+    "shah": {
+      "n": 200,
+      "n_inverted": 38,
+      "inversion_rate": 0.19,
+      "mean_p_gold": 0.74515,
+      "mean_brier": 0.13841825,
+      "order_flip_rate": 0.105
+    },
+    "adjacent": {
+      "n": 22,
+      "n_inverted": 1,
+      "inversion_rate": 0.045454545454545456,
+      "mean_p_gold": 0.8554545454545455,
+      "mean_brier": 0.04595,
+      "order_flip_rate": 0.09090909090909091
+    }
+  },
+  "haiku_cost": {
+    "run_id": "fedjev-2026-09-20",
+    "model": "claude-haiku-4-5-20251001",
+    "price_per_mtok_input_usd": 1.0,
+    "price_per_mtok_output_usd": 5.0,
+    "n_calls": 524,
+    "n_choice_answers": 524,
+    "usage": {
+      "input_tokens": 500252,
+      "output_tokens": 27208,
+      "latency_ms_total": 354342,
+      "latency_ms_mean": 676.2251908396946
+    },
+    "cost_usd": {
+      "input": 0.500252,
+      "output": 0.13604,
+      "total": 0.636292
+    }
+  },
+  "jev_cost_choice_approx": {
+    "note": "Jev main run includes Score; Choice-only token share from by_stratum",
+    "choice_usd": 0.02376562,
+    "total_run_usd": 0.03120352,
+    "n_choice": 524
+  },
+  "haiku_timing": {
+    "run_id": "fedjev-2026-09-20",
+    "model": "claude-haiku-4-5-20251001",
+    "n_calls": 524,
+    "wall_ms": null,
+    "overall": {
+      "n": 524,
+      "mean": 676.2251908396946,
+      "p50": 621,
+      "p95": 938,
+      "max": 4679,
+      "total_ms": 354342
+    }
+  },
+  "jev_timing_choice": {
+    "n": 524,
+    "mean": 207.3053435114504,
+    "p50": 196.0,
+    "p95": 304.24999999999983,
+    "max": 644.0,
+    "total_ms": 108628.0
+  },
+  "delta_inversion": {
+    "adjacent": {
+      "haiku": 0.045454545454545456,
+      "jev": 0.045454545454545456,
+      "delta_haiku_minus_jev": 0.0
+    },
+    "extreme": {
+      "haiku": 0.0,
+      "jev": 0.0,
+      "delta_haiku_minus_jev": 0.0
+    },
+    "shah": {
+      "haiku": 0.17,
+      "jev": 0.19,
+      "delta_haiku_minus_jev": -0.01999999999999999
+    }
+  },
+  "by_stratum": {
+    "extreme": {
+      "haiku": {
+        "n": 40,
+        "inversion_rate": 0.0,
+        "mean_brier": 0.00046875000000000085,
+        "mean_p_gold": 0.9797499999999999,
+        "order_flip_rate": 0.0,
+        "latency_ms_mean": 740.925,
+        "latency_ms_p50": 684,
+        "latency_ms_p95": 977
+      },
+      "jev": {
+        "n": 40,
+        "inversion_rate": 0.0,
+        "mean_brier": 0.0,
+        "mean_p_gold": 1.0,
+        "order_flip_rate": 0.0,
+        "latency_ms_mean": 263.7875,
+        "latency_ms_p50": 241.0,
+        "latency_ms_p95": 455.25
+      }
+    },
+    "shah": {
+      "haiku": {
+        "n": 200,
+        "inversion_rate": 0.17,
+        "mean_brier": 0.14365775,
+        "mean_p_gold": 0.6886,
+        "order_flip_rate": 0.24,
+        "latency_ms_mean": 663.2225,
+        "latency_ms_p50": 610,
+        "latency_ms_p95": 892
+      },
+      "jev": {
+        "n": 200,
+        "inversion_rate": 0.19,
+        "mean_brier": 0.13841825,
+        "mean_p_gold": 0.74515,
+        "order_flip_rate": 0.105,
+        "latency_ms_mean": 191.6975,
+        "latency_ms_p50": 187.0,
+        "latency_ms_p95": 256.0
+      }
+    },
+    "adjacent": {
+      "haiku": {
+        "n": 22,
+        "inversion_rate": 0.045454545454545456,
+        "mean_brier": 0.10885568181818182,
+        "mean_p_gold": 0.6934090909090909,
+        "order_flip_rate": 0.09090909090909091,
+        "latency_ms_mean": 676.7954545454545,
+        "latency_ms_p50": 632,
+        "latency_ms_p95": 940
+      },
+      "jev": {
+        "n": 22,
+        "inversion_rate": 0.045454545454545456,
+        "mean_brier": 0.04595,
+        "mean_p_gold": 0.8554545454545455,
+        "order_flip_rate": 0.09090909090909091,
+        "latency_ms_mean": 246.5,
+        "latency_ms_p50": 245.5,
+        "latency_ms_p95": 324.95
+      }
+    }
+  },
+  "totals": {
+    "haiku": {
+      "usd": 0.636292,
+      "input_tokens": 500252,
+      "output_tokens": 27208,
+      "n_calls": 524,
+      "wall_ms": null,
+      "latency_ms_mean": 676.2251908396946,
+      "latency_ms_p50": 621,
+      "latency_ms_p95": 938
+    },
+    "jev_choice": {
+      "usd": 0.02376562,
+      "usd_full_run": 0.03120352,
+      "n_calls": 524,
+      "latency_ms_mean": 207.3053435114504,
+      "latency_ms_p50": 196.0,
+      "latency_ms_p95": 304.24999999999983
+    }
+  },
+  "ratios": {
+    "haiku_usd_over_jev_choice_usd": 26.7736,
+    "haiku_latency_p50_over_jev_choice_p50": 3.1684,
+    "haiku_latency_mean_over_jev_choice_mean": 3.262
+  },
+  "notes": {
+    "probs": "Asked Haiku for calibrated p_A/p_B summing to 1; Brier uses those probs (not one-hot) when returned.",
+    "gates": "Comparison arm only; primary gate pass/fail remains Jev."
+  }
+}

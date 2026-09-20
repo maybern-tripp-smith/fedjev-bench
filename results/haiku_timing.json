@@ -1,0 +1,14 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "model": "claude-haiku-4-5-20251001",
+  "n_calls": 524,
+  "wall_ms": null,
+  "overall": {
+    "n": 524,
+    "mean": 676.2251908396946,
+    "p50": 621,
+    "p95": 938,
+    "max": 4679,
+    "total_ms": 354342
+  }
+}

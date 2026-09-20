@@ -1,0 +1,78 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "n_calls": 619,
+  "concurrency": 6,
+  "concurrency_note": "score.py ThreadPoolExecutor max_workers=6 (default --concurrency 6)",
+  "total_wall_ms": null,
+  "total_wall_note": "Full-run wall clock was not separately logged. sum_latency_ms is the sum of per-call latency_ms; under concurrency=6, approx_wall_ms_if_perfect_parallel \u2248 sum/6 is a lower bound on wall.",
+  "sum_latency_ms": 132550,
+  "approx_wall_ms_if_perfect_parallel": 22091,
+  "overall": {
+    "n": 619,
+    "mean": 214.1357027463651,
+    "p50": 202.0,
+    "p95": 321.30000000000007,
+    "max": 644.0,
+    "total_ms": 132550.0
+  },
+  "by_stratum": {
+    "extreme": {
+      "n": 80,
+      "mean": 263.7875,
+      "p50": 241.0,
+      "p95": 455.25,
+      "max": 644.0,
+      "total_ms": 21103.0
+    },
+    "shah": {
+      "n": 400,
+      "mean": 191.6975,
+      "p50": 187.0,
+      "p95": 256.0,
+      "max": 383.0,
+      "total_ms": 76679.0
+    },
+    "adjacent": {
+      "n": 44,
+      "mean": 246.5,
+      "p50": 245.5,
+      "p95": 324.95,
+      "max": 351.0,
+      "total_ms": 10846.0
+    },
+    "score_docs": {
+      "n": 95,
+      "mean": 251.81052631578947,
+      "p50": 237.0,
+      "p95": 356.09999999999997,
+      "max": 452.0,
+      "total_ms": 23922.0
+    }
+  },
+  "by_kind": {
+    "choice": {
+      "n": 524,
+      "mean": 207.3053435114504,
+      "p50": 196.0,
+      "p95": 304.24999999999983,
+      "max": 644.0,
+      "total_ms": 108628.0
+    },
+    "score": {
+      "n": 95,
+      "mean": 251.81052631578947,
+      "p50": 237.0,
+      "p95": 356.09999999999997,
+      "max": 452.0,
+      "total_ms": 23922.0
+    }
+  },
+  "cache_hits_among_deduped_calls": 3,
+  "name_ablation": {
+    "n": 80,
+    "mean": 252.275,
+    "total_ms": 20182,
+    "wall_ms": 3510,
+    "concurrency": 6
+  }
+}

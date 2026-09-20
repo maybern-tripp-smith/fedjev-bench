@@ -1,0 +1,82 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "model": "jev-1.13.0",
+  "model_ids_seen": [
+    "jev-1.13.0"
+  ],
+  "price_per_mtok_input_usd": 0.042,
+  "output_tokens_free": true,
+  "criterion": "more hawkish about inflation",
+  "n_calls": 619,
+  "n_cache_hits": 3,
+  "n_failures": 0,
+  "n_choice_answers": 524,
+  "n_score_answers": 95,
+  "usage": {
+    "input_tokens": 742941,
+    "output_tokens": 18049,
+    "latency_ms_total": 132550,
+    "latency_ms_mean": 214.1357027463651
+  },
+  "cost_usd": {
+    "input": 0.03120352,
+    "output": 0.0,
+    "total": 0.03120352
+  },
+  "usd_per_pair": 0.0001191,
+  "by_stratum": {
+    "extreme": {
+      "n_choice_calls": 80,
+      "n_pairs": 40,
+      "input_tokens": 260990,
+      "output_tokens": 2480,
+      "usd": 0.01096158,
+      "usd_per_pair": 0.0002740395
+    },
+    "shah": {
+      "n_choice_calls": 400,
+      "n_pairs": 200,
+      "input_tokens": 160756,
+      "output_tokens": 12400,
+      "usd": 0.006751752000000001,
+      "usd_per_pair": 3.375876e-05
+    },
+    "adjacent": {
+      "n_choice_calls": 44,
+      "n_pairs": 22,
+      "input_tokens": 144102,
+      "output_tokens": 1364,
+      "usd": 0.006052284000000001,
+      "usd_per_pair": 0.0002751038181818182
+    },
+    "score_docs": {
+      "n_score_calls": 95,
+      "n_docs": 95,
+      "input_tokens": 177093,
+      "output_tokens": 1805,
+      "usd": 0.007437906000000001,
+      "usd_per_doc": 7.829374736842106e-05
+    }
+  },
+  "totals": {
+    "input_tokens": 742941,
+    "output_tokens": 18049,
+    "n_calls": 619,
+    "n_cache_hits": 3,
+    "usd": 0.03120352
+  },
+  "name_ablation": {
+    "n_calls": 80,
+    "input_tokens": 260824,
+    "output_tokens": 2480,
+    "cost_usd": 0.01095461,
+    "cache_key_suffix": "names=1",
+    "note": "additive Stratum A Choice with names left in; not double-counted in main n_calls"
+  },
+  "totals_including_name_ablation": {
+    "n_calls": 699,
+    "input_tokens": 1003765,
+    "output_tokens": 20529,
+    "usd": 0.04215813
+  }
+}

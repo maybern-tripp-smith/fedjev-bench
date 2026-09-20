@@ -1,0 +1,262 @@
+{"pair_id": "A001", "a": "stmt-2022-11-02", "b": "stmt-2020-03-15", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-03-15", "note": "explicit"}
+{"pair_id": "A002", "a": "stmt-2022-09-21", "b": "stmt-2020-04-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-04-29", "note": "explicit"}
+{"pair_id": "A003", "a": "stmt-2026-09-16", "b": "stmt-2020-03-15", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2026-09-16", "dove_date": "2020-03-15", "note": "latest_hike_vs_2020-03-15"}
+{"pair_id": "A004", "a": "stmt-2022-06-15", "b": "stmt-2020-03-03", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-03-03", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A005", "a": "stmt-2022-06-15", "b": "stmt-2020-03-15", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-03-15", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A006", "a": "stmt-2022-06-15", "b": "stmt-2020-04-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-04-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A007", "a": "stmt-2022-06-15", "b": "stmt-2020-06-10", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-06-10", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A008", "a": "stmt-2022-06-15", "b": "stmt-2020-07-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-07-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A009", "a": "stmt-2022-06-15", "b": "stmt-2020-09-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-09-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A010", "a": "stmt-2022-06-15", "b": "stmt-2020-11-05", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-11-05", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A011", "a": "stmt-2022-06-15", "b": "stmt-2020-12-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2020-12-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A012", "a": "stmt-2022-06-15", "b": "stmt-2021-01-27", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2021-01-27", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A013", "a": "stmt-2022-07-27", "b": "stmt-2020-03-03", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-03-03", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A014", "a": "stmt-2022-07-27", "b": "stmt-2020-03-15", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-03-15", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A015", "a": "stmt-2022-07-27", "b": "stmt-2020-04-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-04-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A016", "a": "stmt-2022-07-27", "b": "stmt-2020-06-10", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-06-10", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A017", "a": "stmt-2022-07-27", "b": "stmt-2020-07-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-07-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A018", "a": "stmt-2022-07-27", "b": "stmt-2020-09-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-09-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A019", "a": "stmt-2022-07-27", "b": "stmt-2020-11-05", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-11-05", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A020", "a": "stmt-2022-07-27", "b": "stmt-2020-12-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2020-12-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A021", "a": "stmt-2022-07-27", "b": "stmt-2021-01-27", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-07-27", "dove_date": "2021-01-27", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A022", "a": "stmt-2022-09-21", "b": "stmt-2020-03-03", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-03-03", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A023", "a": "stmt-2022-09-21", "b": "stmt-2020-03-15", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-03-15", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A024", "a": "stmt-2022-09-21", "b": "stmt-2020-06-10", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-06-10", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A025", "a": "stmt-2022-09-21", "b": "stmt-2020-07-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-07-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A026", "a": "stmt-2022-09-21", "b": "stmt-2020-09-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-09-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A027", "a": "stmt-2022-09-21", "b": "stmt-2020-11-05", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-11-05", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A028", "a": "stmt-2022-09-21", "b": "stmt-2020-12-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2020-12-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A029", "a": "stmt-2022-09-21", "b": "stmt-2021-01-27", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-09-21", "dove_date": "2021-01-27", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A030", "a": "stmt-2022-11-02", "b": "stmt-2020-03-03", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-03-03", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A031", "a": "stmt-2022-11-02", "b": "stmt-2020-04-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-04-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A032", "a": "stmt-2022-11-02", "b": "stmt-2020-06-10", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-06-10", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A033", "a": "stmt-2022-11-02", "b": "stmt-2020-07-29", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-07-29", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A034", "a": "stmt-2022-11-02", "b": "stmt-2020-09-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-09-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A035", "a": "stmt-2022-11-02", "b": "stmt-2020-11-05", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-11-05", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A036", "a": "stmt-2022-11-02", "b": "stmt-2020-12-16", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2020-12-16", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A037", "a": "stmt-2022-11-02", "b": "stmt-2021-01-27", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2021-01-27", "note": "50_75bp_vs_ease_or_zero"}
+{"pair_id": "A038", "a": "stmt-2026-09-16", "b": "stmt-2019-07-31", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2026-09-16", "dove_date": "2019-07-31", "note": "pos_vs_neg_d_same"}
+{"pair_id": "A039", "a": "stmt-2026-09-16", "b": "stmt-2019-09-18", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2026-09-16", "dove_date": "2019-09-18", "note": "pos_vs_neg_d_same"}
+{"pair_id": "A040", "a": "stmt-2026-09-16", "b": "stmt-2019-10-30", "gold": "a", "source": "extreme", "confidence": "certain", "hawk_date": "2026-09-16", "dove_date": "2019-10-30", "note": "pos_vs_neg_d_same"}
+{"pair_id": "B001", "a": "shah-minutes-2007-0236", "b": "shah-speech-2005-0687", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B002", "a": "shah-minutes-2020-0906", "b": "shah-minutes-1998-0758", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B003", "a": "shah-minutes-2009-0483", "b": "shah-minutes-2014-0185", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B004", "a": "shah-minutes-2012-0848", "b": "shah-minutes-2019-0550", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B005", "a": "shah-speech-2017-0086", "b": "shah-speech-2007-0685", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B006", "a": "shah-minutes-2001-0300", "b": "shah-press_conference-2013-0102", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B007", "a": "shah-minutes-2006-0977", "b": "shah-minutes-2001-0724", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B008", "a": "shah-speech-2021-0503", "b": "shah-speech-1999-0398", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B009", "a": "shah-speech-2003-0806", "b": "shah-minutes-2020-0221", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B010", "a": "shah-minutes-2006-0826", "b": "shah-minutes-2011-0004", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B011", "a": "shah-minutes-1998-0604", "b": "shah-press_conference-2015-0050", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B012", "a": "shah-minutes-2003-1004", "b": "shah-press_conference-2022-0259", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B013", "a": "shah-speech-2000-0947", "b": "shah-minutes-2013-0459", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B014", "a": "shah-press_conference-2016-0189", "b": "shah-press_conference-2017-0068", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B015", "a": "shah-minutes-2019-0510", "b": "shah-minutes-2004-0976", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B016", "a": "shah-minutes-1996-0013", "b": "shah-press_conference-2014-0219", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B017", "a": "shah-minutes-2007-0807", "b": "shah-minutes-2011-0114", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B018", "a": "shah-speech-2000-0151", "b": "shah-speech-2004-0752", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B019", "a": "shah-minutes-2011-0514", "b": "shah-minutes-2001-0902", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B020", "a": "shah-press_conference-2020-0235", "b": "shah-speech-2021-0429", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B021", "a": "shah-minutes-2021-0370", "b": "shah-minutes-2006-0272", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B022", "a": "shah-speech-2007-0765", "b": "shah-minutes-2003-0027", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B023", "a": "shah-speech-2000-0947", "b": "shah-minutes-2021-0368", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B024", "a": "shah-speech-2003-0808", "b": "shah-minutes-2010-0203", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B025", "a": "shah-speech-2003-0334", "b": "shah-minutes-2000-0126", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B026", "a": "shah-press_conference-2020-0184", "b": "shah-minutes-2015-0274", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B027", "a": "shah-speech-1998-0157", "b": "shah-speech-2022-0424", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B028", "a": "shah-press_conference-2011-0069", "b": "shah-speech-2004-0031", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B029", "a": "shah-press_conference-2019-0001", "b": "shah-minutes-2017-0279", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B030", "a": "shah-minutes-2013-0840", "b": "shah-minutes-2017-0921", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B031", "a": "shah-speech-2006-0331", "b": "shah-press_conference-2020-0288", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B032", "a": "shah-minutes-2000-0866", "b": "shah-press_conference-2012-0247", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B033", "a": "shah-minutes-1997-0624", "b": "shah-minutes-2021-0365", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B034", "a": "shah-speech-2021-0867", "b": "shah-minutes-2007-0998", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B035", "a": "shah-speech-2006-0234", "b": "shah-minutes-2016-0395", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B036", "a": "shah-speech-2022-0103", "b": "shah-speech-2005-0895", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B037", "a": "shah-minutes-2013-1005", "b": "shah-speech-1999-0960", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B038", "a": "shah-press_conference-2018-0059", "b": "shah-minutes-2020-0413", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B039", "a": "shah-minutes-2011-0852", "b": "shah-speech-2021-0432", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B040", "a": "shah-minutes-1996-0339", "b": "shah-press_conference-2011-0025", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B041", "a": "shah-speech-2013-0176", "b": "shah-minutes-2018-0294", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B042", "a": "shah-speech-2020-0637", "b": "shah-minutes-2022-0394", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B043", "a": "shah-speech-2006-0331", "b": "shah-speech-2002-0575", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B044", "a": "shah-minutes-2006-0829", "b": "shah-minutes-2003-0598", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B045", "a": "shah-minutes-2022-0378", "b": "shah-minutes-2010-0822", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B046", "a": "shah-speech-2006-0330", "b": "shah-press_conference-2013-0131", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B047", "a": "shah-speech-2006-0331", "b": "shah-minutes-2016-0089", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B048", "a": "shah-minutes-2020-0218", "b": "shah-speech-2005-0734", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B049", "a": "shah-minutes-2017-0920", "b": "shah-minutes-2008-0253", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B050", "a": "shah-minutes-2010-0560", "b": "shah-speech-1999-0934", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B051", "a": "shah-speech-2000-0069", "b": "shah-minutes-1997-0861", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B052", "a": "shah-minutes-2001-0045", "b": "shah-minutes-2009-0487", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B053", "a": "shah-press_conference-2019-0001", "b": "shah-speech-2019-0361", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B054", "a": "shah-press_conference-2019-0011", "b": "shah-minutes-2020-0413", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B055", "a": "shah-speech-1998-0066", "b": "shah-minutes-2013-0458", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B056", "a": "shah-speech-1997-0219", "b": "shah-speech-2021-0432", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B057", "a": "shah-minutes-1999-0580", "b": "shah-speech-2020-0434", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B058", "a": "shah-speech-2004-0325", "b": "shah-speech-2006-0074", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B059", "a": "shah-speech-2006-0331", "b": "shah-minutes-2010-0345", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B060", "a": "shah-speech-1999-0957", "b": "shah-minutes-2018-0501", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B061", "a": "shah-minutes-2017-0454", "b": "shah-minutes-2009-0710", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B062", "a": "shah-speech-2006-0330", "b": "shah-minutes-2016-0089", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B063", "a": "shah-minutes-2000-0123", "b": "shah-speech-2007-0606", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B064", "a": "shah-minutes-2020-0785", "b": "shah-minutes-2005-0887", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B065", "a": "shah-speech-2017-0086", "b": "shah-speech-1999-0557", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B066", "a": "shah-press_conference-2019-0209", "b": "shah-press_conference-2021-0168", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B067", "a": "shah-speech-2019-0198", "b": "shah-press_conference-2018-0141", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B068", "a": "shah-minutes-2011-0286", "b": "shah-minutes-2004-0406", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B069", "a": "shah-speech-2003-0821", "b": "shah-press_conference-2017-0042", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B070", "a": "shah-speech-2003-0821", "b": "shah-minutes-2001-0047", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B071", "a": "shah-press_conference-2011-0058", "b": "shah-speech-2007-0387", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B072", "a": "shah-minutes-2005-0427", "b": "shah-minutes-1996-0223", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B073", "a": "shah-press_conference-2020-0231", "b": "shah-speech-2013-0545", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B074", "a": "shah-speech-1997-0161", "b": "shah-minutes-2017-0070", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B075", "a": "shah-minutes-2001-0300", "b": "shah-press_conference-2017-0095", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B076", "a": "shah-speech-2003-0228", "b": "shah-minutes-2005-0887", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B077", "a": "shah-minutes-2007-0530", "b": "shah-minutes-2012-0592", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B078", "a": "shah-minutes-1997-0496", "b": "shah-minutes-2014-0185", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B079", "a": "shah-minutes-1999-0100", "b": "shah-speech-2017-0213", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B080", "a": "shah-minutes-2022-0378", "b": "shah-minutes-2018-0067", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B081", "a": "shah-press_conference-2022-0035", "b": "shah-speech-2005-0615", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B082", "a": "shah-press_conference-2022-0127", "b": "shah-speech-2022-0392", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B083", "a": "shah-minutes-2019-0008", "b": "shah-minutes-2011-0851", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B084", "a": "shah-minutes-2014-0182", "b": "shah-speech-2003-0915", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B085", "a": "shah-minutes-1998-0762", "b": "shah-minutes-2020-0413", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B086", "a": "shah-minutes-2018-0499", "b": "shah-minutes-2012-0588", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B087", "a": "shah-minutes-2006-0470", "b": "shah-minutes-2015-0991", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B088", "a": "shah-minutes-2020-0904", "b": "shah-speech-2007-0851", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B089", "a": "shah-minutes-2004-0441", "b": "shah-minutes-2022-0392", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B090", "a": "shah-minutes-2005-0534", "b": "shah-press_conference-2013-0105", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B091", "a": "shah-minutes-2015-0275", "b": "shah-minutes-2022-0377", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B092", "a": "shah-minutes-2001-0046", "b": "shah-press_conference-2012-0237", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B093", "a": "shah-press_conference-2013-0134", "b": "shah-minutes-2008-0651", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B094", "a": "shah-speech-2019-0880", "b": "shah-minutes-2021-0882", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B095", "a": "shah-minutes-1998-0256", "b": "shah-minutes-2016-0395", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B096", "a": "shah-speech-2005-0949", "b": "shah-speech-2020-0284", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B097", "a": "shah-minutes-2020-0904", "b": "shah-speech-2021-0203", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B098", "a": "shah-minutes-2007-0916", "b": "shah-minutes-2019-0547", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B099", "a": "shah-minutes-2009-0780", "b": "shah-minutes-1998-0945", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B100", "a": "shah-speech-2020-0651", "b": "shah-minutes-2012-0662", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B101", "a": "shah-speech-2020-0772", "b": "shah-speech-2004-0751", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B102", "a": "shah-minutes-2002-0461", "b": "shah-minutes-2003-0025", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B103", "a": "shah-speech-2022-0393", "b": "shah-press_conference-2019-0194", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B104", "a": "shah-minutes-2016-0161", "b": "shah-press_conference-2014-0165", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B105", "a": "shah-minutes-2005-0649", "b": "shah-minutes-1999-0581", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B106", "a": "shah-speech-1999-0479", "b": "shah-minutes-2016-0171", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B107", "a": "shah-minutes-1999-0733", "b": "shah-press_conference-2017-0040", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B108", "a": "shah-press_conference-2015-0272", "b": "shah-minutes-2004-0313", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B109", "a": "shah-minutes-2003-0477", "b": "shah-minutes-2015-0991", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B110", "a": "shah-speech-2017-0658", "b": "shah-speech-2005-0898", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B111", "a": "shah-minutes-2000-0816", "b": "shah-minutes-2002-0911", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B112", "a": "shah-speech-2019-0383", "b": "shah-speech-2013-0177", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B113", "a": "shah-speech-1999-0507", "b": "shah-press_conference-2013-0017", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B114", "a": "shah-speech-2007-0766", "b": "shah-speech-2005-0615", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B115", "a": "shah-press_conference-2019-0001", "b": "shah-speech-2000-0890", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B116", "a": "shah-speech-2000-0258", "b": "shah-speech-2022-0341", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B117", "a": "shah-minutes-2014-0543", "b": "shah-speech-1999-0308", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B118", "a": "shah-minutes-2011-0850", "b": "shah-speech-2000-0426", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B119", "a": "shah-minutes-2015-0061", "b": "shah-speech-2005-0025", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B120", "a": "shah-minutes-2017-0922", "b": "shah-speech-2005-0630", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B121", "a": "shah-speech-1998-0469", "b": "shah-speech-2020-0704", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B122", "a": "shah-speech-2000-0485", "b": "shah-speech-2005-0496", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B123", "a": "shah-speech-2005-0950", "b": "shah-speech-1999-0396", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B124", "a": "shah-speech-1997-0748", "b": "shah-speech-2000-0428", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B125", "a": "shah-speech-2021-0820", "b": "shah-minutes-2005-0429", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B126", "a": "shah-speech-1999-0556", "b": "shah-press_conference-2020-0232", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B127", "a": "shah-minutes-2010-0383", "b": "shah-minutes-2002-0079", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B128", "a": "shah-minutes-2019-0439", "b": "shah-minutes-2001-0047", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B129", "a": "shah-speech-2017-0514", "b": "shah-minutes-2002-0520", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B130", "a": "shah-speech-2004-0793", "b": "shah-minutes-2004-0975", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B131", "a": "shah-speech-2001-0344", "b": "shah-minutes-2015-0991", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B132", "a": "shah-minutes-2004-0316", "b": "shah-press_conference-2017-0092", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B133", "a": "shah-speech-2002-0574", "b": "shah-minutes-2008-0263", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B134", "a": "shah-speech-2006-0353", "b": "shah-press_conference-2016-0186", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B135", "a": "shah-speech-2020-0832", "b": "shah-speech-2003-0915", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B136", "a": "shah-speech-1997-0160", "b": "shah-minutes-2015-0060", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B137", "a": "shah-press_conference-2020-0184", "b": "shah-minutes-2007-0996", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B138", "a": "shah-speech-2004-0743", "b": "shah-minutes-1997-0859", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B139", "a": "shah-minutes-2012-0590", "b": "shah-minutes-1999-0986", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B140", "a": "shah-press_conference-2021-0124", "b": "shah-speech-1998-0301", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B141", "a": "shah-minutes-2016-0172", "b": "shah-minutes-2001-0570", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B142", "a": "shah-speech-2004-0850", "b": "shah-press_conference-2012-0138", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B143", "a": "shah-minutes-2015-0994", "b": "shah-minutes-2017-0280", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B144", "a": "shah-speech-1999-0507", "b": "shah-minutes-2016-0199", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B145", "a": "shah-minutes-2019-0210", "b": "shah-minutes-2007-0234", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B146", "a": "shah-minutes-1998-0762", "b": "shah-minutes-2007-0234", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B147", "a": "shah-speech-2005-0499", "b": "shah-speech-2000-0261", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B148", "a": "shah-speech-2000-0379", "b": "shah-press_conference-2018-0074", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B149", "a": "shah-speech-2007-0765", "b": "shah-minutes-2015-0992", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B150", "a": "shah-minutes-2019-0549", "b": "shah-press_conference-2020-0277", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B151", "a": "shah-minutes-2017-0919", "b": "shah-minutes-1998-0575", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B152", "a": "shah-press_conference-2022-0127", "b": "shah-speech-2003-0128", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B153", "a": "shah-speech-2007-0041", "b": "shah-speech-2004-0104", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B154", "a": "shah-speech-2006-0355", "b": "shah-minutes-2016-0409", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B155", "a": "shah-minutes-2007-0916", "b": "shah-speech-2001-0247", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B156", "a": "shah-minutes-2010-0776", "b": "shah-minutes-2014-0359", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B157", "a": "shah-speech-2007-0129", "b": "shah-minutes-2017-0279", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B158", "a": "shah-minutes-2019-0854", "b": "shah-press_conference-2022-0130", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B159", "a": "shah-minutes-2006-0472", "b": "shah-minutes-2002-0076", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B160", "a": "shah-minutes-2003-0892", "b": "shah-speech-1999-0958", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B161", "a": "shah-speech-2003-0559", "b": "shah-minutes-2013-0701", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B162", "a": "shah-speech-2007-0041", "b": "shah-minutes-2019-0436", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B163", "a": "shah-speech-2006-0443", "b": "shah-speech-2002-0680", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B164", "a": "shah-speech-2019-0900", "b": "shah-minutes-2005-0174", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B165", "a": "shah-speech-2005-0465", "b": "shah-minutes-2002-0727", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B166", "a": "shah-speech-2004-0172", "b": "shah-minutes-2015-0277", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B167", "a": "shah-minutes-2005-0430", "b": "shah-speech-2022-0113", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B168", "a": "shah-speech-2002-0574", "b": "shah-minutes-2014-0185", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B169", "a": "shah-minutes-2002-0077", "b": "shah-minutes-2022-0377", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B170", "a": "shah-speech-2007-0927", "b": "shah-speech-2006-0643", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B171", "a": "shah-minutes-2003-0503", "b": "shah-speech-2001-0784", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B172", "a": "shah-minutes-2019-0438", "b": "shah-minutes-2019-0548", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B173", "a": "shah-speech-2022-0111", "b": "shah-minutes-2015-0927", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B174", "a": "shah-minutes-2019-0210", "b": "shah-press_conference-2011-0072", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B175", "a": "shah-speech-2019-0938", "b": "shah-speech-2001-0784", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B176", "a": "shah-press_conference-2020-0268", "b": "shah-speech-2019-0361", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B177", "a": "shah-speech-2004-0170", "b": "shah-press_conference-2020-0266", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B178", "a": "shah-speech-2020-0833", "b": "shah-press_conference-2020-0277", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B179", "a": "shah-minutes-2003-0892", "b": "shah-speech-2003-0915", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B180", "a": "shah-minutes-2018-0066", "b": "shah-minutes-2013-0951", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B181", "a": "shah-minutes-2001-0640", "b": "shah-minutes-2001-0047", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B182", "a": "shah-minutes-2003-1003", "b": "shah-minutes-2018-0294", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B183", "a": "shah-minutes-2012-0663", "b": "shah-speech-2000-0483", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B184", "a": "shah-minutes-2009-0484", "b": "shah-minutes-1996-0141", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B185", "a": "shah-minutes-2008-0255", "b": "shah-speech-2001-0243", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B186", "a": "shah-speech-2006-0401", "b": "shah-speech-2004-0632", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B187", "a": "shah-speech-2005-0672", "b": "shah-minutes-2004-0594", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B188", "a": "shah-minutes-2002-0968", "b": "shah-minutes-2005-0428", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B189", "a": "shah-minutes-2004-0936", "b": "shah-minutes-2017-0279", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B190", "a": "shah-minutes-2019-0008", "b": "shah-minutes-2000-0863", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B191", "a": "shah-minutes-2020-0372", "b": "shah-speech-2007-0851", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B192", "a": "shah-speech-2005-0672", "b": "shah-speech-2001-0245", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B193", "a": "shah-minutes-2020-0904", "b": "shah-speech-2022-0920", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B194", "a": "shah-minutes-2014-0182", "b": "shah-minutes-2013-1007", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B195", "a": "shah-minutes-1996-0013", "b": "shah-minutes-2004-0444", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B196", "a": "shah-minutes-2000-0059", "b": "shah-minutes-2003-0507", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B197", "a": "shah-speech-2022-0142", "b": "shah-minutes-2003-0321", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B198", "a": "shah-speech-1997-0272", "b": "shah-minutes-2016-0836", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B199", "a": "shah-speech-1997-0158", "b": "shah-minutes-1999-0581", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "B200", "a": "shah-speech-2002-0530", "b": "shah-minutes-2003-0891", "gold": "a", "source": "shah", "confidence": "certain"}
+{"pair_id": "C001", "a": "stmt-2015-12-16", "b": "stmt-2015-09-17", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2015-12-16", "dove_date": "2015-09-17", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C002", "a": "stmt-2015-12-16", "b": "stmt-2016-03-16", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2015-12-16", "dove_date": "2016-03-16", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C003", "a": "stmt-2016-12-14", "b": "stmt-2016-09-21", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2016-12-14", "dove_date": "2016-09-21", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C004", "a": "stmt-2017-06-14", "b": "stmt-2017-09-20", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2017-06-14", "dove_date": "2017-09-20", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C005", "a": "stmt-2017-12-13", "b": "stmt-2017-09-20", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2017-12-13", "dove_date": "2017-09-20", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C006", "a": "stmt-2018-12-19", "b": "stmt-2019-01-30", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2018-12-19", "dove_date": "2019-01-30", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C007", "a": "stmt-2019-06-19", "b": "stmt-2019-07-31", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2019-06-19", "dove_date": "2019-07-31", "d_same_hawk": 0.0, "d_same_dove": -0.25}
+{"pair_id": "C008", "a": "stmt-2019-12-11", "b": "stmt-2019-10-30", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2019-12-11", "dove_date": "2019-10-30", "d_same_hawk": 0.0, "d_same_dove": -0.25}
+{"pair_id": "C009", "a": "stmt-2022-03-16", "b": "stmt-2022-01-26", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2022-03-16", "dove_date": "2022-01-26", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C010", "a": "stmt-2022-05-04", "b": "stmt-2022-03-16", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2022-05-04", "dove_date": "2022-03-16", "d_same_hawk": 0.5, "d_same_dove": 0.25}
+{"pair_id": "C011", "a": "stmt-2022-06-15", "b": "stmt-2022-05-04", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2022-06-15", "dove_date": "2022-05-04", "d_same_hawk": 0.75, "d_same_dove": 0.5}
+{"pair_id": "C012", "a": "stmt-2022-11-02", "b": "stmt-2022-12-14", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2022-11-02", "dove_date": "2022-12-14", "d_same_hawk": 0.75, "d_same_dove": 0.5}
+{"pair_id": "C013", "a": "stmt-2022-12-14", "b": "stmt-2023-02-01", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2022-12-14", "dove_date": "2023-02-01", "d_same_hawk": 0.5, "d_same_dove": 0.25}
+{"pair_id": "C014", "a": "stmt-2023-05-03", "b": "stmt-2023-06-14", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2023-05-03", "dove_date": "2023-06-14", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C015", "a": "stmt-2023-07-26", "b": "stmt-2023-06-14", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2023-07-26", "dove_date": "2023-06-14", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C016", "a": "stmt-2023-07-26", "b": "stmt-2023-09-20", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2023-07-26", "dove_date": "2023-09-20", "d_same_hawk": 0.25, "d_same_dove": 0.0}
+{"pair_id": "C017", "a": "stmt-2024-07-31", "b": "stmt-2024-09-18", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2024-07-31", "dove_date": "2024-09-18", "d_same_hawk": 0.0, "d_same_dove": -0.5}
+{"pair_id": "C018", "a": "stmt-2024-11-07", "b": "stmt-2024-09-18", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2024-11-07", "dove_date": "2024-09-18", "d_same_hawk": -0.25, "d_same_dove": -0.5}
+{"pair_id": "C019", "a": "stmt-2025-01-29", "b": "stmt-2024-12-18", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2025-01-29", "dove_date": "2024-12-18", "d_same_hawk": 0.0, "d_same_dove": -0.25}
+{"pair_id": "C020", "a": "stmt-2025-07-30", "b": "stmt-2025-09-17", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2025-07-30", "dove_date": "2025-09-17", "d_same_hawk": 0.0, "d_same_dove": -0.25}
+{"pair_id": "C021", "a": "stmt-2026-01-28", "b": "stmt-2025-12-10", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2026-01-28", "dove_date": "2025-12-10", "d_same_hawk": 0.0, "d_same_dove": -0.25}
+{"pair_id": "C022", "a": "stmt-2026-09-16", "b": "stmt-2026-07-29", "gold": "a", "source": "adjacent", "confidence": "certain", "hawk_date": "2026-09-16", "dove_date": "2026-07-29", "d_same_hawk": 0.25, "d_same_dove": 0.0}

@@ -1,0 +1,32 @@
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+
+# secrets / credentials
+**/box-secrets.json
+**/*secret*
+**/*credential*
+*.pem
+*.key
+id_rsa*
+.aws/
+.npmrc
+
+# accidental local dumps
+*.log
+core_candidates*.json
+briefs/

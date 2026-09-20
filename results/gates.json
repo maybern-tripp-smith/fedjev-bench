@@ -1,0 +1,362 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "criterion": "more hawkish about inflation",
+  "model": "jev-1.13.0",
+  "bt_fit": {
+    "n_statements": 48,
+    "n_comparisons": 124,
+    "converged": true,
+    "gamma": -0.1377820970605186,
+    "sources": [
+      "extreme",
+      "adjacent"
+    ],
+    "excluded": [
+      "shah (sentence-level)"
+    ]
+  },
+  "gates": {
+    "1_easy_pair_inversion": {
+      "metric": "Stratum A (extreme) inversion rate",
+      "pass_line": "\u2264 0.05",
+      "value": 0.0,
+      "n": 40,
+      "n_inverted": 0,
+      "mean_brier": 0.0,
+      "inverted_pairs": [],
+      "pass": true
+    },
+    "2_sentence_discrimination": {
+      "metric": "Stratum B inversion + Brier",
+      "pass_line": "report only",
+      "inversion_rate": 0.19,
+      "n": 200,
+      "n_inverted": 38,
+      "mean_brier": 0.13841825,
+      "mean_p_gold": 0.74515,
+      "pass": null,
+      "status": "report_only"
+    },
+    "3_action_ranking": {
+      "metric": "Spearman(BT score, d_same) scheduled excl crisis",
+      "pass_line": "\u2265 +0.30",
+      "signal_line": 0.3,
+      "jsort_published": 0.46,
+      "primary": {
+        "label": "BT statement score",
+        "score_col": "score",
+        "n": 46,
+        "all_scheduled": {
+          "rho": 0.6230589748774047,
+          "n": 46,
+          "ci_low": 0.3977300127222524,
+          "ci_high": 0.7870325764959779,
+          "n_boot": 1000
+        },
+        "all_scheduled_excl_svb": {
+          "rho": 0.6230589748774047,
+          "n": 46,
+          "ci_low": 0.3977300127222524,
+          "ci_high": 0.7870325764959779,
+          "n_boot": 1000
+        },
+        "action_days": {
+          "rho": 0.8510180796718418,
+          "n": 24,
+          "ci_low": 0.651783643097329,
+          "ci_high": 0.936883957435586,
+          "n_boot": 1000
+        },
+        "action_days_excl_svb": {
+          "rho": 0.8510180796718418,
+          "n": 24,
+          "ci_low": 0.651783643097329,
+          "ci_high": 0.936883957435586,
+          "n_boot": 1000
+        },
+        "hold_days_n": 22,
+        "hold_vs_dissent_net": {
+          "rho": -0.19193472573021592,
+          "n": 22,
+          "ci_low": -0.5134314604033221,
+          "ci_high": 0.2743966334804354,
+          "n_boot": 999
+        },
+        "hold_vs_d_2y": {
+          "rho": -0.13487927870904742,
+          "n": 22,
+          "ci_low": -0.5938199171837073,
+          "ci_high": 0.34942534233821304,
+          "n_boot": 1000
+        },
+        "hold_vs_dissent_excl_svb": {
+          "rho": -0.19193472573021592,
+          "n": 22,
+          "ci_low": -0.5134314604033221,
+          "ci_high": 0.2743966334804354,
+          "n_boot": 999
+        },
+        "hold_vs_d_2y_excl_svb": {
+          "rho": -0.13487927870904742,
+          "n": 22,
+          "ci_low": -0.5938199171837073,
+          "ci_high": 0.34942534233821304,
+          "n_boot": 1000
+        }
+      },
+      "secondary_score_jev": {
+        "label": "Score-pass score_jev",
+        "score_col": "score_jev",
+        "n": 93,
+        "all_scheduled": {
+          "rho": 0.589188701291886,
+          "n": 93,
+          "ci_low": 0.459910239694125,
+          "ci_high": 0.7010080018997958,
+          "n_boot": 1000
+        },
+        "all_scheduled_excl_svb": {
+          "rho": 0.5843443620172634,
+          "n": 92,
+          "ci_low": 0.4471929876870556,
+          "ci_high": 0.7030293024087237,
+          "n_boot": 1000
+        },
+        "action_days": {
+          "rho": 0.9178773625255442,
+          "n": 30,
+          "ci_low": 0.8118368144570292,
+          "ci_high": 0.9527555242395256,
+          "n_boot": 1000
+        },
+        "action_days_excl_svb": {
+          "rho": 0.9227634637484274,
+          "n": 29,
+          "ci_low": 0.8188162023029001,
+          "ci_high": 0.956545651682412,
+          "n_boot": 1000
+        },
+        "hold_days_n": 63,
+        "hold_vs_dissent_net": {
+          "rho": -0.06369326568905655,
+          "n": 63,
+          "ci_low": -0.2903205688215431,
+          "ci_high": 0.1754637429940353,
+          "n_boot": 1000
+        },
+        "hold_vs_d_2y": {
+          "rho": 0.07109008409518758,
+          "n": 63,
+          "ci_low": -0.1989381948940279,
+          "ci_high": 0.32967189179076933,
+          "n_boot": 1000
+        },
+        "hold_vs_dissent_excl_svb": {
+          "rho": -0.06369326568905655,
+          "n": 63,
+          "ci_low": -0.2903205688215431,
+          "ci_high": 0.1754637429940353,
+          "n_boot": 1000
+        },
+        "hold_vs_d_2y_excl_svb": {
+          "rho": 0.07109008409518758,
+          "n": 63,
+          "ci_low": -0.1989381948940279,
+          "ci_high": 0.32967189179076933,
+          "n_boot": 1000
+        }
+      },
+      "pass": true,
+      "pass_detail": {
+        "all_scheduled_rho": 0.6230589748774047,
+        "action_days_rho": 0.8510180796718418
+      }
+    },
+    "4_holds_vs_cuts": {
+      "metric": "mean(holds) > mean(cuts)",
+      "primary_source": "BT",
+      "primary": {
+        "mean_holds": -0.7198943961842684,
+        "n_holds": 22,
+        "mean_cuts": -1.2385400245730058,
+        "n_cuts": 8,
+        "mean_hikes": 1.8272970796932348,
+        "n_hikes": 16,
+        "gap_holds_minus_cuts": 0.5186456283887374,
+        "pass": true
+      },
+      "bt": {
+        "mean_holds": -0.7198943961842684,
+        "n_holds": 22,
+        "mean_cuts": -1.2385400245730058,
+        "n_cuts": 8,
+        "mean_hikes": 1.8272970796932348,
+        "n_hikes": 16,
+        "gap_holds_minus_cuts": 0.5186456283887374,
+        "pass": true
+      },
+      "score_jev": {
+        "mean_holds": 1.456984126984127,
+        "n_holds": 63,
+        "mean_cuts": 1.0355555555555556,
+        "n_cuts": 9,
+        "mean_hikes": 3.067142857142857,
+        "n_hikes": 21,
+        "gap_holds_minus_cuts": 0.4214285714285715,
+        "pass": true
+      },
+      "pass": true
+    },
+    "5_forward_path": {
+      "metric": "Spearman vs d_90",
+      "pass_line": "secondary",
+      "bt": {
+        "rho": 0.3569177472056242,
+        "n": 44,
+        "ci_low": 0.042213685091493446,
+        "ci_high": 0.6266851347702044,
+        "n_boot": 1000
+      },
+      "score_jev": {
+        "rho": 0.511475302902932,
+        "n": 91,
+        "ci_low": 0.33625492252457884,
+        "ci_high": 0.6522175021125742,
+        "n_boot": 1000
+      },
+      "pass": null,
+      "status": "secondary"
+    },
+    "6_order_name_stability": {
+      "name_ablation": "RUN",
+      "metric": "Stratum A names-in inversion delta vs stripped baseline",
+      "pass_line": "\u0394 inversion \u2264 0.05",
+      "stratum_A_baseline_inversion": 0.0,
+      "stratum_A_names_inversion": 0.0,
+      "stratum_A_n": 40,
+      "n_inverted_names": 0,
+      "inverted_pairs_names": [],
+      "stratum_A_order_flip_n": 0,
+      "stratum_A_order_flip_rate": 0.0,
+      "inversion_delta_vs_names": 0.0,
+      "names_ablation_cost_usd": 0.01095461,
+      "names_ablation_input_tokens": 260824,
+      "names_ablation_n_calls": 80,
+      "cache_key_suffix": "names=1",
+      "text_mode": "raw_text / unstripped",
+      "status": "PASS",
+      "pass": true
+    },
+    "7_fedlock_consistency": {
+      "metric": "Spearman Jev vs FedLock press_conference m (meeting\u00b11d match)",
+      "pass_line": "report only",
+      "n_fedlock_matched_meetings": 92,
+      "bt": {
+        "rho": 0.6845627094608667,
+        "n": 46,
+        "ci_low": 0.44282117568166873,
+        "ci_high": 0.8629160165744668,
+        "n_boot": 1000
+      },
+      "score_jev": {
+        "rho": 0.9456067652503388,
+        "n": 90,
+        "ci_low": 0.9003115496469547,
+        "ci_high": 0.9666906689452536,
+        "n_boot": 1000
+      },
+      "pass": null,
+      "status": "report_only"
+    }
+  },
+  "inversion_tables": {
+    "extreme": {
+      "n": 40,
+      "n_inverted": 0,
+      "inversion_rate": 0.0,
+      "mean_brier": 0.0,
+      "mean_p_gold": 1.0,
+      "n_order_flip": 0,
+      "order_flip_rate": 0.0,
+      "inverted_pair_ids": []
+    },
+    "shah": {
+      "n": 200,
+      "n_inverted": 38,
+      "inversion_rate": 0.19,
+      "mean_brier": 0.13841825,
+      "mean_p_gold": 0.74515,
+      "n_order_flip": 21,
+      "order_flip_rate": 0.105,
+      "inverted_pair_ids": [
+        "B027",
+        "B030",
+        "B032",
+        "B033",
+        "B038",
+        "B039",
+        "B040",
+        "B050",
+        "B054",
+        "B055",
+        "B056",
+        "B063",
+        "B066",
+        "B075",
+        "B079",
+        "B082",
+        "B085",
+        "B095",
+        "B099",
+        "B100",
+        "B112",
+        "B116",
+        "B127",
+        "B133",
+        "B141",
+        "B147",
+        "B148",
+        "B152",
+        "B156",
+        "B158",
+        "B161",
+        "B167",
+        "B173",
+        "B174",
+        "B177",
+        "B179",
+        "B192",
+        "B197"
+      ]
+    },
+    "adjacent": {
+      "n": 22,
+      "n_inverted": 1,
+      "inversion_rate": 0.045454545454545456,
+      "mean_brier": 0.04595,
+      "mean_p_gold": 0.8554545454545455,
+      "n_order_flip": 2,
+      "order_flip_rate": 0.09090909090909091,
+      "inverted_pair_ids": [
+        "C018"
+      ]
+    }
+  },
+  "adjacent_labeled": {
+    "inversion_rate": 0.045454545454545456,
+    "n": 22,
+    "n_inverted": 1,
+    "mean_brier": 0.04595,
+    "inverted_pair_ids": [
+      "C018"
+    ]
+  },
+  "cost_usd_total": 0.03120352,
+  "timing_summary": {
+    "n_calls": 619,
+    "mean_latency_ms": 214.1357027463651,
+    "p50_latency_ms": 202.0,
+    "p95_latency_ms": 321.30000000000007,
+    "concurrency": 6
+  }
+}

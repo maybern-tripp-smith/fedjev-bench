@@ -1,0 +1,19 @@
+{
+  "run_id": "fedjev-2026-09-20",
+  "model": "claude-haiku-4-5-20251001",
+  "price_per_mtok_input_usd": 1.0,
+  "price_per_mtok_output_usd": 5.0,
+  "n_calls": 524,
+  "n_choice_answers": 524,
+  "usage": {
+    "input_tokens": 500252,
+    "output_tokens": 27208,
+    "latency_ms_total": 354342,
+    "latency_ms_mean": 676.2251908396946
+  },
+  "cost_usd": {
+    "input": 0.500252,
+    "output": 0.13604,
+    "total": 0.636292
+  }
+}

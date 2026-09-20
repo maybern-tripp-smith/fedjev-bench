@@ -1,0 +1,45 @@
+# Cite this bench
+
+```bibtex
+@misc{fedjevbench2026,
+  author       = {Smith, Tripp},
+  title        = {fedjev-bench: TypeSafe/Jev hawkishness ranking on {FOMC} text},
+  year         = {2026},
+  howpublished = {\url{https://github.com/maybern-tripp-smith/fedjev-bench}},
+  note         = {run\_id fedjev-2026-09-20}
+}
+```
+
+# Upstream datasets / tools
+
+```bibtex
+@misc{jsort,
+  author       = {Eltokhy, Khaled},
+  title        = {jsort},
+  year         = {2026},
+  howpublished = {\url{https://github.com/keltokhy/jsort}}
+}
+
+@misc{shah_fomc_hawkish_dovish,
+  title        = {{FOMC} Hawkish-Dovish Dataset},
+  author       = {{GT FinTech Lab}},
+  howpublished = {\url{https://github.com/gtfintechlab/fomc-hawkish-dovish}},
+  note         = {CC BY-NC 4.0}
+}
+
+@misc{fedlock,
+  title        = {FedLock},
+  howpublished = {\url{https://jnathan9.github.io/fedlock/}}
+}
+
+@misc{typesafe_jev,
+  title        = {TypeSafe SystemOne / Jev},
+  howpublished = {\url{https://typesafe.ai}}
+}
+
+@misc{fred,
+  title        = {{FRED} Economic Data},
+  author       = {{Federal Reserve Bank of St. Louis}},
+  howpublished = {\url{https://fred.stlouisfed.org/}}
+}
+```
