@@ -1337,7 +1337,8 @@ def write_findings(summary, factor_out, redundancy, gates, tournaments):
         "- Figures: `multiaxis_corr_*.png`, `multiaxis_loadings_*.png`, "
         "`multiaxis_timeseries_*.png`, `multiaxis_gates_dsame.png`"
     )
-    (OUT_DIR / "FINDINGS.md").write_text("\n".join(lines) + "\n")
+    # Machine snapshot only. Do not overwrite the Pages note FINDINGS.md.
+    (OUT_DIR / "FINDINGS_RUN.md").write_text("\n".join(lines) + "\n")
 
 
 def write_cost(tournaments, t0):

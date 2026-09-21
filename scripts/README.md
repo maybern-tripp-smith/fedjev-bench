@@ -40,3 +40,12 @@ python3 scripts/run_multiaxis.py --dry-run  # no paid Choice (still may call jgr
 
 Jev only. Budget hard cap $5 (target ~$2–3). Pin `jgrep --budget` / `--max-chars 8000`. Outputs: `results/multiaxis/`. Pages: `docs/multiaxis.html` via `scripts/render_docs.py`.
 
+A later `--skip-tournaments` analyze pass writes `results/multiaxis/FINDINGS_RUN.md` (machine snapshot). It does **not** overwrite the Pages note `results/multiaxis/FINDINGS.md`.
+
+Overview figures from the frozen tables only (no Jev):
+
+```bash
+python scripts/plot_multiaxis_overview.py
+python scripts/render_docs.py
+```
+
