@@ -154,6 +154,7 @@ PAGE_LINKS = {
     "HOW_TO_READ.md": "how-to-read.html",
     "results/fedlock_fidelity.md": "fedlock.html",
     "results/fedlock_replica/FINDINGS.md": "fedlock-replica.html",
+    "results/multiaxis/FINDINGS.md": "multiaxis.html",
     "CITATION": "https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/CITATION",
 }
 
@@ -372,6 +373,7 @@ def page(
         ("report.html", "Report", "report"),
         ("fedlock.html", "FedLock (Gate 7)", "fedlock"),
         ("fedlock-replica.html", "TrueSkill replica", "replica"),
+        ("multiaxis.html", "Multi-axis", "multiaxis"),
     ):
         cls = ' class="active"' if key == active else ""
         nav.append(f'<a href="{href}"{cls}>{label}</a>')
@@ -464,6 +466,8 @@ def main() -> None:
     howto_md = (ROOT / "HOW_TO_READ.md").read_text()
     fidelity_md = (ROOT / "results/fedlock_fidelity.md").read_text()
     replica_md = (ROOT / "results/fedlock_replica/FINDINGS.md").read_text()
+    multiaxis_path = ROOT / "results/multiaxis/FINDINGS.md"
+    multiaxis_md = multiaxis_path.read_text() if multiaxis_path.exists() else "# Multi-axis\n\n_Pending run._\n"
     analysis_html = md_to_html(analysis_md, drop_h1=True, abstract_box=True)
     report_html = md_to_html(report_md, drop_h1=True, abstract_box=True)
     howto_html = md_to_html(
@@ -473,6 +477,7 @@ def main() -> None:
     )
     fidelity_html = md_to_html(fidelity_md, drop_h1=True, abstract_box=False)
     replica_html = md_to_html(replica_md, drop_h1=True, abstract_box=False)
+    multiaxis_html = md_to_html(multiaxis_md, drop_h1=True, abstract_box=False)
 
     (DOCS / "index.html").write_text(
         page("fedjev-bench — Overview", "index", index_body().strip())
@@ -517,9 +522,17 @@ def main() -> None:
             heading="FedLock-faithful TrueSkill replica",
         )
     )
+    (DOCS / "multiaxis.html").write_text(
+        page(
+            "fedjev-bench — Multi-axis extension",
+            "multiaxis",
+            multiaxis_html,
+            heading="Multi-axis TrueSkill extension",
+        )
+    )
     print(
         "wrote docs/index.html docs/how-to-read.html docs/analysis.html "
-        "docs/report.html docs/fedlock.html docs/fedlock-replica.html"
+        "docs/report.html docs/fedlock.html docs/fedlock-replica.html docs/multiaxis.html"
     )
 
 

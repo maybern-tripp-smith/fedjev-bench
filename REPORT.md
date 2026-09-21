@@ -128,6 +128,46 @@ Length audit and a 25-meeting passage-filter Score pilot. Frozen `run_id` unchan
 
 Artifacts: `results/khaled_sensitivity/` · ANALYSIS §13.
 
+
+
+## Multi-axis extension — pre-registered gates (before looking)
+
+**run_id:** `fedjev-multiaxis-2026-09-20` · **model:** Jev only · **protocol:** TrueSkill adaptive tournament (σ&lt;2), Choice with random presentation order (fedlock-replica style; ~1k comps / axis×design). **Not** full C(95,2). Budget target ~$2–3; hard cap $5.
+
+**Corpus:** 95 chair openings (`data/clean/statements.jsonl`). Prepared remarks only. Q&amp;A drift **out of scope** (not vendored). Full-speech robustness: future work.
+
+**Preprocess:** `jgrep --para` per axis (budget pinned; `--max-chars 8000`); empty-after-filter → flag + fall back to full stripped opening.
+
+**Designs:** (1) text-only; (2) conditional (Core PCE YoY, UNRATE, GDP QoQ SAAR, VIX, NFCI).
+
+**Frozen criteria (exact strings):**
+1. more hawkish about inflation *(baseline)*
+2. places more weight on employment downside than on inflation upside
+3. more willing to treat a price-level shift from tariffs, energy, or supply as transitory and look through it
+4. more explicit about the likely future path of policy; less purely data-dependent
+5. more eager to shrink the balance sheet and less worried that QT will impair reserves or market function
+6. more concerned that financial conditions are not restrictive enough, rather than worried they will overshoot
+7. sees upside inflation risks as larger than downside labor-market risks
+
+| Gate | Metric | Pass / report |
+|------|--------|---------------|
+| M1 | Spearman(μ, `d_same`) on scheduled action days (excl. crisis) | pass if ρ ≥ +0.30 (with s.e. + bootstrap CI) |
+| M2 | Hold vs cut mean-μ gap | pass if mean(holds) &gt; mean(cuts) |
+| M3 | Spearman vs same-day 2y move (`d_2y` / DGS2 day change); USD / NFCI if available | report; document if missing |
+| M4 | Next-meeting SEP medians | skip with note if not vendored |
+| M5 | QT pace / BS label (axis 5) | report if available; else note |
+| M6 | FedLock `m` agreement | **axis 1 only** (secondary) |
+| M7 | Factor / redundancy | report: is axis 1 PC1? any economically meaningful PC2? near-duplicates (|ρ|≥0.90) to drop? |
+| M8 | Alternative vs axis 1 | fail-as-redundant if alt gate ρ statistically indistinguishable from axis 1 *and* |rank corr|≥0.90 |
+
+Scores kept raw and era-adjusted (subtract quarterly mean, re-center). Results: `results/multiaxis/`.
+
+### Multi-axis results (after looking)
+
+**Spend:** ≈ $1.53 · **comps/axis×design:** ~987–1,200 · **PC1:** axis 1 both designs (50.6% text / 55.5% conditional) · **PC2:** ~17–20% (guidance/FCI; look-through vs FCI) · **drop as near-dup:** axis 7 (and axis 2 under conditional as mirror) · **order-swap flip rate:** 0.0 (n=30). Full tables: [`results/multiaxis/FINDINGS.md`](results/multiaxis/FINDINGS.md).
+
+
+
 ## Interpretation (brief)
 
 Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day Bradley–Terry Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds (`d_same` is zero when the target is unchanged). Gate 7 shows rank agreement with an independent FedLock text score — especially Score versus raw `m` (ρ = +0.944, s.e. = 0.016, n = 90) — and is not a FedLock replication. The TrueSkill replica is a different experiment.

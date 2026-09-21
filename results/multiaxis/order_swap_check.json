@@ -1,0 +1,7 @@
+{
+  "n_pairs": 30,
+  "flip_rate": 0.0,
+  "mean_abs_dp": 0.032,
+  "axis": "ax1_inflation_hawkish",
+  "design": "text"
+}

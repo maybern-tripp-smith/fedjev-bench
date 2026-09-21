@@ -239,3 +239,8 @@ A separate length audit and passage-filter Score pilot (Khaled / jsort tip) live
 | Gate 7 match and fidelity | [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md) |
 | TrueSkill replica (separate) | [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) |
 | Machine-readable estimates | [`results/gates.json`](results/gates.json), [`results/interpretation.json`](results/interpretation.json) |
+
+## Multi-axis extension (separate experiment)
+
+A follow-on TrueSkill tournament ranks the same 95 openings on **seven frozen criteria** (inflation hawkishness as baseline; six alternatives such as employment-vs-inflation weight, look-through of supply shocks, forward guidance, QT eagerness, financial-conditions restrictiveness, and inflation-vs-labor risk asymmetry), under **text-only** and **macro-conditional** designs. Paragraphs are filtered with `jgrep --para` before ranking. This is **not** the main registered Gate 1–7 scoreboard; it asks whether “something else” besides inflation-hawkish language survives after tightness (factor structure + validation vs `d_same`). See [`results/multiaxis/FINDINGS.md`](results/multiaxis/FINDINGS.md) and ANALYSIS §15. Q&A drift is out of scope (not vendored).
+

@@ -151,7 +151,7 @@ figcaption {
 <p>Pairwise textual hawkishness scores for FOMC chair openings, evaluated against same-day funds-rate changes</p>
 </header>
 <nav>
-<a href="index.html">Overview</a> <a href="how-to-read.html">How to read</a> <a href="analysis.html" class="active">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
+<a href="index.html">Overview</a> <a href="how-to-read.html">How to read</a> <a href="analysis.html" class="active">Analysis</a> <a href="report.html">Report</a> <a href="fedlock.html">FedLock (Gate 7)</a> <a href="fedlock-replica.html">TrueSkill replica</a> <a href="multiaxis.html">Multi-axis</a> <a href="https://github.com/maybern-tripp-smith/fedjev-bench">GitHub</a>
 </nav>
 <main>
 <h1 class="page">Analysis</h1>
@@ -421,7 +421,7 @@ python scripts/plot_figures.py</code></pre>
 <p>jsort / jgrep expose <code>--max-chars</code> with default <strong>8000</strong>. On our chair-opening corpus (n=95, cleaned <code>text</code> field):</p>
 <table><thead><tr><th>Statistic</th><th>Value</th></tr></thead><tbody><tr><td>Mean characters</td><td>7,917</td></tr><tr><td>p50</td><td>7,547</td></tr><tr><td>p90</td><td>10,823</td></tr><tr><td>p95</td><td>11,706</td></tr><tr><td>Max</td><td>13,794</td></tr><tr><td>n exceeding 8,000</td><td><strong>39</strong></td></tr><tr><td>Share exceeding 8,000</td><td><strong>41.1%</strong></td></tr><tr><td>Main run truncated at 8k?</td><td><strong>No</strong> (full openings scored)</td></tr></tbody></table>
 <p>Dates over 8k are listed in <code>results/khaled_sensitivity/char_length_audit.json</code>. Figure: <code>docs/figures/char_length_vs_8k.png</code>.</p>
-<p><strong>Interpretation.</strong> Even among <em>openings</em> (not full pressers), the 8k default is binding for about two-fifths of meetings. That is a property of the tooling default relative to our corpus, not a claim that the main Score/Choice answers truncated mid-document in an undocumented way: the main SystemOne Score pass sent full stripped openings without an 8k client cap. The audit records the jsort design choice for readers who re-rank with jsort tournaments.</p>
+<p><strong>Interpretation.</strong> Even among <em>openings</em> (not full pressers), the 8k default is binding for about two-fifths of meetings. That is a property of the tooling default relative to our corpus, not a claim that the main Score/Choice answers truncated mid-document in an undocumented way: the main SystemOne Score pass sent full stripped openings without an 8k client cap. The audit records the jsort design choice for readers who re-rank with jsort/jsort tournaments.</p>
 <h3>Passage-filter pilot (seed <code>20260920</code>)</h3>
 <p>Khaled’s suggested workflow is to filter paragraphs first (<code>jgrep --para &quot;states a view on inflation or the stance of monetary policy&quot;</code>), then sort or score. We sampled <strong>25 scheduled action-day openings</strong> (seed fixed; all 25 are action days overlapping the Gate 3 action set). For each meeting we recovered blank-line paragraphs from the presser PDF, ran <code>jgrep --para</code> with that exact criterion, concatenated kept paragraphs, capped at 8,000 characters (jsort-aligned), and re-ran <strong>Score only</strong> with the same five ordered levels as the main bench. Empty filters would have fallen back to the original opening (<code>filter_empty=true</code>); none did (0 / 25).</p>
 <table><thead><tr><th>Contrast</th><th>Baseline ρ</th><th>Filtered ρ</th><th>Δρ</th><th>s.e.(Δρ)</th><th>n</th></tr></thead><tbody><tr><td>Score vs <code>d_same</code></td><td>+0.927</td><td>+0.927</td><td>+0.0002</td><td>0.0007</td><td>25</td></tr><tr><td>Score vs FedLock <code>m</code></td><td>+0.963</td><td>+0.955</td><td>−0.0089</td><td>0.0112</td><td>24</td></tr><tr><td>Filtered vs baseline Score</td><td>—</td><td>+0.991</td><td>—</td><td>0.011</td><td>25</td></tr></tbody></table>
@@ -430,14 +430,42 @@ python scripts/plot_figures.py</code></pre>
 <h3>Operational note</h3>
 <p>If re-running <strong>jsort</strong> tournaments, set <code>--budget</code> explicitly high enough for completion (or <code>--budget 0</code>); the default dollar budget can stop mid-run. See <code>scripts/README.md</code>.</p>
 <figure>
-<img src="figures/char_length_vs_8k.png" alt="Opening length vs 8k">
+<img src="docs/figures/char_length_vs_8k.png" alt="Opening length vs 8k">
 <figcaption>Figure. Distribution of opening character counts with the jsort default 8,000-character line.</figcaption>
 </figure>
 <figure>
-<img src="figures/filter_pilot_scores.png" alt="Filter pilot">
+<img src="docs/figures/filter_pilot_scores.png" alt="Filter pilot">
 <figcaption>Figure. Filtered vs baseline Score (left) and Spearman ρ vs <code>d_same</code> / FedLock <code>m</code> with paired bootstrap standard errors (right).</figcaption>
 </figure>
-<h2>14. Ethics and licenses</h2>
+<h2>15. Multi-axis TrueSkill extension (Jev only)</h2>
+<p><strong>Scope.</strong> Separate experiment (<code>run_id=fedjev-multiaxis-2026-09-20</code>). Same 95 chair <strong>openings</strong> (prepared remarks). Q&amp;A drift is <strong>out of scope</strong> (not vendored). Full-speech robustness is future work. Haiku was not run.</p>
+<p><strong>Protocol.</strong> For each of seven frozen criteria × two designs (text-only; macro-conditional with Core PCE year-over-year, unemployment rate, real GDP growth QoQ SAAR, VIX, and Chicago Fed National Financial Conditions Index), filter paragraphs with <code>jgrep --para</code> (budget pinned; <code>--max-chars 8000</code>), then run an adaptive TrueSkill tournament (prior μ₀=50, σ₀≈8.33; stop when all σ&amp;lt;2 or ~1,200 comparisons). Choice with randomized presentation order, matching the FedLock replica. Empty-after-filter documents are flagged and fall back to the full stripped opening.</p>
+<p><strong>Frozen criteria</strong> (exact strings; axis 1 = baseline): see Report multi-axis pre-registration and <code>results/multiaxis/FINDINGS.md</code>.</p>
+<p><strong>Cost.</strong> Tracked spend ≈ <strong>$1.53</strong> (filter accounting ≈ $0.06; Choice ≈ $1.48). Wall ≈ 8.7 minutes. Order-swap check on axis-1 text (n=30 pairs): flip rate 0.0; mean |Δp| ≈ 0.03.</p>
+<h3>Factor structure</h3>
+<table><thead><tr><th>Design</th><th>PC1 variance</th><th>PC1 dominant</th><th>PC2 variance</th><th>PC2 theme (loadings)</th></tr></thead><tbody><tr><td>text</td><td>50.6%</td><td><code>ax1_inflation_hawkish</code></td><td>19.7%</td><td>forward path (−0.61) and FCI restrictiveness (−0.75)</td></tr><tr><td>conditional</td><td>55.5%</td><td><code>ax1_inflation_hawkish</code></td><td>17.0%</td><td>look-through (−0.59) vs FCI (+0.72)</td></tr></tbody></table>
+<p>Axis 1 is PC1 under both designs. A second factor exists with economic meaning: guidance / financial-conditions language (text) and look-through vs financial-conditions (conditional). It is smaller than PC1.</p>
+<p><strong>Near-duplicates to drop (|\rho|≥0.90 vs axis 1):</strong> <code>ax7_infl_vs_labor_risk</code> (both designs); under conditional also <code>ax2_emp_vs_infl</code> (strongly <em>negatively</em> correlated — mirror of inflation hawkishness, not a new positive factor).</p>
+<h3>Validation (action-day Spearman vs <code>d_same</code>, n=30)</h3>
+<table><thead><tr><th>Axis</th><th>text ρ (s.e.)</th><th>conditional ρ (s.e.)</th><th>M1 pass</th></tr></thead><tbody><tr><td>1 inflation hawkish</td><td>+0.702 (0.121)</td><td>+0.827 (0.073)</td><td>PASS</td></tr><tr><td>2 employment-weight</td><td>−0.870 (0.048)</td><td>−0.866 (0.047)</td><td>fail (sign flip)</td></tr><tr><td>3 look-through</td><td>−0.505 (0.151)</td><td>−0.451 (0.147)</td><td>fail</td></tr><tr><td>4 forward path</td><td>+0.414 (0.125)</td><td>+0.513 (0.109)</td><td>PASS</td></tr><tr><td>5 QT eager</td><td>+0.612 (0.116)</td><td>+0.715 (0.101)</td><td>PASS</td></tr><tr><td>6 FCI restrictiveness</td><td>+0.765 (0.095)</td><td>+0.650 (0.133)</td><td>PASS</td></tr><tr><td>7 infl. upside &amp;gt; labor</td><td>+0.699 (0.106)</td><td>+0.815 (0.072)</td><td>PASS (near-dup of 1)</td></tr></tbody></table>
+<p>SEP medians: not vendored — skipped. QT pace numeric label: not in <code>meetings.csv</code> — axis 5 uses <code>d_same</code> / <code>d_2y</code> only. USD / NFCI day-change proxies: see <code>results/multiaxis/gates.json</code>. FedLock <code>m</code> agreement: axis 1 only (secondary).</p>
+<p><strong>Filter emptiness (important):</strong> axes 2 and 7 emptied 61 and 66 of 95 openings respectively (few paragraphs match those narrow intents); those documents fell back to full openings. Axis 3 emptied 36. Interpret sparse-axis ranks with that caveat.</p>
+<h3>Does “something else” survive?</h3>
+<p>Partially. After tightness, inflation-hawkish language remains the dominant common factor (PC1). A smaller second factor loads on forward-guidance / financial-conditions (and, conditionally, look-through). Axis 7 is redundant with axis 1. Axes 2–3 fail the funds-target construct check (negative ρ). Axes 4–6 pass M1 but are not a second PC1-sized dimension. Text ranks do not cause rate changes.</p>
+<figure>
+<img src="docs/figures/multiaxis_corr_text.png" alt="Multi-axis correlations (text)">
+<figcaption>Figure. Spearman correlation matrix across seven axes (text-only design).</figcaption>
+</figure>
+<figure>
+<img src="docs/figures/multiaxis_loadings_text.png" alt="Factor loadings (text)">
+<figcaption>Figure. SVD loadings on PC1–PC2 (text-only).</figcaption>
+</figure>
+<figure>
+<img src="docs/figures/multiaxis_gates_dsame.png" alt="Action-day gates">
+<figcaption>Figure. Action-day Spearman ρ vs <code>d_same</code> by axis×design (error bars = bootstrap s.e.).</figcaption>
+</figure>
+<p>Artifacts: <code>results/multiaxis/</code> · Pages: <a href="docs/multiaxis.html"><code>docs/multiaxis.html</code></a>.</p>
+<h2>16. Ethics and licenses</h2>
 <table><thead><tr><th>Asset</th><th>Status</th></tr></thead><tbody><tr><td>Code</td><td>MIT</td></tr><tr><td>FOMC openings</td><td>U.S. government works; cite federalreserve.gov; no Fed endorsement</td></tr><tr><td>FRED</td><td>St. Louis Fed terms</td></tr><tr><td>Shah</td><td>CC BY-NC 4.0 — attribution; non-commercial; full dump not vendored</td></tr><tr><td>jsort</td><td>MIT</td></tr><tr><td>FedLock</td><td>Upstream site terms; snapshot used as a published-score reference for Gate 7 and as the third arm of the §12 replica. Llama is not re-invoked.</td></tr></tbody></table>
 <p>Research instrumentation only; not investment advice.</p>
 <h2>Citation</h2>
