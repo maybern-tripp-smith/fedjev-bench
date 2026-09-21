@@ -1,0 +1,13 @@
+{
+  "n_meetings": 25,
+  "n_action": 25,
+  "n_hold": 0,
+  "mean_paras": 4.44,
+  "est_jgrep_usd": 0.0034039999999999995,
+  "est_score_usd": 0.0021990570000000004,
+  "est_total_usd": 0.005603057,
+  "abort_threshold_usd": 0.08,
+  "jgrep_available": true,
+  "seed": 20260920,
+  "filter_criterion": "states a view on inflation or the stance of monetary policy"
+}

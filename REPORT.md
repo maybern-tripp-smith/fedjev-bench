@@ -107,6 +107,27 @@ Main run ≈ $0.03120 (619 calls). Name ablation ≈ $0.011. Mean latency ≈ 21
 | `results/fedlock_replica/FINDINGS.md` | Separate FedLock-faithful TrueSkill replica |
 | `runs/jev/answers.jsonl` | Raw answers |
 
+
+## Sensitivity (Khaled / jsort) — not a gate
+
+Length audit and a 25-meeting passage-filter Score pilot. Frozen `run_id` unchanged; no full TrueSkill / Haiku re-run.
+
+| Item | Result |
+|------|--------|
+| Openings n>8,000 chars | 39 / 95 (41.1%); mean 7,917; p50 7,547; p90 10,823; max 13,794 |
+| Main run truncated at 8k? | **No** (full openings; 8k is jsort default only) |
+| Pilot sample | 25 scheduled action-day openings; seed 20260920 |
+| Filter | `jgrep --para "states a view on inflation or the stance of monetary policy"`; cap 8,000; `filter_empty` = 0 |
+| ρ(filtered Score, `d_same`) | +0.927 (s.e.=0.029; n=25) |
+| ρ(baseline Score, `d_same`) | +0.927 (s.e.=0.029; n=25) |
+| Δρ vs `d_same` | +0.0002 (s.e.=0.0007) |
+| ρ(filtered, FedLock `m`) | +0.955 (s.e.=0.033; n=24) |
+| ρ(baseline, FedLock `m`) | +0.963 (s.e.=0.032; n=24) |
+| ρ(filtered, baseline Score) | +0.991 (s.e.=0.011) |
+| New Jev spend | ≈ $0.005 |
+
+Artifacts: `results/khaled_sensitivity/` · ANALYSIS §13.
+
 ## Interpretation (brief)
 
 Gates 1, 3, 4, and 6 pass under the pre-registered rules. Action-day Bradley–Terry Spearman exceeds the jsort +0.46 published point estimate. Gate 4 documents incomplete behavioral labeling under holds (`d_same` is zero when the target is unchanged). Gate 7 shows rank agreement with an independent FedLock text score — especially Score versus raw `m` (ρ = +0.944, s.e. = 0.016, n = 90) — and is not a FedLock replication. The TrueSkill replica is a different experiment.

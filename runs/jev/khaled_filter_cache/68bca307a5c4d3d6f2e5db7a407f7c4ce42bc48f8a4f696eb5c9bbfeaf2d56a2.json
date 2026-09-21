@@ -1,0 +1,27 @@
+{
+  "ok": true,
+  "score": 0.64,
+  "confidence": 0.58,
+  "probabilities": {
+    "0": 0.43,
+    "1": 0.52,
+    "2": 0.03,
+    "3": 0.02,
+    "4": 0.0
+  },
+  "legend": {
+    "0": "much more dovish",
+    "1": "somewhat dovish",
+    "2": "neutral",
+    "3": "somewhat hawkish",
+    "4": "much more hawkish"
+  },
+  "model": "jev-1.13.0",
+  "input_tokens": 1529,
+  "output_tokens": 19,
+  "latency_ms": 239,
+  "cache_key": "68bca307a5c4d3d6f2e5db7a407f7c4ce42bc48f8a4f696eb5c9bbfeaf2d56a2",
+  "hash": "7ba46862afdda3ef",
+  "date": "2019-10-30",
+  "arm": "filtered"
+}

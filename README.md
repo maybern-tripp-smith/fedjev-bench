@@ -56,6 +56,13 @@ Deploy `/docs` from `main`. Site: https://maybern-tripp-smith.github.io/fedjev-b
 
 [`CITATION`](CITATION) · MIT code · data terms in [`DATA.md`](DATA.md) (Shah CC BY-NC 4.0 not fully vendored).
 
+
+## Sensitivity: length and passage filtering (Khaled / jsort)
+
+Zero-$ length audit and a small paid `jgrep --para` → Score pilot live under [`results/khaled_sensitivity/`](results/khaled_sensitivity/). ANALYSIS §13. **Does not** mutate frozen `run_id=fedjev-2026-09-20`, raise char limits on full pressers, or re-run TrueSkill / Haiku.
+
+If you run jsort tournaments yourself, set `--budget` high enough for completion (Khaled tip); see [`scripts/README.md`](scripts/README.md).
+
 ## FedLock-faithful protocol replica (separate)
 
 A second experiment (`run_id` `fedjev-fedlock-replica-2026-09-20`) re-runs a FedLock-style tournament on the 95 chair openings: anonymized pairwise Choice, macro conditions attached to each text, Microsoft TrueSkill aggregation (stop when every document’s uncertainty σ < 2). Live arms are Jev (`jev-latest`) and Claude Haiku (`claude-haiku-4-5-20251001`); the third arm is published FedLock `m` / `ma` (Llama is not re-invoked). This is protocol fidelity on a 95-document corpus, not a 4,000-speech / ~60,000-comparison scale copy, and it does not replace Gate 7.

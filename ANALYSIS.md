@@ -62,6 +62,8 @@ jsort supplies the behavioral-label algebra and a published rank-correlation ref
 
 **Labels (jsort-aligned).** `d_same` = DFEDTARU[t+1] − DFEDTARU[t−1]. `y_action` = sign(`d_same`). `d_90` = DFEDTARU[t+90] − DFEDTARU[t]. `d_2y` = DGS2[t] − DGS2[t−1].
 
+**Openings vs full pressers; length.** Documents are chair openings extracted from press-conference PDFs, not full Q&A pressers. Relative to jsort’s default `--max-chars 8000`, 39/95 openings exceed 8,000 characters (AUDIT §13). That bindingness is recorded as a design fact; the frozen main protocol is unchanged.
+
 **Exclusions (pre-registered).** Drop 2020-03-03 and 2020-03-15 (unscheduled) and other `exclude_main` or unscheduled rows from the main analysis. Flag 2023-03-22 (SVB) without dropping.
 
 **Gold strata (frozen before scoring).** A, extreme document pairs, n=40. B, Shah hawk versus dove sentences, n=200, seed 20260920. C, adjacent scheduled meetings with nonzero change in `d_same`, n=22. Manifest: `data/pairs/PAIR_MANIFEST.md`.
@@ -560,7 +562,59 @@ Cost and latency columns are accounting facts at the listed prices. They are not
 - `results/fedlock_replica/fedlock_matches.json`
 - `results/figures/fedlock_replica_*.png` when the replica plotting path is run (also under `docs/figures/`)
 
-## 13. Ethics and licenses
+
+## 13. Sensitivity: passage filtering and length (Khaled / jsort)
+
+**Scope.** Design audit and a small paid pilot only. The frozen main `run_id=fedjev-2026-09-20` protocol is **unchanged**: we do not raise character limits on full pressers, re-run full TrueSkill, or re-run Haiku.
+
+### Length vs jsort default 8,000 characters
+
+jsort / jgrep expose `--max-chars` with default **8000**. On our chair-opening corpus (n=95, cleaned `text` field):
+
+| Statistic | Value |
+|-----------|------:|
+| Mean characters | 7,917 |
+| p50 | 7,547 |
+| p90 | 10,823 |
+| p95 | 11,706 |
+| Max | 13,794 |
+| n exceeding 8,000 | **39** |
+| Share exceeding 8,000 | **41.1%** |
+| Main run truncated at 8k? | **No** (full openings scored) |
+
+Dates over 8k are listed in `results/khaled_sensitivity/char_length_audit.json`. Figure: `docs/figures/char_length_vs_8k.png`.
+
+**Interpretation.** Even among *openings* (not full pressers), the 8k default is binding for about two-fifths of meetings. That is a property of the tooling default relative to our corpus, not a claim that the main Score/Choice answers truncated mid-document in an undocumented way: the main SystemOne Score pass sent full stripped openings without an 8k client cap. The audit records the jsort design choice for readers who re-rank with jsort/jsort tournaments.
+
+### Passage-filter pilot (seed `20260920`)
+
+Khaled’s suggested workflow is to filter paragraphs first (`jgrep --para "states a view on inflation or the stance of monetary policy"`), then sort or score. We sampled **25 scheduled action-day openings** (seed fixed; all 25 are action days overlapping the Gate 3 action set). For each meeting we recovered blank-line paragraphs from the presser PDF, ran `jgrep --para` with that exact criterion, concatenated kept paragraphs, capped at 8,000 characters (jsort-aligned), and re-ran **Score only** with the same five ordered levels as the main bench. Empty filters would have fallen back to the original opening (`filter_empty=true`); none did (0 / 25).
+
+| Contrast | Baseline ρ | Filtered ρ | Δρ | s.e.(Δρ) | n |
+|----------|----------:|----------:|---:|---------:|--:|
+| Score vs `d_same` | +0.927 | +0.927 | +0.0002 | 0.0007 | 25 |
+| Score vs FedLock `m` | +0.963 | +0.955 | −0.0089 | 0.0112 | 24 |
+| Filtered vs baseline Score | — | +0.991 | — | 0.011 | 25 |
+
+Bootstrap standard errors use 1,000 paired meeting resamples (seed 20260920). New Jev spend for this pilot ≈ **$0.005** (jgrep estimate ≈ $0.0034; Score ≈ $0.0017). Machine-readable: `results/khaled_sensitivity/filter_pilot.json`. Figure: `docs/figures/filter_pilot_scores.png`.
+
+**Interpretation.** On action days, filtering to inflation / policy-stance paragraphs leaves the Score nearly unchanged (ρ with baseline ≈ 0.99) and does not move Spearman agreement with `d_same` by a measurable amount given the paired bootstrap s.e. Agreement with FedLock `m` shifts by less than one standard error. The pilot therefore does **not** motivate re-scoring the full frozen corpus under a raised character limit or a mandatory para-filter; it documents robustness of the action-day Score ranking to Khaled’s jsort-oriented preprocessing.
+
+### Operational note
+
+If re-running **jsort** tournaments, set `--budget` explicitly high enough for completion (or `--budget 0`); the default dollar budget can stop mid-run. See `scripts/README.md`.
+
+![Opening length vs 8k](docs/figures/char_length_vs_8k.png)
+
+*Figure. Distribution of opening character counts with the jsort default 8,000-character line.*
+
+![Filter pilot](docs/figures/filter_pilot_scores.png)
+
+*Figure. Filtered vs baseline Score (left) and Spearman ρ vs `d_same` / FedLock `m` with paired bootstrap standard errors (right).*
+
+---
+
+## 14. Ethics and licenses
 
 | Asset | Status |
 |-------|--------|

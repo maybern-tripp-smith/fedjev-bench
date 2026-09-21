@@ -226,6 +226,10 @@ This run meets those descriptions: inversion 0.000; action-day ρ +0.851 (s.e. 0
 
 ---
 
+## Sensitivity (not a gate)
+
+A separate length audit and passage-filter Score pilot (Khaled / jsort tip) lives under [`results/khaled_sensitivity/`](results/khaled_sensitivity/) and ANALYSIS §13. Headline: **39 / 95** openings exceed jsort’s default 8,000-character cap, but the published main run did **not** apply that truncate; a 25-meeting filter pilot left action-day Score ranks essentially unchanged (ρ with baseline ≈ 0.99; Δρ vs `d_same` ≈ 0). See the [Report sensitivity table](docs/report.html) and figures `char_length_vs_8k.png` / `filter_pilot_scores.png`.
+
 ## Where to go next
 
 | If you want | Open |
