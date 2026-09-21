@@ -72,6 +72,7 @@ main {
   border-right: 1px solid var(--border);
   min-height: 70vh;
 }
+body.wide main, body.wide footer { max-width: 48rem; }
 h1.page { font-size: 1.45rem; margin: 0 0 1rem; font-weight: 600; }
 h2 {
   font-size: 1.15rem;
@@ -165,6 +166,17 @@ def rewrite_href(url: str) -> str:
     if url.startswith("results/") or url.startswith("data/"):
         return f"https://github.com/maybern-tripp-smith/fedjev-bench/blob/main/{url}"
     return url
+
+
+def rewrite_img_src(src: str) -> str:
+    for prefix in (
+        "results/multiaxis/figures/",
+        "results/figures/",
+        "docs/figures/",
+    ):
+        if src.startswith(prefix):
+            return "figures/" + src[len(prefix) :]
+    return src
 
 
 def inline(text: str) -> str:
@@ -298,9 +310,7 @@ def md_to_html(
             continue
         img = re.match(r"^!\[([^\]]*)\]\(([^)]+)\)\s*$", line)
         if img:
-            alt, src = img.group(1), img.group(2)
-            if src.startswith("results/figures/"):
-                src = "figures/" + src.split("results/figures/", 1)[1]
+            alt, src = img.group(1), rewrite_img_src(img.group(2))
             cap = None
             j = i + 1
             if j < n and not lines[j].strip():
@@ -364,6 +374,7 @@ def page(
     body: str,
     *,
     heading: str | None = None,
+    wide: bool = False,
 ) -> str:
     nav = []
     for href, label, key in (
@@ -379,6 +390,7 @@ def page(
         nav.append(f'<a href="{href}"{cls}>{label}</a>')
     nav.append(f'<a href="{REPO}">GitHub</a>')
     h = f"<h1 class=\"page\">{html.escape(heading)}</h1>\n" if heading else ""
+    body_cls = ' class="wide"' if wide else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -392,7 +404,7 @@ def page(
 {CSS}
 </style>
 </head>
-<body>
+<body{body_cls}>
 <header>
 <p class="kicker">Technical report · run fedjev-2026-09-20</p>
 <h1>fedjev-bench</h1>
@@ -455,7 +467,8 @@ def index_body() -> str:
 <li><a href="report.html">Report</a> — gate tables, cost, and artifacts</li>
 <li><a href="fedlock.html">FedLock (Gate 7)</a> — published-score agreement; how to rebuild the match</li>
 <li><a href="fedlock-replica.html">TrueSkill replica</a> — separate FedLock-faithful tournament on 95 openings</li>
-<li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_replica/agreement.json</code></li>
+<li><a href="multiaxis.html">Multi-axis</a> — seven frozen criteria on the same 95 openings (text-only and macro-conditional)</li>
+<li>Machine-readable: <code>results/gates.json</code>, <code>results/interpretation.json</code>, <code>results/fedlock_replica/agreement.json</code>, <code>results/multiaxis/gates.json</code></li>
 </ul>
 """
 
@@ -477,7 +490,7 @@ def main() -> None:
     )
     fidelity_html = md_to_html(fidelity_md, drop_h1=True, abstract_box=False)
     replica_html = md_to_html(replica_md, drop_h1=True, abstract_box=False)
-    multiaxis_html = md_to_html(multiaxis_md, drop_h1=True, abstract_box=False)
+    multiaxis_html = md_to_html(multiaxis_md, drop_h1=True, abstract_box=True)
 
     (DOCS / "index.html").write_text(
         page("fedjev-bench — Overview", "index", index_body().strip())
@@ -524,10 +537,11 @@ def main() -> None:
     )
     (DOCS / "multiaxis.html").write_text(
         page(
-            "fedjev-bench — Multi-axis extension",
+            "fedjev-bench — Seven criteria on chair openings",
             "multiaxis",
             multiaxis_html,
-            heading="Multi-axis TrueSkill extension",
+            heading="Seven criteria on chair openings",
+            wide=True,
         )
     )
     print(

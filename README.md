@@ -13,7 +13,7 @@ Pre-registered evaluation of TypeSafe/Jev pairwise rankings of Federal Open Mark
 
 **Abstract.** Same-day funds-rate changes are an incomplete label for textual hawkishness when the target is unchanged. The evaluation asks whether Jev recovers easy hawk/dove orderings, agrees in rank with `d_same` on scheduled action days, and still separates holds from cuts on the text axis. Gate 7 reports Spearman’s rank correlation with FedLock’s published press-conference scores (raw TrueSkill mean `m`; era-adjusted `ma` as a sensitivity). It reads those scores; it does not re-run FedLock’s tournament. A separate FedLock-faithful TrueSkill replica on the 95 openings is documented in [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md).
 
-How to read the scoreboard: [`HOW_TO_READ.md`](HOW_TO_READ.md) ([Pages](https://maybern-tripp-smith.github.io/fedjev-bench/how-to-read.html)). Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). Figures: [`results/figures/`](results/figures/). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md).
+How to read the scoreboard: [`HOW_TO_READ.md`](HOW_TO_READ.md) ([Pages](https://maybern-tripp-smith.github.io/fedjev-bench/how-to-read.html)). Long-form: [`ANALYSIS.md`](ANALYSIS.md). Gate tables: [`REPORT.md`](REPORT.md). Figures: [`results/figures/`](results/figures/). Machine-readable: [`results/gates.json`](results/gates.json) · [`results/interpretation.json`](results/interpretation.json). Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). Multi-axis extension (seven criteria, `run_id` `fedjev-multiaxis-2026-09-20`): [`results/multiaxis/FINDINGS.md`](results/multiaxis/FINDINGS.md) ([Pages](https://maybern-tripp-smith.github.io/fedjev-bench/multiaxis.html)).
 
 ---
 
@@ -68,3 +68,9 @@ If you run jsort tournaments yourself, set `--budget` high enough for completion
 A second experiment (`run_id` `fedjev-fedlock-replica-2026-09-20`) re-runs a FedLock-style tournament on the 95 chair openings: anonymized pairwise Choice, macro conditions attached to each text, Microsoft TrueSkill aggregation (stop when every document’s uncertainty σ < 2). Live arms are Jev (`jev-latest`) and Claude Haiku (`claude-haiku-4-5-20251001`); the third arm is published FedLock `m` / `ma` (Llama is not re-invoked). This is protocol fidelity on a 95-document corpus, not a 4,000-speech / ~60,000-comparison scale copy, and it does not replace Gate 7.
 
 See [`results/fedlock_replica/FINDINGS.md`](results/fedlock_replica/FINDINGS.md) and ANALYSIS §12. Gate 7 fidelity: [`results/fedlock_fidelity.md`](results/fedlock_fidelity.md). Needs the `fedlock` extra (`trueskill`); the Haiku arm also needs `haiku`.
+
+## Multi-axis TrueSkill extension (separate)
+
+A third experiment (`run_id` `fedjev-multiaxis-2026-09-20`) ranks the same 95 openings on seven frozen criterion strings, text-only and with contemporaneous macro conditions attached. Jev only; tracked spend $1.5329. The first principal component is inflation hawkishness (50.6 percent text-only; 55.5 percent conditional). A smaller second component (19.7 / 17.0 percent) loads on forward-path and financial-conditions language. Worked example on the Pages note: 2 November 2022. Does not mutate gold for `fedjev-2026-09-20`.
+
+See [`results/multiaxis/FINDINGS.md`](results/multiaxis/FINDINGS.md) and ANALYSIS §15. Redraw overview figures with `python scripts/plot_multiaxis_overview.py` (reads frozen CSV/JSON only).

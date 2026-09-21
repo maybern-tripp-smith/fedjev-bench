@@ -657,17 +657,19 @@ SEP medians: not vendored — skipped. QT pace numeric label: not in `meetings.c
 
 Partially. After tightness, inflation-hawkish language remains the dominant common factor (PC1). A smaller second factor loads on forward-guidance / financial-conditions (and, conditionally, look-through). Axis 7 is redundant with axis 1. Axes 2–3 fail the funds-target construct check (negative ρ). Axes 4–6 pass M1 but are not a second PC1-sized dimension. Text ranks do not cause rate changes.
 
-![Multi-axis correlations (text)](docs/figures/multiaxis_corr_text.png)
+The Pages note ([`docs/multiaxis.html`](docs/multiaxis.html); source `results/multiaxis/FINDINGS.md`) walks a mid-career economist through the seven frozen criterion strings, the text-only versus macro-conditional designs, a worked example (2 November 2022, Chair Powell, `d_same` = +0.75), and the factor / gate tables. New overview figures live in `results/multiaxis/figures/`. The tournament script’s original panels remain below.
 
-*Figure. Spearman correlation matrix across seven axes (text-only design).*
+![Multi-axis correlations (text)](results/figures/multiaxis_corr_text.png)
 
-![Factor loadings (text)](docs/figures/multiaxis_loadings_text.png)
+*Figure. Spearman rank correlation of raw TrueSkill means across seven axes, text-only design, n = 95. Axis 7 versus axis 1 is +0.923. Source: `results/multiaxis/corr_text.csv`.*
 
-*Figure. SVD loadings on PC1–PC2 (text-only).*
+![Factor loadings (text)](results/figures/multiaxis_loadings_text.png)
 
-![Action-day gates](docs/figures/multiaxis_gates_dsame.png)
+*Figure. Singular-value loadings on the first two principal components, text-only. First-component variance 50.6 percent (axis 1 dominant); second-component variance 19.7 percent (forward path −0.61, financial-conditions restrictiveness −0.75). Source: `results/multiaxis/loadings_text.csv`.*
 
-*Figure. Action-day Spearman ρ vs `d_same` by axis×design (error bars = bootstrap s.e.).*
+![Action-day gates](results/figures/multiaxis_gates_dsame.png)
+
+*Figure. Action-day Spearman ρ versus `d_same` by axis × design, n = 30, error bars = bootstrap standard error. Pass line ρ = +0.30. Axes 2–3 are negative. Source: `results/multiaxis/gates.json`.*
 
 Artifacts: `results/multiaxis/` · Pages: [`docs/multiaxis.html`](docs/multiaxis.html).
 

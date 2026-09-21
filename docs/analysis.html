@@ -70,6 +70,7 @@ main {
   border-right: 1px solid var(--border);
   min-height: 70vh;
 }
+body.wide main, body.wide footer { max-width: 48rem; }
 h1.page { font-size: 1.45rem; margin: 0 0 1rem; font-weight: 600; }
 h2 {
   font-size: 1.15rem;
@@ -357,37 +358,37 @@ python scripts/plot_figures.py</code></pre>
 <h3>Publication figures</h3>
 <p>Gate and experiment plots (PNG/PDF under <code>results/figures/</code> and <code>docs/figures/</code>; captions in <code>results/figures/CAPTIONS.md</code>):</p>
 <figure>
-<img src="docs/figures/gate1_2_inversion_bars.png" alt="Inversion rates">
+<img src="figures/gate1_2_inversion_bars.png" alt="Inversion rates">
 </figure>
 <figure>
-<img src="docs/figures/gate3_score_vs_dsame.png" alt="Gate 3 scores versus d_same">
+<img src="figures/gate3_score_vs_dsame.png" alt="Gate 3 scores versus d_same">
 </figure>
 <figure>
-<img src="docs/figures/gate4_holds_cuts_hikes.png" alt="Holds vs cuts vs hikes">
+<img src="figures/gate4_holds_cuts_hikes.png" alt="Holds vs cuts vs hikes">
 </figure>
 <figure>
-<img src="docs/figures/gate7_fedlock_scatter.png" alt="Gate 7 FedLock scatter">
+<img src="figures/gate7_fedlock_scatter.png" alt="Gate 7 FedLock scatter">
 </figure>
 <figure>
-<img src="docs/figures/haiku_vs_jev_cost_latency.png" alt="Haiku vs Jev cost and latency">
+<img src="figures/haiku_vs_jev_cost_latency.png" alt="Haiku vs Jev cost and latency">
 </figure>
 <figure>
-<img src="docs/figures/exp3_composite_vs_dsame.png" alt="Exp3 composite vs d_same">
+<img src="figures/exp3_composite_vs_dsame.png" alt="Exp3 composite vs d_same">
 </figure>
 <figure>
-<img src="docs/figures/exp3_ablation.png" alt="Exp3 ablation">
+<img src="figures/exp3_ablation.png" alt="Exp3 ablation">
 </figure>
 <figure>
-<img src="docs/figures/exp4_noul_by_era.png" alt="Exp4 Nouls by era">
+<img src="figures/exp4_noul_by_era.png" alt="Exp4 Nouls by era">
 </figure>
 <figure>
-<img src="docs/figures/exp5_reliability.png" alt="Exp5 reliability">
+<img src="figures/exp5_reliability.png" alt="Exp5 reliability">
 </figure>
 <figure>
-<img src="docs/figures/exp6_span_pgold.png" alt="Exp6 span p_gold">
+<img src="figures/exp6_span_pgold.png" alt="Exp6 span p_gold">
 </figure>
 <figure>
-<img src="docs/figures/exp7_macro_agreement.png" alt="Exp7 macro agreement">
+<img src="figures/exp7_macro_agreement.png" alt="Exp7 macro agreement">
 </figure>
 <h2>12. FedLock-faithful protocol replication (separate experiment)</h2>
 <p>Full re-implementation note: <a href="fedlock-replica.html"><code>results/fedlock_replica/FINDINGS.md</code></a>. Numbers below are copied from <code>agreement.json</code> and <code>cost_performance.json</code>.</p>
@@ -430,11 +431,11 @@ python scripts/plot_figures.py</code></pre>
 <h3>Operational note</h3>
 <p>If re-running <strong>jsort</strong> tournaments, set <code>--budget</code> explicitly high enough for completion (or <code>--budget 0</code>); the default dollar budget can stop mid-run. See <code>scripts/README.md</code>.</p>
 <figure>
-<img src="docs/figures/char_length_vs_8k.png" alt="Opening length vs 8k">
+<img src="figures/char_length_vs_8k.png" alt="Opening length vs 8k">
 <figcaption>Figure. Distribution of opening character counts with the jsort default 8,000-character line.</figcaption>
 </figure>
 <figure>
-<img src="docs/figures/filter_pilot_scores.png" alt="Filter pilot">
+<img src="figures/filter_pilot_scores.png" alt="Filter pilot">
 <figcaption>Figure. Filtered vs baseline Score (left) and Spearman ρ vs <code>d_same</code> / FedLock <code>m</code> with paired bootstrap standard errors (right).</figcaption>
 </figure>
 <h2>15. Multi-axis TrueSkill extension (Jev only)</h2>
@@ -452,17 +453,18 @@ python scripts/plot_figures.py</code></pre>
 <p><strong>Filter emptiness (important):</strong> axes 2 and 7 emptied 61 and 66 of 95 openings respectively (few paragraphs match those narrow intents); those documents fell back to full openings. Axis 3 emptied 36. Interpret sparse-axis ranks with that caveat.</p>
 <h3>Does “something else” survive?</h3>
 <p>Partially. After tightness, inflation-hawkish language remains the dominant common factor (PC1). A smaller second factor loads on forward-guidance / financial-conditions (and, conditionally, look-through). Axis 7 is redundant with axis 1. Axes 2–3 fail the funds-target construct check (negative ρ). Axes 4–6 pass M1 but are not a second PC1-sized dimension. Text ranks do not cause rate changes.</p>
+<p>The Pages note (<a href="docs/multiaxis.html"><code>docs/multiaxis.html</code></a>; source <code>results/multiaxis/FINDINGS.md</code>) walks a mid-career economist through the seven frozen criterion strings, the text-only versus macro-conditional designs, a worked example (2 November 2022, Chair Powell, <code>d_same</code> = +0.75), and the factor / gate tables. New overview figures live in <code>results/multiaxis/figures/</code>. The tournament script’s original panels remain below.</p>
 <figure>
-<img src="docs/figures/multiaxis_corr_text.png" alt="Multi-axis correlations (text)">
-<figcaption>Figure. Spearman correlation matrix across seven axes (text-only design).</figcaption>
+<img src="figures/multiaxis_corr_text.png" alt="Multi-axis correlations (text)">
+<figcaption>Figure. Spearman rank correlation of raw TrueSkill means across seven axes, text-only design, n = 95. Axis 7 versus axis 1 is +0.923. Source: <code>results/multiaxis/corr_text.csv</code>.</figcaption>
 </figure>
 <figure>
-<img src="docs/figures/multiaxis_loadings_text.png" alt="Factor loadings (text)">
-<figcaption>Figure. SVD loadings on PC1–PC2 (text-only).</figcaption>
+<img src="figures/multiaxis_loadings_text.png" alt="Factor loadings (text)">
+<figcaption>Figure. Singular-value loadings on the first two principal components, text-only. First-component variance 50.6 percent (axis 1 dominant); second-component variance 19.7 percent (forward path −0.61, financial-conditions restrictiveness −0.75). Source: <code>results/multiaxis/loadings_text.csv</code>.</figcaption>
 </figure>
 <figure>
-<img src="docs/figures/multiaxis_gates_dsame.png" alt="Action-day gates">
-<figcaption>Figure. Action-day Spearman ρ vs <code>d_same</code> by axis×design (error bars = bootstrap s.e.).</figcaption>
+<img src="figures/multiaxis_gates_dsame.png" alt="Action-day gates">
+<figcaption>Figure. Action-day Spearman ρ versus <code>d_same</code> by axis × design, n = 30, error bars = bootstrap standard error. Pass line ρ = +0.30. Axes 2–3 are negative. Source: <code>results/multiaxis/gates.json</code>.</figcaption>
 </figure>
 <p>Artifacts: <code>results/multiaxis/</code> · Pages: <a href="docs/multiaxis.html"><code>docs/multiaxis.html</code></a>.</p>
 <h2>16. Ethics and licenses</h2>
