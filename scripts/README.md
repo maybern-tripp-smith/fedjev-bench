@@ -30,3 +30,13 @@ python scripts/audit_char_lengths.py
 # Filter pilot (~$0.005 on 25 action-day openings; seed 20260920)
 python scripts/run_khaled_filter_pilot.py --live
 ```
+
+## Multi-axis extension (`run_id=fedjev-multiaxis-2026-09-20`)
+
+```bash
+python3 scripts/run_multiaxis.py            # full: filter + 7×2 tournaments + analyze
+python3 scripts/run_multiaxis.py --dry-run  # no paid Choice (still may call jgrep)
+```
+
+Jev only. Budget hard cap $5 (target ~$2–3). Pin `jgrep --budget` / `--max-chars 8000`. Outputs: `results/multiaxis/`. Pages: `docs/multiaxis.html` via `scripts/render_docs.py`.
+

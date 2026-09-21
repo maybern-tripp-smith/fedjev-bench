@@ -614,7 +614,65 @@ If re-running **jsort** tournaments, set `--budget` explicitly high enough for c
 
 ---
 
-## 14. Ethics and licenses
+
+
+## 15. Multi-axis TrueSkill extension (Jev only)
+
+**Scope.** Separate experiment (`run_id=fedjev-multiaxis-2026-09-20`). Same 95 chair **openings** (prepared remarks). Q&A drift is **out of scope** (not vendored). Full-speech robustness is future work. Haiku was not run.
+
+**Protocol.** For each of seven frozen criteria × two designs (text-only; macro-conditional with Core PCE year-over-year, unemployment rate, real GDP growth QoQ SAAR, VIX, and Chicago Fed National Financial Conditions Index), filter paragraphs with `jgrep --para` (budget pinned; `--max-chars 8000`), then run an adaptive TrueSkill tournament (prior μ₀=50, σ₀≈8.33; stop when all σ&lt;2 or ~1,200 comparisons). Choice with randomized presentation order, matching the FedLock replica. Empty-after-filter documents are flagged and fall back to the full stripped opening.
+
+**Frozen criteria** (exact strings; axis 1 = baseline): see Report multi-axis pre-registration and `results/multiaxis/FINDINGS.md`.
+
+**Cost.** Tracked spend ≈ **$1.53** (filter accounting ≈ $0.06; Choice ≈ $1.48). Wall ≈ 8.7 minutes. Order-swap check on axis-1 text (n=30 pairs): flip rate 0.0; mean |Δp| ≈ 0.03.
+
+### Factor structure
+
+| Design | PC1 variance | PC1 dominant | PC2 variance | PC2 theme (loadings) |
+|--------|-------------:|--------------|-------------:|----------------------|
+| text | 50.6% | `ax1_inflation_hawkish` | 19.7% | forward path (−0.61) and FCI restrictiveness (−0.75) |
+| conditional | 55.5% | `ax1_inflation_hawkish` | 17.0% | look-through (−0.59) vs FCI (+0.72) |
+
+Axis 1 is PC1 under both designs. A second factor exists with economic meaning: guidance / financial-conditions language (text) and look-through vs financial-conditions (conditional). It is smaller than PC1.
+
+**Near-duplicates to drop (|\rho|≥0.90 vs axis 1):** `ax7_infl_vs_labor_risk` (both designs); under conditional also `ax2_emp_vs_infl` (strongly *negatively* correlated — mirror of inflation hawkishness, not a new positive factor).
+
+### Validation (action-day Spearman vs `d_same`, n=30)
+
+| Axis | text ρ (s.e.) | conditional ρ (s.e.) | M1 pass |
+|------|--------------:|---------------------:|:-------:|
+| 1 inflation hawkish | +0.702 (0.121) | +0.827 (0.073) | PASS |
+| 2 employment-weight | −0.870 (0.048) | −0.866 (0.047) | fail (sign flip) |
+| 3 look-through | −0.505 (0.151) | −0.451 (0.147) | fail |
+| 4 forward path | +0.414 (0.125) | +0.513 (0.109) | PASS |
+| 5 QT eager | +0.612 (0.116) | +0.715 (0.101) | PASS |
+| 6 FCI restrictiveness | +0.765 (0.095) | +0.650 (0.133) | PASS |
+| 7 infl. upside &gt; labor | +0.699 (0.106) | +0.815 (0.072) | PASS (near-dup of 1) |
+
+SEP medians: not vendored — skipped. QT pace numeric label: not in `meetings.csv` — axis 5 uses `d_same` / `d_2y` only. USD / NFCI day-change proxies: see `results/multiaxis/gates.json`. FedLock `m` agreement: axis 1 only (secondary).
+
+**Filter emptiness (important):** axes 2 and 7 emptied 61 and 66 of 95 openings respectively (few paragraphs match those narrow intents); those documents fell back to full openings. Axis 3 emptied 36. Interpret sparse-axis ranks with that caveat.
+
+### Does “something else” survive?
+
+Partially. After tightness, inflation-hawkish language remains the dominant common factor (PC1). A smaller second factor loads on forward-guidance / financial-conditions (and, conditionally, look-through). Axis 7 is redundant with axis 1. Axes 2–3 fail the funds-target construct check (negative ρ). Axes 4–6 pass M1 but are not a second PC1-sized dimension. Text ranks do not cause rate changes.
+
+![Multi-axis correlations (text)](docs/figures/multiaxis_corr_text.png)
+
+*Figure. Spearman correlation matrix across seven axes (text-only design).*
+
+![Factor loadings (text)](docs/figures/multiaxis_loadings_text.png)
+
+*Figure. SVD loadings on PC1–PC2 (text-only).*
+
+![Action-day gates](docs/figures/multiaxis_gates_dsame.png)
+
+*Figure. Action-day Spearman ρ vs `d_same` by axis×design (error bars = bootstrap s.e.).*
+
+Artifacts: `results/multiaxis/` · Pages: [`docs/multiaxis.html`](docs/multiaxis.html).
+
+
+## 16. Ethics and licenses
 
 | Asset | Status |
 |-------|--------|

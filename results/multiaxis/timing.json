@@ -1,0 +1,20 @@
+{
+  "run_id": "fedjev-multiaxis-2026-09-20",
+  "wall_seconds_total": 521.4370772089896,
+  "per_tournament": {
+    "ax1_inflation_hawkish__text": 38.853520015996764,
+    "ax1_inflation_hawkish__conditional": 35.70652560799499,
+    "ax2_emp_vs_infl__text": 37.91732473600132,
+    "ax2_emp_vs_infl__conditional": 36.58213980399887,
+    "ax3_lookthrough__text": 31.30124708999938,
+    "ax3_lookthrough__conditional": 29.2901298259967,
+    "ax4_forward_path__text": 33.3376690929872,
+    "ax4_forward_path__conditional": 34.505998820997775,
+    "ax5_qt_eager__text": 33.76493452399154,
+    "ax5_qt_eager__conditional": 29.83681055699708,
+    "ax6_fci_restrictive__text": 30.89670423899952,
+    "ax6_fci_restrictive__conditional": 29.948276227005408,
+    "ax7_infl_vs_labor_risk__text": 34.90436222900462,
+    "ax7_infl_vs_labor_risk__conditional": 35.07197186499252
+  }
+}

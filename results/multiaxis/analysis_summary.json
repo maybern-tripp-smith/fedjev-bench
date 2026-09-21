@@ -1,0 +1,1451 @@
+{
+  "run_id": "fedjev-multiaxis-2026-09-20",
+  "tournaments": [
+    {
+      "tag": "ax1_inflation_hawkish__text",
+      "axis": "ax1_inflation_hawkish",
+      "design": "text",
+      "criterion": "more hawkish about inflation",
+      "stop_reason": "max_comps",
+      "n_comps": 1200,
+      "n_docs": 95,
+      "wall_seconds": 38.853520015996764,
+      "usd_at_end": 0.18172005600000035,
+      "max_sigma": 2.3822547720854175,
+      "mean_sigma": 1.7686422463979246,
+      "frac_sigma_lt_2": 0.9789473684210527,
+      "near_half_pairs": 149,
+      "latency_ms_mean": 256.13002806361084,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax1_inflation_hawkish__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax1_inflation_hawkish__text.jsonl",
+      "n_filter_empty": 0
+    },
+    {
+      "tag": "ax1_inflation_hawkish__conditional",
+      "axis": "ax1_inflation_hawkish",
+      "design": "conditional",
+      "criterion": "more hawkish about inflation",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1128,
+      "n_docs": 95,
+      "wall_seconds": 35.70652560799499,
+      "usd_at_end": 0.31050709200000043,
+      "max_sigma": 1.9977414541539298,
+      "mean_sigma": 1.8094327338565523,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 228,
+      "latency_ms_mean": 252.97020854021847,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax1_inflation_hawkish__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax1_inflation_hawkish__conditional.jsonl",
+      "n_filter_empty": 0
+    },
+    {
+      "tag": "ax2_emp_vs_infl__text",
+      "axis": "ax2_emp_vs_infl",
+      "design": "text",
+      "criterion": "places more weight on employment downside than on inflation upside",
+      "stop_reason": "max_comps",
+      "n_comps": 1200,
+      "n_docs": 95,
+      "wall_seconds": 37.91732473600132,
+      "usd_at_end": 0.4210920839999995,
+      "max_sigma": 2.3239162172179095,
+      "mean_sigma": 1.7555312832285048,
+      "frac_sigma_lt_2": 0.9894736842105263,
+      "near_half_pairs": 178,
+      "latency_ms_mean": 253.46635071090049,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax2_emp_vs_infl__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax2_emp_vs_infl__text.jsonl",
+      "n_filter_empty": 61
+    },
+    {
+      "tag": "ax2_emp_vs_infl__conditional",
+      "axis": "ax2_emp_vs_infl",
+      "design": "conditional",
+      "criterion": "places more weight on employment downside than on inflation upside",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1175,
+      "n_docs": 95,
+      "wall_seconds": 36.58213980399887,
+      "usd_at_end": 0.5424063539999987,
+      "max_sigma": 1.9942172820888706,
+      "mean_sigma": 1.7712271347332154,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 149,
+      "latency_ms_mean": 248.6556603773585,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax2_emp_vs_infl__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax2_emp_vs_infl__conditional.jsonl",
+      "n_filter_empty": 61
+    },
+    {
+      "tag": "ax3_lookthrough__text",
+      "axis": "ax3_lookthrough",
+      "design": "text",
+      "criterion": "more willing to treat a price-level shift from tariffs, energy, or supply as transitory and look through it",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1034,
+      "n_docs": 95,
+      "wall_seconds": 31.30124708999938,
+      "usd_at_end": 0.6201171059999997,
+      "max_sigma": 1.9961244470034107,
+      "mean_sigma": 1.8872558832938258,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 213,
+      "latency_ms_mean": 247.98888888888888,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax3_lookthrough__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax3_lookthrough__text.jsonl",
+      "n_filter_empty": 36
+    },
+    {
+      "tag": "ax3_lookthrough__conditional",
+      "axis": "ax3_lookthrough",
+      "design": "conditional",
+      "criterion": "more willing to treat a price-level shift from tariffs, energy, or supply as transitory and look through it",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 987,
+      "n_docs": 95,
+      "wall_seconds": 29.2901298259967,
+      "usd_at_end": 0.7043688960000009,
+      "max_sigma": 1.9777436198888831,
+      "mean_sigma": 1.9362623829378987,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 255,
+      "latency_ms_mean": 238.23738532110093,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax3_lookthrough__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax3_lookthrough__conditional.jsonl",
+      "n_filter_empty": 36
+    },
+    {
+      "tag": "ax4_forward_path__text",
+      "axis": "ax4_forward_path",
+      "design": "text",
+      "criterion": "more explicit about the likely future path of policy; less purely data-dependent",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1081,
+      "n_docs": 95,
+      "wall_seconds": 33.3376690929872,
+      "usd_at_end": 0.8159515980000001,
+      "max_sigma": 1.9830014730484125,
+      "mean_sigma": 1.846244271265751,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 157,
+      "latency_ms_mean": 244.36550308008214,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax4_forward_path__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax4_forward_path__text.jsonl",
+      "n_filter_empty": 0
+    },
+    {
+      "tag": "ax4_forward_path__conditional",
+      "axis": "ax4_forward_path",
+      "design": "conditional",
+      "criterion": "more explicit about the likely future path of policy; less purely data-dependent",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1081,
+      "n_docs": 95,
+      "wall_seconds": 34.505998820997775,
+      "usd_at_end": 0.935710607999999,
+      "max_sigma": 1.955544665142197,
+      "mean_sigma": 1.8371032191420904,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 207,
+      "latency_ms_mean": 255.71354705274044,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax4_forward_path__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax4_forward_path__conditional.jsonl",
+      "n_filter_empty": 0
+    },
+    {
+      "tag": "ax5_qt_eager__text",
+      "axis": "ax5_qt_eager",
+      "design": "text",
+      "criterion": "more eager to shrink the balance sheet and less worried that QT will impair reserves or market function",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1175,
+      "n_docs": 95,
+      "wall_seconds": 33.76493452399154,
+      "usd_at_end": 1.0105268879999987,
+      "max_sigma": 1.9745078791605724,
+      "mean_sigma": 1.7642121555658967,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 211,
+      "latency_ms_mean": 231.7423076923077,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax5_qt_eager__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax5_qt_eager__text.jsonl",
+      "n_filter_empty": 6
+    },
+    {
+      "tag": "ax5_qt_eager__conditional",
+      "axis": "ax5_qt_eager",
+      "design": "conditional",
+      "criterion": "more eager to shrink the balance sheet and less worried that QT will impair reserves or market function",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 1034,
+      "n_docs": 95,
+      "wall_seconds": 29.83681055699708,
+      "usd_at_end": 1.0867119480000023,
+      "max_sigma": 1.9864369342494603,
+      "mean_sigma": 1.8912149454823906,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 172,
+      "latency_ms_mean": 228.534833869239,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax5_qt_eager__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax5_qt_eager__conditional.jsonl",
+      "n_filter_empty": 6
+    },
+    {
+      "tag": "ax6_fci_restrictive__text",
+      "axis": "ax6_fci_restrictive",
+      "design": "text",
+      "criterion": "more concerned that financial conditions are not restrictive enough, rather than worried they will overshoot",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 987,
+      "n_docs": 95,
+      "wall_seconds": 30.89670423899952,
+      "usd_at_end": 1.1797473660000022,
+      "max_sigma": 1.9892306997257454,
+      "mean_sigma": 1.9323573983904785,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 309,
+      "latency_ms_mean": 247.9909604519774,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax6_fci_restrictive__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax6_fci_restrictive__text.jsonl",
+      "n_filter_empty": 1
+    },
+    {
+      "tag": "ax6_fci_restrictive__conditional",
+      "axis": "ax6_fci_restrictive",
+      "design": "conditional",
+      "criterion": "more concerned that financial conditions are not restrictive enough, rather than worried they will overshoot",
+      "stop_reason": "all_sigma_lt_2",
+      "n_comps": 987,
+      "n_docs": 95,
+      "wall_seconds": 29.948276227005408,
+      "usd_at_end": 1.2815125680000021,
+      "max_sigma": 1.979945257311177,
+      "mean_sigma": 1.9315849382538643,
+      "frac_sigma_lt_2": 1.0,
+      "near_half_pairs": 284,
+      "latency_ms_mean": 242.7438202247191,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax6_fci_restrictive__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax6_fci_restrictive__conditional.jsonl",
+      "n_filter_empty": 1
+    },
+    {
+      "tag": "ax7_infl_vs_labor_risk__text",
+      "axis": "ax7_infl_vs_labor_risk",
+      "design": "text",
+      "criterion": "sees upside inflation risks as larger than downside labor-market risks",
+      "stop_reason": "max_comps",
+      "n_comps": 1200,
+      "n_docs": 95,
+      "wall_seconds": 34.90436222900462,
+      "usd_at_end": 1.3985975640000028,
+      "max_sigma": 2.219880143664782,
+      "mean_sigma": 1.7590830411882303,
+      "frac_sigma_lt_2": 0.9789473684210527,
+      "near_half_pairs": 138,
+      "latency_ms_mean": 232.27401129943502,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax7_infl_vs_labor_risk__text.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax7_infl_vs_labor_risk__text.jsonl",
+      "n_filter_empty": 66
+    },
+    {
+      "tag": "ax7_infl_vs_labor_risk__conditional",
+      "axis": "ax7_infl_vs_labor_risk",
+      "design": "conditional",
+      "criterion": "sees upside inflation risks as larger than downside labor-market risks",
+      "stop_reason": "max_comps",
+      "n_comps": 1200,
+      "n_docs": 95,
+      "wall_seconds": 35.07197186499252,
+      "usd_at_end": 1.52597571000001,
+      "max_sigma": 2.1281414702861903,
+      "mean_sigma": 1.7575949607472876,
+      "frac_sigma_lt_2": 0.968421052631579,
+      "near_half_pairs": 159,
+      "latency_ms_mean": 231.6067415730337,
+      "csv_path": "/workspace/fedjev-bench-gh/results/multiaxis/scores/ax7_infl_vs_labor_risk__conditional.csv",
+      "comps_path": "/workspace/fedjev-bench-gh/results/multiaxis/comparisons/ax7_infl_vs_labor_risk__conditional.jsonl",
+      "n_filter_empty": 66
+    }
+  ],
+  "factor": {
+    "text": {
+      "pc1_dominant_axis": "ax1_inflation_hawkish",
+      "var_explained": [
+        0.5059724241331682,
+        0.1966908291537971,
+        0.1417160597913465,
+        0.05870125549918779
+      ],
+      "pc1_loadings": {
+        "ax1_inflation_hawkish": 0.5062336828340778,
+        "ax2_emp_vs_infl": -0.4618478092309257,
+        "ax3_lookthrough": -0.3060548156621608,
+        "ax4_forward_path": -0.1097487633469868,
+        "ax5_qt_eager": 0.4329410083294159,
+        "ax6_fci_restrictive": -0.0016381172943640797,
+        "ax7_infl_vs_labor_risk": 0.48710277981662903
+      },
+      "pc2_loadings": {
+        "ax1_inflation_hawkish": -0.056374016919547014,
+        "ax2_emp_vs_infl": -0.12150498463337907,
+        "ax3_lookthrough": 0.18699812603486196,
+        "ax4_forward_path": -0.6111518862784477,
+        "ax5_qt_eager": -0.059027751348003726,
+        "ax6_fci_restrictive": -0.7545700691555375,
+        "ax7_infl_vs_labor_risk": -0.026894553142770734
+      },
+      "axes": [
+        "ax1_inflation_hawkish",
+        "ax2_emp_vs_infl",
+        "ax3_lookthrough",
+        "ax4_forward_path",
+        "ax5_qt_eager",
+        "ax6_fci_restrictive",
+        "ax7_infl_vs_labor_risk"
+      ]
+    },
+    "conditional": {
+      "pc1_dominant_axis": "ax1_inflation_hawkish",
+      "var_explained": [
+        0.554743987662981,
+        0.16994544484920232,
+        0.1516917260777798,
+        0.06849857941938545
+      ],
+      "pc1_loadings": {
+        "ax1_inflation_hawkish": 0.49551649921803465,
+        "ax2_emp_vs_infl": -0.4650206990909817,
+        "ax3_lookthrough": -0.2657592568162329,
+        "ax4_forward_path": -0.04133388741889011,
+        "ax5_qt_eager": 0.44476628174020627,
+        "ax6_fci_restrictive": 0.19963725485097847,
+        "ax7_infl_vs_labor_risk": 0.4777139276696049
+      },
+      "pc2_loadings": {
+        "ax1_inflation_hawkish": -0.06515197671250819,
+        "ax2_emp_vs_infl": 0.2525991794415254,
+        "ax3_lookthrough": -0.5924070517575104,
+        "ax4_forward_path": 0.0034145858957438115,
+        "ax5_qt_eager": -0.19946962244958455,
+        "ax6_fci_restrictive": 0.7236348394219995,
+        "ax7_infl_vs_labor_risk": -0.13249750564283297
+      },
+      "axes": [
+        "ax1_inflation_hawkish",
+        "ax2_emp_vs_infl",
+        "ax3_lookthrough",
+        "ax4_forward_path",
+        "ax5_qt_eager",
+        "ax6_fci_restrictive",
+        "ax7_infl_vs_labor_risk"
+      ]
+    }
+  },
+  "redundancy": {
+    "text": {
+      "ax2_emp_vs_infl": {
+        "spearman_vs_ax1": -0.8095744680851065,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": -0.8703580722305748,
+        "indistinguishable_gate": false
+      },
+      "ax3_lookthrough": {
+        "spearman_vs_ax1": -0.4405375139977604,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": -0.5049809832797969,
+        "indistinguishable_gate": false
+      },
+      "ax4_forward_path": {
+        "spearman_vs_ax1": -0.2111562150055991,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": 0.41399775559640173,
+        "indistinguishable_gate": true
+      },
+      "ax5_qt_eager": {
+        "spearman_vs_ax1": 0.7983622620380738,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": 0.6123315640914221,
+        "indistinguishable_gate": true
+      },
+      "ax6_fci_restrictive": {
+        "spearman_vs_ax1": -0.15319148936170213,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": 0.7654144551142776,
+        "indistinguishable_gate": true
+      },
+      "ax7_infl_vs_labor_risk": {
+        "spearman_vs_ax1": 0.9226343784994401,
+        "near_duplicate": true,
+        "ax1_d_same_rho": 0.7018706135576206,
+        "alt_d_same_rho": 0.6985008643841616,
+        "indistinguishable_gate": true
+      }
+    },
+    "conditional": {
+      "ax2_emp_vs_infl": {
+        "spearman_vs_ax1": -0.9024776035834267,
+        "near_duplicate": true,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": -0.8662662339485173,
+        "indistinguishable_gate": false
+      },
+      "ax3_lookthrough": {
+        "spearman_vs_ax1": -0.39024356103023516,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": -0.45058360376538603,
+        "indistinguishable_gate": false
+      },
+      "ax4_forward_path": {
+        "spearman_vs_ax1": -0.1333706606942889,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": 0.5129239634743791,
+        "indistinguishable_gate": false
+      },
+      "ax5_qt_eager": {
+        "spearman_vs_ax1": 0.8461226203807392,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": 0.7153496102514569,
+        "indistinguishable_gate": true
+      },
+      "ax6_fci_restrictive": {
+        "spearman_vs_ax1": 0.18282474804031357,
+        "near_duplicate": false,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": 0.6503615904776032,
+        "indistinguishable_gate": true
+      },
+      "ax7_infl_vs_labor_risk": {
+        "spearman_vs_ax1": 0.9522956326987683,
+        "near_duplicate": true,
+        "ax1_d_same_rho": 0.8270327257146723,
+        "alt_d_same_rho": 0.8145165144989671,
+        "indistinguishable_gate": true
+      }
+    }
+  },
+  "gates": {
+    "pre_registered": true,
+    "run_id": "fedjev-multiaxis-2026-09-20",
+    "by_tag": {
+      "ax1_inflation_hawkish__text": {
+        "d_same_action": {
+          "rho": 0.7018706135576206,
+          "se": 0.12093346792302091,
+          "ci_low": 0.40280446525740576,
+          "ci_high": 0.8674812932932597,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.2403153929635763,
+          "se": 0.22949153974205005,
+          "ci_low": -0.22427563404112932,
+          "ci_high": 0.6670691771372145,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -0.9494761172949566,
+          "se": 0.9889558184012963,
+          "mean_hold": 48.262867855757,
+          "mean_cut": 49.21234397305196,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": -0.1647902833450807,
+          "se": 0.1843671972366089,
+          "ci_low": -0.49813076431890857,
+          "ci_high": 0.21635762877889841,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.004887408878813598,
+          "se": 0.13800965962325207,
+          "ci_low": -0.25637180613569754,
+          "ci_high": 0.27123309481333857,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.16162069499299875,
+          "se": 0.1853767219253683,
+          "ci_low": -0.5099920999332994,
+          "ci_high": 0.22944781768873226,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.04338153503893215,
+          "se": 0.20398884074692694,
+          "ci_low": -0.36341350401780365,
+          "ci_high": 0.4425500888078244,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.15658602150537634,
+          "se": 0.14523863204720272,
+          "ci_low": -0.12742702070015074,
+          "ci_high": 0.4301235346295362,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": -0.08908691492536157,
+          "se": 0.21583171288070396,
+          "ci_low": -0.5032622331389766,
+          "ci_high": 0.3265990289743012,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "fedlock_m": {
+          "rho": 0.39999999999999997,
+          "se": 0.6690878495570922,
+          "ci_low": -1.0,
+          "ci_high": 1.0,
+          "n": 4
+        },
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": false
+      },
+      "ax1_inflation_hawkish__conditional": {
+        "d_same_action": {
+          "rho": 0.8270327257146723,
+          "se": 0.07254132780442285,
+          "ci_low": 0.6349313068163313,
+          "ci_high": 0.9233888590220669,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.263493019696104,
+          "se": 0.22753820374029327,
+          "ci_low": -0.2209615060371514,
+          "ci_high": 0.6790169278585135,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -0.4852767001234142,
+          "se": 0.8617556712577438,
+          "mean_hold": 48.521730879301955,
+          "mean_cut": 49.00700757942537,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": -0.2024757473306269,
+          "se": 0.19152066877070684,
+          "ci_low": -0.5493787224181765,
+          "ci_high": 0.20514168487506435,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.017671714862311234,
+          "se": 0.13996161229582665,
+          "ci_low": -0.26288838030050643,
+          "ci_high": 0.28273167887035,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.19768481701622986,
+          "se": 0.19161479310928486,
+          "ci_low": -0.5363909993923129,
+          "ci_high": 0.2080651010787908,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.08876529477196884,
+          "se": 0.19842096515330981,
+          "ci_low": -0.28884985139786673,
+          "ci_high": 0.4722742092995052,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.1609062980030722,
+          "se": 0.14277773866467808,
+          "ci_low": -0.12058101583581762,
+          "ci_high": 0.4376650728271839,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.06458801332088714,
+          "se": 0.22140958640162206,
+          "ci_low": -0.3522067790520031,
+          "ci_high": 0.4962861861764178,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "fedlock_m": {
+          "rho": 0.39999999999999997,
+          "se": 0.6690878495570922,
+          "ci_low": -1.0,
+          "ci_high": 1.0,
+          "n": 4
+        },
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": false
+      },
+      "ax2_emp_vs_infl__text": {
+        "d_same_action": {
+          "rho": -0.8703580722305748,
+          "se": 0.047522322610155134,
+          "ci_low": -0.9221264751745005,
+          "ci_high": -0.7449094950415739,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.20615889041037763,
+          "se": 0.2165179829455865,
+          "ci_low": -0.5794377814919243,
+          "ci_high": 0.25512063960657666,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -1.6662634157141838,
+          "se": 1.2197784719983908,
+          "mean_hold": 51.45298152154715,
+          "mean_cut": 53.119244937261335,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": 0.09588609179754357,
+          "se": 0.20523067328874078,
+          "ci_low": -0.3492124620330113,
+          "ci_high": 0.4706795764512043,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": -0.04875370925910116,
+          "se": 0.13488278812443896,
+          "ci_low": -0.31114311713934395,
+          "ci_high": 0.21154785911910223,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": 0.08682103450037124,
+          "se": 0.20405112613386261,
+          "ci_low": -0.34921493711255747,
+          "ci_high": 0.4615584533143505,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": -0.030033370411568408,
+          "se": 0.1734401465600992,
+          "ci_low": -0.3558895692233458,
+          "ci_high": 0.30026340484985115,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.17463517665130568,
+          "se": 0.14123089387994364,
+          "ci_low": -0.44185282379973373,
+          "ci_high": 0.10889849958877015,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": -0.03563476597014463,
+          "se": 0.1787355415560752,
+          "ci_low": -0.3840274166328964,
+          "ci_high": 0.31206560165589703,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": false,
+        "gate_hold_cut_pass": false
+      },
+      "ax2_emp_vs_infl__conditional": {
+        "d_same_action": {
+          "rho": -0.8662662339485173,
+          "se": 0.04708000714011122,
+          "ci_low": -0.9166838994600138,
+          "ci_high": -0.7299143650262025,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.24129129303652486,
+          "se": 0.2237399803372772,
+          "ci_low": -0.6326696913058839,
+          "ci_high": 0.2468590483974487,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -0.6385767384584966,
+          "se": 1.0380587702275865,
+          "mean_hold": 51.54848045396675,
+          "mean_cut": 52.18705719242524,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": 0.18084562894839032,
+          "se": 0.19863565365206048,
+          "ci_low": -0.25258185456730486,
+          "ci_high": 0.5322206100637383,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": -0.03043194494000191,
+          "se": 0.13865598089520687,
+          "ci_low": -0.299719589830183,
+          "ci_high": 0.23567616500681782,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": 0.17319683292638158,
+          "se": 0.19869970768952142,
+          "ci_low": -0.2519413813672228,
+          "ci_high": 0.5230657197901631,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.025583982202447165,
+          "se": 0.1670241358543524,
+          "ci_low": -0.3155129761742258,
+          "ci_high": 0.3586699973396551,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.16829877112135178,
+          "se": 0.13912992735440657,
+          "ci_low": -0.4254166167922053,
+          "ci_high": 0.1090550670563928,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.025835205328354857,
+          "se": 0.1869020188060691,
+          "ci_low": -0.34424846687657285,
+          "ci_high": 0.3879735885278418,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": false,
+        "gate_hold_cut_pass": false
+      },
+      "ax3_lookthrough__text": {
+        "d_same_action": {
+          "rho": -0.5049809832797969,
+          "se": 0.15113664658225742,
+          "ci_low": -0.7371298724896113,
+          "ci_high": -0.1518521015862272,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.10539720787844159,
+          "se": 0.22072187180821892,
+          "ci_low": -0.5549581692744396,
+          "ci_high": 0.32975420938524097,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 0.29990498386336384,
+          "se": 1.4024533287995902,
+          "mean_hold": 50.86140576487744,
+          "mean_cut": 50.561500781014075,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": 0.1393693194731738,
+          "se": 0.20896544225142671,
+          "ci_low": -0.2888510787076861,
+          "ci_high": 0.5217739526737221,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.11915165783866251,
+          "se": 0.13989174309105581,
+          "ci_low": -0.166304068289819,
+          "ci_high": 0.3943510991315219,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": 0.13290296819672212,
+          "se": 0.20946361207819725,
+          "ci_low": -0.2976600163417025,
+          "ci_high": 0.5159490710399196,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.02246941045606229,
+          "se": 0.18695515817619124,
+          "ci_low": -0.31984245224252494,
+          "ci_high": 0.40819507096341484,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.020977342549923193,
+          "se": 0.1343567025018442,
+          "ci_low": -0.28702953562700034,
+          "ci_high": 0.2378998845572231,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.006013366757461906,
+          "se": 0.21325947684860613,
+          "ci_low": -0.3931641938159726,
+          "ci_high": 0.4474944440417404,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": false,
+        "gate_hold_cut_pass": true
+      },
+      "ax3_lookthrough__conditional": {
+        "d_same_action": {
+          "rho": -0.45058360376538603,
+          "se": 0.14725122853775566,
+          "ci_low": -0.6899703417095727,
+          "ci_high": -0.10733064926047073,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.11637608369911259,
+          "se": 0.2415271653103628,
+          "ci_low": -0.5836802211213766,
+          "ci_high": 0.35902978179509853,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -0.1882148884989263,
+          "se": 1.135303156095464,
+          "mean_hold": 50.58296659840263,
+          "mean_cut": 50.771181486901554,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": 0.1803996471260762,
+          "se": 0.19779780246283135,
+          "ci_low": -0.2580619282267987,
+          "ci_high": 0.5288613850404849,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.14450358665339513,
+          "se": 0.13744156755652095,
+          "ci_low": -0.13695304909083802,
+          "ci_high": 0.4001443584830357,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": 0.17252897881484028,
+          "se": 0.1994990344448863,
+          "ci_low": -0.2611133437925426,
+          "ci_high": 0.5277281019887022,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.12080088987764183,
+          "se": 0.18640571296163216,
+          "ci_low": -0.23737660210991343,
+          "ci_high": 0.48304037399433886,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.03504224270353303,
+          "se": 0.13603806554802142,
+          "ci_low": -0.23347123989038435,
+          "ci_high": 0.3068704983061614,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.16280633702609829,
+          "se": 0.2169122302118863,
+          "ci_low": -0.27077659402925597,
+          "ci_high": 0.568936903351353,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": false,
+        "gate_hold_cut_pass": false
+      },
+      "ax4_forward_path__text": {
+        "d_same_action": {
+          "rho": 0.41399775559640173,
+          "se": 0.12477731854488612,
+          "ci_low": 0.14073118099891188,
+          "ci_high": 0.6292222234586855,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.22470099179639977,
+          "se": 0.2130018259618731,
+          "ci_low": -0.6072342997808566,
+          "ci_high": 0.23655176502751327,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 2.89268822387114,
+          "se": 1.1103130097222684,
+          "mean_hold": 49.89322198993717,
+          "mean_cut": 47.00053376606603,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": -0.021407127471079493,
+          "se": 0.17764473824402827,
+          "ci_low": -0.3773311592844684,
+          "ci_high": 0.3074151173823053,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.22701171585385918,
+          "se": 0.12613502816495473,
+          "ci_low": -0.027220546046930878,
+          "ci_high": 0.465705043875206,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.029608198944998398,
+          "se": 0.17699290259874392,
+          "ci_low": -0.37413583279665125,
+          "ci_high": 0.30575098979597665,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.011790878754171301,
+          "se": 0.19329298196461622,
+          "ci_low": -0.39167428680458777,
+          "ci_high": 0.3706819720148669,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.2217741935483871,
+          "se": 0.1321205178138604,
+          "ci_low": -0.458745595515879,
+          "ci_high": 0.058529616474063136,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.30311822803354277,
+          "se": 0.15022278183843776,
+          "ci_low": -0.02630645020660905,
+          "ci_high": 0.555090789014067,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": true
+      },
+      "ax4_forward_path__conditional": {
+        "d_same_action": {
+          "rho": 0.5129239634743791,
+          "se": 0.10913265412483554,
+          "ci_low": 0.27404822642734117,
+          "ci_high": 0.7038598208787815,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": -0.2520261938389587,
+          "se": 0.21409544972359737,
+          "ci_low": -0.64750268240124,
+          "ci_high": 0.21217071810714905,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 1.6093102083841302,
+          "se": 0.792754297390093,
+          "mean_hold": 49.79869724046997,
+          "mean_cut": 48.18938703208584,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": -0.018285254714880402,
+          "se": 0.17568908532467203,
+          "ci_low": -0.3866658757712201,
+          "ci_high": 0.29092682467275593,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.2300934317971505,
+          "se": 0.12802772239424356,
+          "ci_low": -0.030077890892437353,
+          "ci_high": 0.4779854781409553,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.02537845623857005,
+          "se": 0.17442561808631166,
+          "ci_low": -0.3756987158263779,
+          "ci_high": 0.2922822262910397,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.09098998887652948,
+          "se": 0.1894195373398154,
+          "ci_low": -0.32871883315610007,
+          "ci_high": 0.4364507661218633,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.19225230414746544,
+          "se": 0.1321914496997453,
+          "ci_low": -0.44167578773570937,
+          "ci_high": 0.08673969268341482,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.30200464159697576,
+          "se": 0.14605906169423422,
+          "ci_low": -0.010521526717791083,
+          "ci_high": 0.5745235940562713,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": true
+      },
+      "ax5_qt_eager__text": {
+        "d_same_action": {
+          "rho": 0.6123315640914221,
+          "se": 0.11617362113781539,
+          "ci_low": 0.3293431307233275,
+          "ci_high": 0.7862768330762938,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.11466825857145267,
+          "se": 0.22714449546356555,
+          "ci_low": -0.3404104775422117,
+          "ci_high": 0.549569470428347,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -1.7412545873725165,
+          "se": 1.4429492832599518,
+          "mean_hold": 48.45279308208264,
+          "mean_cut": 50.19404766945516,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": -0.24573598409510006,
+          "se": 0.17854479395098413,
+          "ci_low": -0.5431058929606896,
+          "ci_high": 0.1405969432992349,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": -0.028385492946410008,
+          "se": 0.131939023993665,
+          "ci_low": -0.2884601011019422,
+          "ci_high": 0.22800833811580226,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.24332151463821988,
+          "se": 0.17852527042565908,
+          "ci_low": -0.5415528550370171,
+          "ci_high": 0.13535662983624996,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": -0.0843159065628476,
+          "se": 0.1832560065451798,
+          "ci_low": -0.4665476481444533,
+          "ci_high": 0.2610580783487084,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.12240783410138248,
+          "se": 0.15058087461840367,
+          "ci_low": -0.19963746604236457,
+          "ci_high": 0.38442123107999443,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.030957702936563147,
+          "se": 0.20620494889457383,
+          "ci_low": -0.38900027486509264,
+          "ci_high": 0.4094044048716521,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "qt_note": "No separate QT-pace numeric label in meetings.csv; axis-5 uses d_same / d_2y only.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": false
+      },
+      "ax5_qt_eager__conditional": {
+        "d_same_action": {
+          "rho": 0.7153496102514569,
+          "se": 0.10094551854122026,
+          "ci_low": 0.4697219685518875,
+          "ci_high": 0.8618841229335584,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.2476346435106903,
+          "se": 0.21524986068424834,
+          "ci_low": -0.19993213603566498,
+          "ci_high": 0.6103728430779622,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -1.3486485463073237,
+          "se": 1.2196017128086774,
+          "mean_hold": 48.45343714400508,
+          "mean_cut": 49.8020856903124,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": -0.2988078209504846,
+          "se": 0.18727210142951575,
+          "ci_low": -0.6147690089815803,
+          "ci_high": 0.11851731403966283,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": -0.07819854206101756,
+          "se": 0.13146385286096926,
+          "ci_low": -0.3461275084270334,
+          "ci_high": 0.17253401366554538,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.2958593714128035,
+          "se": 0.18750406329082636,
+          "ci_low": -0.6062732184153511,
+          "ci_high": 0.12234537952219647,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": -0.1532814238042269,
+          "se": 0.18013218957426422,
+          "ci_low": -0.500365638663637,
+          "ci_high": 0.18766380881024478,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.11880760368663595,
+          "se": 0.14861489169379383,
+          "ci_low": -0.19571817857215054,
+          "ci_high": 0.3818688961912384,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.008685974205222755,
+          "se": 0.2119135696381944,
+          "ci_low": -0.4260000518753751,
+          "ci_high": 0.42175312978117346,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "qt_note": "No separate QT-pace numeric label in meetings.csv; axis-5 uses d_same / d_2y only.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": false
+      },
+      "ax6_fci_restrictive__text": {
+        "d_same_action": {
+          "rho": 0.7654144551142776,
+          "se": 0.09485907535342526,
+          "ci_low": 0.5170496425530758,
+          "ci_high": 0.8926990788012233,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.1288188096292064,
+          "se": 0.21027611745246086,
+          "ci_low": -0.29455956687163787,
+          "ci_high": 0.5151802747289977,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 3.0741038064049206,
+          "se": 0.7891175774759834,
+          "mean_hold": 49.99196973489255,
+          "mean_cut": 46.91786592848763,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": -0.15609363780995464,
+          "se": 0.19396969888251778,
+          "ci_low": -0.5137336907063196,
+          "ci_high": 0.25606996406784216,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": -0.06334370817812106,
+          "se": 0.12333186477598675,
+          "ci_low": -0.29962895364085357,
+          "ci_high": 0.18365962475383538,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.15071241117115725,
+          "se": 0.19383827131966874,
+          "ci_low": -0.49952361153888664,
+          "ci_high": 0.25840284298475,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.02736373748609566,
+          "se": 0.19305128679027175,
+          "ci_low": -0.36405761500669936,
+          "ci_high": 0.4038917095987394,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.27784178187403996,
+          "se": 0.12102516574391876,
+          "ci_low": -0.48987267607873825,
+          "ci_high": -0.022569862015994722,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.020712707720146564,
+          "se": 0.20575946123922884,
+          "ci_low": -0.394920069893448,
+          "ci_high": 0.4114075878662622,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": true
+      },
+      "ax6_fci_restrictive__conditional": {
+        "d_same_action": {
+          "rho": 0.6503615904776032,
+          "se": 0.132775566800002,
+          "ci_low": 0.3465676131909886,
+          "ci_high": 0.8504618741996992,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.13808986032221746,
+          "se": 0.20787017379989733,
+          "ci_low": -0.2837041645939155,
+          "ci_high": 0.5182513659562866,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 1.336506219631687,
+          "se": 0.8017551718668194,
+          "mean_hold": 49.71649042956157,
+          "mean_cut": 48.37998420992988,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": -0.1870893744607885,
+          "se": 0.20018158047954918,
+          "ci_low": -0.5491787845118734,
+          "ci_high": 0.23690365444856773,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.03621016233367316,
+          "se": 0.11779743630770713,
+          "ci_low": -0.20485184151788968,
+          "ci_high": 0.25647171072554786,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.1898931857149145,
+          "se": 0.20158719146906529,
+          "ci_low": -0.5498365988534631,
+          "ci_high": 0.2480229634948275,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.06162402669632924,
+          "se": 0.19198325562151966,
+          "ci_low": -0.30721373690180565,
+          "ci_high": 0.4287006156466383,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": -0.027313748079877118,
+          "se": 0.12275846505273594,
+          "ci_low": -0.26483639510879714,
+          "ci_high": 0.21242594838877016,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.05902008113805204,
+          "se": 0.2056089245639088,
+          "ci_low": -0.3413188126969813,
+          "ci_high": 0.4448043152882634,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": true
+      },
+      "ax7_infl_vs_labor_risk__text": {
+        "d_same_action": {
+          "rho": 0.6985008643841616,
+          "se": 0.10645224234341187,
+          "ci_low": 0.42556343477218994,
+          "ci_high": 0.839461502662531,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.190300514224964,
+          "se": 0.22968893603070512,
+          "ci_low": -0.307606320265892,
+          "ci_high": 0.580533214538059,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": -0.051300093628768195,
+          "se": 1.2960537404880887,
+          "mean_hold": 48.60506617683019,
+          "mean_cut": 48.65636627045896,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": false
+        },
+        "d_2y_action": {
+          "rho": -0.13334856487193267,
+          "se": 0.19911307942909062,
+          "ci_low": -0.5062433604586394,
+          "ci_high": 0.27764173347831683,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.06449935165685532,
+          "se": 0.1349587229096611,
+          "ci_low": -0.19874858760369532,
+          "ci_high": 0.31661957858914463,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.12689228119285026,
+          "se": 0.1995380852357689,
+          "ci_low": -0.5033878726228025,
+          "ci_high": 0.28146687713468416,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.03181312569521691,
+          "se": 0.1924336775401649,
+          "ci_low": -0.35346849917912654,
+          "ci_high": 0.4102623029261336,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.1646505376344086,
+          "se": 0.1354944967170507,
+          "ci_low": -0.09022057807645344,
+          "ci_high": 0.42214758621406073,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.06146997129849949,
+          "se": 0.203056522892242,
+          "ci_low": -0.35218168346349776,
+          "ci_high": 0.4338833588394805,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": false
+      },
+      "ax7_infl_vs_labor_risk__conditional": {
+        "d_same_action": {
+          "rho": 0.8145165144989671,
+          "se": 0.07188408996861848,
+          "ci_low": 0.6267624509596236,
+          "ci_high": 0.9047803859737683,
+          "n": 30
+        },
+        "d_same_action_era": {
+          "rho": 0.20664684044685191,
+          "se": 0.23042351065166475,
+          "ci_low": -0.2904364694277607,
+          "ci_high": 0.6023753693619646,
+          "n": 30
+        },
+        "hold_vs_cut": {
+          "gap": 0.31571893021919095,
+          "se": 0.9498436626238073,
+          "mean_hold": 48.533182507396944,
+          "mean_cut": 48.21746357717775,
+          "n_hold": 63,
+          "n_cut": 9,
+          "pass": true
+        },
+        "d_2y_action": {
+          "rho": -0.1605534560330962,
+          "se": 0.19494711268299234,
+          "ci_low": -0.5080122328282949,
+          "ci_high": 0.24548671649497028,
+          "n": 30
+        },
+        "d_2y_holds": {
+          "rho": 0.11869421562833024,
+          "se": 0.12805092821852673,
+          "ci_low": -0.136820143923353,
+          "ci_high": 0.3532932320725412,
+          "n": 63
+        },
+        "dgs2_day_chg_action": {
+          "rho": -0.15516477191476602,
+          "se": 0.1948765355403259,
+          "ci_low": -0.5069930322402532,
+          "ci_high": 0.25318199502297345,
+          "n": 30
+        },
+        "usd_day_chg_action": {
+          "rho": 0.010456062291434927,
+          "se": 0.19626000918486022,
+          "ci_low": -0.3723950358092493,
+          "ci_high": 0.3915824576311757,
+          "n": 30
+        },
+        "usd_day_chg_holds": {
+          "rho": 0.20881336405529954,
+          "se": 0.13514556983421494,
+          "ci_low": -0.054002181078285603,
+          "ci_high": 0.4727790795619929,
+          "n": 63
+        },
+        "nfci_week_chg_action": {
+          "rho": 0.09376397795894306,
+          "se": 0.20932772769733335,
+          "ci_low": -0.3320864983588548,
+          "ci_high": 0.46974049720572925,
+          "n": 30
+        },
+        "sep_note": "Next-meeting SEP medians not vendored as a panel in this repo; skipped.",
+        "gate_d_same_pass": true,
+        "gate_hold_cut_pass": true
+      }
+    }
+  },
+  "cost": {
+    "usd": 1.532933934000009,
+    "in": 36498427,
+    "out": 429102,
+    "filter_usd": 0.055204086000000076,
+    "choice_usd": 1.4777298480000072
+  },
+  "scope_notes": [
+    "Corpus: 95 chair press-conference openings (prepared remarks only).",
+    "Q&A drift: out of scope \u2014 Q&A not vendored; do not invent.",
+    "Full-speech robustness: future work.",
+    "SEP medians: not available as a vendored panel; skipped.",
+    "FCI surprise: NFCI weekly change used as proxy."
+  ]
+}

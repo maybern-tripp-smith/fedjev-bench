@@ -1,0 +1,8 @@
+{
+  "filter_est_usd": 0.09043999999999999,
+  "choice_est_usd": 1.9600000000000002,
+  "order_swap_est_usd": 0.02,
+  "total_est_usd": 2.07044,
+  "abort_if_over": 5.0,
+  "ok": true
+}
